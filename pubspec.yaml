@@ -78,7 +78,6 @@ flutter:
   assets:
    - assets/logo/
    - assets/user/
-   - assets/inventori/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
