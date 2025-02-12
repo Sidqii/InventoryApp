@@ -36,11 +36,10 @@ class _LoginPageState extends State<LoginPage> {
                 'Selamat\nDatang Kembali,\ndi AssetsHub.',
                 style: TextStyle(
                   fontSize: 30,
-                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 35),
               CustomTxtField(
                 controller: _emailctrl,
                 label: 'Email',
@@ -64,30 +63,21 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 35),
               CustomButton(
-                onpress: () {},
+                onpress: () {
+                  print('Login');
+                },
                 txt: 'Login',
               ),
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   child: Text('Login', style: TextStyle(color: Colors.white),),
-              //   style: ElevatedButton.styleFrom(
-              //     minimumSize: Size(double.infinity, 50),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //     elevation: 10,
-              //     shadowColor: Colors.black,
-              //   ),
-              // ),
               const SizedBox(height: 40),
               Row(
+                spacing: 3,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Don\'t have any account?',
+                    'Belum punya akun?',
                     style: GoogleFonts.poppins(),
                   ),
-                  const SizedBox(width: 5),
+                  // const SizedBox(width: 5),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -97,20 +87,51 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       );
                     },
-                    child: Text(
-                      'Sign in!',
+                    child: Row(
+                      spacing: 2,
+                      children: [
+                        Text(
+                          'Daftar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        Text('!'),
+                      ],
                     ),
                   ),
                 ],
               ),
-              const Spacer(flex: 1),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('ChenLong gak sekolah.'),
-                ],
+              const SizedBox(height: 130),
+              Center(
+                child: Column(
+                  spacing: 5,
+                  children: [
+                    Text('Atau daftar melalui'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 15,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.facebook_sharp,
+                            size: 35,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.telegram_sharp,
+                            size: 35,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 30),
             ],
           ),
         ),

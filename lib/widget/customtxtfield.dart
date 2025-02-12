@@ -61,14 +61,14 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
         fillColor: widget.bgcolor ?? Colors.transparent,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: widget.focuscolor ?? Colors.white,
+            color: widget.focuscolor ?? Colors.black,
           ),
         ),
         suffixIcon: widget.obscuretxt
             ? IconButton(
                 icon: Icon(
                   _isObscure ? CupertinoIcons.lock : CupertinoIcons.lock_open,
-                  color: widget.focuscolor ?? Colors.white,
+                  color: widget.focuscolor ?? Colors.black,
                 ),
                 onPressed: () {
                   setState(() {

@@ -20,12 +20,13 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: 45,
       child: FilledButton(
         onPressed: onpress,
         style: FilledButton.styleFrom(
           backgroundColor: btncolor ?? Colors.grey[900],
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
           ),
           padding: padding ??
               EdgeInsets.symmetric(
@@ -33,7 +34,7 @@ class CustomButton extends StatelessWidget {
                 vertical: 15,
               ),
           maximumSize: const Size(double.infinity, 55),
-          elevation: 10,
+          elevation: 4,
           shadowColor: Colors.black.withValues(alpha: 1),
         ),
         child: Text(
@@ -41,6 +42,7 @@ class CustomButton extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),
