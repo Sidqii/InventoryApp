@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pusdatin_end/page/auth/login.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 import 'package:pusdatin_end/widget/validator.dart';
@@ -23,83 +23,117 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 4,
-        shadowColor: Colors.black.withValues(alpha: 0.5),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            CupertinoIcons.back,
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Form(
-          key: _formkey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-              ),
-              Text(
-                'Silahkan Lakukan\nRegistrasi.',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
                 ),
-              ),
-              const SizedBox(height: 35),
-              CustomTxtField(
-                controller: _emailctrl,
-                label: 'Email',
-                validator: emailValidator,
-                keyboardtype: TextInputType.emailAddress,
-                obscuretxt: false,
-                focusnode: _emailfocus,
-                onfieldsubmitted: (_) {
-                  FocusScope.of(context).requestFocus(_passfocus);
-                },
-              ),
-              const SizedBox(height: 25),
-              CustomTxtField(
-                controller: _passctrl,
-                label: 'Password',
-                validator: passwordValidator,
-                keyboardtype: TextInputType.text,
-                obscuretxt: true,
-                focusnode: _passfocus,
-                onfieldsubmitted: (_) {
-                  FocusScope.of(context).requestFocus(_confirmfocus);
-                },
-              ),
-              const SizedBox(height: 25),
-              CustomTxtField(
-                controller: _confirmctrl,
-                label: 'Confirm Password',
-                validator: (value) {
-                  if (value != _passctrl) {
-                    return 'Password ambigu';
-                  }
-                  return null;
-                },
-                keyboardtype: TextInputType.text,
-                obscuretxt: true,
-                focusnode: _confirmfocus,
-                onfieldsubmitted: (_) {},
-              ),
-              const SizedBox(height: 40),
-              CustomButton(
-                onpress: () {
-                  print('Login');
-                },
-                txt: 'Register',
-              ),
-              const SizedBox(height: 40),
-            ],
+                Text(
+                  'Silahkan Lakukan\nRegistrasi.',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 35),
+                CustomTxtField(
+                  controller: _emailctrl,
+                  label: 'Email',
+                  validator: emailValidator,
+                  keyboardtype: TextInputType.emailAddress,
+                  obscuretxt: false,
+                  focusnode: _emailfocus,
+                  onfieldsubmitted: (_) {
+                    FocusScope.of(context).requestFocus(_passfocus);
+                  },
+                ),
+                const SizedBox(height: 25),
+                CustomTxtField(
+                  controller: _passctrl,
+                  label: 'Password',
+                  validator: passwordValidator,
+                  keyboardtype: TextInputType.text,
+                  obscuretxt: true,
+                  focusnode: _passfocus,
+                  onfieldsubmitted: (_) {
+                    FocusScope.of(context).requestFocus(_confirmfocus);
+                  },
+                ),
+                const SizedBox(height: 25),
+                CustomTxtField(
+                  controller: _confirmctrl,
+                  label: 'Confirm Password',
+                  validator: (value) {
+                    if (value != _passctrl) {
+                      return 'Password ambigu';
+                    }
+                    return null;
+                  },
+                  keyboardtype: TextInputType.text,
+                  obscuretxt: true,
+                  focusnode: _confirmfocus,
+                  onfieldsubmitted: (_) {},
+                ),
+                const SizedBox(height: 40),
+                CustomButton(
+                  onpress: () {
+                    print('Login');
+                  },
+                  txt: 'Register',
+                ),
+                const SizedBox(height: 80),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // spacing: 3,
+                  children: [
+                    Text('Sudah punya akun?'),
+                    const SizedBox(width: 3),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 300),
+                            pageBuilder: (
+                              context,
+                              animation,
+                              secondaryAnimation,
+                            ) =>
+                                LoginPage(),
+                            transitionsBuilder: (
+                              context,
+                              animation,
+                              secondaryAnimation,
+                              child,
+                            ) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

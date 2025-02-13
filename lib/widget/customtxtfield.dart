@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTxtField extends StatefulWidget {
@@ -45,6 +44,7 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.black,
       controller: widget.controller,
       validator: widget.validator,
       keyboardType: widget.keyboardtype,
@@ -66,9 +66,13 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
         ),
         suffixIcon: widget.obscuretxt
             ? IconButton(
-                icon: Icon(
-                  _isObscure ? CupertinoIcons.lock : CupertinoIcons.lock_open,
+                icon: Image.asset(
+                  _isObscure
+                      ? 'assets/icon/eyesoff.png'
+                      : 'assets/icon/eyeson.png',
                   color: widget.focuscolor ?? Colors.black,
+                  width: 24,
+                  height: 24,
                 ),
                 onPressed: () {
                   setState(() {
