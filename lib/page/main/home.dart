@@ -65,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                   firstDay: DateTime.utc(2024, 1, 1),
                   lastDay: DateTime.utc(2050, 12, 31),
                   calendarFormat: _calendarformat,
-                  eventLoader: ,
                   selectedDayPredicate: (day) {
                     return isSameDay(_selectday, day);
                   },
