@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,13 +11,38 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Hello from HomePage')
-            .animate()
-            .fade(delay: 500.ms)
-            .slideY()
-            .then()
-            .shake(duration: 150.ms),
+      appBar: AppBar(
+        elevation: 3,
+        shadowColor: Colors.black.withValues(alpha: 5),
+        title: Row(
+          children: [
+            Text(
+              'Assets',
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              'Hub',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              '.',
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            )
+          ],
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications_sharp))
+        ],
+      ),
+      body: const Center(
+        child: Text('Hello from HomePage'),
       ),
     );
   }

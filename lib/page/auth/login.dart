@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pusdatin_end/page/auth/register.dart';
-import 'package:pusdatin_end/page/main/home.dart';
+import 'package:pusdatin_end/page/main/screen.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customsnackbar.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             animation,
             secondaryAnimation,
           ) =>
-              HomePage(),
+              ScreenPage(),
           transitionsBuilder: (
             context,
             animation,
