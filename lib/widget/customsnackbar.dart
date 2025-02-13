@@ -10,32 +10,52 @@ class CustomSnackbar {
     IconData? icon,
     Duration duration = const Duration(seconds: 3),
   }) {
-    final snackbar = SnackBar(
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          if (icon != null) ...[
-            Icon(
-              icon,
-              color: iconcolor,
-              weight: 3,
+    final overlay = Overlay.of(context);
+    final overlayentry = OverlayEntry(
+      builder: (context) => Center(
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(
+              color: bgcolor,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                ),
+              ],
             ),
-            const SizedBox(width: 10),
-          ],
-          Expanded(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: txtcolor,
-              ),
+            child: Row(
+              spacing: 8,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (icon != null) ...[
+                  Icon(
+                    icon,
+                    color: iconcolor,
+                  ),
+                ],
+                Flexible(
+                  child: Text(
+                    message,
+                    style: TextStyle(color: txtcolor, fontSize: 14),
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
-      backgroundColor: bgcolor,
-      behavior: SnackBarBehavior.floating,
-      duration: duration,
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    overlay.insert(overlayentry);
+    Future.delayed(
+      duration,
+      () {
+        overlayentry.remove();
+      },
+    );
   }
 }

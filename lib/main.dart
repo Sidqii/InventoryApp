@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pusdatin_end/page/main/screen.dart';
+import 'package:pusdatin_end/page/main/splash.dart';
 import 'package:pusdatin_end/widget/customtheme.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.black,
         ),
       ),
-      home: ScreenPage(),
+      home: SplashScreen(),
     );
   }
 }

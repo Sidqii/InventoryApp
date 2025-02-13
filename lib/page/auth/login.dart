@@ -23,10 +23,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() {
     if (_formkey.currentState?.validate() == true) {
-      CustomSnackbar.show(
-        context: context,
-        message: 'Login sukses',
-      );
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -43,8 +39,8 @@ class _LoginPageState extends State<LoginPage> {
             secondaryAnimation,
             child,
           ) {
-            return ScaleTransition(
-              scale: animation,
+            return FadeTransition(
+              opacity: animation,
               child: child,
             );
           },
