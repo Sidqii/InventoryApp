@@ -7,28 +7,50 @@ class GetxEvent extends GetxController {
   var selectday = DateTime.now().obs;
   var focusday = DateTime.now().obs;
   var calendarformat = CalendarFormat.month.obs;
+  var isloading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     fetchEvent();
+    debounce(
+      events,
+      (_) {
+        update();
+      },
+      time: Duration(milliseconds: 300),
+    );
+    // ever(events, (_)=>update());
   }
 
   void fetchEvent() async {
+    isloading.value = true;
     try {
       List<dynamic> data = await ServicesEvent().fetchEvent();
-      events.clear();
+      var tempevent = <DateTime, List<dynamic>>{};
 
       for (var event in data) {
-        DateTime eventdate = DateTime.parse(event['date']).toLocal();
-        DateTime normalize = DateTime(eventdate.year, eventdate.month, eventdate.day);
-        if (!events.containsKey(normalize)) {
-          events[normalize] = [];
+        DateTime eventdate = DateTime.parse(event['date']);
+        DateTime normalize = DateTime(
+          eventdate.year,
+          eventdate.month,
+          eventdate.day,
+        );
+        if (!tempevent.containsKey(normalize)) {
+          tempevent[normalize] = [];
         }
-        events[normalize]?.add(event);
+        tempevent[normalize]?.add(event);
       }
+      events.value = tempevent;
+      // update();
+      focusday.value = DateTime.now();
     } catch (e) {
-      Get.snackbar('Error', '$e');
+      Get.snackbar(
+        'Error',
+        'Exception error on connected to calendar server',
+        duration: Duration(seconds: 2),
+      );
+      isloading.value = false;
     }
   }
 }

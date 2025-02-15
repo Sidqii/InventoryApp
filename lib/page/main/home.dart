@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pusdatin_end/module/getx/getx_event.dart';
 import 'package:pusdatin_end/widget/customcalendar.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final calendarctrl = Get.put(GetxEvent(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +50,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Customcalendar(),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            CustomCalendar(),
+          ],
         ),
       ),
     );

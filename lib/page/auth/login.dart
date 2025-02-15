@@ -22,8 +22,14 @@ class _LoginPageState extends State<LoginPage> {
   final _passfocus = FocusNode();
   final _formkey = GlobalKey<FormState>();
 
-  void _login() {
+  void _login() async {
     if (_formkey.currentState?.validate() == true) {
+      Get.dialog(
+        Center(child: CircularProgressIndicator()),
+        barrierDismissible: false,
+      );
+      await Future.delayed(Duration(seconds: 2));
+      Get.back();
       Get.off(
         ScreenPage(),
         transition: Transition.fadeIn,

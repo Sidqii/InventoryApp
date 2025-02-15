@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pusdatin_end/module/getx/getx_event.dart';
 import 'package:pusdatin_end/page/main/barang.dart';
 import 'package:pusdatin_end/page/main/home.dart';
 import 'package:pusdatin_end/page/main/request.dart';
@@ -14,6 +16,7 @@ class ScreenPage extends StatefulWidget {
 class _ScreenPageState extends State<ScreenPage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  final calendarctrl = Get.put(GetxEvent(), permanent: true);
 
   void _onItemTapped(int index) {
     setState(() {
