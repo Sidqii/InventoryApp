@@ -1,4 +1,4 @@
-import 'package:pusdatin_end/dummy/model/user.dart';
+import 'package:pusdatin_end/dataset/model/user.dart';
 
 List<user> MockUser = [
   user(

@@ -53,6 +53,7 @@ dependencies:
   json_patch: ^3.0.0
   google_fonts: ^6.2.1
   flutter_animate: ^4.5.2
+  get: ^4.7.2
 
 dev_dependencies:
   flutter_test:

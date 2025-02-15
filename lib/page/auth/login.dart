@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pusdatin_end/page/auth/register.dart';
 import 'package:pusdatin_end/page/main/screen.dart';
@@ -23,28 +24,10 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() {
     if (_formkey.currentState?.validate() == true) {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 300),
-          pageBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-          ) =>
-              ScreenPage(),
-          transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
-          ) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-        ),
+      Get.off(
+        ScreenPage(),
+        transition: Transition.fadeIn,
+        duration: Duration(milliseconds: 800),
       );
     } else {
       CustomSnackbar.show(
@@ -119,28 +102,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 300),
-                            pageBuilder: (
-                              context,
-                              animation,
-                              secondaryAnimation,
-                            ) =>
-                                RegisterPage(),
-                            transitionsBuilder: (
-                              context,
-                              animation,
-                              secondaryAnimation,
-                              child,
-                            ) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                          ),
+                        Get.to(
+                          RegisterPage(),
+                          transition: Transition.fadeIn,
+                          duration: Duration(milliseconds: 550),
                         );
                       },
                       child: Row(

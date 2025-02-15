@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pusdatin_end/page/auth/login.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -37,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: MediaQuery.of(context).size.height * 0.2,
                 ),
                 Text(
-                  'Silahkan Lakukan\nRegistrasi.',
+                  'Silahkan\nLakukan Registrasi.',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -98,28 +99,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(width: 3),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 300),
-                            pageBuilder: (
-                              context,
-                              animation,
-                              secondaryAnimation,
-                            ) =>
-                                LoginPage(),
-                            transitionsBuilder: (
-                              context,
-                              animation,
-                              secondaryAnimation,
-                              child,
-                            ) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              );
-                            },
-                          ),
+                        Get.to(
+                          LoginPage(),
+                          transition: Transition.fadeIn,
+                          duration: Duration(milliseconds: 550)
                         );
                       },
                       child: Text(
