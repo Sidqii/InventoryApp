@@ -14,7 +14,7 @@ AssetsHub adalah aplikasi berbasis Flutter yang digunakan untuk mengelola aset d
    ```
 2. Masuk ke direktori proyek:
    ```sh
-   cd pusdatin_end
+   cd InventoryApp
    ```
 3. Install dependencies:
    ```sh
