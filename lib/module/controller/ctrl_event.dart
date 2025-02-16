@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:pusdatin_end/module/service/services_event.dart';
 
-class GetxEvent extends GetxController {
+class EventCtrl extends GetxController {
   var events = <DateTime, List<dynamic>>{}.obs;
   var selectday = DateTime.now().obs;
   var focusday = DateTime.now().obs;

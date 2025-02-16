@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/page/auth/login.dart';
+import 'package:pusdatin_end/page/auth/authlog.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 import 'package:pusdatin_end/widget/validator.dart';
@@ -100,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     GestureDetector(
                       onTap: () {
                         Get.to(
-                          LoginPage(),
+                          AuthLog(),
                           transition: Transition.fadeIn,
                           duration: Duration(milliseconds: 550)
                         );

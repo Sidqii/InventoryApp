@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/getx/getx_event.dart';
+import 'package:pusdatin_end/module/controller/ctrl_event.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CustomCalendar extends StatelessWidget {
@@ -8,7 +8,7 @@ class CustomCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final calendarctrl = Get.put(GetxEvent());
+    final calendarctrl = Get.put(EventCtrl());
 
     void showdialog(List<dynamic> events) {
       Get.dialog(
@@ -27,7 +27,7 @@ class CustomCalendar extends StatelessWidget {
                     children: [
                       Icon(Icons.nightlight_sharp,
                           size: 40, color: Colors.grey),
-                      SizedBox(height: 10),
+                      SizedBox(width: 10),
                       Text(
                         'Tidak ada kegiatan',
                         textAlign: TextAlign.center,

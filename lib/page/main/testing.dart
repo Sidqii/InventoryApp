@@ -1,56 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/module/service/services_event.dart';
+import 'package:get/get.dart';
+import 'package:pusdatin_end/module/controller/ctrl_login.dart';
 
-class TestingPage extends StatefulWidget {
-  const TestingPage({super.key});
-
-  @override
-  State<TestingPage> createState() => _TestingPageState();
-}
-
-class _TestingPageState extends State<TestingPage> {
-  late Future<List<dynamic>> user;
-
-  @override
-  void initState() {
-    super.initState();
-    user = ServicesEvent().fetchEvent();
-  }
+class Testing extends StatelessWidget {
+  final _emailCtrl = TextEditingController();
+  final _passCtrl = TextEditingController();
+  final authC = Get.put(AuthCtrl());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TestingPage'),
-      ),
-      body: FutureBuilder(
-        future: user,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Error: ${snapshot.error}'),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(
-              child: Text('tidak ada data'),
-            );
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                var user = snapshot.data![index];
-                return ListTile(
-                  title: Text(user['date']),
-                  subtitle: Text(user['event']),
-                );
-              },
-            );
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _emailCtrl,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              controller: _passCtrl,
+              obscureText: false,
+              decoration: InputDecoration(labelText: 'Password'),
+            ),
+            const SizedBox(height: 20),
+            Obx(() => authC.isloading.value
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      authC.login(_emailCtrl.text, _passCtrl.text);
+                    },
+                    child: Text('Login'),
+                  )),
+          ],
+        ),
       ),
     );
   }

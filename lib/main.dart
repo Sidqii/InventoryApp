@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pusdatin_end/module/getx/getx_event.dart';
+import 'package:pusdatin_end/module/controller/ctrl_event.dart';
 import 'package:pusdatin_end/page/main/splash.dart';
 import 'package:pusdatin_end/widget/customtheme.dart';
 
 void main() {
-  Get.lazyPut(() => GetxEvent());
+  Get.lazyPut(() => EventCtrl());
   runApp(MyApp());
 }
 
