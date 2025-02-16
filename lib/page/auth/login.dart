@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pusdatin_end/module/controller/ctrl_login.dart';
 import 'package:pusdatin_end/page/auth/register.dart';
-import 'package:pusdatin_end/page/main/screen.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
-import 'package:pusdatin_end/widget/customsnackbar.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 import 'package:pusdatin_end/widget/validator.dart';
 
@@ -21,27 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final _emailfocus = FocusNode();
   final _passfocus = FocusNode();
   final _formkey = GlobalKey<FormState>();
-
-  void _login() async {
-    if (_formkey.currentState?.validate() == true) {
-      Get.dialog(
-        Center(child: CircularProgressIndicator()),
-        barrierDismissible: false,
-      );
-      await Future.delayed(Duration(seconds: 2));
-      Get.back();
-      Get.off(
-        ScreenPage(),
-        transition: Transition.fadeIn,
-        duration: Duration(milliseconds: 800),
-      );
-    } else {
-      CustomSnackbar.show(
-        context: context,
-        message: 'Login gagal',
-      );
-    }
-  }
+  final auth = Get.put(AuthCtrl());
 
   @override
   Widget build(BuildContext context) {
@@ -87,16 +66,21 @@ class _LoginPageState extends State<LoginPage> {
                   obscuretxt: true,
                   focusnode: _passfocus,
                   onfieldsubmitted: (_) {
-                    _login();
+                    if (!auth.isloading.value) {
+                      auth.login(_emailctrl.text, _passctrl.text);
+                    }
                   },
                 ),
                 const SizedBox(height: 35),
-                CustomButton(
-                  onpress: () {
-                    _login();
-                  },
-                  txt: 'Login',
-                ),
+                Obx(() => CustomButton(
+                      onpress: auth.isloading.value
+                          ? () {}
+                          : () {
+                              auth.login(_emailctrl.text, _passctrl.text);
+                            },
+                      txt: 'login',
+                      isloading: auth.isloading.value,
+                    )),
                 const SizedBox(height: 40),
                 Row(
                   spacing: 3,

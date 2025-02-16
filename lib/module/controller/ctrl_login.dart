@@ -18,7 +18,7 @@ class AuthCtrl extends GetxController {
           'Berhasil login!',
           duration: Duration(seconds: 2),
         );
-        Get.off(
+        Get.offAll(
           ScreenPage(),
           transition: Transition.fadeIn,
           duration: Duration(

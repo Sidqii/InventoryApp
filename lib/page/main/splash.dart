@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:pusdatin_end/page/auth/authlog.dart';
+import 'package:pusdatin_end/page/auth/login.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       Get.off(
-        AuthLog(),
+        LoginPage(),
         transition: Transition.fadeIn,
         duration: Duration(milliseconds: 980),
       );
