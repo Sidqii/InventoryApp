@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/module/service/services_user.dart';
 import 'package:pusdatin_end/page/main/screen.dart';
 
-class AuthCtrl extends GetxController {
+class CtrlLogin extends GetxController {
   var isloading = false.obs;
   var islogin = false.obs;
 

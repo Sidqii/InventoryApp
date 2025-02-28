@@ -5,7 +5,7 @@ import 'package:pusdatin_end/module/controller/ctrl_login.dart';
 class Testing extends StatelessWidget {
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  final authC = Get.put(AuthCtrl());
+  final authC = Get.put(CtrlLogin());
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ServicesUser {
-  final String url = 'http://localhost/AssetsHub/login.php';
+  final String url = 'http://localhost/AssetsHub/src/login.php';
 
   Future<List<dynamic>> fetchUser() async {
     try {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/module/controller/ctrl_register.dart';
 import 'package:pusdatin_end/page/auth/login.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -13,6 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final CtrlRegister ctrlRegister = Get.put(CtrlRegister());
   final _emailctrl = TextEditingController();
   final _passctrl = TextEditingController();
   final _confirmctrl = TextEditingController();
@@ -73,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _confirmctrl,
                   label: 'Confirm Password',
                   validator: (value) {
-                    if (value != _passctrl) {
+                    if (value != _passctrl.text) {
                       return 'Password ambigu';
                     }
                     return null;
@@ -81,12 +83,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardtype: TextInputType.text,
                   obscuretxt: true,
                   focusnode: _confirmfocus,
-                  onfieldsubmitted: (_) {},
+                  onfieldsubmitted: (_) {
+                    if (_formkey.currentState!.validate()) {
+                      ctrlRegister.register(_emailctrl.text, _passctrl.text);
+                    }
+                  },
                 ),
                 const SizedBox(height: 40),
                 CustomButton(
                   onpress: () {
-                    print('Login');
+                    if (_formkey.currentState!.validate()) {
+                      ctrlRegister.register(_emailctrl.text, _passctrl.text);
+                    }
                   },
                   txt: 'Register',
                 ),
@@ -99,11 +107,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(width: 3),
                     GestureDetector(
                       onTap: () {
-                        Get.to(
-                          LoginPage(),
-                          transition: Transition.fadeIn,
-                          duration: Duration(milliseconds: 550)
-                        );
+                        Get.to(LoginPage(),
+                            transition: Transition.fadeIn,
+                            duration: Duration(milliseconds: 550));
                       },
                       child: Text(
                         'Login',

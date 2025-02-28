@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final _emailfocus = FocusNode();
   final _passfocus = FocusNode();
   final _formkey = GlobalKey<FormState>();
-  final auth = Get.put(AuthCtrl());
+  final auth = Get.put(CtrlLogin());
 
   @override
   Widget build(BuildContext context) {

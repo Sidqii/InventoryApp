@@ -8,7 +8,7 @@ class CustomCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final calendarctrl = Get.put(EventCtrl());
+    final calendarctrl = Get.put(CtrlEvent());
 
     void showdialog(List<dynamic> events) {
       Get.dialog(
@@ -18,8 +18,7 @@ class CustomCalendar extends StatelessWidget {
           ),
           child: Container(
             padding: EdgeInsets.all(16),
-            constraints:
-                BoxConstraints(maxWidth: 200),
+            constraints: BoxConstraints(maxWidth: 200),
             child: events.isEmpty
                 ? Row(
                     mainAxisSize: MainAxisSize.min,
@@ -41,7 +40,6 @@ class CustomCalendar extends StatelessWidget {
                           (event) => ListTile(
                             leading: Icon(Icons.event, color: Colors.grey),
                             title: Text(event['event']),
-                            // subtitle: Text(event['date']),
                           ),
                         )
                         .toList(),
@@ -69,24 +67,13 @@ class CustomCalendar extends StatelessWidget {
                 onDaySelected: (selectDay, focusDay) {
                   calendarctrl.selectday.value = selectDay;
                   calendarctrl.focusday.value = focusDay;
-
                   DateTime normalize = DateTime(
                     selectDay.year,
                     selectDay.month,
                     selectDay.day,
                   );
-
                   var eventlist = calendarctrl.events[normalize] ?? [];
-
                   showdialog(eventlist);
-                  // if (eventlist.isNotEmpty) {
-                  //   Get.snackbar('${selectDay.toLocal()}',
-                  //       eventlist.map((e) => e['event']).join(', '),
-                  //       snackPosition: SnackPosition.BOTTOM);
-                  // } else {
-                  //   Get.snackbar('', 'Tidak ada kegiatan',
-                  //       snackPosition: SnackPosition.BOTTOM);
-                  // }
                 },
                 eventLoader: (day) {
                   DateTime normalize = DateTime(
@@ -118,28 +105,6 @@ class CustomCalendar extends StatelessWidget {
                 ),
               ),
             ),
-            // Obx(
-            //   () {
-            //     var selectday = DateTime(
-            //       calendarctrl.selectday.value.year,
-            //       calendarctrl.selectday.value.month,
-            //       calendarctrl.selectday.value.day,
-            //     );
-            //     var eventlist = calendarctrl.events[selectday] ?? [];
-            //     return Expanded(
-            //       child: ListView.builder(
-            //         itemCount: eventlist.length,
-            //         itemBuilder: (context, index) {
-            //           var event = eventlist[index];
-            //           return ListTile(
-            //             title: Text(event['event']),
-            //             subtitle: Text(event['date']),
-            //           );
-            //         },
-            //       ),
-            //     );
-            //   },
-            // ),
           ],
         ),
       ),

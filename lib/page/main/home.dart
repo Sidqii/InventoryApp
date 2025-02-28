@@ -51,7 +51,20 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            CustomCalendar(),
+            Column(
+              spacing: 10,
+              children: [
+                CustomCalendar(),
+                Card(
+                  elevation: 5,
+                  color: Colors.white,
+                  child: SizedBox(
+                    height: 150,
+                    width: double.infinity,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
