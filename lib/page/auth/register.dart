@@ -23,6 +23,23 @@ class _RegisterPageState extends State<RegisterPage> {
   final _confirmfocus = FocusNode();
   final _formkey = GlobalKey<FormState>();
 
+  void _register() {
+    if (_formkey.currentState!.validate()) {
+      ctrlRegister.register(_emailctrl.text, _passctrl.text).then((success) {
+        if (success) {
+          _emailctrl.clear();
+          _passctrl.clear();
+          _confirmctrl.clear();
+          Get.to(
+            LoginPage(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 800),
+          );
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,19 +102,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   focusnode: _confirmfocus,
                   onfieldsubmitted: (_) {
                     if (_formkey.currentState!.validate()) {
-                      ctrlRegister.register(_emailctrl.text, _passctrl.text);
+                      _register();
                     }
                   },
                 ),
                 const SizedBox(height: 40),
-                CustomButton(
-                  onpress: () {
-                    if (_formkey.currentState!.validate()) {
-                      ctrlRegister.register(_emailctrl.text, _passctrl.text);
-                    }
-                  },
-                  txt: 'Register',
-                ),
+                Obx(() => CustomButton(
+                      onpress: ctrlRegister.isLoading.value ? () {} : _register,
+                      txt: 'Register',
+                      isloading: ctrlRegister.isLoading.value,
+                    )),
                 const SizedBox(height: 80),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

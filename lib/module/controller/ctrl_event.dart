@@ -20,7 +20,6 @@ class CtrlEvent extends GetxController {
       },
       time: Duration(milliseconds: 300),
     );
-    // ever(events, (_)=>update());
   }
 
   void fetchEvent() async {
@@ -49,6 +48,7 @@ class CtrlEvent extends GetxController {
         'Exception error on connected to calendar server',
         duration: Duration(seconds: 2),
       );
+    } finally {
       isloading.value = false;
     }
   }

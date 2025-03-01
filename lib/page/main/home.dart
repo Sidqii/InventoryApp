@@ -55,14 +55,6 @@ class _HomePageState extends State<HomePage> {
               spacing: 10,
               children: [
                 CustomCalendar(),
-                Card(
-                  elevation: 5,
-                  color: Colors.white,
-                  child: SizedBox(
-                    height: 150,
-                    width: double.infinity,
-                  ),
-                ),
               ],
             )
           ],
