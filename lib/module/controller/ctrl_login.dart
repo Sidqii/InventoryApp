@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/service/services_login.dart';
 import 'package:pusdatin_end/page/main/screen.dart';
+import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlLogin extends GetxController {
   var isloading = false.obs;
@@ -13,12 +14,11 @@ class CtrlLogin extends GetxController {
 
       if (statusCode == 200) {
         islogin.value = true;
-        Get.snackbar(
-          'Berhasil',
-          'Berhasil login',
-          duration: Duration(seconds: 3),
+        CustomDialog.show(
+          isSuccess: true,
+          duration: Duration(milliseconds: 1080)
         );
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(milliseconds: 1095));
         Get.offAll(
           ScreenPage(),
           transition: Transition.fadeIn,
