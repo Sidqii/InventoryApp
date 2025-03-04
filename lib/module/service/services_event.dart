@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class ServicesEvent {
+class ServicesEvent extends GetConnect {
   final String url = 'http://localhost/AssetsHub/event.php';
 
   Future<List<dynamic>> fetchEvent() async {

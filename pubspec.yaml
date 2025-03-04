@@ -55,6 +55,7 @@ dependencies:
   flutter_animate: ^4.5.2
   get: ^4.7.2
   crypto: ^3.0.6
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

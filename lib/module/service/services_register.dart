@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class ServicesRegister {
+class ServicesRegister extends GetConnect {
   final String baseUrl = 'http://localhost/AssetsHub/src/register.php';
 
   Future<int> register(String email, String hashPassword) async {

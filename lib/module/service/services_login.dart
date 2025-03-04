@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class ServicesUser {
+class ServicesUser extends GetConnect {
   final String url = 'http://localhost/AssetsHub/src/login.php';
 
   Future<List<dynamic>> fetchUser() async {
