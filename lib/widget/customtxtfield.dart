@@ -8,6 +8,7 @@ class CustomTxtField extends StatefulWidget {
   final bool obscuretxt;
   final FocusNode focusnode;
   final void Function(String)? onfieldsubmitted;
+  final void Function(String)? onChanged;
   final Color? txtcolor;
   final Color? bgcolor;
   final Color? focuscolor;
@@ -21,6 +22,7 @@ class CustomTxtField extends StatefulWidget {
     required this.obscuretxt,
     required this.focusnode,
     required this.onfieldsubmitted,
+    this.onChanged,
     this.txtcolor,
     this.bgcolor,
     this.focuscolor,
@@ -51,6 +53,7 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
       obscureText: _isObscure,
       focusNode: widget.focusnode,
       onFieldSubmitted: widget.onfieldsubmitted,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
         labelText: widget.label,
         labelStyle: TextStyle(

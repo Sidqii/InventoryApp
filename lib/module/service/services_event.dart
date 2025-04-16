@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ServicesEvent extends GetConnect {
-  final String url = 'http://localhost/AssetsHub/event.php';
+  final String url = 'http://localhost/AssetsHubBE/event.php';
 
   Future<List<dynamic>> fetchEvent() async {
     try {

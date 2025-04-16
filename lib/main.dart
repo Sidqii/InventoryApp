@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pusdatin_end/page/main/testing.dart';
+import 'package:pusdatin_end/module/controller/ctrl_items.dart';
+import 'package:pusdatin_end/page/main/splash.dart';
 import 'package:pusdatin_end/widget/customtheme.dart';
 
 void main() {
+  Get.lazyPut(()=>CtrlItems());
   runApp(MyApp());
 }
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.black,
         ),
       ),
-      home: TestingPage(),
+      home: SplashScreen(),
     );
   }
 }

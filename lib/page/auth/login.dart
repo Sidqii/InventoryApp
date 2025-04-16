@@ -5,7 +5,7 @@ import 'package:pusdatin_end/module/controller/ctrl_login.dart';
 import 'package:pusdatin_end/page/auth/register.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
-import 'package:pusdatin_end/widget/validator.dart';
+import 'package:pusdatin_end/utils/validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,10 +36,10 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.25,
                 ),
                 Text(
-                  'Selamat\nDatang Kembali,\ndi AssetsHub.',
+                  'Selamat\nDatang Kembali.',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -113,42 +113,42 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 130),
-                Center(
-                  child: Column(
-                    spacing: 5,
-                    children: [
-                      Text('Atau daftar melalui'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        spacing: 15,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.facebook_sharp,
-                              size: 35,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.apple_sharp,
-                              size: 35,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.telegram_sharp,
-                              size: 35,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                // const SizedBox(height: 130),
+                // Center(
+                //   child: Column(
+                //     spacing: 5,
+                //     children: [
+                //       Text('Atau daftar melalui'),
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         spacing: 15,
+                //         children: [
+                //           IconButton(
+                //             onPressed: () {},
+                //             icon: Icon(
+                //               Icons.facebook_sharp,
+                //               size: 35,
+                //             ),
+                //           ),
+                //           IconButton(
+                //             onPressed: () {},
+                //             icon: Icon(
+                //               Icons.apple_sharp,
+                //               size: 35,
+                //             ),
+                //           ),
+                //           IconButton(
+                //             onPressed: () {},
+                //             icon: Icon(
+                //               Icons.telegram_sharp,
+                //               size: 35,
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

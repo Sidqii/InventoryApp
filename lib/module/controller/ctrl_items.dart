@@ -3,36 +3,59 @@ import 'package:pusdatin_end/module/service/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlItems extends GetxController {
-  var items = <Map<String, dynamic>>[].obs;
+  final ServicesItems services = ServicesItems();
+  var filterItem = <dynamic>[].obs;
+  var items = <dynamic>[].obs;
   var isLoading = false.obs;
-  var page = 1.obs;
-  final int itemsPerPage = 10;
-  var hashMoreData = true.obs;
 
   @override
   void onInit() {
-    fetchItems();
     super.onInit();
+    fetchData();
   }
 
-  void fetchItems() async {
-    if (isLoading.value || !hashMoreData.value) return;
-    isLoading.value = true;
-
+  Future<void> fetchData() async {
     try {
-      var data = await ServicesItems().getItems(page.value, itemsPerPage);
+      isLoading(true);
+      var data = await services.getItems();
       if (data.isNotEmpty) {
-        items.addAll(data);
-        page.value++;
-      } else {
-        hashMoreData.value = false;
+        items.assignAll(data);
+        filterItem.assignAll(data);
       }
     } catch (e) {
       CustomDialog.show(
         isSuccess: false,
-        message: 'Koneksi gagal',
+        title: 'Error',
+        duration: Duration(seconds: 5),
       );
+    } finally {
+      isLoading(false);
     }
-    isLoading.value = false;
+  }
+
+  void filterData(String query) {
+    if (query.trim().isEmpty) {
+      filterItem.assignAll(List.from(items));
+    } else {
+      var lowerQuery = query.toLowerCase();
+      var filterList = items.where((item) {
+        return item['nama_barang']
+                .toString()
+                .toLowerCase()
+                .contains(lowerQuery) ||
+            item['nama_kategori']
+                .toString()
+                .toLowerCase()
+                .contains(lowerQuery) ||
+            item['stok'].toString().toLowerCase().contains(lowerQuery) ||
+            item['status'].toString().toLowerCase().contains(lowerQuery);
+      }).toList();
+      // .where((item) => item['nama_barang']
+      //     .toString()
+      //     .toLowerCase()
+      //     .contains(query.toLowerCase()))
+      // .toList();
+      filterItem.assignAll(filterList);
+    }
   }
 }
