@@ -12,7 +12,7 @@ class CtrlLogin extends GetxController {
       isloading.value = true;
       final statusCode = await ServicesUser().loginUser(email, password);
 
-      if (statusCode == 200) {
+      if (statusCode == 200 ) {
         islogin.value = true;
         CustomDialog.show(
           isSuccess: true,

@@ -8,6 +8,7 @@ class RiwayatPage extends StatefulWidget {
 }
 
 class _RiwayatPageState extends State<RiwayatPage> {
+  // final ctrlRiwayat controller = Get.find()
   @override
   Widget build(BuildContext context) {
     return Scaffold(
