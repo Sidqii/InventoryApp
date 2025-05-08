@@ -109,12 +109,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 40),
                 Obx(() => CustomButton(
                       onpress: ctrlRegister.isLoading.value ? () {} : _register,
-                      txt: 'Register',
+                      txt: 'register',
                       isloading: ctrlRegister.isLoading.value,
                     )),
-                const SizedBox(height: 80),
+                const SizedBox(height: 40),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   // spacing: 3,
                   children: [
                     Text('Sudah punya akun?'),

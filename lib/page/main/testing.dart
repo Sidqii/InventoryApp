@@ -24,10 +24,12 @@ class ReactiveNamaPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            Obx(() => Text(
-              "Halo, ${controller.nama.value}",
-              style: TextStyle(fontSize: 24),
-            )),
+            Obx(
+              () => Text(
+                "Halo, ${controller.nama.value}",
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
           ],
         ),
       ),

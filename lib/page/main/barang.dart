@@ -25,25 +25,41 @@ class _BarangPageState extends State<BarangPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 10),
-        width: double.infinity,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        elevation: 3,
+        shadowColor: Colors.black.withValues(alpha: 5),
+        title: const Row(
           children: [
             Text(
-              'Data barang',
-              style: TextStyle(fontSize: 25),
-            ),
-            Text(
-              'Pusdatin Kemhan',
+              'Data',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(width: 1),
+            Text(
+              'Barang',
+              style: TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_sharp,
+            ),
+          ),
+        ],
+      ),
+      body: Container(
+        margin: EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 10),
+        width: double.infinity,
+        child: Column(
+          children: [
             CustomTxtField(
               controller: _filterCtrl,
               label: 'Cari barang',

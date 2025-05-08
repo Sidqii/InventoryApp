@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:pusdatin_end/widget/customcalendar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,27 +9,22 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 3,
         shadowColor: Colors.black.withValues(alpha: 5),
-        title: Row(
+        title: const Row(
           children: [
             Text(
-              'Assets',
+              'Home',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
+            SizedBox(width: 1),
             Text(
-              'Hub',
+              'Page',
               style: TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
               ),
             ),
-            Text(
-              '.',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            )
           ],
         ),
         actions: [
@@ -48,9 +42,7 @@ class HomePage extends StatelessWidget {
           children: [
             Column(
               spacing: 0,
-              children: [
-                // CustomCalendar(),
-              ],
+              children: [],
             )
           ],
         ),

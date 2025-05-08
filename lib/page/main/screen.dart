@@ -40,8 +40,8 @@ class _ScreenPageState extends State<ScreenPage> {
         children: [
           HomePage(),
           BarangPage(),
-          RiwayatPage(),
           RequestPage(),
+          RiwayatPage(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -71,12 +71,12 @@ class _ScreenPageState extends State<ScreenPage> {
               label: 'Barang',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              label: 'Peminjaman',
+              icon: Icon(Icons.list_alt),
+              label: 'Pengajuan',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt),
-              label: 'Persetujuan',
+              icon: Icon(Icons.history),
+              label: 'Riwayat',
             ),
           ],
         ),

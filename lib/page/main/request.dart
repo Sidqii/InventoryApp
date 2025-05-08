@@ -16,42 +16,58 @@ class _RequestPageState extends State<RequestPage> {
   final _peminjamCtrl = TextEditingController();
   final _instansiCtrl = TextEditingController();
   final _halCtrl = TextEditingController();
+  final _pengajuanTotalCtrl = TextEditingController();
   final _peminjamFocus = FocusNode();
   final _instansiFocus = FocusNode();
   final _halFocus = FocusNode();
   final _barangFocus = FocusNode();
   final _jumlahFocus = FocusNode();
   final _tglKembaliFocus = FocusNode();
+  final _pengajuanTotalFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     final double fieldwidth = MediaQuery.of(context).size.width / 2 - 30;
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
-        width: double.infinity,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        elevation: 3,
+        shadowColor: Colors.black.withValues(alpha: 5),
+        title: const Row(
           children: [
             Text(
               'Pengajuan',
-              style: TextStyle(fontSize: 25),
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
+            SizedBox(width: 1),
             Text(
-              'Peminjaman Barang',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              'Barang',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            Divider(
-              color: Colors.black,
-              thickness: 1,
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_sharp,
             ),
-            const SizedBox(height: 25),
+          ),
+        ],
+      ),
+      body: Container(
+        margin: EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
+        child: Column(
+          children: [
             Expanded(
               child: SingleChildScrollView(
                 child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
+                  spacing: 20,
+                  runSpacing: 30,
                   children: [
                     SizedBox(
                       width: fieldwidth,
@@ -83,7 +99,6 @@ class _RequestPageState extends State<RequestPage> {
                     ),
                     SizedBox(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomTxtField(
                             controller: _halCtrl,
@@ -129,36 +144,50 @@ class _RequestPageState extends State<RequestPage> {
                       ),
                     ),
                     SizedBox(
+                      child: CustomTxtField(
+                        controller: _tglKembaliCtrl,
+                        label: 'Tanggal Pengembalian',
+                        validator: null,
+                        keyboardtype: TextInputType.text,
+                        obscuretxt: false,
+                        focusnode: _tglKembaliFocus,
+                        onfieldsubmitted: (_) {
+                          print('Kirim');
+                        },
+                      ),
+                    ),
+                    SizedBox(width: fieldwidth),
+                    SizedBox(
+                      width: fieldwidth,
                       child: Column(
                         children: [
+                          const SizedBox(height: 30),
                           CustomTxtField(
-                            controller: _tglKembaliCtrl,
-                            label: 'Tanggal Pengembalian',
+                            controller: _pengajuanTotalCtrl,
+                            label: 'Total Pengajuan',
                             validator: null,
                             keyboardtype: TextInputType.text,
                             obscuretxt: false,
-                            focusnode: _tglKembaliFocus,
-                            onfieldsubmitted: (_) {
-                              FocusScope.of(context).requestFocus();
-                            },
+                            focusnode: _pengajuanTotalFocus,
+                            onfieldsubmitted: (_) {},
                           ),
-                          const SizedBox(height: 50),
                         ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        width: fieldwidth,
-                        child: CustomButton(
-                          onpress: () {},
-                          txt: 'Kirim',
-                        ),
                       ),
                     )
                   ],
                 ),
               ),
+            ),
+            Column(
+              children: [
+                Container(
+                  child: CustomButton(
+                    onpress: () {},
+                    txt: 'kirim',
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           ],
         ),
