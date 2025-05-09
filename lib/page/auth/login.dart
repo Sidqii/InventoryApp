@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.25,
                 ),
-                Text(
+                const Text(
                   'Selamat\nDatang Kembali.',
                   style: TextStyle(
                     fontSize: 30,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/page/main/barang.dart';
 import 'package:pusdatin_end/page/main/home.dart';
-// import 'package:pusdatin_end/page/main/home.dart';
 import 'package:pusdatin_end/page/main/request.dart';
 import 'package:pusdatin_end/page/main/riwayat.dart';
 
@@ -16,10 +15,21 @@ class _ScreenPageState extends State<ScreenPage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _pageController.jumpToPage(1);
+      await Future.delayed(const Duration(milliseconds: 100));
+      _pageController.jumpToPage(0);
     });
+  }
+
+  void _onItemTapped(int index) {
+    // setState(() {
+    //   _selectedIndex = index;
+    // });
     _pageController.animateToPage(
       index,
       duration: Duration(milliseconds: 300),
@@ -37,7 +47,7 @@ class _ScreenPageState extends State<ScreenPage> {
             _selectedIndex = index;
           });
         },
-        children: [
+        children: const [
           HomePage(),
           BarangPage(),
           RequestPage(),
@@ -62,19 +72,19 @@ class _ScreenPageState extends State<ScreenPage> {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: [
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.inventory),
               label: 'Barang',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.list_alt),
               label: 'Pengajuan',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.history),
               label: 'Riwayat',
             ),

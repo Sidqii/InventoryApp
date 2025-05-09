@@ -37,37 +37,49 @@ class CustomInfoCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: titleColor ?? Colors.black),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: titleColor ?? Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 3),
                 Text(
                   subtitle,
                   style: TextStyle(
-                      fontSize: 12, color: subtitleColor ?? Colors.black),
+                    fontSize: 12,
+                    color: subtitleColor ?? Colors.black,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 7),
-            for (var entry in details.entries)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    entry.key,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    formatValue(entry.value,
-                        isCurrency: currencyField.contains(entry.key)),
-                    style: TextStyle(
-                      fontSize: 12,
+            const SizedBox(height: 7),
+            // for (var entry in details.entries)
+            ...details.entries.map((entry) {
+              final isCurrency = currencyField.contains(entry.key);
+              final value = formatValue(entry.value, isCurrency: isCurrency);
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      entry.key,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                ],
-              ),
+                    Text(
+                      value,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ],
         ),
       ),

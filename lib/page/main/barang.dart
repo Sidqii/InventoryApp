@@ -23,13 +23,20 @@ class _BarangPageState extends State<BarangPage> {
   }
 
   @override
+  void dispose() {
+    _filterCtrl.dispose();
+    _filterFocus.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
         shadowColor: Colors.black.withValues(alpha: 5),
         title: const Row(
-          children: [
+          children: const [
             Text(
               'Data',
               style: TextStyle(
@@ -87,19 +94,23 @@ class _BarangPageState extends State<BarangPage> {
                 );
               }
               return ListView.builder(
+                addAutomaticKeepAlives: false,
+                addRepaintBoundaries: true,
                 itemCount: controller.filterItem.length,
                 itemBuilder: (context, index) {
                   var item = controller.filterItem[index];
-                  return CustomInfoCard(
-                    title: item['nama_barang'],
-                    subtitle: item['nama_kategori'],
-                    details: {
-                      'stok': item['stok'],
-                      'Status': item['status'],
-                      'Lokasi': item['nama_lokasi']
-                      // 'Harga': item['harga']
-                    },
-                    // currencyField: ['Harga'],
+                  return RepaintBoundary(
+                    child: CustomInfoCard(
+                      title: item['nama_barang'],
+                      subtitle: item['nama_kategori'],
+                      details: {
+                        'stok': item['stok'],
+                        'Status': item['status'],
+                        'Lokasi': item['nama_lokasi']
+                        // 'Harga': item['harga']
+                      },
+                      // currencyField: ['Harga'],
+                    ),
                   );
                 },
               );

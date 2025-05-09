@@ -11,14 +11,14 @@ class HomePage extends StatelessWidget {
         shadowColor: Colors.black.withValues(alpha: 5),
         title: const Row(
           children: [
-            Text(
+            const Text(
               'Home',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(width: 1),
-            Text(
+            const SizedBox(width: 1),
+            const Text(
               'Page',
               style: TextStyle(
                 fontSize: 16,
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Column(
+            const Column(
               spacing: 0,
               children: [],
             )

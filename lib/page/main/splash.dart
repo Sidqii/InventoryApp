@@ -26,6 +26,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final textPrimary = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+      color: theme.colorScheme.onSurface,
+    );
+    final textAccent = TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: theme.colorScheme.onPrimary,
+        shadows: [
+          Shadow(
+            color: theme.colorScheme.secondary,
+            blurRadius: 10,
+          )
+        ]);
 
     return Scaffold(
       backgroundColor: theme.colorScheme.primary,
@@ -35,28 +50,19 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Assets',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400,
-                        color: theme.colorScheme.onSurface,
-                      ))
+              Text(
+                'Assets',
+                style: textPrimary,
+              )
                   .animate()
                   .fadeIn(duration: 800.ms)
                   .moveY(begin: 20, end: 0, duration: 600.ms)
                   .blurXY(begin: 10, end: 0, duration: 500.ms),
-              SizedBox(width: 5),
-              Text('Hub.',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.onPrimary,
-                        shadows: [
-                          Shadow(
-                              color: theme.colorScheme.secondary,
-                              blurRadius: 10),
-                        ],
-                      ))
+              const SizedBox(width: 5),
+              Text(
+                'Hub.',
+                style: textAccent,
+              )
                   .animate()
                   .fadeIn(duration: 800.ms)
                   .moveY(begin: 20, end: 0, duration: 600.ms)

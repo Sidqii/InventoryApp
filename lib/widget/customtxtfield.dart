@@ -35,7 +35,7 @@ class CustomTxtField extends StatefulWidget {
 }
 
 class _CustomTxtFieldState extends State<CustomTxtField> {
-  late bool _isObscure = false;
+  late bool _isObscure;
 
   @override
   void initState() {
@@ -45,45 +45,50 @@ class _CustomTxtFieldState extends State<CustomTxtField> {
 
   @override
   Widget build(BuildContext context) {
+    final suffix = widget.obscuretxt
+        ? IconButton(
+            icon: Icon(
+              _isObscure ? Icons.visibility_off : Icons.visibility,
+              color: widget.focuscolor ?? Colors.black,
+              size: 24,
+            ),
+            onPressed: () {
+              if (mounted) {
+                setState(() {
+                  _isObscure = !_isObscure;
+                });
+              }
+            },
+          )
+        : null;
+
+    final lblStyle = TextStyle(
+      color: widget.txtcolor ?? Colors.grey,
+      fontSize: widget.fontsize ?? 14,
+    );
+
+    final bdrSide = BorderSide(
+      color: widget.focuscolor ?? Colors.black,
+    );
+
     return TextFormField(
       cursorColor: Colors.black,
       controller: widget.controller,
       validator: widget.validator,
       keyboardType: widget.keyboardtype,
-      obscureText: _isObscure,
+      obscureText: widget.obscuretxt ? _isObscure : false,
       focusNode: widget.focusnode,
       onFieldSubmitted: widget.onfieldsubmitted,
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         labelText: widget.label,
-        labelStyle: TextStyle(
-          color: widget.txtcolor ?? Colors.grey,
-          fontSize: widget.fontsize ?? 14,
-        ),
+        labelStyle: lblStyle,
         filled: true,
         fillColor: widget.bgcolor ?? Colors.transparent,
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.focuscolor ?? Colors.black,
-          ),
+          borderSide: bdrSide,
         ),
-        suffixIcon: widget.obscuretxt
-            ? IconButton(
-                icon: Image.asset(
-                  _isObscure
-                      ? 'assets/icon/eyesoff.png'
-                      : 'assets/icon/eyeson.png',
-                  color: widget.focuscolor ?? Colors.black,
-                  width: 24,
-                  height: 24,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isObscure = !_isObscure;
-                  });
-                },
-              )
-            : null,
+        suffixIcon: suffix,
       ),
     );
   }

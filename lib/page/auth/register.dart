@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
                 ),
-                Text(
+                const Text(
                   'Silahkan\nLakukan Registrasi.',
                   style: TextStyle(
                     fontSize: 30,
