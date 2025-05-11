@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
-class Waitinglist extends StatefulWidget {
-  const Waitinglist({super.key});
+class Historyform extends StatefulWidget {
+  const Historyform({super.key});
 
   @override
-  State<Waitinglist> createState() => _WaitinglistState();
+  State<Historyform> createState() => _HistoryformState();
 }
 
-class _WaitinglistState extends State<Waitinglist> {
+class _HistoryformState extends State<Historyform> {
   String selectedFilter = 'Semua';
   final List<String> filterOptions = [
     'Semua',
