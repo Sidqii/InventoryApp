@@ -15,6 +15,7 @@ class _BarangPageState extends State<BarangPage> {
   final _filterCtrl = TextEditingController();
   final _filterFocus = FocusNode();
   final CtrlItems controller = Get.find<CtrlItems>();
+  String selectedCategory = 'Semua';
 
   @override
   void initState() {

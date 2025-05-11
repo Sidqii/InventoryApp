@@ -50,12 +50,21 @@ class CtrlItems extends GetxController {
             item['stok'].toString().toLowerCase().contains(lowerQuery) ||
             item['status'].toString().toLowerCase().contains(lowerQuery);
       }).toList();
-      // .where((item) => item['nama_barang']
-      //     .toString()
-      //     .toLowerCase()
-      //     .contains(query.toLowerCase()))
-      // .toList();
       filterItem.assignAll(filterList);
+    }
+  }
+
+  void filterByCategory(String category) {
+    if (category == 'Semua') {
+      filterItem.assignAll(List.from(items));
+    } else {
+      List<dynamic> filtered = [];
+      for (var item in items) {
+        if (item['nama_kategori'].toString().toLowerCase() == category.toLowerCase()) {
+          filtered.add(item);
+        }
+      }
+      filterItem.assignAll(filtered);
     }
   }
 }

@@ -14,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final CtrlRegister ctrlRegister = Get.put(CtrlRegister());
+  final CtrlRegis ctrlRegister = Get.put(CtrlRegis());
   final _emailctrl = TextEditingController();
   final _passctrl = TextEditingController();
   final _confirmctrl = TextEditingController();

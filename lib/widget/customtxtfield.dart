@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTxtField extends StatefulWidget {
   final TextEditingController controller;
-  final String label;
+  final String? label;
   final String? Function(String?)? validator;
   final TextInputType keyboardtype;
   final bool obscuretxt;
