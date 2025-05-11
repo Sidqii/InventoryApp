@@ -6,14 +6,14 @@ import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customdropdown.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
-class RequestPage extends StatefulWidget {
-  const RequestPage({super.key});
+class PengajuanPage extends StatefulWidget {
+  const PengajuanPage({super.key});
 
   @override
-  State<RequestPage> createState() => _RequestPageState();
+  State<PengajuanPage> createState() => PengajuanPageState();
 }
 
-class _RequestPageState extends State<RequestPage> {
+class PengajuanPageState extends State<PengajuanPage> {
   final CtrlItems controller = Get.find<CtrlItems>();
   final _barangCtrl = TextEditingController();
   final _jumlahCtrl = TextEditingController();

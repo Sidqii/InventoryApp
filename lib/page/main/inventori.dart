@@ -4,14 +4,14 @@ import 'package:pusdatin_end/module/controller/ctrl_items.dart';
 import 'package:pusdatin_end/widget/custominfocard.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
-class BarangPage extends StatefulWidget {
-  const BarangPage({super.key});
+class InventoriPage extends StatefulWidget {
+  const InventoriPage({super.key});
 
   @override
-  State<BarangPage> createState() => _BarangPageState();
+  State<InventoriPage> createState() => InventoriPageState();
 }
 
-class _BarangPageState extends State<BarangPage> {
+class InventoriPageState extends State<InventoriPage> {
   final _filterCtrl = TextEditingController();
   final _filterFocus = FocusNode();
   final CtrlItems controller = Get.find<CtrlItems>();

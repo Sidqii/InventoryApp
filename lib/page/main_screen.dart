@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/page/main/barang.dart';
+import 'package:pusdatin_end/page/main/inventori.dart';
 import 'package:pusdatin_end/page/main/home.dart';
-import 'package:pusdatin_end/page/main/request.dart';
+import 'package:pusdatin_end/page/main/pengajuan.dart';
 import 'package:pusdatin_end/page/main/riwayat.dart';
 
-class ScreenPage extends StatefulWidget {
-  const ScreenPage({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<ScreenPage> createState() => _ScreenPageState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _ScreenPageState extends State<ScreenPage> {
+class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
@@ -27,9 +27,6 @@ class _ScreenPageState extends State<ScreenPage> {
   }
 
   void _onItemTapped(int index) {
-    // setState(() {
-    //   _selectedIndex = index;
-    // });
     _pageController.animateToPage(
       index,
       duration: Duration(milliseconds: 300),
@@ -49,8 +46,8 @@ class _ScreenPageState extends State<ScreenPage> {
         },
         children: const [
           HomePage(),
-          BarangPage(),
-          RequestPage(),
+          InventoriPage(),
+          PengajuanPage(),
           RiwayatPage(),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/service/services_login.dart';
-import 'package:pusdatin_end/page/main/screen.dart';
+import 'package:pusdatin_end/page/main_screen.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlLogin extends GetxController {
@@ -20,7 +20,7 @@ class CtrlLogin extends GetxController {
         );
         await Future.delayed(Duration(milliseconds: 1095));
         Get.offAll(
-          ScreenPage(),
+          MainScreen(),
           transition: Transition.fadeIn,
           duration: Duration(milliseconds: 800),
         );
