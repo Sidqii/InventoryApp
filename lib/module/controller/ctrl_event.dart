@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:pusdatin_end/module/service/services_event.dart';
+import 'package:pusdatin_end/module/services/services_event.dart';
 
 class CtrlEvent extends GetxController {
   var events = <DateTime, List<dynamic>>{}.obs;
@@ -25,7 +25,7 @@ class CtrlEvent extends GetxController {
   void fetchEvent() async {
     isloading.value = true;
     try {
-      List<dynamic> data = await ServicesEvent().fetchEvent();
+      List<dynamic> data = await ServicesEvent().getEvent();
       var tempevent = <DateTime, List<dynamic>>{};
 
       for (var event in data) {

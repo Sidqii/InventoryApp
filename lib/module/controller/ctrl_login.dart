@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/service/services_login.dart';
+import 'package:pusdatin_end/module/services/services_login.dart';
 import 'package:pusdatin_end/page/main_screen.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 

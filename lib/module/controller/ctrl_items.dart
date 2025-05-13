@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/service/services_items.dart';
+import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlItems extends GetxController {

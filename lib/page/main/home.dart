@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pusdatin_end/widget/customappbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,35 +7,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 3,
-        shadowColor: Colors.black.withValues(alpha: 5),
-        title: const Row(
-          children: [
-            const Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(width: 1),
-            const Text(
-              'Page',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_sharp,
-            ),
-          ),
-        ],
+      appBar: CustomAppbar(
+        title: 'Home',
+        boldTitle: 'Page',
+        onNotifPressed: () {},
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

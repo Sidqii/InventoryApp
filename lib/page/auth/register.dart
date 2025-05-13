@@ -115,7 +115,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  // spacing: 3,
                   children: [
                     Text('Sudah punya akun?'),
                     const SizedBox(width: 3),
@@ -125,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             transition: Transition.fadeIn,
                             duration: Duration(milliseconds: 550));
                       },
-                      child: Text(
+                      child: const Text(
                         'Login',
                         style: TextStyle(
                           color: Colors.blue,

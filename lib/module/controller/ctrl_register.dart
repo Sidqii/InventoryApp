@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/service/services_register.dart';
+import 'package:pusdatin_end/module/services/services_register.dart';
 
 class CtrlRegis extends GetxController {
   final ServicesRegister _servicesRegister = ServicesRegister();

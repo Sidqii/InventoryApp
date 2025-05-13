@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_items.dart';
 import 'package:pusdatin_end/page/componen/historyform.dart.dart';
+import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customdropdown.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -54,35 +55,10 @@ class PengajuanPageState extends State<PengajuanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 3,
-        shadowColor: Colors.black.withValues(alpha: 5),
-        title: const Row(
-          children: const [
-            Text(
-              'Pengajuan',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(width: 1),
-            Text(
-              'Barang',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_sharp,
-            ),
-          ),
-        ],
+      appBar: CustomAppbar(
+        title: 'Pengajuan',
+        boldTitle: 'Barang',
+        showNotif: false,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
@@ -176,7 +152,7 @@ class PengajuanPageState extends State<PengajuanPage> {
                         child: CustomDropDown<String>(
                           value: selectedItem,
                           label: 'Pilih Barang',
-                          onChanged: (val){
+                          onChanged: (val) {
                             setState(() {
                               selectedItem = val;
                             });

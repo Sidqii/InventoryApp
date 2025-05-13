@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_items.dart';
+import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custominfocard.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
@@ -33,35 +34,10 @@ class InventoriPageState extends State<InventoriPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 3,
-        shadowColor: Colors.black.withValues(alpha: 5),
-        title: const Row(
-          children: const [
-            Text(
-              'Data',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(width: 1),
-            Text(
-              'Barang',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_sharp,
-            ),
-          ),
-        ],
+      appBar: CustomAppbar(
+        title: 'Data',
+        boldTitle: 'Barang',
+        showNotif: false,
       ),
       body: Container(
         margin: EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 10),

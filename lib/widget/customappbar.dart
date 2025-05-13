@@ -4,11 +4,13 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String boldTitle;
   final VoidCallback? onNotifPressed;
+  final bool showNotif;
 
   const CustomAppbar({
     required this.title,
     required this.boldTitle,
     this.onNotifPressed,
+    this.showNotif = true,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 3,
-      shadowColor: Colors.black.withAlpha(5),
+      shadowColor: Colors.black.withValues(alpha: 5),
       title: Row(
         children: [
           Text(
@@ -29,21 +31,23 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(width: 1),
           Text(
             boldTitle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
         ],
       ),
-      actions: [
-        IconButton(
-          onPressed: onNotifPressed ?? () {},
-          icon: const Icon(
-            Icons.notifications_sharp,
-          ),
-        ),
-      ],
+      actions: showNotif
+          ? [
+              IconButton(
+                onPressed: onNotifPressed ?? () {},
+                icon: const Icon(
+                  Icons.notifications_sharp,
+                ),
+              ),
+            ]
+          : null,
     );
   }
 }

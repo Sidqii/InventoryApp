@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: () {
                         Get.to(
-                          RegisterPage(),
+                          const RegisterPage(),
                           transition: Transition.fadeIn,
                           duration: Duration(milliseconds: 550),
                         );
