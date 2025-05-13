@@ -12,7 +12,7 @@ class _HistoryformState extends State<Historyform> {
   String selectedFilter = 'Semua';
   final List<String> filterOptions = [
     'Semua',
-    'Pending',
+    'Menunggu',
     'Disetujui',
     'Ditolak',
     'Selesai',
