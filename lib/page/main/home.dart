@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,10 +8,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Get.find<CtrlUser>().user.value;
     return Scaffold(
       appBar: CustomAppbar(
-        title: 'Home',
-        boldTitle: 'Page',
+        title: user?.role.toString()??'',
+        boldTitle: user?.username??'',
         onNotifPressed: () {},
       ),
       body: Padding(
@@ -17,8 +20,10 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             const Column(
-              spacing: 0,
-              children: [],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Text(user)
+              ],
             )
           ],
         ),

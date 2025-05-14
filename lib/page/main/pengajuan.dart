@@ -28,7 +28,7 @@ class PengajuanPageState extends State<PengajuanPage> {
           children: [
             Panelform(key: _formKey,),
             const SizedBox(height: 20),
-            Historyform()
+            Historyform(),
           ],
         ),
       ),

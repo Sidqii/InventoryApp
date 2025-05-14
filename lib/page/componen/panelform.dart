@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdropdown.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -13,7 +14,9 @@ class Panelform extends StatefulWidget {
 }
 
 class PanelformState extends State<Panelform> {
-  final CtrlPengajuan ctrlPengajuan = Get.put(CtrlPengajuan());
+  final ctrlPengajuan = Get.put(CtrlPengajuan());
+  final user = Get.find<CtrlUser>().user.value!;
+
   List<Map<String, dynamic>> daftarBarang = [];
   int? selectedItemId;
   String? selectedItemName;
@@ -135,18 +138,19 @@ class PanelformState extends State<Panelform> {
             Row(
               children: [
                 Expanded(
-                  child: CustomTxtField(
-                    controller: _peminjamCtrl,
-                    label: 'Peminjam',
-                    validator: null,
-                    keyboardtype: TextInputType.text,
-                    obscuretxt: false,
-                    focusnode: _peminjamFocus,
-                    onfieldsubmitted: (_) {
-                      FocusScope.of(context).requestFocus(_instansiFocus);
-                    },
+                    child: TextFormField(
+                  initialValue: user.username,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: 'Peminjam',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
                   ),
-                ),
+                )),
                 const SizedBox(width: 20),
                 Expanded(
                   child: CustomTxtField(

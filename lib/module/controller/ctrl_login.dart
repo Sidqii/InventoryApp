@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/dataset/model/user.dart';
+import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_login.dart';
 import 'package:pusdatin_end/page/main_screen.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
@@ -10,16 +12,22 @@ class CtrlLogin extends GetxController {
   Future<void> login(String email, String password) async {
     try {
       isloading.value = true;
-      final result = await ServicesUser().loginUser(email, password);
-      final statusCode = result['status'];
+      final response = await ServicesUser().loginUser(email, password);
+      final statusCode = response['status'];
 
-      if (statusCode == 200 ) {
+      if (statusCode == 200) {
+        final userData = response['user'];
+        final user = usersModels.fromJson(userData);
+        Get.put(CtrlUser()).setUser(user);
+
         islogin.value = true;
         CustomDialog.show(
           isSuccess: true,
-          duration: Duration(milliseconds: 1080)
+          duration: Duration(milliseconds: 1080),
         );
-        await Future.delayed(Duration(milliseconds: 1095));
+        await Future.delayed(
+          Duration(milliseconds: 1095),
+        );
         Get.offAll(
           MainScreen(),
           transition: Transition.fadeIn,

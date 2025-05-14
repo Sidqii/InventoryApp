@@ -1,21 +1,22 @@
 class usersModels {
   final int id;
   final String email;
-  final String pass;
-  final String avatar;
+  final int? role;
+  final String? username;
 
   usersModels({
     required this.id,
     required this.email,
-    required this.pass,
-    required this.avatar,
+    this.role,
+    this.username,
   });
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'email': email,
-      'password': pass,
-      'avatar': avatar,
+      'role_id': role,
+      'username': username,
     };
   }
 
@@ -23,8 +24,8 @@ class usersModels {
     return usersModels(
       id: json['id'],
       email: json['email'],
-      pass: json['pass'],
-      avatar: json['avatar'],
+      role: json['role_id'],
+      username: json['username']
     );
   }
 }
