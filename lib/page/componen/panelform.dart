@@ -3,7 +3,6 @@ import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
-import 'package:pusdatin_end/widget/customdropdown.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class Panelform extends StatefulWidget {
@@ -191,29 +190,38 @@ class PanelformState extends State<Panelform> {
             Row(
               children: [
                 Expanded(
-                  child: CustomDropDown<String>(
-                    value: selectedItemName,
-                    label: 'Pilih Barang',
-                    onChanged: (val) {
+                  child: DropdownMenu<String>(
+                    hintText: 'Pilih barang',
+                    initialSelection: selectedItemName,
+                    width: MediaQuery.sizeOf(context).width * 0.48,
+                    onSelected: (val) {
                       setState(() {
-                        final selectedItem = daftarBarang.firstWhere(
-                            (item) => item['nama_barang'] == val,
-                            orElse: () => {});
                         selectedItemName = val;
-                        selectedItemId = int.tryParse(daftarBarang
-                            .firstWhere(
-                                (item) => item['nama_barang'] == val)['id']
-                            .toString());
-                        stokItem =
-                            int.tryParse(selectedItem['stok'].toString()) ?? 0;
+                        final selectedItem = daftarBarang.firstWhere(
+                          (item) => item['nama_barang'] == val,
+                          orElse: () => {},
+                        );
+                        selectedItemId = int.tryParse(
+                          selectedItem['id'].toString(),
+                        );
+                        stokItem = int.tryParse(
+                              selectedItem['stok'].toString(),
+                            ) ?? 0;
                       });
                     },
-                    items: daftarBarang.map((item) {
-                      return DropdownMenuItem<String>(
-                        child: Text(item['nama_barang']),
+                    dropdownMenuEntries: daftarBarang.map((item) {
+                      return DropdownMenuEntry<String>(
                         value: item['nama_barang'],
+                        label: item['nama_barang'],
                       );
                     }).toList(),
+                    inputDecorationTheme: const InputDecorationTheme(
+                      filled: true,
+                      border: UnderlineInputBorder(),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 2),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 20),

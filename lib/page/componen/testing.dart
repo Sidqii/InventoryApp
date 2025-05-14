@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class InputNamaController extends GetxController {
-  var nama = ''.obs;
+class TestingPage extends StatefulWidget {
+  const TestingPage({super.key});
+
+  @override
+  State<TestingPage> createState() => _TestingPageState();
 }
 
-class ReactiveNamaPage extends StatelessWidget {
-  final InputNamaController controller = Get.put(InputNamaController());
+class _TestingPageState extends State<TestingPage> {
+  String? selectedItem;
+  final List<String> items = [
+    'Laptop Asus',
+    'Printer Epson',
+    'Meja Kantor',
+    'Kertas A4 Sidu',
+    'Stapler Joyko',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Reactive Input Nama')),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(50),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              onChanged: (val) => controller.nama.value = val,
-              decoration: InputDecoration(
-                labelText: 'Ketik Nama',
-                border: OutlineInputBorder(),
+            DropdownMenu<String>(
+              hintText: 'Pilih data',
+              inputDecorationTheme: InputDecorationTheme(
+                border: UnderlineInputBorder(),
+                filled: true,
               ),
-            ),
-            SizedBox(height: 20),
-            Obx(
-              () => Text(
-                "Halo, ${controller.nama.value}",
-                style: TextStyle(fontSize: 24),
-              ),
+              initialSelection: selectedItem,
+              onSelected: (value) {
+                setState(() {
+                  selectedItem = value;
+                });
+              },
+              dropdownMenuEntries: items.map((item) {
+                return DropdownMenuEntry(
+                  value: item,
+                  label: item,
+                );
+              }).toList(),
             ),
           ],
         ),

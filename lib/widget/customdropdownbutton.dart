@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomDropDown<T> extends StatelessWidget {
+class CustomDropDownBtn<T> extends StatelessWidget {
   final T? value;
   final String label;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
 
-  const CustomDropDown({
+  const CustomDropDownBtn({
     this.value,
     required this.label,
     required this.items,
@@ -22,7 +22,7 @@ class CustomDropDown<T> extends StatelessWidget {
         contentPadding: const EdgeInsets.only(bottom: 15, left: 15, right: 10, top: 15),
         hintText: label,
         hintStyle: TextStyle(
-          color: Colors.grey,
+          color: Colors.grey.shade300,
           fontSize: 14,
         ),
         filled: true,
