@@ -11,37 +11,14 @@ class RiwayatPage extends StatefulWidget {
 }
 
 class _RiwayatPageState extends State<RiwayatPage> {
-  final CtrlPengajuan controller = Get.put(CtrlPengajuan());
+  final CtrlPengajuan ctrlPengajuan = Get.put(CtrlPengajuan());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(
-        title: 'Riwayat',
-        boldTitle: 'Barang',
-        showNotif: false,
+      appBar: CustomAppbar(title: 'Riwayat', boldTitle: 'Pengajuan'),
+      body: const Center(
+        child: Text('Hello from RiwayatPage'),
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (controller.listPengajuan.isEmpty) {
-          return Center(
-            child: Text('Tidak ada data'),
-          );
-        }
-        return ListView.builder(
-          itemCount: controller.listPengajuan.length,
-          itemBuilder: (context, index) {
-            final item = controller.listPengajuan[index];
-            return ListTile(
-              title: Text(item['hal'] ?? 'Kosong'),
-              subtitle: Text(item['instansi'] ?? 'Kosong'),
-            );
-          },
-        );
-      }),
     );
   }
 }

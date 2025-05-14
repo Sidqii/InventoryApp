@@ -17,16 +17,21 @@ class ServicesUser {
     }
   }
 
-  Future<int> loginUser(String email, String password) async {
+  Future<Map<String, dynamic>> loginUser(String email, String password) async {
     try {
       final response = await http.post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
-      return response.statusCode;
+      final result = jsonDecode(response.body);
+
+      return {
+        'status': response.statusCode,
+        'user': result['user'],
+      };
     } catch (e) {
-      return 500;
+      return {'status': 500};
     }
   }
 }

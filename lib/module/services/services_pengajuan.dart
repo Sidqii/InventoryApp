@@ -4,16 +4,24 @@ import 'package:http/http.dart' as http;
 class ServicesPengajuan {
   final String url = 'http://localhost/AssetsHubBE/src/endpoint/pengajuan.php';
 
-  Future<List<dynamic>> getPengajuan() async {
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body);
-      } else {
-        throw Exception('Gagal memuat data');
-      }
-    } catch (e) {
-      return [];
-    }
+  Future<int> pengajuan(
+    int idPengguna,
+    int idBarang,
+    int jumlah,
+    String tglKembali,
+    String instansi,
+    String hal,
+  ) async {
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode({
+          'id_pengguna': idPengguna,
+          'id_barang': idBarang,
+          'jumlah': jumlah,
+          'tgl_kembali': tglKembali,
+          'instansi': instansi,
+          'hal': hal,
+        }),
+        headers: {'Content-Type': 'application/json'});
+    return response.statusCode;
   }
 }

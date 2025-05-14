@@ -2,25 +2,40 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/module/services/services_pengajuan.dart';
 
 class CtrlPengajuan extends GetxController {
-  var listPengajuan = [].obs;
+  final ServicesPengajuan _servicesPengajuan = ServicesPengajuan();
   var isLoading = false.obs;
 
-  final ServicesPengajuan _services = Get.put(ServicesPengajuan());
-
-  @override
-  void onInit() {
-    super.onInit();
-    fetchPengajuan();
-  }
-
-  void fetchPengajuan() async {
-    isLoading.value = true;
+  Future<bool> kirimPengajuan(
+    int idPengguna,
+    int idBarang,
+    int jumlah,
+    String tglKembali,
+    String instansi,
+    String hal,
+  ) async {
     try {
-      final data = await _services.getPengajuan();
-      listPengajuan.value = data;
-    } catch (e) {
-      listPengajuan.value = [];
+      int statusCode = await _servicesPengajuan.pengajuan(
+        idPengguna,
+        idBarang,
+        jumlah,
+        tglKembali,
+        instansi,
+        hal,
+      );
+
+      if (statusCode == 200) {
+        Get.snackbar('Sukses', 'Pengajuan berhasil');
+        await Future.delayed(Duration(seconds: 300));
+        return true;
+      } else if (statusCode == 400){
+        Get.snackbar('Gagal', 'Gagal melakukan pengajuan');
+        return false;
+      } else {
+        Get.snackbar('Gagal', 'Terjadi kesalahan');
+        return false;
+      }
+    } finally {
+      isLoading.value = false;
     }
-    isLoading.value = false;
   }
 }

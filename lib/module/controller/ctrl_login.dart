@@ -10,7 +10,8 @@ class CtrlLogin extends GetxController {
   Future<void> login(String email, String password) async {
     try {
       isloading.value = true;
-      final statusCode = await ServicesUser().loginUser(email, password);
+      final result = await ServicesUser().loginUser(email, password);
+      final statusCode = result['status'];
 
       if (statusCode == 200 ) {
         islogin.value = true;

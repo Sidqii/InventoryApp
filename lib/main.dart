@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pusdatin_end/module/controller/ctrl_items.dart';
-import 'package:pusdatin_end/page/main/riwayat.dart';
+import 'package:pusdatin_end/page/componen/splash.dart';
 import 'package:pusdatin_end/widget/customtheme.dart';
 
 void initController() {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.black,
         ),
       ),
-      home: RiwayatPage(),
+      home: SplashScreen(),
     );
   }
 }
