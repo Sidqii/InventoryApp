@@ -13,3 +13,14 @@ String formatValue(dynamic value, {bool isCurrency = false}) {
   }
   return value.toString();
 }
+
+String getRole(int idRole) {
+  switch (idRole) {
+    case 1:
+      return 'Operator';
+    case 2:
+      return 'Staff';
+    default:
+      return 'Halo';
+  }
+}

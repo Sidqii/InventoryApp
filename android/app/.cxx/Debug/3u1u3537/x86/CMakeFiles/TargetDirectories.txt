@@ -1,0 +1,2 @@
+D:/InvenApp/AssetsHub/android/app/.cxx/Debug/3u1u3537/x86/CMakeFiles/edit_cache.dir
+D:/InvenApp/AssetsHub/android/app/.cxx/Debug/3u1u3537/x86/CMakeFiles/rebuild_cache.dir

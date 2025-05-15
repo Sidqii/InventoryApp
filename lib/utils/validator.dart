@@ -25,7 +25,7 @@ String? dateValidator(String? value){
   if (value == null || value.isEmpty) {
     return 'Tanggal tidak boleh kosong';
   }
-  final dateRegex = RegExp(r'^\d{4}/\d{2}/\d{2}$');
+  final dateRegex = RegExp(r'^\d{4}-\d{2}-\d{2}$');
   if (!dateRegex.hasMatch(value)) {
     return 'Masukkan tahun-bulan-hari (0000-00-00)';
   }
@@ -40,10 +40,5 @@ String? dateValidator(String? value){
   } catch (e) {
     return 'Tanggal tidak valid';
   }
-  return null;
-}
-
-//Validator Barang
-String? barangValidator(String? value, int? stok, bool? isSelected){
   return null;
 }

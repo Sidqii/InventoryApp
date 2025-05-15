@@ -53,28 +53,30 @@ class PanelformState extends State<Panelform> {
       int idPengguna = user.id;
       int idBarang = selectedItemId ?? 0;
       int jumlah = int.tryParse(_jumlahCtrl.text) ?? 0;
-      ctrlPengajuan.kirimPengajuan(
+      ctrlPengajuan
+          .kirimPengajuan(
         idPengguna,
         idBarang,
         jumlah,
         _tglKembaliCtrl.text,
         _instansiCtrl.text,
         _halCtrl.text,
-      ).then((success) {
-          if (success) {
-            _jumlahCtrl.clear();
-            _tglKembaliCtrl.clear();
-            _instansiCtrl.clear();
-            _halCtrl.clear();
+      )
+          .then((success) {
+        if (success) {
+          _jumlahCtrl.clear();
+          _tglKembaliCtrl.clear();
+          _instansiCtrl.clear();
+          _halCtrl.clear();
 
-            setState(() {
-              selectedItemName = null;
-              selectedItemId = null;
-              dropdownkey = UniqueKey();
-              stokItem = 0;
-            });
-          }
-        });
+          setState(() {
+            selectedItemName = null;
+            selectedItemId = null;
+            dropdownkey = UniqueKey();
+            stokItem = 0;
+          });
+        }
+      });
     }
   }
 
@@ -188,6 +190,9 @@ class PanelformState extends State<Panelform> {
                     hintText: 'Pilih barang',
                     initialSelection: selectedItemName,
                     width: MediaQuery.sizeOf(context).width * 0.48,
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                    ),
                     onSelected: (val) {
                       setState(() {
                         selectedItemName = val;
@@ -226,7 +231,16 @@ class PanelformState extends State<Panelform> {
                     label: selectedItemId != null
                         ? 'Jumlah Max $stokItem'
                         : 'Jumlah',
-                    validator: null,
+                    validator: (value) {
+                      final jumlah = int.tryParse(value ?? '');
+                      if (jumlah == null) {
+                        return null;
+                      }
+                      if (jumlah > stokItem) {
+                        return 'Jumlah melebihi $stokItem';
+                      }
+                      return null;
+                    },
                     keyboardtype:
                         TextInputType.numberWithOptions(decimal: false),
                     obscuretxt: false,
