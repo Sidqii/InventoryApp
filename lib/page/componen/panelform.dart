@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
+import 'package:pusdatin_end/utils/validator.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class Panelform extends StatefulWidget {
@@ -15,27 +16,23 @@ class Panelform extends StatefulWidget {
 class PanelformState extends State<Panelform> {
   final ctrlPengajuan = Get.put(CtrlPengajuan());
   final user = Get.find<CtrlUser>().user.value!;
+  final _formkey = GlobalKey<FormState>();
 
   List<Map<String, dynamic>> daftarBarang = [];
   int? selectedItemId;
   String? selectedItemName;
   int stokItem = 0;
+  Key dropdownkey = UniqueKey();
 
-  final _formkey = GlobalKey<FormState>();
-  final _barangCtrl = TextEditingController();
   final _jumlahCtrl = TextEditingController();
   final _tglKembaliCtrl = TextEditingController();
-  final _peminjamCtrl = TextEditingController();
   final _instansiCtrl = TextEditingController();
   final _halCtrl = TextEditingController();
-  final _pengajuanTotalCtrl = TextEditingController();
-  final _peminjamFocus = FocusNode();
+
   final _instansiFocus = FocusNode();
   final _halFocus = FocusNode();
-  final _barangFocus = FocusNode();
   final _jumlahFocus = FocusNode();
   final _tglKembaliFocus = FocusNode();
-  final _pengajuanTotalFocus = FocusNode();
 
   @override
   void initState() {
@@ -53,50 +50,45 @@ class PanelformState extends State<Panelform> {
 
   void ajukan() {
     if (_formkey.currentState!.validate()) {
-      int idPengguna = int.tryParse(_peminjamCtrl.text) ?? 0;
-      int idBarang = int.tryParse(_barangCtrl.text) ?? 0;
+      int idPengguna = user.id;
+      int idBarang = selectedItemId ?? 0;
       int jumlah = int.tryParse(_jumlahCtrl.text) ?? 0;
-
-      ctrlPengajuan
-          .kirimPengajuan(
+      ctrlPengajuan.kirimPengajuan(
         idPengguna,
         idBarang,
         jumlah,
         _tglKembaliCtrl.text,
         _instansiCtrl.text,
         _halCtrl.text,
-      )
-          .then(
-        (success) {
+      ).then((success) {
           if (success) {
-            _peminjamCtrl.clear();
-            _barangCtrl.clear();
             _jumlahCtrl.clear();
             _tglKembaliCtrl.clear();
             _instansiCtrl.clear();
             _halCtrl.clear();
-            _pengajuanTotalCtrl.clear();
+
+            setState(() {
+              selectedItemName = null;
+              selectedItemId = null;
+              dropdownkey = UniqueKey();
+              stokItem = 0;
+            });
           }
-        },
-      );
+        });
     }
   }
 
   void dispose() {
-    _barangCtrl.dispose();
     _jumlahCtrl.dispose();
     _tglKembaliCtrl.dispose();
-    _peminjamCtrl.dispose();
     _instansiCtrl.dispose();
     _halCtrl.dispose();
-    _pengajuanTotalCtrl.dispose();
-    _barangFocus.dispose();
+
     _jumlahFocus.dispose();
     _tglKembaliFocus.dispose();
-    _peminjamFocus.dispose();
     _instansiFocus.dispose();
     _halFocus.dispose();
-    _pengajuanTotalFocus.dispose();
+
     super.dispose();
   }
 
@@ -137,19 +129,20 @@ class PanelformState extends State<Panelform> {
             Row(
               children: [
                 Expanded(
-                    child: TextFormField(
-                  initialValue: user.username,
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    labelText: 'Peminjam',
-                    labelStyle: TextStyle(color: Colors.grey),
-                    filled: true,
-                    fillColor: Colors.transparent,
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                  child: TextFormField(
+                    initialValue: user.username,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: 'Peminjam',
+                      labelStyle: TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Colors.transparent,
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
                     ),
                   ),
-                )),
+                ),
                 const SizedBox(width: 20),
                 Expanded(
                   child: CustomTxtField(
@@ -175,7 +168,7 @@ class PanelformState extends State<Panelform> {
               obscuretxt: false,
               focusnode: _halFocus,
               onfieldsubmitted: (_) {
-                FocusScope.of(context).requestFocus(_barangFocus);
+                FocusScope.of(context).requestFocus();
               },
             ),
             const SizedBox(height: 40),
@@ -191,6 +184,7 @@ class PanelformState extends State<Panelform> {
               children: [
                 Expanded(
                   child: DropdownMenu<String>(
+                    key: dropdownkey,
                     hintText: 'Pilih barang',
                     initialSelection: selectedItemName,
                     width: MediaQuery.sizeOf(context).width * 0.48,
@@ -206,7 +200,8 @@ class PanelformState extends State<Panelform> {
                         );
                         stokItem = int.tryParse(
                               selectedItem['stok'].toString(),
-                            ) ?? 0;
+                            ) ??
+                            0;
                       });
                     },
                     dropdownMenuEntries: daftarBarang.map((item) {
@@ -236,7 +231,9 @@ class PanelformState extends State<Panelform> {
                         TextInputType.numberWithOptions(decimal: false),
                     obscuretxt: false,
                     focusnode: _jumlahFocus,
-                    onfieldsubmitted: (_) {},
+                    onfieldsubmitted: (_) {
+                      FocusScope.of(context).requestFocus(_tglKembaliFocus);
+                    },
                   ),
                 ),
               ],
@@ -244,8 +241,8 @@ class PanelformState extends State<Panelform> {
             const SizedBox(height: 10),
             CustomTxtField(
               controller: _tglKembaliCtrl,
-              label: 'Pengembalian',
-              validator: null,
+              label: 'Tanggal pengembalian',
+              validator: dateValidator,
               keyboardtype: TextInputType.text,
               obscuretxt: false,
               focusnode: _tglKembaliFocus,
@@ -253,7 +250,6 @@ class PanelformState extends State<Panelform> {
                 if (_formkey.currentState!.validate()) {
                   ajukan();
                 }
-                ;
               },
             ),
           ],

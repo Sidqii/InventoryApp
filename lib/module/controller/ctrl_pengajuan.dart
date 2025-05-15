@@ -14,6 +14,7 @@ class CtrlPengajuan extends GetxController {
     String hal,
   ) async {
     try {
+      isLoading.value = true;
       int statusCode = await _servicesPengajuan.pengajuan(
         idPengguna,
         idBarang,
@@ -25,7 +26,7 @@ class CtrlPengajuan extends GetxController {
 
       if (statusCode == 200) {
         Get.snackbar('Sukses', 'Pengajuan berhasil');
-        await Future.delayed(Duration(seconds: 300));
+        await Future.delayed(Duration(seconds: 2));
         return true;
       } else if (statusCode == 400){
         Get.snackbar('Gagal', 'Gagal melakukan pengajuan');

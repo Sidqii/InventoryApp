@@ -25,9 +25,25 @@ String? dateValidator(String? value){
   if (value == null || value.isEmpty) {
     return 'Tanggal tidak boleh kosong';
   }
-  final dateRegex = RegExp(r'^\d{2}/\d{2}/\d{4}$');
+  final dateRegex = RegExp(r'^\d{4}/\d{2}/\d{2}$');
   if (!dateRegex.hasMatch(value)) {
-    return 'Input format dd/MM/yyyy';
+    return 'Masukkan tahun-bulan-hari (0000-00-00)';
   }
+  try {
+    final inputDate = DateTime.parse(value);
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final selected = DateTime(inputDate.year, inputDate.month, inputDate.day);
+    if (selected.isBefore(today)) {
+      return 'Masa ya kemarin?';
+    }
+  } catch (e) {
+    return 'Tanggal tidak valid';
+  }
+  return null;
+}
+
+//Validator Barang
+String? barangValidator(String? value, int? stok, bool? isSelected){
   return null;
 }
