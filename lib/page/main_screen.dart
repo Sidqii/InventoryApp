@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pusdatin_end/page/main/inventori.dart';
 import 'package:pusdatin_end/page/main/home.dart';
 import 'package:pusdatin_end/page/main/pengajuan.dart';
-import 'package:pusdatin_end/page/main/riwayat.dart';
+import 'package:pusdatin_end/page/main/persetujuan.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
           HomePage(),
           InventoriPage(),
           PengajuanPage(),
-          RiwayatPage(),
+          PersetujuanPage(),
         ],
       ),
       bottomNavigationBar: Container(

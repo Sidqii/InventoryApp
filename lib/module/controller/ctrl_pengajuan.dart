@@ -28,13 +28,16 @@ class CtrlPengajuan extends GetxController {
         Get.snackbar('Sukses', 'Pengajuan berhasil');
         await Future.delayed(Duration(seconds: 2));
         return true;
-      } else if (statusCode == 400){
+      } else if (statusCode == 400) {
         Get.snackbar('Gagal', 'Gagal melakukan pengajuan');
         return false;
       } else {
         Get.snackbar('Gagal', 'Terjadi kesalahan');
         return false;
       }
+    } catch (e) {
+      Get.snackbar('Error', 'Tidak terkoneksi ke server');
+      return false;
     } finally {
       isLoading.value = false;
     }
