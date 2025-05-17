@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/module/services/services_pengajuan.dart';
 import 'package:pusdatin_end/module/services/services_persetujuan.dart';
 
 class CtrlPersetujuan extends GetxController {
-  final ServicesPersetujuan _servicesPersetujuan = ServicesPersetujuan();
+  final ServicesPersetujuan _servicespersetujuan = ServicesPersetujuan();
+  final ServicesPengajuan _servicespengajuan = ServicesPengajuan();
   final dataPengajuan = <dynamic>[].obs;
   final isLoading = false.obs;
+  final expadedId = ''.obs;
 
   @override
   void onInit() {
@@ -15,7 +18,7 @@ class CtrlPersetujuan extends GetxController {
   Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
     try {
       isLoading.value = true;
-      int statusCode = await _servicesPersetujuan.persetujuan(
+      int statusCode = await _servicespersetujuan.persetujuan(
         idPengajuan,
         idStatus,
       );
@@ -41,7 +44,7 @@ class CtrlPersetujuan extends GetxController {
   Future<void> fetchPengajuan() async {
     try {
       isLoading.value = true;
-      var data = await _servicesPersetujuan.getPengajuan();
+      var data = await _servicespengajuan.getPengajuan();
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(data);
       }
