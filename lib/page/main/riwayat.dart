@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class RiwayatPage extends StatefulWidget {
@@ -17,7 +17,26 @@ class _RiwayatPageState extends State<RiwayatPage> {
     return Scaffold(
       appBar: CustomAppbar(title: 'Riwayat', boldTitle: 'Pengajuan'),
       body: const Center(
-        child: Text('Hello from RiwayatPage'),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'ON',
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 1,
+              ),
+            ),
+            const Text(
+              ' GOING',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

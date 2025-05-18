@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
-import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
 import 'package:pusdatin_end/page/componen/historyform.dart.dart';
 import 'package:pusdatin_end/page/componen/panelform.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';

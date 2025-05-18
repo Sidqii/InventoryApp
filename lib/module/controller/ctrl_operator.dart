@@ -7,7 +7,7 @@ class CtrlPersetujuan extends GetxController {
   final ServicesPengajuan _servicespengajuan = ServicesPengajuan();
   final dataPengajuan = <dynamic>[].obs;
   final isLoading = false.obs;
-  final expadedId = ''.obs;
+  final expandedId = ''.obs;
 
   @override
   void onInit() {
@@ -18,12 +18,13 @@ class CtrlPersetujuan extends GetxController {
   Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
     try {
       isLoading.value = true;
-      int statusCode = await _servicespersetujuan.persetujuan(
+      int statusCode = await _servicespersetujuan.patchPersetujuan(
         idPengajuan,
         idStatus,
       );
       if (statusCode == 200) {
         Get.snackbar('Sukses', 'Berhasil disetujui');
+        expandedId.value = '';
         await Future.delayed(Duration(seconds: 2));
         return true;
       } else if (statusCode == 400) {
@@ -45,6 +46,8 @@ class CtrlPersetujuan extends GetxController {
     try {
       isLoading.value = true;
       var data = await _servicespengajuan.getPengajuan();
+
+      // print('${data.length}');
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(data);
       }

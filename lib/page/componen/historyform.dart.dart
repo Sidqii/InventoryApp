@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_operator.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
 class Historyform extends StatefulWidget {
@@ -12,6 +12,7 @@ class Historyform extends StatefulWidget {
 
 class _HistoryformState extends State<Historyform> {
   final ctrlpersetujuan = Get.put(CtrlPersetujuan());
+  final comment = TextEditingController();
   String selectedFilter = 'Semua';
   final List<String> filterOptions = [
     'Semua',
@@ -73,127 +74,191 @@ class _HistoryformState extends State<Historyform> {
               children: [
                 Obx(() {
                   if (ctrlpersetujuan.isLoading.value) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
+
                   if (ctrlpersetujuan.dataPengajuan.isEmpty) {
-                    return Center(child: Text('Tidak pengajuan barang'));
+                    return const Center(
+                        child: Text('Tidak ada pengajuan barang'));
                   }
+
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: ctrlpersetujuan.dataPengajuan.length,
                     itemBuilder: (context, index) {
                       final item = ctrlpersetujuan.dataPengajuan[index];
-                      final isExpanded = ctrlpersetujuan.expadedId.value ==
-                          item['id'].toString();
-                      // final comment = TextEditingController();
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.grey.shade200),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade100,
-                              blurRadius: 5,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFFFFF3CD),
+                      final idItem = item['id'].toString();
+
+                      return Obx(() {
+                        final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
+
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey.shade200),
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade100,
+                                blurRadius: 5,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              /// Header
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xFFFFF3CD),
+                                    ),
+                                    child: const Icon(Icons.access_time,
+                                        color: Colors.orange, size: 16),
                                   ),
-                                  child: const Icon(Icons.access_time,
-                                      color: Colors.orange, size: 16),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(item['nama_barang'] ?? '',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Text(
+                                          'Jumlah: ${item['jumlah']} • ${item['username']}',
+                                          style: TextStyle(
+                                              color: Colors.grey[600],
+                                              fontSize: 12),
+                                        ),
+                                        Text(
+                                          'Instansi: ${item['instansi']}',
+                                          style: TextStyle(
+                                              color: Colors.blue[600],
+                                              fontSize: 12),
+                                        ),
+                                        Text(
+                                          item['tgl_kembali'] ?? '',
+                                          style: TextStyle(
+                                              color: Colors.grey[500],
+                                              fontSize: 11),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(isExpanded
+                                        ? Icons.expand_less
+                                        : Icons.expand_more),
+                                    onPressed: () {
+                                      ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                                    },
+                                  ),
+                                ],
+                              ),
+
+                              /// Expanded area
+                              if (isExpanded) ...[
+                                const SizedBox(height: 12),
+                                Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[100],
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        item['nama_barang'] ?? '',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Jumlah: ${item['jumlah']} • ${item['username']}',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Instansi: ${item['instansi']}',
-                                        style: TextStyle(
-                                          color: Colors.blue[600],
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Text(
-                                        '${item['tgl_kembali']}',
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontSize: 11,
-                                        ),
-                                      ),
+                                      const Text('Keperluan:',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                      const SizedBox(height: 4),
+                                      Text(item['hal'] ?? '-',
+                                          style: const TextStyle(fontSize: 12)),
                                     ],
                                   ),
                                 ),
-                                IconButton(
-                                  icon: Icon(isExpanded
-                                      ? Icons.expand_less
-                                      : Icons.expand_more),
-                                  onPressed: () {
-                                    ctrlpersetujuan.expadedId.value =
-                                        isExpanded ? '' : item['id'].toString();
-                                  },
+                                const SizedBox(height: 10),
+                                TextField(
+                                  cursorColor:
+                                      Colors.black, // ⬅️ Warna kursor
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.black87, // ⬅️ Warna teks
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: 'Komentar',
+                                    labelStyle: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey[600],
+                                    ),
+                                    floatingLabelStyle: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.grey[100],
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
                                 ),
-                              ],
-                            ),
-                            if (isExpanded) ...[
-                              const SizedBox(height: 12),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[100],
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                const SizedBox(height: 10),
+                                Row(
                                   children: [
-                                    const Text(
-                                      'Keperluan:',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
+                                    Expanded(
+                                      child: ElevatedButton.icon(
+                                        icon: const Icon(
+                                            Icons.check_circle_outline),
+                                        label: const Text('Setujui'),
+                                        onPressed: () {
+                                          ctrlpersetujuan.editPengajuan(
+                                              item['id'], 2);
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Colors.green.shade400,
+                                        ),
                                       ),
                                     ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      item['hal'] ?? '',
-                                      style: const TextStyle(fontSize: 12),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: ElevatedButton.icon(
+                                        icon: const Icon(Icons.cancel_outlined),
+                                        label: const Text('Tolak'),
+                                        onPressed: () {
+                                          ctrlpersetujuan.editPengajuan(
+                                              item['id'], 3);
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.red.shade300,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
-                              )
-                            ]
-                          ],
-                        ),
-                      );
+                              ],
+                            ],
+                          ),
+                        );
+                      });
                     },
                   );
-                }),
+                })
               ],
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class ServicesPengajuan {
   final String url = 'http://localhost/AssetsHubBE/src/endpoint/pengajuan.php';
 
-  Future<int> pengajuan(
+  Future<int> postPengajuan(
     int idPengguna,
     int idBarang,
     int jumlah,
@@ -32,11 +32,11 @@ class ServicesPengajuan {
         final List<dynamic> data = jsonDecode(response.body);
         return data.cast<Map<String, dynamic>>();
       } else {
-        print('${response.statusCode}');
+        // print('${response.statusCode}');
         return [];
       }
     } catch (e) {
-      print('${e}');
+      // print('${e}');
       return [];
     }
   }

@@ -15,7 +15,7 @@ class CtrlPengajuan extends GetxController {
   ) async {
     try {
       isLoading.value = true;
-      int statusCode = await _servicesPengajuan.pengajuan(
+      int statusCode = await _servicesPengajuan.postPengajuan(
         idPengguna,
         idBarang,
         jumlah,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
-import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/utils/validator.dart';

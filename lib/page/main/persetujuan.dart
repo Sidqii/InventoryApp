@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_operator.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class PersetujuanPage extends StatefulWidget {
@@ -15,39 +15,29 @@ class _PersetujuanPageState extends State<PersetujuanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppbar(title: 'Persetujuan', boldTitle: 'Peminjaman'),
-        body: Obx(() {
-          if (ctrlpersetujuan.isLoading.value) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (ctrlpersetujuan.dataPengajuan.isEmpty) {
-            return Center(child: Text('Tidak ada data pengajuan'));
-          }
-          return ListView.builder(
-            itemCount: ctrlpersetujuan.dataPengajuan.length,
-            itemBuilder: (context, index) {
-              final item = ctrlpersetujuan.dataPengajuan[index];
-
-              return Card(
-                elevation: 2,
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: ListTile(
-                  title: Text(item['nama_barang']??'Barang'),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Peminjam: ${item['username']??'-'}'),
-                      Text('Instansi: ${item['instansi']??'-'}'),
-                      Text('jumlah: ${item['jumlah']??'-'}'),
-                      Text('Hal: ${item['hal']??'-'}'),
-                      Text('Pengembalian: ${item['tgl_kembali']??'-'}'),
-                    ],
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-              );
-            },
-          );
-        }));
+      appBar: CustomAppbar(title: 'Persetujuan', boldTitle: 'Peminjaman'),
+      body: const Center(
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'ON',
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 1,
+              ),
+            ),
+            const Text(
+              ' GOING',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
