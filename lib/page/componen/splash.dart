@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      Get.off(
+      Get.offAll(
         LoginPage(),
         transition: Transition.fadeIn,
         duration: Duration(milliseconds: 980),

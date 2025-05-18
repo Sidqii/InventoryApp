@@ -12,27 +12,33 @@ class CtrlLogin extends GetxController {
   Future<void> login(String email, String password) async {
     try {
       isloading.value = true;
-      final response = await ServicesUser().loginUser(email, password);
+
+      final response = await ServicesLogin().loginUser(email, password);
       final statusCode = response['status'];
 
       if (statusCode == 200) {
-        final userData = response['user'];
-        final user = usersModels.fromJson(userData);
-        Get.put(CtrlUser()).setUser(user);
+        final userId = response['user_id'];
+        final userResponse = await ServicesLogin().getUserId(userId);
+        
+        if (userResponse['status'] == 'success') {
+          final user = usersModels.fromJson(userResponse['data']);
 
-        islogin.value = true;
-        CustomDialog.show(
-          isSuccess: true,
-          duration: Duration(milliseconds: 1080),
-        );
-        await Future.delayed(
-          Duration(milliseconds: 1095),
-        );
-        Get.offAll(
-          MainScreen(),
-          transition: Transition.fadeIn,
-          duration: Duration(milliseconds: 800),
-        );
+          Get.put(CtrlUser()).setUser(user);
+
+          islogin.value = true;
+          CustomDialog.show(
+            isSuccess: true,
+            duration: Duration(milliseconds: 1080),
+          );
+          await Future.delayed(
+            Duration(milliseconds: 1095),
+          );
+          Get.offAll(
+            MainScreen(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 800),
+          );
+        }
       } else if (statusCode == 401) {
         Get.snackbar(
           'Gagal',
