@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
-import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
-import 'package:pusdatin_end/page/componen/historyform.dart';
-import 'package:pusdatin_end/page/componen/panelform.dart';
+import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/page/main/componen/formhistory.dart';
+import 'package:pusdatin_end/page/main/componen/formpanel.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 
@@ -15,7 +15,7 @@ class PengajuanPage extends StatefulWidget {
 }
 
 class PengajuanPageState extends State<PengajuanPage> {
-  final GlobalKey<PanelformState> _formKey = GlobalKey<PanelformState>();
+  final GlobalKey<FormPanelState> _formKey = GlobalKey<FormPanelState>();
   final ctrlpengajuan = Get.put(CtrlPengajuan());
 
   @override
@@ -30,11 +30,11 @@ class PengajuanPageState extends State<PengajuanPage> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Panelform(
+            FormPanel(
               key: _formKey,
             ),
             const SizedBox(height: 20),
-            Historyform(),
+            FormHistory(),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
@@ -7,6 +8,7 @@ class CtrlItems extends GetxController {
   var filterItem = <dynamic>[].obs;
   var items = <dynamic>[].obs;
   var isLoading = false.obs;
+  Timer? _debounce;
 
   @override
   void onInit() {
@@ -15,8 +17,9 @@ class CtrlItems extends GetxController {
   }
 
   Future<void> fetchData() async {
+    if (items.isNotEmpty) return;
     try {
-      isLoading(true);
+      isLoading.value = true;
       var data = await services.getItems();
       if (data.isNotEmpty) {
         items.assignAll(data);
@@ -29,41 +32,47 @@ class CtrlItems extends GetxController {
         duration: Duration(seconds: 5),
       );
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 
   void filterData(String query) {
-    if (query.trim().isEmpty) {
-      filterItem.assignAll(List.from(items));
-    } else {
-      var lowerQuery = query.toLowerCase();
-      var filterList = items.where((item) {
-        return item['nama_barang']
-                .toString()
-                .toLowerCase()
-                .contains(lowerQuery) ||
-            item['nama_kategori']
-                .toString()
-                .toLowerCase()
-                .contains(lowerQuery) ||
-            item['stok'].toString().toLowerCase().contains(lowerQuery) ||
-            item['status'].toString().toLowerCase().contains(lowerQuery);
-      }).toList();
-      filterItem.assignAll(filterList);
-    }
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(Duration(milliseconds: 300), () {
+      if (query.trim().isEmpty) {
+        filterItem.assignAll(List.from(items));
+      } else {
+        var lowerQuery = query.toLowerCase();
+        var filterList = items.where((item) {
+          return item['nama_barang']
+                  .toString()
+                  .toLowerCase()
+                  .contains(lowerQuery) ||
+              item['nama_kategori']
+                  .toString()
+                  .toLowerCase()
+                  .contains(lowerQuery) ||
+              item['stok'].toString().toLowerCase().contains(lowerQuery) ||
+              item['nama_lokasi']
+                  .toString()
+                  .toLowerCase()
+                  .contains(lowerQuery) ||
+              item['status'].toString().toLowerCase().contains(lowerQuery);
+        }).toList();
+        filterItem.assignAll(filterList);
+      }
+    });
   }
 
   void filterByCategory(String category) {
     if (category == 'Semua') {
       filterItem.assignAll(List.from(items));
     } else {
-      List<dynamic> filtered = [];
-      for (var item in items) {
-        if (item['nama_kategori'].toString().toLowerCase() == category.toLowerCase()) {
-          filtered.add(item);
-        }
-      }
+      final filtered = items
+          .where((item) =>
+              item['nama_kategori'].toString().toLowerCase() ==
+              category.toLowerCase())
+          .toList();
       filterItem.assignAll(filtered);
     }
   }

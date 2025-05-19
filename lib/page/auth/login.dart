@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscuretxt: true,
                   focusnode: _passfocus,
                   onfieldsubmitted: (_) {
-                    if (!auth.isloading.value) {
+                    if (!auth.isloading.value && _formkey.currentState!.validate()) {
                       auth.login(_emailctrl.text, _passctrl.text);
                     }
                   },
@@ -76,7 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                       onpress: auth.isloading.value
                           ? () {}
                           : () {
-                              auth.login(_emailctrl.text, _passctrl.text);
+                              if (!auth.isloading.value && _formkey.currentState!.validate()) {
+                                auth.login(
+                                  _emailctrl.text,
+                                  _passctrl.text,
+                                );
+                              }
                             },
                       txt: 'login',
                       isloading: auth.isloading.value,

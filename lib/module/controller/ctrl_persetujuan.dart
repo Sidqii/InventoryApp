@@ -47,7 +47,6 @@ class CtrlPersetujuan extends GetxController {
       isLoading.value = true;
       var data = await _servicespengajuan.getPengajuan();
 
-      // print('${data.length}');
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(data);
       }

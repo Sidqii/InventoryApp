@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
-import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
+import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/utils/validator.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
-class Panelform extends StatefulWidget {
-  const Panelform({super.key});
+class FormPanel extends StatefulWidget {
+  const FormPanel({super.key});
 
   @override
-  State<Panelform> createState() => PanelformState();
+  State<FormPanel> createState() => FormPanelState();
 }
 
-class PanelformState extends State<Panelform> {
+class FormPanelState extends State<FormPanel> {
   final ctrlPengajuan = Get.put(CtrlPengajuan());
   final user = Get.find<CtrlUser>().user.value!;
   final _formkey = GlobalKey<FormState>();

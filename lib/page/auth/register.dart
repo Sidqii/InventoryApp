@@ -14,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final CtrlRegis ctrlRegister = Get.put(CtrlRegis());
+  final ctrlRegister = Get.put(CtrlRegister());
   final _emailctrl = TextEditingController();
   final _passctrl = TextEditingController();
   final _confirmctrl = TextEditingController();
@@ -90,10 +90,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 25),
                 CustomTxtField(
                   controller: _confirmctrl,
-                  label: 'Confirm Password',
+                  label: 'Konfirmasi Password',
                   validator: (value) {
                     if (value != _passctrl.text) {
-                      return 'Password ambigu';
+                      return 'Password tidak sesuai';
                     }
                     return null;
                   },

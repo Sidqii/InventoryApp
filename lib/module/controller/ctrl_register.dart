@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/services/services_register.dart';
 
-class CtrlRegis extends GetxController {
+class CtrlRegister extends GetxController {
   final ServicesRegister _servicesRegister = ServicesRegister();
   var isLoading = false.obs;
 

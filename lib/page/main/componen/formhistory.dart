@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_operator.dart';
+import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
-class Historyform extends StatefulWidget {
-  const Historyform({super.key});
+class FormHistory extends StatefulWidget {
+  const FormHistory({super.key});
 
   @override
-  State<Historyform> createState() => _HistoryformState();
+  State<FormHistory> createState() => _FormHistoryState();
 }
 
-class _HistoryformState extends State<Historyform> {
+class _FormHistoryState extends State<FormHistory> {
   final ctrlpersetujuan = Get.put(CtrlPersetujuan());
   final comment = TextEditingController();
   String selectedFilter = 'Semua';
@@ -159,7 +159,8 @@ class _HistoryformState extends State<Historyform> {
                                         ? Icons.expand_less
                                         : Icons.expand_more),
                                     onPressed: () {
-                                      ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                                      ctrlpersetujuan.expandedId.value =
+                                          isExpanded ? '' : idItem;
                                     },
                                   ),
                                 ],
@@ -190,8 +191,7 @@ class _HistoryformState extends State<Historyform> {
                                 ),
                                 const SizedBox(height: 10),
                                 TextField(
-                                  cursorColor:
-                                      Colors.black, // ⬅️ Warna kursor
+                                  cursorColor: Colors.black, // ⬅️ Warna kursor
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: Colors.black87, // ⬅️ Warna teks

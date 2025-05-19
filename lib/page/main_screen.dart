@@ -15,15 +15,29 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
+  Widget _getPage(int index) {
+    switch (index) {
+      case 0:
+        return const HomePage();
+      case 1:
+        return const InventoriPage();
+      case 2:
+        return const PengajuanPage();
+      case 3:
+        return const RiwayatPage();
+      default:
+        return const HomePage();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _pageController.jumpToPage(1);
-      await Future.delayed(const Duration(milliseconds: 100));
-      _pageController.jumpToPage(0);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   _pageController.jumpToPage(1);
+    //   await Future.delayed(const Duration(milliseconds: 100));
+    //   _pageController.jumpToPage(0);
+    // });
   }
 
   void _onItemTapped(int index) {
@@ -37,19 +51,17 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
+      body: PageView.builder(
         controller: _pageController,
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return _getPage(index);
+        },
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        children: const [
-          HomePage(),
-          InventoriPage(),
-          PengajuanPage(),
-          RiwayatPage(),
-        ],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

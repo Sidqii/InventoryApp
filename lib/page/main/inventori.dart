@@ -16,7 +16,6 @@ class InventoriPageState extends State<InventoriPage> {
   final _filterCtrl = TextEditingController();
   final _filterFocus = FocusNode();
   final CtrlItems controller = Get.find<CtrlItems>();
-  String selectedCategory = 'Semua';
 
   @override
   void initState() {
@@ -59,39 +58,39 @@ class InventoriPageState extends State<InventoriPage> {
               },
             ),
             const SizedBox(height: 12),
-            Expanded(child: Obx(() {
-              if (controller.isLoading.value) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (controller.filterItem.isEmpty) {
-                return const Center(
-                  child: Text('Data kosong'),
-                );
-              }
-              return ListView.builder(
-                addAutomaticKeepAlives: false,
-                addRepaintBoundaries: true,
-                itemCount: controller.filterItem.length,
-                itemBuilder: (context, index) {
-                  var item = controller.filterItem[index];
-                  return RepaintBoundary(
-                    child: CustomInfoCard(
-                      title: item['nama_barang'],
-                      subtitle: item['nama_kategori'],
-                      details: {
-                        'stok': item['stok'],
-                        'Status': item['status'],
-                        'Lokasi': item['nama_lokasi']
-                        // 'Harga': item['harga']
-                      },
-                      // currencyField: ['Harga'],
-                    ),
+            Expanded(
+              child: Obx(() {
+                if (controller.isLoading.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
-                },
-              );
-            }))
+                }
+                if (controller.filterItem.isEmpty) {
+                  return const Center(
+                    child: Text('Data kosong'),
+                  );
+                }
+                return ListView.builder(
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: true,
+                  itemCount: controller.filterItem.length,
+                  itemBuilder: (context, index) {
+                    var item = controller.filterItem[index];
+                    return RepaintBoundary(
+                      child: CustomInfoCard(
+                        title: item['nama_barang'],
+                        subtitle: item['nama_kategori'],
+                        details: {
+                          'stok': item['stok'],
+                          'Status': item['status'],
+                          'Lokasi': item['nama_lokasi']
+                        },
+                      ),
+                    );
+                  },
+                );
+              }),
+            )
           ],
         ),
       ),

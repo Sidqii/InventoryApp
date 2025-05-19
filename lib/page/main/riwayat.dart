@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_staff.dart';
+import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class RiwayatPage extends StatefulWidget {
@@ -11,7 +11,7 @@ class RiwayatPage extends StatefulWidget {
 }
 
 class _RiwayatPageState extends State<RiwayatPage> {
-  final CtrlPengajuan ctrlPengajuan = Get.put(CtrlPengajuan());
+  final ctrlPengajuan = Get.put(CtrlPengajuan());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
