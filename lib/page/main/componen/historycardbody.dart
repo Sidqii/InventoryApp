@@ -16,7 +16,7 @@ class HistoryCardBody extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: const Color(0xffEEEEEE),
+            color: const Color(0xffF4F7F7),
             borderRadius: BorderRadius.circular(5),
           ),
           child: Column(

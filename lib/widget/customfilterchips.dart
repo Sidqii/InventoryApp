@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class FilterChips extends StatelessWidget {
+class CustomFilterChips extends StatelessWidget {
   final List<String> options;
   final String selected;
   final void Function(String) onSelected;
 
-  const FilterChips({
+  const CustomFilterChips({
     required this.options,
     required this.selected,
     required this.onSelected,

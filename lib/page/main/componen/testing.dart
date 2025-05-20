@@ -52,7 +52,7 @@ class _TestingPageState extends State<TestingPage> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 15),
-          FilterChips(
+          CustomFilterChips(
             options: filterOptions,
             selected: selectedFilter,
             onSelected: (val) {

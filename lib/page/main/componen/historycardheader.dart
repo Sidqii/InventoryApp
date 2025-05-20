@@ -17,7 +17,6 @@ class HistoryCardHeader extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,25 +30,25 @@ class HistoryCardHeader extends StatelessWidget {
               const SizedBox(height: 2),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Jumlah: ',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                     ),
                   ),
                   Text(
-                    '${item['jumlah']}',
+                    item['jumlah'],
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     ' | ',
                   ),
-                  Text(
+                  const Text(
                     'Diajukan oleh: ',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                     ),
                   ),
@@ -62,19 +61,30 @@ class HistoryCardHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(
-                'Instansi: ${item['instansi']}',
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Color(0xff295BA7),
-                ),
+              Row(
+                children: [
+                  const Text(
+                    'Instansi: ',
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    item['instansi'],
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff295BA7),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 15),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Akan dikembalikan pada: ',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                     ),
                   ),

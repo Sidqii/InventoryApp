@@ -33,7 +33,7 @@ class PengajuanPageState extends State<PengajuanPage> {
             FormPanel(
               key: _formKey,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             FormHistory(),
           ],
         ),
