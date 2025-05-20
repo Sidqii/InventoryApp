@@ -23,8 +23,9 @@ class CtrlPersetujuan extends GetxController {
         idStatus,
       );
       if (statusCode == 200) {
-        Get.snackbar('Sukses', 'Berhasil disetujui');
+        Get.snackbar('Sukses', 'Selesai ditanggapi');
         expandedId.value = '';
+        print('id_pengajuan: ${idPengajuan} | id_status: ${idStatus}');
         await Future.delayed(Duration(seconds: 2));
         return true;
       } else if (statusCode == 400) {

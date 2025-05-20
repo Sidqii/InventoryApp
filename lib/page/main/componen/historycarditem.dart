@@ -20,6 +20,7 @@ class HistoryCardItem extends StatelessWidget {
     final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
 
     final idItem = item['id'].toString();
+
     return Obx(() {
       final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
 
@@ -52,7 +53,9 @@ class HistoryCardItem extends StatelessWidget {
             if (isExpanded) ...[
               const SizedBox(height: 12),
               HistoryCardBody(item: item),
-              if (roleuser == 1) HistorCardPanel(idPengajuan: item['id'])
+              const SizedBox(height: 10),
+              if (roleuser == 'Operator')
+                HistorCardPanel(idPengajuan: int.tryParse(item['id'].toString()) ?? 0)
             ]
           ],
         ),

@@ -1,19 +1,16 @@
-
-//Kode FormHistory
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
-class FormHistory extends StatefulWidget {
-  const FormHistory({super.key});
+class TestingPage extends StatefulWidget {
+  const TestingPage({super.key});
 
   @override
-  State<FormHistory> createState() => _FormHistoryState();
+  State<TestingPage> createState() => _TestingPageState();
 }
 
-class _FormHistoryState extends State<FormHistory> {
+class _TestingPageState extends State<TestingPage> {
   final ctrlpersetujuan = Get.put(CtrlPersetujuan());
   final comment = TextEditingController();
   String selectedFilter = 'Semua';
@@ -231,7 +228,7 @@ class _FormHistoryState extends State<FormHistory> {
                                         label: const Text('Setujui'),
                                         onPressed: () {
                                           ctrlpersetujuan.editPengajuan(
-                                              item['id'], 2);
+                                              int.parse(item['id'].toString()), 2);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor:
@@ -246,7 +243,7 @@ class _FormHistoryState extends State<FormHistory> {
                                         label: const Text('Tolak'),
                                         onPressed: () {
                                           ctrlpersetujuan.editPengajuan(
-                                              item['id'], 3);
+                                              int.parse(item['id'].toString()), 3);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.red.shade300,
