@@ -25,18 +25,30 @@ class ServicesPengajuan {
     return response.statusCode;
   }
 
-  Future<List<Map<String, dynamic>>> getPengajuan() async {
+  Future<List<Map<String, dynamic>>> getAllPengajuan() async {
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
         return data.cast<Map<String, dynamic>>();
       } else {
-        // print('${response.statusCode}');
         return [];
       }
     } catch (e) {
-      // print('${e}');
+      return [];
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getIdPengajuan(int userId) async {
+    try {
+      final response = await http.get(Uri.parse('$url?user_id=$userId'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        return data.cast<Map<String, dynamic>>();
+      } else {
+        return [];
+      }
+    } catch (e) {
       return [];
     }
   }

@@ -43,6 +43,7 @@ class PengajuanPageState extends State<PengajuanPage> {
           bottom: 20,
           left: 15,
           right: 15,
+          top: 5,
         ),
         child: Obx(() => CustomButton(
               onpress: ctrlpengajuan.isLoading.value

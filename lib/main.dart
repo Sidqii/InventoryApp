@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pusdatin_end/module/controller/ctrl_items.dart';
+import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/page/main/componen/splashscreen.dart';
 import 'package:pusdatin_end/widget/customtheme.dart';
 
 void initController() {
   Get.lazyPut(() => CtrlItems());
+  Get.put(CtrlPersetujuan());
   Get.put(CtrlUser());
 }
 

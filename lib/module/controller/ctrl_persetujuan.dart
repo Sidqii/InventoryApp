@@ -45,13 +45,26 @@ class CtrlPersetujuan extends GetxController {
   Future<void> fetchPengajuan() async {
     try {
       isLoading.value = true;
-      var data = await _servicespengajuan.getPengajuan();
+      var data = await _servicespengajuan.getAllPengajuan();
 
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(data);
       }
     } catch (e) {
       Get.snackbar('Error', 'Gagal ambil data');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> fetchPengajuanId(int? userId) async {
+    if (userId == null) return;
+    isLoading.value = true;
+    try {
+      final result = await _servicespengajuan.getIdPengajuan(userId);
+      dataPengajuan.value = result;
+    } catch (e) {
+      dataPengajuan.clear();
     } finally {
       isLoading.value = false;
     }
