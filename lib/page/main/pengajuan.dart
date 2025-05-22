@@ -3,8 +3,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/module/controller/ctrl_panel.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
-import 'package:pusdatin_end/page/main/componen/formhistory.dart';
-import 'package:pusdatin_end/page/main/componen/formrequest.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/formhistory.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/formrequest.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_panel.dart';
 import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/page/main/componen/panelinstansi.dart';
-import 'package:pusdatin_end/page/main/componen/paneljumlah.dart';
-import 'package:pusdatin_end/page/main/componen/paneltanggal.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/panelinstansi.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/paneljumlah.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/paneltanggal.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class RiwayatPage extends StatefulWidget {

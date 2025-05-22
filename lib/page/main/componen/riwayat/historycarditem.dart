@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
-import 'package:pusdatin_end/page/main/componen/historycardbody.dart';
-import 'package:pusdatin_end/page/main/componen/historycardheader.dart';
-import 'package:pusdatin_end/page/main/componen/historycardpanel.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/historycardbody.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/historycardheader.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/historycardpanel.dart';
 
 class HistoryCardItem extends StatelessWidget {
   final Map<String, dynamic> item;

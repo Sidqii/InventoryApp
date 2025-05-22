@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_panel.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
-import 'package:pusdatin_end/page/main/componen/paneldropdown.dart';
-import 'package:pusdatin_end/page/main/componen/panelinstansi.dart';
-import 'package:pusdatin_end/page/main/componen/paneljumlah.dart';
-import 'package:pusdatin_end/page/main/componen/panelkeperluan.dart';
-import 'package:pusdatin_end/page/main/componen/panelpeminjam.dart';
-import 'package:pusdatin_end/page/main/componen/paneltanggal.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/paneldropdown.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/panelinstansi.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/paneljumlah.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/panelkeperluan.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/panelpeminjam.dart';
+import 'package:pusdatin_end/page/main/componen/pengajuan/paneltanggal.dart';
 
 class FormRequest extends StatefulWidget {
   const FormRequest({super.key});

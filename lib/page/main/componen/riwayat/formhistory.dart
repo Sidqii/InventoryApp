@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/page/main/componen/emptypage.dart';
-import 'package:pusdatin_end/page/main/componen/historycarditem.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/historycarditem.dart';
 import 'package:pusdatin_end/utils/formattter.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
