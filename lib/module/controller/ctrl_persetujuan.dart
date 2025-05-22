@@ -12,7 +12,6 @@ class CtrlPersetujuan extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchPengajuan();
   }
 
   Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
@@ -23,20 +22,35 @@ class CtrlPersetujuan extends GetxController {
         idStatus,
       );
       if (statusCode == 200) {
-        Get.snackbar('Sukses', 'Selesai ditanggapi');
+        Get.snackbar(
+          'Sukses',
+          'Selesai ditanggapi',
+        );
         expandedId.value = '';
-        print('id_pengajuan: ${idPengajuan} | id_status: ${idStatus}');
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(
+          Duration(
+            seconds: 2,
+          ),
+        );
         return true;
       } else if (statusCode == 400) {
-        Get.snackbar('Gagal', 'Gagal merubah status');
+        Get.snackbar(
+          'Gagal',
+          'Gagal merubah status',
+        );
         return false;
       } else {
-        Get.snackbar('Gagal', 'Terjadi kesalahan');
+        Get.snackbar(
+          'Gagal',
+          'Terjadi kesalahan',
+        );
         return false;
       }
     } catch (e) {
-      Get.snackbar('Error', 'Tidak terkoneksi ke server');
+      Get.snackbar(
+        'Error',
+        'Tidak terkoneksi ke server',
+      );
       return false;
     } finally {
       isLoading.value = false;
@@ -52,7 +66,10 @@ class CtrlPersetujuan extends GetxController {
         dataPengajuan.assignAll(data);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Gagal ambil data');
+      Get.snackbar(
+        'Error',
+        'Gagal ambil data',
+      );
     } finally {
       isLoading.value = false;
     }
@@ -64,6 +81,23 @@ class CtrlPersetujuan extends GetxController {
     try {
       final result = await _servicespengajuan.getIdPengajuan(userId);
       dataPengajuan.value = result;
+    } catch (e) {
+      dataPengajuan.clear();
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> getPengajuanByRole(int userid, int role) async {
+    isLoading.value = true;
+    try {
+      if (role == 2) {
+        final data = await _servicespengajuan.getIdPengajuan(userid);
+        dataPengajuan.value = data;
+      } else {
+        final data = await _servicespengajuan.getAllPengajuan();
+        dataPengajuan.value = data;
+      }
     } catch (e) {
       dataPengajuan.clear();
     } finally {

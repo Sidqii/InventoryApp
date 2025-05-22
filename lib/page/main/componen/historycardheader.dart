@@ -22,7 +22,7 @@ class HistoryCardHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${item['nama_barang']}',
+                '${item['nama_barang'].toString()}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +37,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['jumlah'],
+                    item['jumlah'].toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['username'],
+                    item['username'].toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['instansi'],
+                    item['instansi'].toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['tgl_kembali'],
+                    item['tgl_kembali'].toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
-import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/module/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/module/controller/ctrl_user.dart';
 import 'package:pusdatin_end/page/main/componen/formhistory.dart';
-import 'package:pusdatin_end/page/main/componen/formpanel.dart';
+import 'package:pusdatin_end/page/main/componen/formrequest.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 
@@ -15,8 +16,8 @@ class PengajuanPage extends StatefulWidget {
 }
 
 class PengajuanPageState extends State<PengajuanPage> {
-  final GlobalKey<FormPanelState> _formKey = GlobalKey<FormPanelState>();
-  final ctrlpengajuan = Get.put(CtrlPengajuan());
+  final ctrlpanel = Get.find<CtrlPanel>();
+  final ctrluser = Get.find<CtrlUser>().user.value!;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +29,15 @@ class PengajuanPageState extends State<PengajuanPage> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            FormPanel(
-              key: _formKey,
-            ),
-            const SizedBox(height: 10),
-            FormHistory(),
-          ],
+        child: Form(
+          key: ctrlpanel.formkey,
+          child: Column(
+            children: [
+              FormRequest(),
+              const SizedBox(height: 10),
+              FormHistory(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -46,13 +48,13 @@ class PengajuanPageState extends State<PengajuanPage> {
           top: 5,
         ),
         child: Obx(() => CustomButton(
-              onpress: ctrlpengajuan.isLoading.value
+              onpress: ctrlpanel.isLoading.value
                   ? () {}
                   : () {
-                      _formKey.currentState?.ajukan();
+                      ctrlpanel.ajukan(ctrluser.id);
                     },
               txt: 'kirim',
-              isloading: ctrlpengajuan.isLoading.value,
+              isloading: ctrlpanel.isLoading.value,
             )),
       ),
     );
