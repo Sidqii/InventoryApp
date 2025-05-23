@@ -1,17 +1,24 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 import 'package:pusdatin_end/module/services/services_pengajuan.dart';
 import 'package:pusdatin_end/module/services/services_persetujuan.dart';
 
 class CtrlPersetujuan extends GetxController {
   final ServicesPersetujuan _servicespersetujuan = ServicesPersetujuan();
   final ServicesPengajuan _servicespengajuan = ServicesPengajuan();
-  final dataPengajuan = <dynamic>[].obs;
+  final dataPengajuan = <PengajuanModels>[].obs;
   final isLoading = false.obs;
   final expandedId = ''.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
+  List<PengajuanModels> parseList(dynamic dbList) {
+    List<PengajuanModels> parsedList = [];
+    if (dbList is List) {
+      for (var item in dbList) {
+        PengajuanModels models = PengajuanModels.fromJson(item);
+        parsedList.add(models);
+      }
+    }
+    return parsedList;
   }
 
   Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
@@ -63,7 +70,7 @@ class CtrlPersetujuan extends GetxController {
       var data = await _servicespengajuan.getAllPengajuan();
 
       if (data.isNotEmpty) {
-        dataPengajuan.assignAll(data);
+        dataPengajuan.assignAll(parseList(data));
       }
     } catch (e) {
       Get.snackbar(
@@ -80,7 +87,7 @@ class CtrlPersetujuan extends GetxController {
     isLoading.value = true;
     try {
       final result = await _servicespengajuan.getIdPengajuan(userId);
-      dataPengajuan.value = result;
+      dataPengajuan.assignAll(parseList(result));
     } catch (e) {
       dataPengajuan.clear();
     } finally {
@@ -93,10 +100,10 @@ class CtrlPersetujuan extends GetxController {
     try {
       if (role == 2) {
         final data = await _servicespengajuan.getIdPengajuan(userid);
-        dataPengajuan.value = data;
+        dataPengajuan.assignAll(parseList(data));
       } else {
         final data = await _servicespengajuan.getAllPengajuan();
-        dataPengajuan.value = data;
+        dataPengajuan.assignAll(parseList(data));
       }
     } catch (e) {
       dataPengajuan.clear();

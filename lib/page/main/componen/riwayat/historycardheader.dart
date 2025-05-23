@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 
 class HistoryCardHeader extends StatelessWidget {
-  final Map<String, dynamic> item;
+  final PengajuanModels item;
   final bool isExpanded;
   final VoidCallback onBtnExpand;
 
@@ -22,7 +23,7 @@ class HistoryCardHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${item['nama_barang'].toString()}',
+                '${item.namaBarang}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +38,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['jumlah'].toString(),
+                    item.jumlah.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -53,7 +54,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['username'].toString(),
+                    item.username,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['instansi'].toString(),
+                    item.instansi,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class HistoryCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item['tgl_kembali'].toString(),
+                    item.tglKembali,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

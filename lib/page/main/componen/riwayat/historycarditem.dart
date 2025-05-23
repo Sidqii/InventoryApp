@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/page/main/componen/riwayat/historycardbody.dart';
 import 'package:pusdatin_end/page/main/componen/riwayat/historycardheader.dart';
 import 'package:pusdatin_end/page/main/componen/riwayat/historycardpanel.dart';
 
 class HistoryCardItem extends StatelessWidget {
-  final Map<String, dynamic> item;
+  final PengajuanModels item;
   final String roleuser;
 
   const HistoryCardItem({
@@ -18,11 +19,11 @@ class HistoryCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
-    final idItem = item['id'].toString();
+    final idItem = item.id.toString();
 
     return Obx(() {
       final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
-      final pengajuan = int.tryParse(item['id'].toString()) ?? 0;
+      final pengajuan = int.tryParse(item.id.toString()) ?? 0;
 
       return Container(
         margin: const EdgeInsets.only(bottom: 12),

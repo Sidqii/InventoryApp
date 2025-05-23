@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 
 class HistoryCardBody extends StatelessWidget {
-  final Map<String, dynamic> item;
+  final PengajuanModels item;
   const HistoryCardBody({
     required this.item,
     super.key,
@@ -30,7 +31,7 @@ class HistoryCardBody extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                item['hal'] ?? '-',
+                item.hal,
                 style: const TextStyle(
                   fontSize: 12,
                 ),

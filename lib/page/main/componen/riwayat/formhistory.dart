@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/module/controller/ctrl_user.dart';
-import 'package:pusdatin_end/page/main/componen/emptypage.dart';
-import 'package:pusdatin_end/page/main/componen/riwayat/historycarditem.dart';
-import 'package:pusdatin_end/utils/formattter.dart';
+import 'package:pusdatin_end/page/main/componen/riwayat/formhistorylogic.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
 class FormHistory extends StatefulWidget {
@@ -29,9 +27,11 @@ class _FormHistoryState extends State<FormHistory> {
   @override
   void initState() {
     super.initState();
-    final roleuser = ctrluser?.role ?? 0;
-    final iduser = ctrluser?.id ?? 0;
-    ctrlpersetujuan.getPengajuanByRole(iduser, roleuser);
+    // Future.delayed(const Duration(milliseconds: 300), () {
+      final roleuser = ctrluser?.role ?? 0;
+      final iduser = ctrluser?.id ?? 0;
+      ctrlpersetujuan.getPengajuanByRole(iduser, roleuser);
+    // });
   }
 
   @override
@@ -73,44 +73,46 @@ class _FormHistoryState extends State<FormHistory> {
               ),
               const SizedBox(height: 15),
               Obx(() {
-                if (ctrlpersetujuan.isLoading.value) {
+                if (ctrlpersetujuan.isLoading.value == true) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                }
-
-                final roleuser = ctrluser?.role ?? 0;
-                final iduser = ctrluser?.id ?? 0;
-
-                List<dynamic> listpengajuan = [];
-                if (roleuser == 2) {
-                  for (var item in ctrlpersetujuan.dataPengajuan) {
-                    if (int.tryParse(item['id_pengguna'].toString()) == iduser) {
-                      listpengajuan.add(item);
-                    }
-                  }
                 } else {
-                  listpengajuan = ctrlpersetujuan.dataPengajuan;
+                  return formHistoryLogic(selectedFilter: selectedFilter);
                 }
 
-                if (listpengajuan.isEmpty) {
-                  return EmptyPage(
-                    icon: Icons.search,
-                    txt: 'Belum ada pengajuan barang',
-                  );
-                }
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: listpengajuan.length,
-                  itemBuilder: (context, index) {
-                    final item = listpengajuan[index];
-                    return HistoryCardItem(
-                      item: item,
-                      roleuser: getRole(roleuser),
-                    );
-                  },
-                );
+                // final roleuser = ctrluser?.role ?? 0;
+                // final iduser = ctrluser?.id ?? 0;
+
+                // List<dynamic> listpengajuan = [];
+                // if (roleuser == 2) {
+                //   for (var item in ctrlpersetujuan.dataPengajuan) {
+                //     if (int.tryParse(item['id_pengguna'].toString()) ==
+                //         iduser) {
+                //       listpengajuan.add(item);
+                //     }
+                //   }
+                // } else {
+                //   listpengajuan = ctrlpersetujuan.dataPengajuan;
+                // }
+
+                // if (listpengajuan.isEmpty) {
+                //   return EmptyPage(
+                //     txt: 'Belum ada pengajuan barang',
+                //   );
+                // }
+                // return ListView.builder(
+                //   shrinkWrap: true,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   itemCount: listpengajuan.length,
+                //   itemBuilder: (context, index) {
+                //     final item = listpengajuan[index];
+                //     return HistoryCardItem(
+                //       item: item,
+                //       roleuser: getRole(roleuser),
+                //     );
+                //   },
+                // );
               }),
             ],
           ),

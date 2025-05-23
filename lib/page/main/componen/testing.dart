@@ -88,7 +88,7 @@ class _TestingPageState extends State<TestingPage> {
                     itemCount: ctrlpersetujuan.dataPengajuan.length,
                     itemBuilder: (context, index) {
                       final item = ctrlpersetujuan.dataPengajuan[index];
-                      final idItem = item['id'].toString();
+                      final idItem = item.id.toString();
 
                       return Obx(() {
                         final isExpanded =
@@ -131,23 +131,23 @@ class _TestingPageState extends State<TestingPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(item['nama_barang'] ?? '',
+                                        Text(item.namaBarang,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                         Text(
-                                          'Jumlah: ${item['jumlah']} • ${item['username']}',
+                                          'Jumlah: ${item.jumlah} • ${item.username}',
                                           style: TextStyle(
                                               color: Colors.grey[600],
                                               fontSize: 12),
                                         ),
                                         Text(
-                                          'Instansi: ${item['instansi']}',
+                                          'Instansi: ${item.instansi}',
                                           style: TextStyle(
                                               color: Colors.blue[600],
                                               fontSize: 12),
                                         ),
                                         Text(
-                                          item['tgl_kembali'] ?? '',
+                                          item.tglKembali,
                                           style: TextStyle(
                                               color: Colors.grey[500],
                                               fontSize: 11),
@@ -185,7 +185,7 @@ class _TestingPageState extends State<TestingPage> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600)),
                                       const SizedBox(height: 4),
-                                      Text(item['hal'] ?? '-',
+                                      Text(item.hal,
                                           style: const TextStyle(fontSize: 12)),
                                     ],
                                   ),
@@ -228,7 +228,7 @@ class _TestingPageState extends State<TestingPage> {
                                         label: const Text('Setujui'),
                                         onPressed: () {
                                           ctrlpersetujuan.editPengajuan(
-                                              int.parse(item['id'].toString()), 2);
+                                              int.parse(item.id.toString()), 2);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor:
@@ -243,7 +243,7 @@ class _TestingPageState extends State<TestingPage> {
                                         label: const Text('Tolak'),
                                         onPressed: () {
                                           ctrlpersetujuan.editPengajuan(
-                                              int.parse(item['id'].toString()), 3);
+                                              int.parse(item.id.toString()), 3);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.red.shade300,

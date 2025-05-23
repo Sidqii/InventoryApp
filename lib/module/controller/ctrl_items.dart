@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/dataset/model/item.dart';
 import 'package:pusdatin_end/module/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
@@ -14,6 +15,17 @@ class CtrlItems extends GetxController {
   void onInit() {
     super.onInit();
     fetchData();
+  }
+
+  List<ItemModels> parseList(dynamic dbList){
+    List<ItemModels> parsedList = [];
+    if (dbList is List) {
+      for (var item in dbList) {
+        ItemModels models = ItemModels.fromJson(item);
+        parsedList.add(models);
+      }
+    }
+    return parsedList;
   }
 
   Future<void> fetchData() async {

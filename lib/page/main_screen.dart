@@ -33,11 +33,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   _pageController.jumpToPage(1);
-    //   await Future.delayed(const Duration(milliseconds: 100));
-    //   _pageController.jumpToPage(0);
-    // });
   }
 
   void _onItemTapped(int index) {
