@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.20.2
   google_fonts: ^6.2.1
   flutter_animate: ^4.5.2
+  refreshed: ^3.0.3
   get: ^4.7.2
 
 dev_dependencies:

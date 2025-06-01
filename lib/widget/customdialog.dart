@@ -36,7 +36,11 @@ class CustomDialog {
   }
 
   static Widget _buildDialogContent(
-      bool isSuccess, String? title, String? message) {
+    bool isSuccess,
+    String? title,
+    String? message,
+  
+  ) {
     return Align(
       alignment: Alignment.center,
       child: Container(

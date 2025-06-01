@@ -11,11 +11,9 @@ class ServicesItems {
         final List<dynamic> data = jsonDecode(response.body);
         return data.cast<Map<String, dynamic>>();
       } else {
-        print('${response.statusCode}');
         return [];
       }
     } catch (e) {
-      print('${e}');
       return [];
     }
   }
