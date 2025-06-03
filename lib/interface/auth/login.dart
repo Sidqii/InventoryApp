@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pusdatin_end/controller/ctrl_login.dart';
-import 'package:pusdatin_end/page/auth/register.dart';
+import 'package:pusdatin_end/interface/auth/register.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 import 'package:pusdatin_end/utils/validator.dart';

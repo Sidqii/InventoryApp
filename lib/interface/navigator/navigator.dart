@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/page/main/inventori.dart';
-import 'package:pusdatin_end/page/main/home.dart';
-import 'package:pusdatin_end/page/main/pengajuan.dart';
-import 'package:pusdatin_end/page/main/riwayat.dart';
+import 'package:pusdatin_end/interface/main/inventaris.dart';
+import 'package:pusdatin_end/interface/main/home.dart';
+import 'package:pusdatin_end/interface/main/pengajuan.dart';
+import 'package:pusdatin_end/interface/main/riwayat.dart';
 
 class Navigator extends StatefulWidget {
   const Navigator({super.key});

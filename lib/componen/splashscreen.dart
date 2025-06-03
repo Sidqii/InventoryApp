@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:pusdatin_end/page/auth/login.dart';
+import 'package:pusdatin_end/interface/auth/login.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/user.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/services/services_login.dart';
-import 'package:pusdatin_end/page/navigator/navigator.dart';
+import 'package:pusdatin_end/interface/navigator/navigator.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlLogin extends GetxController {
