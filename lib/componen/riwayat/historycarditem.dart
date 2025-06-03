@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
-import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
-import 'package:pusdatin_end/page/main/componen/riwayat/historycardbody.dart';
-import 'package:pusdatin_end/page/main/componen/riwayat/historycardheader.dart';
-import 'package:pusdatin_end/page/main/componen/riwayat/historycardpanel.dart';
+import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
+import 'package:pusdatin_end/componen/riwayat/historycardbody.dart';
+import 'package:pusdatin_end/componen/riwayat/historycardheader.dart';
+import 'package:pusdatin_end/componen/riwayat/historycardpanel.dart';
 
 class HistoryCardItem extends StatelessWidget {
   final PengajuanModels item;

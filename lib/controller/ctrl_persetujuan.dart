@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
-import 'package:pusdatin_end/module/services/services_pengajuan.dart';
-import 'package:pusdatin_end/module/services/services_persetujuan.dart';
+import 'package:pusdatin_end/services/services_pengajuan.dart';
+import 'package:pusdatin_end/services/services_persetujuan.dart';
 
 class CtrlPersetujuan extends GetxController {
   final ServicesPersetujuan _servicespersetujuan = ServicesPersetujuan();

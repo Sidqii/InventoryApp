@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/module/services/services_items.dart';
+import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/services/services_items.dart';
 
 class CtrlPanel extends GetxController {
   Future<void> loadItems() async {

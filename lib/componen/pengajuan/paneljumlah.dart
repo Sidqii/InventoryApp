@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/controller/ctrl_panel.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class PanelJumlah extends StatelessWidget {

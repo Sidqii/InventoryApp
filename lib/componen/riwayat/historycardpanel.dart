@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
+import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 
 class HistorCardPanel extends StatelessWidget {
   final int idPengajuan;

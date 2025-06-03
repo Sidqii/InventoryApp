@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/services/services_pengajuan.dart';
+import 'package:pusdatin_end/services/services_pengajuan.dart';
 
 class CtrlPengajuan extends GetxController {
   final ServicesPengajuan _servicesPengajuan = ServicesPengajuan();

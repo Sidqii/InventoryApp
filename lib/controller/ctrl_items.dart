@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/item.dart';
-import 'package:pusdatin_end/module/services/services_items.dart';
+import 'package:pusdatin_end/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlItems extends GetxController {

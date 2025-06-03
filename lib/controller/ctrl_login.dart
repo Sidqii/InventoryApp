@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/user.dart';
-import 'package:pusdatin_end/module/controller/ctrl_user.dart';
-import 'package:pusdatin_end/module/services/services_login.dart';
-import 'package:pusdatin_end/page/main_screen.dart';
+import 'package:pusdatin_end/controller/ctrl_user.dart';
+import 'package:pusdatin_end/services/services_login.dart';
+import 'package:pusdatin_end/page/navigator/navigator.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlLogin extends GetxController {
@@ -34,7 +34,7 @@ class CtrlLogin extends GetxController {
             Duration(milliseconds: 1095),
           );
           Get.offAll(
-            MainScreen(),
+            Navigator(),
             transition: Transition.fadeIn,
             duration: Duration(milliseconds: 800),
           );

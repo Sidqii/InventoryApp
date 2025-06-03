@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_persetujuan.dart';
-import 'package:pusdatin_end/module/controller/ctrl_user.dart';
-import 'package:pusdatin_end/page/main/componen/riwayat/formhistorylogic.dart';
+import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
+import 'package:pusdatin_end/controller/ctrl_user.dart';
+import 'package:pusdatin_end/componen/riwayat/formhistorylogic.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
 class FormHistory extends StatefulWidget {

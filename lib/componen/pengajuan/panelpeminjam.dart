@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/module/controller/ctrl_user.dart';
+import 'package:pusdatin_end/controller/ctrl_user.dart';
 
 class PanelPeminjam extends StatelessWidget {
   const PanelPeminjam({super.key});
