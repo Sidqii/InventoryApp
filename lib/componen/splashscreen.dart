@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:pusdatin_end/interface/auth/login.dart';
+import 'package:pusdatin_end/interface/auth/interface_login.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       Get.offAll(
-        LoginPage(),
+        InterfaceLogin(),
         transition: Transition.fadeIn,
         duration: Duration(milliseconds: 980),
       );

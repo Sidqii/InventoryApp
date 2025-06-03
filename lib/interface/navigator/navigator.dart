@@ -4,14 +4,14 @@ import 'package:pusdatin_end/interface/main/home.dart';
 import 'package:pusdatin_end/interface/main/pengajuan.dart';
 import 'package:pusdatin_end/interface/main/riwayat.dart';
 
-class Navigator extends StatefulWidget {
-  const Navigator({super.key});
+class NavigatorPage extends StatefulWidget {
+  const NavigatorPage({super.key});
 
   @override
-  State<Navigator> createState() => _NavigatorState();
+  State<NavigatorPage> createState() => _NavigatorPageState();
 }
 
-class _NavigatorState extends State<Navigator> {
+class _NavigatorPageState extends State<NavigatorPage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 

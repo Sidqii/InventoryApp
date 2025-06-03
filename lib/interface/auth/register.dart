@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_register.dart';
-import 'package:pusdatin_end/interface/auth/login.dart';
+import 'package:pusdatin_end/interface/auth/interface_login.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 import 'package:pusdatin_end/utils/validator.dart';
@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
           _passctrl.clear();
           _confirmctrl.clear();
           Get.to(
-            LoginPage(),
+            InterfaceLogin(),
             transition: Transition.fadeIn,
             duration: Duration(milliseconds: 800),
           );
@@ -120,9 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(width: 3),
                     GestureDetector(
                       onTap: () {
-                        Get.to(LoginPage(),
-                            transition: Transition.fadeIn,
-                            duration: Duration(milliseconds: 550));
+                        Get.to(
+                          InterfaceLogin(),
+                          transition: Transition.fadeIn,
+                          duration: Duration(milliseconds: 550),
+                        );
                       },
                       child: const Text(
                         'Login',
