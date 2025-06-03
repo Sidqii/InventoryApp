@@ -10,14 +10,22 @@ class CtrlItems extends GetxController {
   var items = <dynamic>[].obs;
   var isLoading = false.obs;
   Timer? _debounce;
+  bool _hasFetched = false;
 
   @override
   void onInit() {
     super.onInit();
+    if (!_hasFetched) {
+      fetchData();
+      _hasFetched = true;
+    }
+  }
+
+  void refreshed() {
     fetchData();
   }
 
-  List<ItemModels> parseList(dynamic dbList){
+  List<ItemModels> parseList(dynamic dbList) {
     List<ItemModels> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {

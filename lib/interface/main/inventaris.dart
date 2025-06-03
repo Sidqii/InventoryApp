@@ -17,11 +17,11 @@ class InventoriPageState extends State<InventoriPage> {
   final _filterFocus = FocusNode();
   final CtrlItems controller = Get.find<CtrlItems>();
 
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() => controller.fetchData());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Future.microtask(() => controller.fetchData());
+  // }
 
   @override
   void dispose() {
