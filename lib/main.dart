@@ -18,8 +18,9 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: scaffoldMessangerKey,
       initialBinding: InitBinding(),
       theme: ThemeData.from(
-          colorScheme: AppThemes.softFrostWhite.colorScheme,
-          textTheme: FontTheme.lightTextTheme),
+        colorScheme: AppThemes.softFrostWhite.colorScheme,
+        textTheme: FontTheme.lightTextTheme,
+      ),
       home: InterfaceLogin(),
     );
   }

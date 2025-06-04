@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/main/inventaris.dart';
+import 'package:pusdatin_end/interface/main/interface_ajukan.dart';
+import 'package:pusdatin_end/interface/main/interface_inven.dart';
 import 'package:pusdatin_end/interface/main/home.dart';
-import 'package:pusdatin_end/interface/main/pengajuan.dart';
 import 'package:pusdatin_end/interface/main/riwayat.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -20,9 +20,9 @@ class _NavigatorPageState extends State<NavigatorPage> {
       case 0:
         return const HomePage();
       case 1:
-        return const InventoriPage();
+        return const InterfaceInven();
       case 2:
-        return const PengajuanPage();
+        return const InterfaceAjukan();
       case 3:
         return const RiwayatPage();
       default:

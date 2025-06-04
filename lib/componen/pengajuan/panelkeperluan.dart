@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class PanelKeperluan extends StatelessWidget {
@@ -8,15 +8,15 @@ class PanelKeperluan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final panelctrl = Get.find<CtrlPanel>();
+    final ctrl = Get.find<CtrlPengajuan>();
 
     return CustomTxtField(
-      controller: panelctrl.halCtrl,
+      controller: ctrl.halcontrol,
       label: 'Hal',
       validator: null,
       keyboardtype: TextInputType.text,
       obscuretxt: false,
-      focusnode: panelctrl.halFcs,
+      focusnode: ctrl.halfocus,
       onfieldsubmitted: (_) {
       },
     );

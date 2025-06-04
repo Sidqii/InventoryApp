@@ -1,14 +1,20 @@
 import 'dart:async';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/dataset/model/item.dart';
+import 'package:pusdatin_end/dataset/model/inventaris.dart';
 import 'package:pusdatin_end/services/services_items.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
-class CtrlItems extends GetxController {
-  final ServicesItems services = ServicesItems();
-  var filterItem = <dynamic>[].obs;
-  var items = <dynamic>[].obs;
+class CtrlInventaris extends GetxController {
+  final services = ServicesItems();
+
+  final filterctrl = TextEditingController();
+  final filterfocus = FocusNode();
+
+  var filterItem = <InvenModels>[].obs;
+  var items = <InvenModels>[].obs;
   var isLoading = false.obs;
+
   Timer? _debounce;
   bool _hasFetched = false;
 
@@ -21,15 +27,22 @@ class CtrlItems extends GetxController {
     }
   }
 
+  @override
+  void dispose() {
+    filterctrl.dispose();
+    filterfocus.dispose();
+    super.dispose();
+  }
+
   void refreshed() {
     fetchData();
   }
 
-  List<ItemModels> parseList(dynamic dbList) {
-    List<ItemModels> parsedList = [];
+  List<InvenModels> parseList(dynamic dbList) {
+    List<InvenModels> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {
-        ItemModels models = ItemModels.fromJson(item);
+        InvenModels models = InvenModels.fromJson(item);
         parsedList.add(models);
       }
     }
@@ -42,8 +55,8 @@ class CtrlItems extends GetxController {
       isLoading.value = true;
       var data = await services.getItems();
       if (data.isNotEmpty) {
-        items.assignAll(data);
-        filterItem.assignAll(data);
+        items.assignAll(parseList(data));
+        filterItem.assignAll(parseList(data));
       }
     } catch (e) {
       CustomDialog.show(
@@ -64,20 +77,14 @@ class CtrlItems extends GetxController {
       } else {
         var lowerQuery = query.toLowerCase();
         var filterList = items.where((item) {
-          return item['nama_barang']
+          return item.namaBarang
                   .toString()
                   .toLowerCase()
                   .contains(lowerQuery) ||
-              item['nama_kategori']
-                  .toString()
-                  .toLowerCase()
-                  .contains(lowerQuery) ||
-              item['stok'].toString().toLowerCase().contains(lowerQuery) ||
-              item['nama_lokasi']
-                  .toString()
-                  .toLowerCase()
-                  .contains(lowerQuery) ||
-              item['status'].toString().toLowerCase().contains(lowerQuery);
+              item.kategori.toString().toLowerCase().contains(lowerQuery) ||
+              item.stok.toString().toLowerCase().contains(lowerQuery) ||
+              item.namaLokasi.toString().toLowerCase().contains(lowerQuery) ||
+              item.status.toString().toLowerCase().contains(lowerQuery);
         }).toList();
         filterItem.assignAll(filterList);
       }
@@ -90,8 +97,7 @@ class CtrlItems extends GetxController {
     } else {
       final filtered = items
           .where((item) =>
-              item['nama_kategori'].toString().toLowerCase() ==
-              category.toLowerCase())
+              item.kategori.toString().toLowerCase() == category.toLowerCase())
           .toList();
       filterItem.assignAll(filtered);
     }

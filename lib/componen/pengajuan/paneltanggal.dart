@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/utils/validator.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
@@ -14,15 +14,15 @@ class PanelTanggal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final panelctrl = Get.find<CtrlPanel>();
+    final ctrl = Get.find<CtrlPengajuan>();
 
     return CustomTxtField(
-      controller: panelctrl.tanggalCtrl,
+      controller: ctrl.tglcontrol,
       label: 'Tanggal pengembalian',
       validator: dateValidator,
       keyboardtype: TextInputType.datetime,
       obscuretxt: false,
-      focusnode: panelctrl.tanggalFcs,
+      focusnode: ctrl.tglfocus,
       onfieldsubmitted: (_) => onSubmit?.call(),
     );
   }

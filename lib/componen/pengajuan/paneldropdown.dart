@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
+import 'package:pusdatin_end/dataset/model/inventaris.dart';
 
 class PanelDropdown extends StatelessWidget {
   const PanelDropdown({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final panelctrl = Get.find<CtrlPanel>();
+    final ctrl = Get.find<CtrlPengajuan>();
 
     return Obx(() {
-      final barang = panelctrl.daftarBarang;
-      final selectedItem = panelctrl.selectedItemName?.value;
+      final barang = ctrl.daftaritems;
+      final selecteditem = ctrl.selectedName.value;
 
-      return DropdownMenu<String>(
-        key: ValueKey(selectedItem),
+      return DropdownMenu(
+        key: ValueKey(selecteditem),
         hintText: 'Pilih barang',
-        initialSelection: selectedItem,
+        initialSelection: selecteditem,
         width: MediaQuery.sizeOf(context).width * 0.48,
         textStyle: const TextStyle(fontSize: 14),
         onSelected: (val) {
           if (val == null) {
             return;
           }
-
           final selected = barang.firstWhere(
-            (item) => item['nama_barang'] == val,
-            orElse: () => {},
+            (item) => item.namaBarang == val,
+            orElse: () => InvenModels(
+              id: 0,
+              namaBarang: '',
+              kategori: '',
+              harga: 0,
+              stok: 0,
+              namaLokasi: '',
+              status: '',
+              tglDibuat: '',
+            ),
           );
-
-          panelctrl.selectedItemName = val.obs;
-          panelctrl.selectedItemId = RxInt(
-            int.tryParse(selected['id'].toString()) ?? 0,
-          );
-          panelctrl.stok.value = int.tryParse(selected['stok'].toString()) ?? 0;
+          ctrl.selectedName.value = val;
+          ctrl.selectedItem.value = selected.id;
+          ctrl.stokItem.value = selected.stok;
         },
-        dropdownMenuEntries: barang.where((item) {
-          final stok = int.tryParse(item['stok'].toString()) ?? 0;
-          return stok > 0;
-        }).map((item) {
-          return DropdownMenuEntry<String>(
-            value: item['nama_barang'],
-            label: item['nama_barang'],
-          );
-        }).toList(),
+        dropdownMenuEntries: barang
+            .where((item) => item.stok > 0)
+            .map((item) => DropdownMenuEntry(
+                  value: item.namaBarang,
+                  label: item.namaBarang,
+                ))
+            .toList(),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
           border: UnderlineInputBorder(),
@@ -51,7 +55,7 @@ class PanelDropdown extends StatelessWidget {
             borderSide: BorderSide(
               color: Colors.black,
               width: 2,
-            ),
+            )
           ),
         ),
       );

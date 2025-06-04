@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/ctrl_panel.dart';
+import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class PanelJumlah extends StatelessWidget {
@@ -8,14 +8,14 @@ class PanelJumlah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final panelctrl = Get.find<CtrlPanel>();
+    final ctrl = Get.find<CtrlPengajuan>();
 
     return Obx(() {
-      final stokItem = panelctrl.stok.value;
-      final selectedItem = panelctrl.selectedItemId?.value;
+      final stokItem = ctrl.stokItem.value;
+      final selectedItem = ctrl.selectedItem.value;
 
       return CustomTxtField(
-        controller: panelctrl.jumlahCtrl,
+        controller: ctrl.jumlahctrl,
         label: selectedItem != null && selectedItem > 0
             ? 'Jumlah maksimal $stokItem'
             : 'Jumlah',
@@ -31,9 +31,9 @@ class PanelJumlah extends StatelessWidget {
         },
         keyboardtype: const TextInputType.numberWithOptions(decimal: false),
         obscuretxt: false,
-        focusnode: panelctrl.jumlaFcs,
+        focusnode: ctrl.jumlahfocus,
         onfieldsubmitted: (_) {
-          FocusScope.of(context).requestFocus(panelctrl.tanggalFcs);
+          FocusScope.of(context).requestFocus(ctrl.tglfocus);
         },
       );
     });
