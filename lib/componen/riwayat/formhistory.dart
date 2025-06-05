@@ -14,9 +14,9 @@ class FormHistory extends StatefulWidget {
 
 class _FormHistoryState extends State<FormHistory> {
   final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
-  final ctrluser = Get.find<CtrlUser>().user.value;
+  final ctrluser = Get.find<CtrlUser>().user.value!;
 
-  String selectedFilter = 'Semua';
+  final RxString selectedFilter = 'Semua'.obs;
   final List<String> filterOptions = [
     'Semua',
     'Menunggu',
@@ -27,11 +27,9 @@ class _FormHistoryState extends State<FormHistory> {
   @override
   void initState() {
     super.initState();
-    // Future.delayed(const Duration(milliseconds: 300), () {
-      final roleuser = ctrluser?.role ?? 0;
-      final iduser = ctrluser?.id ?? 0;
-      ctrlpersetujuan.getPengajuanByRole(iduser, roleuser);
-    // });
+    final roleuser = ctrluser.role ?? 0;
+    final iduser = ctrluser.id;
+    ctrlpersetujuan.getPengajuanByRole(iduser, roleuser);
   }
 
   @override
@@ -66,10 +64,15 @@ class _FormHistoryState extends State<FormHistory> {
                 ),
               ),
               const SizedBox(height: 15),
-              CustomFilterChips(
-                options: filterOptions,
-                selected: selectedFilter,
-                onSelected: (val) {},
+              Obx((){
+                return CustomFilterChips(
+                  options: filterOptions,
+                  selected: selectedFilter.value,
+                  onSelected: (val) {
+                    selectedFilter.value = val;
+                  },
+                );
+              }
               ),
               const SizedBox(height: 15),
               Obx(() {
@@ -78,41 +81,8 @@ class _FormHistoryState extends State<FormHistory> {
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  return formHistoryLogic(selectedFilter: selectedFilter);
+                  return formHistoryLogic(selectedFilter: selectedFilter.value);
                 }
-
-                // final roleuser = ctrluser?.role ?? 0;
-                // final iduser = ctrluser?.id ?? 0;
-
-                // List<dynamic> listpengajuan = [];
-                // if (roleuser == 2) {
-                //   for (var item in ctrlpersetujuan.dataPengajuan) {
-                //     if (int.tryParse(item['id_pengguna'].toString()) ==
-                //         iduser) {
-                //       listpengajuan.add(item);
-                //     }
-                //   }
-                // } else {
-                //   listpengajuan = ctrlpersetujuan.dataPengajuan;
-                // }
-
-                // if (listpengajuan.isEmpty) {
-                //   return EmptyPage(
-                //     txt: 'Belum ada pengajuan barang',
-                //   );
-                // }
-                // return ListView.builder(
-                //   shrinkWrap: true,
-                //   physics: const NeverScrollableScrollPhysics(),
-                //   itemCount: listpengajuan.length,
-                //   itemBuilder: (context, index) {
-                //     final item = listpengajuan[index];
-                //     return HistoryCardItem(
-                //       item: item,
-                //       roleuser: getRole(roleuser),
-                //     );
-                //   },
-                // );
               }),
             ],
           ),

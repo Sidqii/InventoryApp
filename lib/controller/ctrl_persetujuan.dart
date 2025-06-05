@@ -1,12 +1,25 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 import 'package:pusdatin_end/services/services_pengajuan.dart';
 import 'package:pusdatin_end/services/services_persetujuan.dart';
 
 class CtrlPersetujuan extends GetxController {
-  final ServicesPersetujuan _servicespersetujuan = ServicesPersetujuan();
-  final ServicesPengajuan _servicespengajuan = ServicesPengajuan();
+  final servpersetujuan = ServicesPersetujuan();
+  final servpengajuan = ServicesPengajuan();
+
+  final ctrluser = Get.find<CtrlUser>().user.value!;
+
+  @override
+  void onInit() {
+    super.onInit();
+    final roleuser = ctrluser.role ?? 0;
+    final iduser = ctrluser.id;
+    getPengajuanByRole(iduser, roleuser);
+  }
+
   final dataPengajuan = <PengajuanModels>[].obs;
+
   final isLoading = false.obs;
   final expandedId = ''.obs;
 
@@ -24,7 +37,7 @@ class CtrlPersetujuan extends GetxController {
   Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
     try {
       isLoading.value = true;
-      int statusCode = await _servicespersetujuan.patchPersetujuan(
+      int statusCode = await servpersetujuan.patchPersetujuan(
         idPengajuan,
         idStatus,
       );
@@ -67,7 +80,7 @@ class CtrlPersetujuan extends GetxController {
   Future<void> fetchPengajuan() async {
     try {
       isLoading.value = true;
-      var data = await _servicespengajuan.getAllPengajuan();
+      var data = await servpengajuan.getAllPengajuan();
 
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(parseList(data));
@@ -86,7 +99,7 @@ class CtrlPersetujuan extends GetxController {
     if (userId == null) return;
     isLoading.value = true;
     try {
-      final result = await _servicespengajuan.getIdPengajuan(userId);
+      final result = await servpengajuan.getIdPengajuan(userId);
       dataPengajuan.assignAll(parseList(result));
     } catch (e) {
       dataPengajuan.clear();
@@ -99,10 +112,10 @@ class CtrlPersetujuan extends GetxController {
     isLoading.value = true;
     try {
       if (role == 2) {
-        final data = await _servicespengajuan.getIdPengajuan(userid);
+        final data = await servpengajuan.getIdPengajuan(userid);
         dataPengajuan.assignAll(parseList(data));
       } else {
-        final data = await _servicespengajuan.getAllPengajuan();
+        final data = await servpengajuan.getAllPengajuan();
         dataPengajuan.assignAll(parseList(data));
       }
     } catch (e) {

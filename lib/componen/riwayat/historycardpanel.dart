@@ -12,6 +12,7 @@ class HistorCardPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctrlperstujuan = Get.find<CtrlPersetujuan>();
+
     return Row(
       children: [
         //Button Setuju

@@ -17,7 +17,7 @@ class PanelJumlah extends StatelessWidget {
       return CustomTxtField(
         controller: ctrl.jumlahctrl,
         label: selectedItem != null && selectedItem > 0
-            ? 'Jumlah maksimal $stokItem'
+            ? 'Jumlah maks $stokItem'
             : 'Jumlah',
         validator: (val) {
           final jumlah = int.tryParse(val ?? '');

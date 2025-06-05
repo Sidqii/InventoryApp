@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/componen/pengajuan/pengajuan_panel.dart';
-import 'package:pusdatin_end/componen/riwayat/formhistory.dart';
+import 'package:pusdatin_end/componen/riwayat/riwayat_panel.dart';
 import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
@@ -27,7 +27,7 @@ class InterfaceAjukan extends StatelessWidget {
             children: const [
               PengajuanPanel(),
               SizedBox(height: 15),
-              FormHistory(),
+              RiwayatPanel(),
             ],
           ),
         ),
