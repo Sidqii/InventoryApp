@@ -3,17 +3,11 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onpress;
   final String txt;
-  final Color? btncolor;
-  final Color? txtcolor;
-  final EdgeInsets? padding;
   final bool isloading;
 
   const CustomButton({
     required this.onpress,
     required this.txt,
-    this.btncolor,
-    this.txtcolor,
-    this.padding,
     this.isloading = false,
     super.key,
   });
@@ -24,20 +18,16 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 45,
       child: FilledButton(
-        onPressed: isloading ? (){} : onpress,
+        onPressed: isloading ? () {} : onpress,
         style: FilledButton.styleFrom(
-          backgroundColor: btncolor ?? Colors.grey[900],
+          elevation: 4,
+          backgroundColor: Colors.grey[900],
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          maximumSize: const Size(double.infinity, 55),
+          shadowColor: Colors.black.withValues(alpha: 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding: padding ??
-              EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 15,
-              ),
-          maximumSize: const Size(double.infinity, 55),
-          elevation: 4,
-          shadowColor: Colors.black.withValues(alpha: 1),
         ),
         child: isloading
             ? const SizedBox(
@@ -51,7 +41,7 @@ class CustomButton extends StatelessWidget {
             : Text(
                 txt,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w800,
                 ),

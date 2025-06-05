@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/widget/customtxtfield.dart';
+import 'package:pusdatin_end/widget/customtxt.dart';
 
 class PanelJumlah extends StatelessWidget {
   const PanelJumlah({super.key});
@@ -14,7 +14,7 @@ class PanelJumlah extends StatelessWidget {
       final stokItem = ctrl.stokItem.value;
       final selectedItem = ctrl.selectedItem.value;
 
-      return CustomTxtField(
+      return Customtxt(
         controller: ctrl.jumlahctrl,
         label: selectedItem != null && selectedItem > 0
             ? 'Jumlah maks $stokItem'

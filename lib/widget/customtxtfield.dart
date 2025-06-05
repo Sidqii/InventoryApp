@@ -1,94 +1,48 @@
 import 'package:flutter/material.dart';
 
-class CustomTxtField extends StatefulWidget {
+class CustomTxtField extends StatelessWidget {
   final TextEditingController controller;
   final String? label;
   final String? Function(String?)? validator;
   final TextInputType keyboardtype;
-  final bool obscuretxt;
   final FocusNode focusnode;
   final void Function(String)? onfieldsubmitted;
-  final void Function(String)? onChanged;
-  final Color? txtcolor;
-  final Color? bgcolor;
-  final Color? focuscolor;
-  final double? fontsize;
+  final void Function(String)? onchanged;
 
   const CustomTxtField({
     required this.controller,
     required this.label,
     required this.validator,
     required this.keyboardtype,
-    required this.obscuretxt,
     required this.focusnode,
     required this.onfieldsubmitted,
-    this.onChanged,
-    this.txtcolor,
-    this.bgcolor,
-    this.focuscolor,
-    this.fontsize,
+    this.onchanged,
     super.key,
   });
 
   @override
-  State<CustomTxtField> createState() => _CustomTxtFieldState();
-}
-
-class _CustomTxtFieldState extends State<CustomTxtField> {
-  late bool _isObscure;
-
-  @override
-  void initState() {
-    super.initState();
-    _isObscure = widget.obscuretxt;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final suffix = widget.obscuretxt
-        ? IconButton(
-            icon: Icon(
-              _isObscure ? Icons.visibility_off : Icons.visibility,
-              color: widget.focuscolor ?? Colors.black,
-              size: 24,
-            ),
-            onPressed: () {
-              if (mounted) {
-                setState(() {
-                  _isObscure = !_isObscure;
-                });
-              }
-            },
-          )
-        : null;
-
-    final lblStyle = TextStyle(
-      color: widget.txtcolor ?? Colors.grey,
-      fontSize: widget.fontsize ?? 14,
-    );
-
-    final bdrSide = BorderSide(
-      color: widget.focuscolor ?? Colors.black,
-    );
-
     return TextFormField(
       cursorColor: Colors.black,
-      controller: widget.controller,
-      validator: widget.validator,
-      keyboardType: widget.keyboardtype,
-      obscureText: widget.obscuretxt ? _isObscure : false,
-      focusNode: widget.focusnode,
-      onFieldSubmitted: widget.onfieldsubmitted,
-      onChanged: widget.onChanged,
+      controller: controller,
+      validator: validator,
+      keyboardType: keyboardtype,
+      focusNode: focusnode,
+      onFieldSubmitted: onfieldsubmitted,
+      onChanged: onchanged,
       decoration: InputDecoration(
-        labelText: widget.label,
-        labelStyle: lblStyle,
-        filled: true,
-        fillColor: widget.bgcolor ?? Colors.transparent,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: bdrSide,
+        labelText: label,
+        labelStyle: const TextStyle(
+          fontSize: 14,
+          color: Colors.grey,
         ),
-        suffixIcon: suffix,
+        filled: true,
+        fillColor: Colors.transparent,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }

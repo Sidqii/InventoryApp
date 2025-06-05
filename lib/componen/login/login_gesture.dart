@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/ctrl_login.dart';
 import 'package:pusdatin_end/interface/auth/interface_regis.dart';
 
 class LoginGesture extends StatelessWidget {
@@ -14,6 +15,7 @@ class LoginGesture extends StatelessWidget {
         const Text('Belum punya akun?'),
         GestureDetector(
           onTap: () {
+            Get.find<CtrlLogin>().clearForm();
             Get.to(
               const InterfaceRegis(),
               transition: Transition.fadeIn,

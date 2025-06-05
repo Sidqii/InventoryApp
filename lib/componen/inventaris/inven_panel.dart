@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_inventaris.dart';
 import 'package:pusdatin_end/widget/custominfocard.dart';
-import 'package:pusdatin_end/widget/customtxtfield.dart';
+import 'package:pusdatin_end/widget/customtxt.dart';
 
 class InvenPanel extends StatelessWidget {
   const InvenPanel({super.key});
@@ -21,7 +21,7 @@ class InvenPanel extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          CustomTxtField(
+          Customtxt(
             controller: ctrl.filterctrl,
             label: 'Cari barang',
             validator: null,

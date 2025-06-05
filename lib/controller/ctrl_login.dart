@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/user.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
+import 'package:pusdatin_end/interface/navigator/navigate_interface.dart';
 import 'package:pusdatin_end/services/services_login.dart';
-import 'package:pusdatin_end/interface/navigator/navigator.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlLogin extends GetxController {
@@ -16,8 +16,19 @@ class CtrlLogin extends GetxController {
   final emailfocus = FocusNode();
   final passfocus = FocusNode();
 
+  final isPassHidden = true.obs;
+
   var isloading = false.obs;
   var islogin = false.obs;
+
+  void togglepass() {
+    isPassHidden.value = !isPassHidden.value;
+  }
+
+  void clearForm() {
+    emailctrl.clear();
+    passctrl.clear();
+  }
 
   @override
   void onClose() {
@@ -56,7 +67,7 @@ class CtrlLogin extends GetxController {
           );
 
           Get.offAll(
-            NavigatorPage(),
+            NavigateInterface(),
             transition: Transition.fadeIn,
             duration: Duration(milliseconds: 800),
           );

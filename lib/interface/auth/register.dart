@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_register.dart';
 import 'package:pusdatin_end/interface/auth/interface_login.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
-import 'package:pusdatin_end/widget/customtxtfield.dart';
+import 'package:pusdatin_end/widget/customtxt.dart';
 import 'package:pusdatin_end/utils/validator.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -64,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 35),
-                CustomTxtField(
+                Customtxt(
                   controller: _emailctrl,
                   label: 'Email',
                   validator: emailValidator,
@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 const SizedBox(height: 25),
-                CustomTxtField(
+                Customtxt(
                   controller: _passctrl,
                   label: 'Password',
                   validator: passwordValidator,
@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 const SizedBox(height: 25),
-                CustomTxtField(
+                Customtxt(
                   controller: _confirmctrl,
                   label: 'Konfirmasi Password',
                   validator: (value) {

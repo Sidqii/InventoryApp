@@ -9,12 +9,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Get.find<CtrlUser>().user.value;
+    final ctrl = Get.find<CtrlUser>().user.value!;
 
     return Scaffold(
       appBar: CustomAppbar(
-        title: getRole(user?.role ?? 0),
-        boldTitle: user?.username ?? '',
+        title: getRole(ctrl.role ?? 0),
+        boldTitle: ctrl.username ?? '',
         onNotifPressed: () {},
       ),
       body: const Column(

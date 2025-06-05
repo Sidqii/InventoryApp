@@ -4,7 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/controller/ctrl_register.dart';
 import 'package:pusdatin_end/utils/validator.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
-import 'package:pusdatin_end/widget/customtxtfield.dart';
+import 'package:pusdatin_end/widget/customtxt.dart';
 
 class RegisPanel extends StatelessWidget {
   const RegisPanel({super.key});
@@ -18,7 +18,7 @@ class RegisPanel extends StatelessWidget {
       key: _regiskey,
       child: Column(
         children: [
-          CustomTxtField(
+          Customtxt(
             controller: ctrl.emailctrl,
             label: 'Email',
             validator: emailValidator,
@@ -30,7 +30,7 @@ class RegisPanel extends StatelessWidget {
             },
           ),
           const SizedBox(height: 20),
-          CustomTxtField(
+          Customtxt(
             controller: ctrl.passctrl,
             label: 'Password',
             validator: passwordValidator,
@@ -42,7 +42,7 @@ class RegisPanel extends StatelessWidget {
             },
           ),
           const SizedBox(height: 20),
-          CustomTxtField(
+          Customtxt(
             controller: ctrl.confirmctrl,
             label: 'Confirm password',
             validator: (value) {
