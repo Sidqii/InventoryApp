@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/ctrl_navigasi.dart';
 import 'package:pusdatin_end/dataset/model/user.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/interface/navigator/navigate_interface.dart';
@@ -52,8 +53,10 @@ class CtrlLogin extends GetxController {
 
         if (userResponse['status'] == 'success') {
           final user = usersModels.fromJson(userResponse['data']);
+          final ctrlNav = Get.find<CtrlNavigasi>();
 
           Get.find<CtrlUser>().setUser(user);
+          ctrlNav.setRole(user.role.toString());
 
           islogin.value = true;
 
@@ -67,7 +70,7 @@ class CtrlLogin extends GetxController {
           );
 
           Get.offAll(
-            NavigateInterface(),
+            const NavigateInterface(),
             transition: Transition.fadeIn,
             duration: Duration(milliseconds: 800),
           );

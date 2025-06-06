@@ -15,7 +15,13 @@ class CtrlRegister extends GetxController {
   final passfocus = FocusNode();
   final confirmfocus = FocusNode();
 
+  final isPassHidden = true.obs;
+
   var isLoading = false.obs;
+
+  void togglepass() {
+    isPassHidden.value = !isPassHidden.value;
+  }
 
   @override
   void onClose() {

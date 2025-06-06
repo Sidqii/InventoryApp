@@ -4,7 +4,8 @@ import 'package:get/instance_manager.dart';
 import 'package:pusdatin_end/controller/ctrl_register.dart';
 import 'package:pusdatin_end/utils/validator.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
-import 'package:pusdatin_end/widget/customtxt.dart';
+import 'package:pusdatin_end/widget/customtxtfield.dart';
+import 'package:pusdatin_end/widget/customtxtpass.dart';
 
 class RegisPanel extends StatelessWidget {
   const RegisPanel({super.key});
@@ -18,31 +19,30 @@ class RegisPanel extends StatelessWidget {
       key: _regiskey,
       child: Column(
         children: [
-          Customtxt(
+          CustomTxtField(
             controller: ctrl.emailctrl,
             label: 'Email',
             validator: emailValidator,
             keyboardtype: TextInputType.text,
-            obscuretxt: false,
             focusnode: ctrl.emailfocus,
             onfieldsubmitted: (_) {
               FocusScope.of(context).requestFocus(ctrl.passfocus);
             },
           ),
           const SizedBox(height: 20),
-          Customtxt(
+          CustomTxtPass(
             controller: ctrl.passctrl,
             label: 'Password',
             validator: passwordValidator,
-            keyboardtype: TextInputType.text,
-            obscuretxt: true,
+            rxObscure: ctrl.isPassHidden,
+            toggleObscure: ctrl.togglepass,
             focusnode: ctrl.passfocus,
             onfieldsubmitted: (_) {
               FocusScope.of(context).requestFocus(ctrl.confirmfocus);
             },
           ),
           const SizedBox(height: 20),
-          Customtxt(
+          CustomTxtPass(
             controller: ctrl.confirmctrl,
             label: 'Confirm password',
             validator: (value) {
@@ -51,8 +51,8 @@ class RegisPanel extends StatelessWidget {
               }
               return null;
             },
-            keyboardtype: TextInputType.text,
-            obscuretxt: true,
+            rxObscure: ctrl.isPassHidden,
+            toggleObscure: ctrl.togglepass,
             focusnode: ctrl.confirmfocus,
             onfieldsubmitted: (_) {
               if (_regiskey.currentState!.validate()) {

@@ -13,12 +13,13 @@ class CustomPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: padding ??
           const EdgeInsets.only(
             top: 20,
             left: 20,
             right: 20,
-            bottom: 40,
+            bottom: 20,
           ),
       decoration: BoxDecoration(
         color: Colors.white,

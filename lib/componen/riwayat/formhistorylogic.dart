@@ -15,11 +15,11 @@ class formHistoryLogic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userctrl = Get.find<CtrlUser>().user.value;
+    final userctrl = Get.find<CtrlUser>().user.value!;
     final persetujuanctrl = Get.find<CtrlPersetujuan>();
 
-    final int roleuser = userctrl?.role ?? 0;
-    final int iduser = userctrl?.id ?? 0;
+    final int roleuser = userctrl.role ?? 0;
+    final int iduser = userctrl.id;
 
     List<dynamic> dataFiltered = [];
 

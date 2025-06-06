@@ -1,28 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/interface/main/home.dart';
+import 'package:pusdatin_end/interface/main/interface_home.dart';
 import 'package:pusdatin_end/interface/main/interface_ajukan.dart';
 import 'package:pusdatin_end/interface/main/interface_inven.dart';
-import 'package:pusdatin_end/interface/main/riwayat.dart';
+import 'package:pusdatin_end/interface/main/interface_riwayat.dart';
 
 class CtrlNavigasi extends GetxController {
   final currentIndex = 0.obs;
+  final roleuser = ''.obs;
 
-  List<Widget> get pages => [
-    HomePage(),
-    InterfaceInven(),
-    InterfaceAjukan(),
-    RiwayatPage(),
-  ];
+  List<Widget> get pages {
+    if (roleuser.value == '1') {
+      return [
+        InterfaceHome(),
+        InterfaceInven(),
+        InterfaceRiwayat(),
+      ];
+    } else if (roleuser.value == '2') {
+      return [
+        InterfaceHome(),
+        InterfaceInven(),
+        InterfaceAjukan(),
+      ];
+    } else {
+      return [
+        Center(
+          child: Text('Role tidak diketahui'),
+        )
+      ];
+    }
+  }
 
-  List<BottomNavigationBarItem> get navItems => const [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-    BottomNavigationBarItem(icon: Icon(Icons.inventory), label: 'Barang'),
-    BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Pengajuan'),
-    BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
-  ];
+  List<BottomNavigationBarItem> get navItems {
+    if (roleuser.value == '1') {
+      return const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.inventory),
+          label: 'Inventaris',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.history),
+          label: 'Riwayat',
+        ),
+      ];
+    } else if (roleuser.value == '2') {
+      return const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.inventory),
+          label: 'Inventaris',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.approval),
+          label: 'Pengajuan',
+        ),
+      ];
+    } else {
+      return const [
+        BottomNavigationBarItem(icon: Icon(Icons.error)),
+      ];
+    }
+  }
 
   void changePage(int index) {
     currentIndex.value = index;
+  }
+
+  void setRole(String role) {
+    roleuser.value = role;
   }
 }

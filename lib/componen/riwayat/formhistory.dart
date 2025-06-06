@@ -4,6 +4,7 @@ import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/componen/riwayat/formhistorylogic.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
+import 'package:pusdatin_end/widget/custompanel.dart';
 
 class FormHistory extends StatefulWidget {
   const FormHistory({super.key});
@@ -37,22 +38,7 @@ class _FormHistoryState extends State<FormHistory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey.shade200),
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade300,
-                blurRadius: 15,
-                spreadRadius: 1,
-                offset: const Offset(4, 2),
-              ),
-            ],
-          ),
+        CustomPanel(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -64,7 +50,7 @@ class _FormHistoryState extends State<FormHistory> {
                 ),
               ),
               const SizedBox(height: 15),
-              Obx((){
+              Obx(() {
                 return CustomFilterChips(
                   options: filterOptions,
                   selected: selectedFilter.value,
@@ -72,8 +58,7 @@ class _FormHistoryState extends State<FormHistory> {
                     selectedFilter.value = val;
                   },
                 );
-              }
-              ),
+              }),
               const SizedBox(height: 15),
               Obx(() {
                 if (ctrlpersetujuan.isLoading.value == true) {

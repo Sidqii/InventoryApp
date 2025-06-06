@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/widget/customtxt.dart';
+import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class PanelJumlah extends StatelessWidget {
   const PanelJumlah({super.key});
@@ -14,7 +14,7 @@ class PanelJumlah extends StatelessWidget {
       final stokItem = ctrl.stokItem.value;
       final selectedItem = ctrl.selectedItem.value;
 
-      return Customtxt(
+      return CustomTxtField(
         controller: ctrl.jumlahctrl,
         label: selectedItem != null && selectedItem > 0
             ? 'Jumlah maks $stokItem'
@@ -30,7 +30,6 @@ class PanelJumlah extends StatelessWidget {
           return null;
         },
         keyboardtype: const TextInputType.numberWithOptions(decimal: false),
-        obscuretxt: false,
         focusnode: ctrl.jumlahfocus,
         onfieldsubmitted: (_) {
           FocusScope.of(context).requestFocus(ctrl.tglfocus);

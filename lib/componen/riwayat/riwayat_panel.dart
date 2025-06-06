@@ -11,7 +11,6 @@ class RiwayatPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctrlsetuju = Get.find<CtrlPersetujuan>();
-
     final RxString selectedFilter = 'Semua'.obs;
     final List<String> filterOptions = [
       'Semua',

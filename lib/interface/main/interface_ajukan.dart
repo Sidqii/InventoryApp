@@ -26,7 +26,7 @@ class InterfaceAjukan extends StatelessWidget {
           child: Column(
             children: const [
               PengajuanPanel(),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
               RiwayatPanel(),
             ],
           ),

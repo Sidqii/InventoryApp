@@ -54,7 +54,7 @@ class HistoryCardItem extends StatelessWidget {
               const SizedBox(height: 12),
               HistoryCardBody(item: item),
               const SizedBox(height: 10),
-              if (roleuser == 'Operator')
+              if (int.tryParse(roleuser) == 1)
                 HistorCardPanel(
                   idPengajuan: pengajuan,
                 ),

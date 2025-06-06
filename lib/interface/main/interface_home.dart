@@ -4,8 +4,8 @@ import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/utils/formattter.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class InterfaceHome extends StatelessWidget {
+  const InterfaceHome({super.key});
 
   @override
   Widget build(BuildContext context) {
