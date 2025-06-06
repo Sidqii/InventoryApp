@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 
-class HistoryCardBody extends StatelessWidget {
+class FormCardBody extends StatelessWidget {
   final PengajuanModels item;
-  const HistoryCardBody({
+  const FormCardBody({
     required this.item,
     super.key,
   });

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/componen/riwayat/formhistorylogic.dart';
+import 'package:pusdatin_end/componen/card/formcardpanel.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/custompanel.dart';
 
-class RiwayatPanel extends StatelessWidget {
-  const RiwayatPanel({super.key});
+class Role1Panel extends StatelessWidget {
+  const Role1Panel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ctrlsetuju = Get.find<CtrlPersetujuan>();
+    final ctrl = Get.find<CtrlPersetujuan>();
+
     final RxString selectedFilter = 'Semua'.obs;
     final List<String> filterOptions = [
       'Semua',
@@ -23,14 +24,6 @@ class RiwayatPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Riwayat pengajuan',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 15),
           Obx(() {
             return CustomFilterChips(
               options: filterOptions,
@@ -41,17 +34,17 @@ class RiwayatPanel extends StatelessWidget {
             );
           }),
           const SizedBox(height: 15),
-          Obx(() {
-            if (ctrlsetuju.isLoading.value == true) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return formHistoryLogic(
-                selectedFilter: selectedFilter.value,
-              );
-            }
-          })
+          Expanded(
+            child: Obx(() {
+              if (ctrl.isLoading.value == true) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return SingleChildScrollView(
+                  child: FormCardPanel(selectedFilter: selectedFilter.value),
+                );
+              }
+            }),
+          ),
         ],
       ),
     );

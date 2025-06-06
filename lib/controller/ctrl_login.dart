@@ -90,7 +90,7 @@ class CtrlLogin extends GetxController {
       } else {
         Get.snackbar(
           'Error',
-          'Terjadi kesalahan saat login',
+          'Tidak ada koneksi internet',
           duration: Duration(seconds: 2),
         );
       }

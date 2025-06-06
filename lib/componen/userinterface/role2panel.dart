@@ -1,40 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/componen/card/formcardpanel.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
-import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/componen/riwayat/formhistorylogic.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/custompanel.dart';
 
-class FormHistory extends StatefulWidget {
-  const FormHistory({super.key});
-
-  @override
-  State<FormHistory> createState() => _FormHistoryState();
-}
-
-class _FormHistoryState extends State<FormHistory> {
-  final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
-  final ctrluser = Get.find<CtrlUser>().user.value!;
-
-  final RxString selectedFilter = 'Semua'.obs;
-  final List<String> filterOptions = [
-    'Semua',
-    'Menunggu',
-    'Disetujui',
-    'Ditolak',
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    final roleuser = ctrluser.role ?? 0;
-    final iduser = ctrluser.id;
-    ctrlpersetujuan.getPengajuanByRole(iduser, roleuser);
-  }
+class Role2Panel extends StatelessWidget {
+  const Role2Panel({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ctrl = Get.find<CtrlPersetujuan>();
+
+    final RxString selectedFilter = 'Semua'.obs;
+    final List<String> filterOptions = [
+      'Semua',
+      'Menunggu',
+      'Disetujui',
+      'Ditolak',
+    ];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,7 +28,7 @@ class _FormHistoryState extends State<FormHistory> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Riwayat Pengajuan',
+                'Riwyat Pengajuan',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -61,12 +46,12 @@ class _FormHistoryState extends State<FormHistory> {
               }),
               const SizedBox(height: 15),
               Obx(() {
-                if (ctrlpersetujuan.isLoading.value == true) {
+                if (ctrl.isLoading.value == true) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  return formHistoryLogic(selectedFilter: selectedFilter.value);
+                  return FormCardPanel(selectedFilter: selectedFilter.value);
                 }
               }),
             ],

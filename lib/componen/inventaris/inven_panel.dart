@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_inventaris.dart';
 import 'package:pusdatin_end/widget/custominfocard.dart';
+import 'package:pusdatin_end/widget/custompanel.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
 class InvenPanel extends StatelessWidget {
@@ -11,14 +12,8 @@ class InvenPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = Get.find<CtrlInventaris>();
 
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 10,
-        right: 20,
-        left: 20,
-        bottom: 10,
-      ),
-      width: double.infinity,
+    return CustomPanel(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Column(
         children: [
           CustomTxtField(

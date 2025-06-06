@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/interface/main/interface_home.dart';
-import 'package:pusdatin_end/interface/main/interface_ajukan.dart';
+import 'package:pusdatin_end/interface/main/interface_staff.dart';
 import 'package:pusdatin_end/interface/main/interface_inven.dart';
 import 'package:pusdatin_end/interface/main/interface_riwayat.dart';
 
@@ -20,7 +20,7 @@ class CtrlNavigasi extends GetxController {
       return [
         InterfaceHome(),
         InterfaceInven(),
-        InterfaceAjukan(),
+        InterfaceStaff(),
       ];
     } else {
       return [

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 
-class HistoryCardHeader extends StatelessWidget {
+class FormCardHeader extends StatelessWidget {
   final PengajuanModels item;
   final bool isExpanded;
   final VoidCallback onBtnExpand;
 
-  const HistoryCardHeader({
+  const FormCardHeader({
     required this.item,
     required this.isExpanded,
     required this.onBtnExpand,

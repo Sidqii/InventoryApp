@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
-import 'package:pusdatin_end/componen/riwayat/historycardbody.dart';
-import 'package:pusdatin_end/componen/riwayat/historycardheader.dart';
-import 'package:pusdatin_end/componen/riwayat/historycardpanel.dart';
+import 'package:pusdatin_end/componen/card/formcardbody.dart';
+import 'package:pusdatin_end/componen/card/formcardheader.dart';
+import 'package:pusdatin_end/componen/card/formcardbtn.dart';
 
-class HistoryCardItem extends StatelessWidget {
+class FormCardItem extends StatelessWidget {
   final PengajuanModels item;
   final String roleuser;
 
-  const HistoryCardItem({
+  const FormCardItem({
     required this.item,
     required this.roleuser,
     super.key,
@@ -42,7 +42,7 @@ class HistoryCardItem extends StatelessWidget {
                 color: const Color(0xffF4F7F7),
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: HistoryCardHeader(
+              child: FormCardHeader(
                 item: item,
                 isExpanded: isExpanded,
                 onBtnExpand: () {
@@ -52,10 +52,10 @@ class HistoryCardItem extends StatelessWidget {
             ),
             if (isExpanded) ...[
               const SizedBox(height: 12),
-              HistoryCardBody(item: item),
+              FormCardBody(item: item),
               const SizedBox(height: 10),
               if (int.tryParse(roleuser) == 1)
-                HistorCardPanel(
+                FormCardBtn(
                   idPengajuan: pengajuan,
                 ),
             ]

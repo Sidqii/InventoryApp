@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/componen/emptypage.dart';
-import 'package:pusdatin_end/componen/riwayat/historycarditem.dart';
+import 'package:pusdatin_end/utils/emptypage.dart';
+import 'package:pusdatin_end/componen/card/formcarditem.dart';
 
-class formHistoryLogic extends StatelessWidget {
+class FormCardPanel extends StatelessWidget {
   final String selectedFilter;
 
-  const formHistoryLogic({
+  const FormCardPanel({
     required this.selectedFilter,
     super.key,
   });
@@ -51,7 +51,7 @@ class formHistoryLogic extends StatelessWidget {
       },
       itemBuilder: (context, index) {
         final item = dataFiltered[index];
-        return HistoryCardItem(
+        return FormCardItem(
           item: item,
           roleuser: roleuser.toString(),
         );

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 
-class HistorCardPanel extends StatelessWidget {
+class FormCardBtn extends StatelessWidget {
   final int idPengajuan;
-  const HistorCardPanel({
+  const FormCardBtn({
     required this.idPengajuan,
     super.key,
   });
