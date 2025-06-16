@@ -42,24 +42,30 @@ class InvenPanel extends StatelessWidget {
                   child: Text('Data kosong'),
                 );
               }
-              return ListView.builder(
-                addAutomaticKeepAlives: false,
-                addRepaintBoundaries: true,
-                itemCount: ctrl.filterItem.length,
-                itemBuilder: (context, index) {
-                  var item = ctrl.filterItem[index];
-                  return RepaintBoundary(
-                    child: CustomInfoCard(
-                      title: item.namaBarang,
-                      subtitle: item.kategori,
-                      details: {
-                        'Stok': item.stok,
-                        'Status': item.status,
-                        'Lokasi': item.namaLokasi,
-                      },
-                    ),
-                  );
+              return RefreshIndicator(
+                onRefresh: () async {
+                  ctrl.refreshed();
                 },
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: true,
+                  itemCount: ctrl.filterItem.length,
+                  itemBuilder: (context, index) {
+                    var item = ctrl.filterItem[index];
+                    return RepaintBoundary(
+                      child: CustomInfoCard(
+                        title: item.namaBarang,
+                        subtitle: item.kategori,
+                        details: {
+                          'Stok': item.stok,
+                          'Status': item.status,
+                          'Lokasi': item.namaLokasi,
+                        },
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ))

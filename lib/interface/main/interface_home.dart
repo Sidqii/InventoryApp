@@ -13,12 +13,58 @@ class InterfaceHome extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppbar(
+        onTitleTap: () async {
+          final result = await showMenu(
+            context: context,
+            position: const RelativeRect.fromLTRB(0, 60, 0, 0),
+            items: [
+              const PopupMenuItem<String>(
+                value: 'logout',
+                child: Text('Logout'),
+              ),
+            ],
+          );
+          if (result == 'logout') {
+            Get.dialog(
+              AlertDialog(
+                title: const Text(
+                  'Logout?',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text(
+                      'Ga',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                      Get.find<CtrlUser>().logout();
+                    },
+                    child: const Text(
+                      'Ya',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+        },
         title: getRole(ctrl.role ?? 0),
         boldTitle: ctrl.username ?? '',
         onNotifPressed: () {},
-      ),
-      body: const Column(
-        children: [],
       ),
     );
   }

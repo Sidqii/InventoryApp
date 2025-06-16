@@ -28,6 +28,10 @@ class CtrlPengajuan extends GetxController {
 
   Key dropdownkey = UniqueKey();
 
+  void refresh() {
+    loaditem();
+  }
+
   void resetForm() {
     jumlahctrl.clear();
     tglcontrol.clear();
@@ -55,6 +59,20 @@ class CtrlPengajuan extends GetxController {
   void onInit() {
     super.onInit();
     loaditem();
+  }
+
+  @override
+  void onClose() {
+    jumlahctrl.dispose();
+    tglcontrol.dispose();
+    halcontrol.dispose();
+    instansictrl.dispose();
+
+    instansifocus.dispose();
+    jumlahfocus.dispose();
+    tglfocus.dispose();
+    halfocus.dispose();
+    super.onClose();
   }
 
   Future<void> loaditem() async {
@@ -117,19 +135,5 @@ class CtrlPengajuan extends GetxController {
       Get.snackbar('Error', 'Tidak terkoneksi ke server');
       return false;
     }
-  }
-
-  @override
-  void onClose() {
-    jumlahctrl.dispose();
-    tglcontrol.dispose();
-    halcontrol.dispose();
-    instansictrl.dispose();
-
-    instansifocus.dispose();
-    jumlahfocus.dispose();
-    tglfocus.dispose();
-    halfocus.dispose();
-    super.onClose();
   }
 }

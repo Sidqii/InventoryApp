@@ -54,7 +54,9 @@ class CtrlInventaris extends GetxController {
     try {
       isLoading.value = true;
       var data = await services.getItems();
+
       if (data.isNotEmpty) {
+        
         items.assignAll(parseList(data));
         filterItem.assignAll(parseList(data));
       }

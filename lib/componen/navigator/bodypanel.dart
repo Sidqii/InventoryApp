@@ -10,9 +10,18 @@ class BodyPanel extends StatelessWidget {
     final ctrl = Get.find<CtrlNavigasi>();
 
     return Obx(() {
-      return IndexedStack(
-        index: ctrl.currentIndex.value,
-        children: ctrl.pages,
+      return AnimatedSwitcher(
+        duration: const Duration(milliseconds: 380),
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: KeyedSubtree(
+          key: ValueKey(ctrl.currentIndex.value),
+          child: ctrl.pages[ctrl.currentIndex.value],
+        ),
       );
     });
   }

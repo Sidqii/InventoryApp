@@ -19,16 +19,22 @@ class InterfaceStaff extends StatelessWidget {
         boldTitle: 'Barang',
         showNotif: false,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
-        child: Form(
-          key: ctrl.formkey,
-          child: Column(
-            children: const [
-              PengajuanPanel(),
-              SizedBox(height: 20),
-              Role2Panel(),
-            ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ctrl.refresh();
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(10),
+          child: Form(
+            key: ctrl.formkey,
+            child: Column(
+              children: const [
+                PengajuanPanel(),
+                SizedBox(height: 20),
+                Role2Panel(),
+              ],
+            ),
           ),
         ),
       ),

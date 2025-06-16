@@ -6,7 +6,7 @@ import 'package:pusdatin_end/utils/emptypage.dart';
 import 'package:pusdatin_end/componen/card/formcarditem.dart';
 
 class FormCardPanel extends StatelessWidget {
-  final String selectedFilter;
+  final int selectedFilter;
 
   const FormCardPanel({
     required this.selectedFilter,
@@ -31,8 +31,8 @@ class FormCardPanel extends StatelessWidget {
         rolesesuai = int.tryParse(item.idPengguna.toString()) == iduser;
       }
 
-      if (selectedFilter != 'Semua') {
-        filtersesuai = item.kode.toString().toLowerCase() == selectedFilter.toLowerCase();
+      if (selectedFilter != 0) {
+        filtersesuai = int.tryParse(item.idStatus.toString()) == selectedFilter;
       }
 
       if (rolesesuai && filtersesuai) {
@@ -40,7 +40,16 @@ class FormCardPanel extends StatelessWidget {
       }
     }
     if (dataFiltered.isEmpty) {
-      return const EmptyPage(txt: 'Belum ada pengajuan');
+      String ket = 'Belum ada pengajuan';
+
+      if (selectedFilter == 1) {
+        ket = 'Belum ada pengajuan barang';
+      } else if (selectedFilter == 2) {
+        ket = 'Belum ada pengajuan disetujui';
+      } else if (selectedFilter == 3) {
+        ket = 'Belum ada pengajuan ditolak';
+      }
+      return EmptyPage(txt: ket);
     }
     return ListView.separated(
       shrinkWrap: true,
@@ -49,7 +58,7 @@ class FormCardPanel extends StatelessWidget {
       separatorBuilder: (context, index) {
         return const SizedBox();
       },
-      itemBuilder: (context, index) {
+      itemBuilder: (AboutDialog, index) {
         final item = dataFiltered[index];
         return FormCardItem(
           item: item,

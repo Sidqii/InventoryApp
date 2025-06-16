@@ -80,7 +80,7 @@ class CtrlPersetujuan extends GetxController {
   Future<void> fetchPengajuan() async {
     try {
       isLoading.value = true;
-      var data = await servpengajuan.getAllPengajuan();
+      final data = await servpengajuan.getAllPengajuan();
 
       if (data.isNotEmpty) {
         dataPengajuan.assignAll(parseList(data));
@@ -99,8 +99,8 @@ class CtrlPersetujuan extends GetxController {
     if (userId == null) return;
     isLoading.value = true;
     try {
-      final result = await servpengajuan.getIdPengajuan(userId);
-      dataPengajuan.assignAll(parseList(result));
+      final data = await servpengajuan.getIdPengajuan(userId);
+      dataPengajuan.assignAll(parseList(data));
     } catch (e) {
       dataPengajuan.clear();
     } finally {

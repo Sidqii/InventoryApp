@@ -31,7 +31,7 @@ class InterfaceLogin extends StatelessWidget {
                         SizedBox(height: 30),
                         LoginPanel(),
                         SizedBox(height: 40),
-                        LoginGesture()
+                        LoginGesture(),
                       ],
                     ),
                   ),

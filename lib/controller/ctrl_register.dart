@@ -38,7 +38,8 @@ class CtrlRegister extends GetxController {
     isLoading.value = true;
 
     try {
-      int statusCode = await services.register(email, password);
+      final response = await services.register(email, password);
+      final statusCode = response['status'];
 
       if (statusCode == 201) {
         Get.snackbar('Sukses', 'Registrasi berhasil');

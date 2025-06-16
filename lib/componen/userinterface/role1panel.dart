@@ -12,13 +12,13 @@ class Role1Panel extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = Get.find<CtrlPersetujuan>();
 
-    final RxString selectedFilter = 'Semua'.obs;
-    final List<String> filterOptions = [
-      'Semua',
-      'Menunggu',
-      'Disetujui',
-      'Ditolak',
-    ];
+    final RxInt selectedFilter = 0.obs;
+    final Map<int, String> filterOptions = {
+      0: 'Semua',
+      1: 'Menunggu',
+      2: 'Disetujui',
+      3: 'Ditolak',
+    };
 
     return CustomPanel(
       child: Column(
