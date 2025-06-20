@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_navigasi.dart';
-import 'package:pusdatin_end/dataset/model/user.dart';
+import 'package:pusdatin_end/dataset/model/pengguna.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/interface/navigator/navigate_interface.dart';
 import 'package:pusdatin_end/services/services_login.dart';

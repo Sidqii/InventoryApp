@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ServicesPengajuan {
-  final String url = 'http://localhost/AssetsHubBE/src/endpoint/persetujuan.php';
+  final String url = 'http://localhost/AssetsHubBE/src/endpoint/pengajuan.php';
 
   Future<int> postPengajuan(
     int idPengguna,

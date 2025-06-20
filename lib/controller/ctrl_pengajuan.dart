@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/dataset/model/inventaris.dart';
 import 'package:pusdatin_end/services/services_items.dart';
@@ -96,6 +97,11 @@ class CtrlPengajuan extends GetxController {
 
       if (success) {
         resetForm();
+        loaditem();
+
+        final user = Get.find<CtrlUser>().user.value!;
+        final ctrl = Get.find<CtrlPersetujuan>();
+        ctrl.getPengajuanByRole(user.id, user.role ?? 0);
       }
 
       isLoading.value = false;

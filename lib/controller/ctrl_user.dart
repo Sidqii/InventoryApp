@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/dataset/model/user.dart';
+import 'package:pusdatin_end/config/initbinding.dart';
+import 'package:pusdatin_end/controller/ctrl_login.dart';
+import 'package:pusdatin_end/dataset/model/pengguna.dart';
 import 'package:pusdatin_end/interface/auth/interface_login.dart';
 
 class CtrlUser extends GetxController {
@@ -11,6 +13,8 @@ class CtrlUser extends GetxController {
 
   void logout() {
     user.value = null;
-    Get.offAll(() => InterfaceLogin());
+    final ctrl = Get.find<CtrlLogin>();
+    ctrl.clearForm();
+    Get.offAll(() => InterfaceLogin(), binding: InitBinding());
   }
 }

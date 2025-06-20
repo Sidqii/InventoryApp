@@ -28,7 +28,7 @@ class Role2Panel extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Riwyat Pengajuan',
+                'Riwayat Pengajuan',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -51,7 +51,9 @@ class Role2Panel extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  return FormCardPanel(selectedFilter: selectedFilter.value);
+                  return FormCardPanel(
+                    selectedFilter: selectedFilter.value,
+                  );
                 }
               }),
             ],

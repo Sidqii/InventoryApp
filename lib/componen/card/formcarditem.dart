@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/dataset/model/pengajuan.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/componen/card/formcardbody.dart';
 import 'package:pusdatin_end/componen/card/formcardheader.dart';
 import 'package:pusdatin_end/componen/card/formcardbtn.dart';
+import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardItem extends StatelessWidget {
-  final PengajuanModels item;
+  final RiawayatModels item;
   final String roleuser;
 
   const FormCardItem({
@@ -54,7 +54,7 @@ class FormCardItem extends StatelessWidget {
               const SizedBox(height: 12),
               FormCardBody(item: item),
               const SizedBox(height: 10),
-              if (int.tryParse(roleuser) == 1)
+              if (int.tryParse(roleuser) == 1 && item.idStat == 1)
                 FormCardBtn(
                   idPengajuan: pengajuan,
                 ),

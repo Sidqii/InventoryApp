@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/dataset/model/pengajuan.dart';
-import 'package:pusdatin_end/services/services_pengajuan.dart';
+import 'package:pusdatin_end/dataset/model/riawayat.dart';
 import 'package:pusdatin_end/services/services_persetujuan.dart';
+import 'package:pusdatin_end/services/services_riwayat.dart';
 
 class CtrlPersetujuan extends GetxController {
   final servpersetujuan = ServicesPersetujuan();
-  final servpengajuan = ServicesPengajuan();
+  final servriwayat = ServicesRiwayat();
 
   final ctrluser = Get.find<CtrlUser>().user.value!;
 
@@ -18,16 +18,16 @@ class CtrlPersetujuan extends GetxController {
     getPengajuanByRole(iduser, roleuser);
   }
 
-  final dataPengajuan = <PengajuanModels>[].obs;
+  final dataPengajuan = <RiawayatModels>[].obs;
 
   final isLoading = false.obs;
   final expandedId = ''.obs;
 
-  List<PengajuanModels> parseList(dynamic dbList) {
-    List<PengajuanModels> parsedList = [];
+  List<RiawayatModels> parseList(dynamic dbList) {
+    List<RiawayatModels> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {
-        PengajuanModels models = PengajuanModels.fromJson(item);
+        RiawayatModels models = RiawayatModels.fromJson(item);
         parsedList.add(models);
       }
     }
@@ -77,45 +77,16 @@ class CtrlPersetujuan extends GetxController {
     }
   }
 
-  Future<void> fetchPengajuan() async {
-    try {
-      isLoading.value = true;
-      final data = await servpengajuan.getAllPengajuan();
-
-      if (data.isNotEmpty) {
-        dataPengajuan.assignAll(parseList(data));
-      }
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Gagal ambil data',
-      );
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
-  Future<void> fetchPengajuanId(int? userId) async {
-    if (userId == null) return;
-    isLoading.value = true;
-    try {
-      final data = await servpengajuan.getIdPengajuan(userId);
-      dataPengajuan.assignAll(parseList(data));
-    } catch (e) {
-      dataPengajuan.clear();
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
   Future<void> getPengajuanByRole(int userid, int role) async {
     isLoading.value = true;
     try {
       if (role == 2) {
-        final data = await servpengajuan.getIdPengajuan(userid);
+        final data = await servriwayat.getIdRiwayat(userid);
+        // print('Data yang didapat: $data');
         dataPengajuan.assignAll(parseList(data));
       } else {
-        final data = await servpengajuan.getAllPengajuan();
+        final data = await servriwayat.getAllRiwayat();
+        // print('Data yang didapat: $data');
         dataPengajuan.assignAll(parseList(data));
       }
     } catch (e) {

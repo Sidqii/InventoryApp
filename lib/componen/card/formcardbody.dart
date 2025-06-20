@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/pengajuan.dart';
+import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardBody extends StatelessWidget {
-  final PengajuanModels item;
+  final RiawayatModels item;
   const FormCardBody({
     required this.item,
     super.key,

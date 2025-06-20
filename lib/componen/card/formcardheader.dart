@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/pengajuan.dart';
+import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardHeader extends StatelessWidget {
-  final PengajuanModels item;
+  final RiawayatModels item;
   final bool isExpanded;
   final VoidCallback onBtnExpand;
 
@@ -15,6 +15,20 @@ class FormCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color getStatClr(int idstat) {
+      switch (idstat) {
+        case 1:
+          return Colors.yellow.shade400;
+        case 2:
+          return Colors.green.shade400;
+        case 3:
+          return Colors.red.shade400;
+          break;
+        default:
+          return Colors.grey.shade400;
+      }
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,11 +36,24 @@ class FormCardHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${item.namaBarang}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Text(
+                    item.nmBarang,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: getStatClr(item.idStat),
+                      shape: BoxShape.circle,
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 2),
               Row(
@@ -90,7 +117,7 @@ class FormCardHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.tglKembali,
+                    item.tanggal,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

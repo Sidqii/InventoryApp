@@ -24,18 +24,19 @@ class FormCardPanel extends StatelessWidget {
     List<dynamic> dataFiltered = [];
 
     for (var item in persetujuanctrl.dataPengajuan) {
-      bool rolesesuai = true;
-      bool filtersesuai = true;
+
+      bool roleid = true;
+      bool filterid = true;
 
       if (roleuser == 2) {
-        rolesesuai = int.tryParse(item.idPengguna.toString()) == iduser;
+        roleid = int.tryParse(item.isUser.toString()) == iduser;
       }
 
       if (selectedFilter != 0) {
-        filtersesuai = int.tryParse(item.idStatus.toString()) == selectedFilter;
+        filterid = int.tryParse(item.idStat.toString()) == selectedFilter;
       }
 
-      if (rolesesuai && filtersesuai) {
+      if (roleid && filterid) {
         dataFiltered.add(item);
       }
     }

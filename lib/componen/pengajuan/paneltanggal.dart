@@ -22,7 +22,11 @@ class PanelTanggal extends StatelessWidget {
       validator: dateValidator,
       keyboardtype: TextInputType.datetime,
       focusnode: ctrl.tglfocus,
-      onfieldsubmitted: (_) => onSubmit?.call(),
+      onfieldsubmitted: (_) {
+        if (!ctrl.isLoading.value) {
+          onSubmit?.call();
+        }
+      },
     );
   }
 }
