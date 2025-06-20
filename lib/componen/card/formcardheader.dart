@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardHeader extends StatelessWidget {
-  final RiawayatModels item;
+  final RiwayatModels item;
   final bool isExpanded;
   final VoidCallback onBtnExpand;
 

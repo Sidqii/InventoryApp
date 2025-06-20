@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/dataset/model/inventaris.dart';
-import 'package:pusdatin_end/services/services_items.dart';
+import 'package:pusdatin_end/services/services_inven.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
 class CtrlInventaris extends GetxController {
-  final services = ServicesItems();
+  final services = ServicesInven();
 
   final filterctrl = TextEditingController();
   final filterfocus = FocusNode();
@@ -37,8 +38,11 @@ class CtrlInventaris extends GetxController {
   }
 
   Future<void> refreshed() async {
+    isLoading.value = true;
     await Future.delayed(Duration(seconds: 2));
     await fetchData(isrefreshed: true);
+    await Future.delayed(Duration(seconds: 1));
+    isLoading.value = false;
   }
 
   List<InvenModels> parseList(dynamic dbList) {
@@ -57,17 +61,26 @@ class CtrlInventaris extends GetxController {
 
     try {
       isLoading.value = true;
+
       var data = await services.getItems();
+      List<InvenModels> parsed = parseList(data);
+
+      final i = Get.find<CtrlUser>().user.value!;
+      final int role = i.role ?? 0;
+
+      if (role == 2) {
+        parsed = parsed.where((item) => item.stok > 0).toList();
+      }
 
       if (data.isNotEmpty) {
-        items.assignAll(parseList(data));
-        filterItem.assignAll(parseList(data));
+        items.assignAll(parsed);
+        filterItem.assignAll(parsed);
       }
     } catch (e) {
       CustomDialog.show(
         isSuccess: false,
         title: 'Error',
-        duration: Duration(seconds: 5),
+        duration: Duration(seconds: 3),
       );
     } finally {
       isLoading.value = false;
@@ -94,17 +107,5 @@ class CtrlInventaris extends GetxController {
         filterItem.assignAll(filterList);
       }
     });
-  }
-
-  void filterByCategory(String category) {
-    if (category == 'Semua') {
-      filterItem.assignAll(List.from(items));
-    } else {
-      final filtered = items
-          .where((item) =>
-              item.kategori.toString().toLowerCase() == category.toLowerCase())
-          .toList();
-      filterItem.assignAll(filtered);
-    }
   }
 }

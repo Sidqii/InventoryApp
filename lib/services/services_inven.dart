@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ServicesItems {
+class ServicesInven {
   final String url = 'http://localhost/AssetsHubBE/src/endpoint/item.php';
 
   Future<List<Map<String, dynamic>>> getItems() async {

@@ -16,14 +16,14 @@ class FormCardPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userctrl = Get.find<CtrlUser>().user.value!;
-    final persetujuanctrl = Get.find<CtrlPersetujuan>();
+    final setujuctrl = Get.find<CtrlPersetujuan>();
 
     final int roleuser = userctrl.role ?? 0;
     final int iduser = userctrl.id;
 
     List<dynamic> dataFiltered = [];
 
-    for (var item in persetujuanctrl.dataPengajuan) {
+    for (var item in setujuctrl.riwayat) {
 
       bool roleid = true;
       bool filterid = true;

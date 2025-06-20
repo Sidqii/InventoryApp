@@ -20,7 +20,10 @@ class ServicesRegister {
         'data': result,
       };
     } catch (e) {
-      return {'status': 500};
+      return {
+        'status': 'Error',
+        'message': 'Gagal register',
+      };
     }
   }
 }

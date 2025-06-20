@@ -21,7 +21,12 @@ class InterfaceStaff extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.only(
+          top: 15,
+          right: 10,
+          left: 10,
+          bottom: 10,
+        ),
         child: Form(
           key: ctrl.formkey,
           child: Column(

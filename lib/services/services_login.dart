@@ -10,7 +10,10 @@ class ServicesLogin {
       final response = await http.post(
         Uri.parse(urlLogin),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'email': email, 'password': password}),
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
       );
       final result = jsonDecode(response.body);
       return {
@@ -18,11 +21,14 @@ class ServicesLogin {
         'user_id': result['user_id'],
       };
     } catch (e) {
-      return {'status': 500};
+      return {
+        'status': 'Error',
+        'message': 'Gagal melakukan login',
+      };
     }
   }
 
-  Future<Map<String, dynamic>> getUserId(int id) async {
+  Future<Map<String, dynamic>> getUser(int id) async {
     try {
       final response = await http.get(
         Uri.parse('$urlUser?id=$id'),

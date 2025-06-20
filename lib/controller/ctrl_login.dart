@@ -49,7 +49,7 @@ class CtrlLogin extends GetxController {
 
       if (statusCode == 200) {
         final userId = response['user_id'];
-        final userResponse = await services.getUserId(userId);
+        final userResponse = await services.getUser(userId);
 
         if (userResponse['status'] == 'success') {
           final user = usersModels.fromJson(userResponse['data']);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardBody extends StatelessWidget {
-  final RiawayatModels item;
+  final RiwayatModels item;
   const FormCardBody({
     required this.item,
     super.key,

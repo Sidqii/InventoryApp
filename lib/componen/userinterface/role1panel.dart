@@ -12,7 +12,7 @@ class Role1Panel extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = Get.find<CtrlPersetujuan>();
 
-    final RxInt selectedFilter = 0.obs;
+    final RxInt selectedFilter = 1.obs;
     final Map<int, String> filterOptions = {
       0: 'Semua',
       1: 'Menunggu',

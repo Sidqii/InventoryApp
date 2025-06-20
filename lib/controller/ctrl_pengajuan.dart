@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
 import 'package:pusdatin_end/dataset/model/inventaris.dart';
-import 'package:pusdatin_end/services/services_items.dart';
+import 'package:pusdatin_end/services/services_inven.dart';
 import 'package:pusdatin_end/services/services_pengajuan.dart';
 
 class CtrlPengajuan extends GetxController {
-  final dropitem = ServicesItems();
+  final dropitem = ServicesInven();
   final services = ServicesPengajuan();
   final formkey = GlobalKey<FormState>();
 

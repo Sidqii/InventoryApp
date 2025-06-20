@@ -7,7 +7,7 @@ import 'package:pusdatin_end/componen/card/formcardbtn.dart';
 import 'package:pusdatin_end/dataset/model/riawayat.dart';
 
 class FormCardItem extends StatelessWidget {
-  final RiawayatModels item;
+  final RiwayatModels item;
   final String roleuser;
 
   const FormCardItem({

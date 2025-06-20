@@ -37,16 +37,16 @@ class CtrlPersetujuan extends GetxController {
     isLoading.value = false;
   }
 
-  final dataPengajuan = <RiawayatModels>[].obs;
+  final riwayat = <RiwayatModels>[].obs;
 
   final isLoading = false.obs;
   final expandedId = ''.obs;
 
-  List<RiawayatModels> parseList(dynamic dbList) {
-    List<RiawayatModels> parsedList = [];
+  List<RiwayatModels> parseList(dynamic dbList) {
+    List<RiwayatModels> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {
-        RiawayatModels models = RiawayatModels.fromJson(item);
+        RiwayatModels models = RiwayatModels.fromJson(item);
         parsedList.add(models);
       }
     }
@@ -102,14 +102,14 @@ class CtrlPersetujuan extends GetxController {
       if (role == 2) {
         final data = await servriwayat.getIdRiwayat(userid);
         // print('Data yang didapat: $data');
-        dataPengajuan.assignAll(parseList(data));
+        riwayat.assignAll(parseList(data));
       } else {
         final data = await servriwayat.getAllRiwayat();
         // print('Data yang didapat: $data');
-        dataPengajuan.assignAll(parseList(data));
+        riwayat.assignAll(parseList(data));
       }
     } catch (e) {
-      dataPengajuan.clear();
+      riwayat.clear();
     } finally {
       isLoading.value = false;
     }
