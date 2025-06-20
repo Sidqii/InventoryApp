@@ -10,12 +10,31 @@ class CtrlPersetujuan extends GetxController {
 
   final ctrluser = Get.find<CtrlUser>().user.value!;
 
+  bool _hasinit = false;
+
   @override
   void onInit() {
     super.onInit();
-    final roleuser = ctrluser.role ?? 0;
-    final iduser = ctrluser.id;
-    getPengajuanByRole(iduser, roleuser);
+    Future.microtask(() async {
+      final roleuser = ctrluser.role ?? 0;
+      final iduser = ctrluser.id;
+      if (!_hasinit) {
+        getPengajuanByRole(iduser, roleuser);
+        _hasinit = true;
+      }
+    });
+  }
+
+  Future<void> refresehed() async {
+    isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 3));
+    final user = Get.find<CtrlUser>().user.value!;
+
+    await getPengajuanByRole(user.id, user.role ?? 0);
+    await Future.delayed(Duration(seconds: 2));
+
+    isLoading.value = false;
   }
 
   final dataPengajuan = <RiawayatModels>[].obs;

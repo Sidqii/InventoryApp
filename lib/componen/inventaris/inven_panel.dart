@@ -30,8 +30,8 @@ class InvenPanel extends StatelessWidget {
             },
           ),
           const SizedBox(height: 12),
-          Expanded(child: Obx(
-            () {
+          Expanded(
+            child: Obx(() {
               if (ctrl.isLoading.value) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -44,7 +44,7 @@ class InvenPanel extends StatelessWidget {
               }
               return RefreshIndicator(
                 onRefresh: () async {
-                  ctrl.refreshed();
+                  await ctrl.refreshed();
                 },
                 child: ListView.builder(
                   physics: const AlwaysScrollableScrollPhysics(),
@@ -67,8 +67,8 @@ class InvenPanel extends StatelessWidget {
                   },
                 ),
               );
-            },
-          ))
+            }),
+          ),
         ],
       ),
     );

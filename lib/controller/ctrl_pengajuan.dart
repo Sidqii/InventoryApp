@@ -29,8 +29,9 @@ class CtrlPengajuan extends GetxController {
 
   Key dropdownkey = UniqueKey();
 
-  void refresh() {
-    loaditem();
+  Future<void> refreshed() async {
+    await Future.delayed(Duration(seconds: 2));
+    await loaditem(isloaded: true);
   }
 
   void resetForm() {
@@ -76,7 +77,7 @@ class CtrlPengajuan extends GetxController {
     super.onClose();
   }
 
-  Future<void> loaditem() async {
+  Future<void> loaditem({bool isloaded = false}) async {
     final data = await dropitem.getItems();
     daftaritems.assignAll(parsedList(data));
   }

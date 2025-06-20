@@ -21,10 +21,12 @@ class CtrlInventaris extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    if (!_hasFetched) {
-      fetchData();
-      _hasFetched = true;
-    }
+    Future.microtask(() async {
+      if (!_hasFetched) {
+        fetchData();
+        _hasFetched = true;
+      }
+    });
   }
 
   @override
@@ -34,8 +36,9 @@ class CtrlInventaris extends GetxController {
     super.dispose();
   }
 
-  void refreshed() {
-    fetchData();
+  Future<void> refreshed() async {
+    await Future.delayed(Duration(seconds: 2));
+    await fetchData(isrefreshed: true);
   }
 
   List<InvenModels> parseList(dynamic dbList) {
@@ -49,14 +52,14 @@ class CtrlInventaris extends GetxController {
     return parsedList;
   }
 
-  Future<void> fetchData() async {
-    if (items.isNotEmpty) return;
+  Future<void> fetchData({bool isrefreshed = false}) async {
+    if (items.isNotEmpty && !isrefreshed) return;
+
     try {
       isLoading.value = true;
       var data = await services.getItems();
 
       if (data.isNotEmpty) {
-        
         items.assignAll(parseList(data));
         filterItem.assignAll(parseList(data));
       }
