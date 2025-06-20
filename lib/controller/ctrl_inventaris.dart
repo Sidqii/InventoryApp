@@ -23,7 +23,7 @@ class CtrlInventaris extends GetxController {
     super.onInit();
     Future.microtask(() async {
       if (!_hasFetched) {
-        fetchData();
+        await fetchData();
         _hasFetched = true;
       }
     });
