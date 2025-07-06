@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/componen/inventaris/invenheader.dart';
-import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/app_barang.dart';
 
 class Invencard extends StatelessWidget {
-  final InvenModels model;
+  final AppBarangModel model;
 
   const Invencard({
     required this.model,

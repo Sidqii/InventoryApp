@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/app_barang.dart';
 
 class Invenheader extends StatelessWidget {
-  final InvenModels inven;
+  final AppBarangModel inven;
 
   const Invenheader({
     required this.inven,
@@ -28,13 +28,13 @@ class Invenheader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    inven.kategori,
+                    inven.kategori.kategori,
                     style: const TextStyle(),
                   ),
                 ],
               ),
               Text(
-                inven.seri,
+                inven.kode,
                 style: const TextStyle(
                   fontSize: 9,
                   letterSpacing: 1
@@ -48,7 +48,7 @@ class Invenheader extends StatelessWidget {
                     style: const TextStyle(fontSize: 12),
                   ),
                   Text(
-                    inven.stok.toString(),
+                    inven.total.toString(),
                     style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -60,7 +60,7 @@ class Invenheader extends StatelessWidget {
                     style: const TextStyle(fontSize: 12),
                   ),
                   Text(
-                    inven.lokasi,
+                    inven.merk,
                     style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ],

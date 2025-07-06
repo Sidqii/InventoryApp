@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/app_barang.dart';
 import 'package:pusdatin_end/services/services_inven.dart';
 import 'package:pusdatin_end/services/services_pengajuan.dart';
 
@@ -12,7 +12,7 @@ class CtrlPengajuan extends GetxController {
   final formkey = GlobalKey<FormState>();
 
   var isLoading = false.obs;
-  var daftaritems = <InvenModels>[].obs;
+  var daftaritems = <AppBarangModel>[].obs;
   var selectedItem = RxnInt();
   var selectedName = RxnString();
   var stokItem = 0.obs;
@@ -46,11 +46,11 @@ class CtrlPengajuan extends GetxController {
     dropdownkey = UniqueKey();
   }
 
-  List<InvenModels> parsedList(dynamic dblist) {
-    List<InvenModels> parsedList = [];
+  List<AppBarangModel> parsedList(dynamic dblist) {
+    List<AppBarangModel> parsedList = [];
     if (dblist is List) {
       for (var item in dblist) {
-        InvenModels models = InvenModels.fromJson(item);
+        AppBarangModel models = AppBarangModel.fromJson(item);
         parsedList.add(models);
       }
     }

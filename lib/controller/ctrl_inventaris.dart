@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/app_barang.dart';
 import 'package:pusdatin_end/services/services_inven.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
@@ -12,8 +12,8 @@ class CtrlInventaris extends GetxController {
   final filterctrl = TextEditingController();
   final filterfocus = FocusNode();
 
-  var filterItem = <InvenModels>[].obs;
-  var items = <InvenModels>[].obs;
+  var filterItem = <AppBarangModel>[].obs;
+  var items = <AppBarangModel>[].obs;
   var isLoading = false.obs;
 
   Timer? _debounce;
@@ -45,11 +45,11 @@ class CtrlInventaris extends GetxController {
     isLoading.value = false;
   }
 
-  List<InvenModels> parseList(dynamic dbList) {
-    List<InvenModels> parsedList = [];
+  List<AppBarangModel> parseList(dynamic dbList) {
+    List<AppBarangModel> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {
-        InvenModels models = InvenModels.fromJson(item);
+        AppBarangModel models = AppBarangModel.fromJson(item);
         parsedList.add(models);
       }
     }
@@ -65,13 +65,13 @@ class CtrlInventaris extends GetxController {
       var data = await services.getItems();
 
       if (data.isNotEmpty) {
-        List<InvenModels> parsed = parseList(data);
+        List<AppBarangModel> parsed = parseList(data);
 
         final i = Get.find<CtrlUser>().user.value!;
         final int role = i.role ?? 0;
 
         if (role == 2) {
-          parsed = parsed.where((item) => item.stok > 0).toList();
+          parsed = parsed.where((item) => item.total > 0).toList();
         }
 
         items.assignAll(parsed);
@@ -80,7 +80,7 @@ class CtrlInventaris extends GetxController {
     } catch (e) {
       CustomDialog.show(
         isSuccess: false,
-        title: 'Error',
+        // title: 'Error',
         duration: Duration(seconds: 3),
       );
     } finally {
@@ -98,8 +98,7 @@ class CtrlInventaris extends GetxController {
         var filterList = items.where((item) {
           return item.barang.toString().toLowerCase().contains(lowerQuery) ||
               item.kategori.toString().toLowerCase().contains(lowerQuery) ||
-              item.stok.toString().toLowerCase().contains(lowerQuery) ||
-              item.lokasi.toString().toLowerCase().contains(lowerQuery);
+              item.total.toString().toLowerCase().contains(lowerQuery);
         }).toList();
         filterItem.assignAll(filterList);
       }

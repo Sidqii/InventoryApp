@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/dataset/model/app_jenis.dart';
+import 'package:pusdatin_end/dataset/model/app_kategori.dart';
 
 class PanelDropdown extends StatelessWidget {
   const PanelDropdown({super.key});
@@ -26,27 +28,37 @@ class PanelDropdown extends StatelessWidget {
           }
           final selected = barang.firstWhere(
             (item) => item.barang == val,
-            orElse: () => InvenModels(
+            orElse: () => AppBarangModel(
               id: 0,
-              stok:0,
-              jumbaik: 0,
-              jumrusak: 0,
-              jumrawat: 0,
-              jumpinjam: 0,
               barang: '',
-              kategori: '',
-              lokasi: '',
-              seri: '',
-              dibuat: '',
+              kode: '',
+              merk: '',
+              deskripsi: '',
+              spesifikasi: {},
               pengadaan: '',
+              garansi: 0,
+              sumber: '',
+              vendor: '',
+              total: 0,
+              note: '',
+              createdAt: '',
+              updatedAt: '',
+              kategori: AppKategoriModel(
+                id: 0,
+                kategori: '',
+              ),
+              jenis: AppJenisModel(
+                id: 0,
+                jenis: '',
+              ),
             ),
           );
           ctrl.selectedName.value = val;
           ctrl.selectedItem.value = selected.id;
-          ctrl.stokItem.value = selected.stok;
+          ctrl.stokItem.value = selected.total;
         },
         dropdownMenuEntries: barang
-            .where((item) => item.stok > 0)
+            .where((item) => item.total > 0)
             .map((item) => DropdownMenuEntry(
                   value: item.barang,
                   label: item.barang,
