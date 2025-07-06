@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
+
+class Invenheader extends StatelessWidget {
+  final InvenModels inven;
+
+  const Invenheader({
+    required this.inven,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    inven.barang,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    inven.kategori,
+                    style: const TextStyle(),
+                  ),
+                ],
+              ),
+              Text(
+                inven.seri,
+                style: const TextStyle(
+                  fontSize: 9,
+                  letterSpacing: 1
+                ),
+              ),
+              const Divider(color: Colors.grey),
+              Row(
+                children: [
+                  Text(
+                    'Jumlah tersedia: ',
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    inven.stok.toString(),
+                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Lokasi pengambilan: ',
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    inven.lokasi,
+                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+                  const SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    inven.pengadaan,
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

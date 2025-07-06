@@ -10,7 +10,7 @@ class PanelPeminjam extends StatelessWidget {
     final userctrl = Get.find<CtrlUser>().user.value!;
 
     return TextFormField(
-      initialValue: userctrl.username,
+      initialValue: userctrl.nama,
       readOnly: true,
       decoration: InputDecoration(
         labelText: 'Peminjam',

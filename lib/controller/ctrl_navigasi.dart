@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/interface/main/interface_home.dart';
 import 'package:pusdatin_end/interface/main/interface_staff.dart';
 import 'package:pusdatin_end/interface/main/interface_inven.dart';
-import 'package:pusdatin_end/interface/main/interface_riwayat.dart';
+import 'package:pusdatin_end/interface/main/interface_operator.dart';
 
 class CtrlNavigasi extends GetxController {
   final currentIndex = 0.obs;
@@ -14,7 +14,7 @@ class CtrlNavigasi extends GetxController {
       return [
         InterfaceHome(),
         InterfaceInven(),
-        InterfaceRiwayat(),
+        InterfaceOperator(),
       ];
     } else if (roleuser.value == '2') {
       return [

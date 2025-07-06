@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_persetujuan.dart';
 import 'package:pusdatin_end/controller/ctrl_user.dart';
-import 'package:pusdatin_end/dataset/model/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
 import 'package:pusdatin_end/services/services_inven.dart';
 import 'package:pusdatin_end/services/services_pengajuan.dart';
 

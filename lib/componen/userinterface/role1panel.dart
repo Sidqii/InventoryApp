@@ -14,7 +14,7 @@ class Role1Panel extends StatelessWidget {
 
     final RxInt selectedFilter = 1.obs;
     final Map<int, String> filterOptions = {
-      0: 'Semua',
+      0: '|||',
       1: 'Menunggu',
       2: 'Disetujui',
       3: 'Ditolak',
@@ -25,22 +25,39 @@ class Role1Panel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Obx(() {
-            return CustomFilterChips(
-              options: filterOptions,
-              selected: selectedFilter.value,
-              onSelected: (val) {
-                selectedFilter.value = val;
-              },
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomFilterChips(
+                  options: filterOptions,
+                  selected: selectedFilter.value,
+                  onSelected: (val) {
+                    selectedFilter.value = val;
+                  },
+                ),
+                IconButton(
+                  onPressed: () {
+                    ctrl.refresehed();
+                  },
+                  icon: Icon(
+                    Icons.refresh,
+                  ),
+                ),
+              ],
             );
           }),
           const SizedBox(height: 15),
           Expanded(
             child: Obx(() {
               if (ctrl.isLoading.value == true) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               } else {
                 return SingleChildScrollView(
-                  child: FormCardPanel(selectedFilter: selectedFilter.value),
+                  child: FormCardPanel(
+                    selectedFilter: selectedFilter.value,
+                  ),
                 );
               }
             }),

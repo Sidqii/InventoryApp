@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/ctrl_pengajuan.dart';
-import 'package:pusdatin_end/dataset/model/inventaris.dart';
+import 'package:pusdatin_end/dataset/model/inven/inventaris.dart';
 
 class PanelDropdown extends StatelessWidget {
   const PanelDropdown({super.key});
@@ -25,16 +25,20 @@ class PanelDropdown extends StatelessWidget {
             return;
           }
           final selected = barang.firstWhere(
-            (item) => item.namaBarang == val,
+            (item) => item.barang == val,
             orElse: () => InvenModels(
               id: 0,
-              namaBarang: '',
+              stok:0,
+              jumbaik: 0,
+              jumrusak: 0,
+              jumrawat: 0,
+              jumpinjam: 0,
+              barang: '',
               kategori: '',
-              harga: 0,
-              stok: 0,
-              namaLokasi: '',
-              status: '',
-              tglDibuat: '',
+              lokasi: '',
+              seri: '',
+              dibuat: '',
+              pengadaan: '',
             ),
           );
           ctrl.selectedName.value = val;
@@ -44,19 +48,18 @@ class PanelDropdown extends StatelessWidget {
         dropdownMenuEntries: barang
             .where((item) => item.stok > 0)
             .map((item) => DropdownMenuEntry(
-                  value: item.namaBarang,
-                  label: item.namaBarang,
+                  value: item.barang,
+                  label: item.barang,
                 ))
             .toList(),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
           border: UnderlineInputBorder(),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black,
-              width: 2,
-            )
-          ),
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.black,
+            width: 2,
+          )),
         ),
       );
     });

@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ServicesLogin {
-  final String urlLogin = 'http://localhost/AssetsHubBE/src/endpoint/login.php';
-  final String urlUser = 'http://localhost/AssetsHubBE/src/endpoint/user.php';
+  final String url = 'http://127.0.0.1:8000/api';
 
   Future<Map<String, dynamic>> loginUser(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse(urlLogin),
+        Uri.parse('${url}/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,
@@ -31,7 +30,7 @@ class ServicesLogin {
   Future<Map<String, dynamic>> getUser(int id) async {
     try {
       final response = await http.get(
-        Uri.parse('$urlUser?id=$id'),
+        Uri.parse('${url}/login/${id}'),
         headers: {'Content-Type': 'application/json'},
       );
       final result = jsonDecode(response.body);

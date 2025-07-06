@@ -51,7 +51,7 @@ class CtrlLogin extends GetxController {
         final userId = response['user_id'];
         final userResponse = await services.getUser(userId);
 
-        if (userResponse['status'] == 'success') {
+        if (userResponse['status'] == 200) {
           final user = usersModels.fromJson(userResponse['data']);
           final ctrlNav = Get.find<CtrlNavigasi>();
 
@@ -95,7 +95,10 @@ class CtrlLogin extends GetxController {
         );
       }
     } catch (e) {
-      Get.snackbar('Error', 'Terjadi kesalahan');
+      Get.snackbar(
+        'Error',
+        'Terjadi kesalahan',
+      );
     } finally {
       isloading.value = false;
     }

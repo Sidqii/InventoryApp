@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/componen/inventaris/inven_panel.dart';
+import 'package:pusdatin_end/componen/inventaris/invenpanel.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class InterfaceInven extends StatelessWidget {
@@ -12,7 +12,7 @@ class InterfaceInven extends StatelessWidget {
         title: 'Data',
         boldTitle: 'Barang',
       ),
-      body: const InvenPanel(),
+      body: const Invenpanel(),
     );
   }
 }

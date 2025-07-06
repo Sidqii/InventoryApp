@@ -63,7 +63,7 @@ class InterfaceHome extends StatelessWidget {
           }
         },
         title: getRole(ctrl.role ?? 0),
-        boldTitle: ctrl.username ?? '',
+        boldTitle: ctrl.nama ?? '',
         onNotifPressed: () {},
       ),
     );

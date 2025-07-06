@@ -2,13 +2,13 @@ class usersModels {
   final int id;
   final String email;
   final int? role;
-  final String? username;
+  final String? nama;
 
   usersModels({
     required this.id,
     required this.email,
     this.role,
-    this.username,
+    this.nama,
   });
 
   Map<String, dynamic> toJson() {
@@ -16,7 +16,7 @@ class usersModels {
       'id': id,
       'email': email,
       'role_id': role,
-      'username': username,
+      'nama': nama,
     };
   }
 
@@ -25,7 +25,7 @@ class usersModels {
       id: json['id'],
       email: json['email'],
       role: json['role_id'],
-      username: json['username']
+      nama: json['nama']
     );
   }
 }

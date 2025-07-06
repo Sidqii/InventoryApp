@@ -66,6 +66,7 @@ class CtrlPersetujuan extends GetxController {
           'Selesai ditanggapi',
         );
         expandedId.value = '';
+        refresehed();
         await Future.delayed(
           Duration(
             seconds: 2,

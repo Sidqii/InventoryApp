@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/utils/formattter.dart';
 
 class CustomInfoCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final Map<String, dynamic> details;
-  final List<String> currencyField;
   final Color? titleColor;
   final Color? subtitleColor;
   final double? elevation;
@@ -14,7 +12,6 @@ class CustomInfoCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.details,
-    this.currencyField = const [],
     this.titleColor,
     this.subtitleColor,
     this.elevation,
@@ -24,8 +21,7 @@ class CustomInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(8),
-      elevation: elevation ?? 3,
+      margin: const EdgeInsets.all(5),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -52,14 +48,12 @@ class CustomInfoCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 7),
-            // for (var entry in details.entries)
+            Divider(color: Colors.grey.shade400),
             ...details.entries.map((entry) {
-              final isCurrency = currencyField.contains(entry.key);
-              final value = formatValue(entry.value, isCurrency: isCurrency);
+              final value = entry.value.toString();
 
               return Padding(
-                padding: const EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -68,6 +62,7 @@ class CustomInfoCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5
                       ),
                     ),
                     Text(
