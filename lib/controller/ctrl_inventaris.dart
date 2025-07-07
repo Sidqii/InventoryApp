@@ -11,6 +11,7 @@ class CtrlInventaris extends GetxController {
 
   final filterctrl = TextEditingController();
   final filterfocus = FocusNode();
+  final filterchips = 0.obs;
 
   var filterItem = <AppBarangModel>[].obs;
   var items = <AppBarangModel>[].obs;
@@ -80,7 +81,6 @@ class CtrlInventaris extends GetxController {
     } catch (e) {
       CustomDialog.show(
         isSuccess: false,
-        // title: 'Error',
         duration: Duration(seconds: 3),
       );
     } finally {
@@ -88,20 +88,53 @@ class CtrlInventaris extends GetxController {
     }
   }
 
+  void combineFilter() {
+    String keyword = filterctrl.text.toLowerCase();
+    int selected = filterchips.value;
+
+    List<AppBarangModel> result = items;
+
+    if (keyword.isNotEmpty) {
+      result = result.where((item) {
+        return item.barang.toLowerCase().contains(keyword) ||
+            item.kategori.kategori.toLowerCase().contains(keyword) ||
+            item.total.toString().contains(keyword);
+      }).toList();
+    }
+
+    if (selected != 0) {
+      result = result.where((item) {
+        return item.kategori.id == selected;
+      }).toList();
+    }
+
+    filterItem.assignAll(result);
+  }
+
   void filterData(String query) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(Duration(milliseconds: 300), () {
-      if (query.trim().isEmpty) {
-        filterItem.assignAll(List.from(items));
-      } else {
-        var lowerQuery = query.toLowerCase();
-        var filterList = items.where((item) {
-          return item.barang.toString().toLowerCase().contains(lowerQuery) ||
-              item.kategori.toString().toLowerCase().contains(lowerQuery) ||
-              item.total.toString().toLowerCase().contains(lowerQuery);
-        }).toList();
-        filterItem.assignAll(filterList);
-      }
+      combineFilter();
     });
   }
+
+  // void filterData(String query) {
+  //   if (_debounce?.isActive ?? false) _debounce?.cancel();
+  //   _debounce = Timer(Duration(milliseconds: 300), () {
+  //     if (query.trim().isEmpty) {
+  //       filterItem.assignAll(List.from(items));
+  //     } else {
+  //       var lowerQuery = query.toLowerCase();
+  //       var filterList = items.where((item) {
+  //         return item.barang.toString().toLowerCase().contains(lowerQuery) ||
+  //             item.kategori.kategori
+  //                 .toString()
+  //                 .toLowerCase()
+  //                 .contains(lowerQuery) ||
+  //             item.total.toString().toLowerCase().contains(lowerQuery);
+  //       }).toList();
+  //       filterItem.assignAll(filterList);
+  //     }
+  //   });
+  // }
 }

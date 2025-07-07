@@ -12,7 +12,6 @@ class ServicesInven {
       );
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        print('\n\nInventaris data:\n\n$data');
         return data.cast<Map<String, dynamic>>();
       } else {
         return [];

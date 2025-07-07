@@ -35,10 +35,7 @@ class Invenheader extends StatelessWidget {
               ),
               Text(
                 inven.kode,
-                style: const TextStyle(
-                  fontSize: 9,
-                  letterSpacing: 1
-                ),
+                style: const TextStyle(fontSize: 9, letterSpacing: 1),
               ),
               const Divider(color: Colors.grey),
               Row(
@@ -49,23 +46,36 @@ class Invenheader extends StatelessWidget {
                   ),
                   Text(
                     inven.total.toString(),
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-              Row(
+              const SizedBox(height: 2),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Lokasi pengambilan: ',
+                    'Spesifikasi: ',
                     style: const TextStyle(fontSize: 12),
                   ),
-                  Text(
-                    inven.merk,
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
+                  ...inven.spesifikasi.entries.map((entry) {
+                    final key = entry.key
+                        .replaceAll('_', ' ')
+                        .split(' ')
+                        .map((word) =>
+                            word[0].toUpperCase() +
+                            word.substring(1).toLowerCase())
+                        .join(' ');
+                    return Text(
+                      '  • $key: ${entry.value}',
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.bold),
+                    );
+                  }),
                 ],
               ),
-                  const SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

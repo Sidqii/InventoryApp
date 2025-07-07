@@ -12,13 +12,15 @@ class Invenpanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctrl = Get.find<CtrlInventaris>();
-
-    final RxInt pilihfilter = 0.obs;
+    // final RxInt pilihfilter = 0.obs;
     final Map<int, String> opsifilter = {
       0: '|||',
-      1: 'ATK',
-      2: 'Elektronik',
-      3: 'Furniture',
+      1: 'Drone',
+      2: 'Server',
+      3: 'Komunikasi',
+      4: 'Pengawasan',
+      5: 'Navigasi',
+      6: 'Enkripsi',
     };
 
     return Container(
@@ -50,9 +52,10 @@ class Invenpanel extends StatelessWidget {
               children: [
                 CustomFilterChips(
                   options: opsifilter,
-                  selected: pilihfilter.value,
+                  selected: ctrl.filterchips.value,
                   onSelected: (val) {
-                    pilihfilter.value = val;
+                    ctrl.filterchips.value = val;
+                    ctrl.combineFilter();
                   },
                 ),
                 IconButton(
