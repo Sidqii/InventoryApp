@@ -21,38 +21,45 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 3,
-      shadowColor: Colors.black.withValues(alpha: 5),
-      title: GestureDetector(
-        onTap: onTitleTap ?? () {},
-        child: Row(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(width: 1.5),
-            Text(
-              boldTitle,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey.shade200
+          )
+        )
       ),
-      actions: showNotif
-          ? [
-              IconButton(
-                onPressed: onNotifPressed ?? () {},
-                icon: const Icon(
-                  Icons.notifications_sharp,
+      child: AppBar(
+        title: GestureDetector(
+          onTap: onTitleTap ?? () {},
+          child: Row(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(width: 1.5),
+              Text(
+                boldTitle,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ]
-          : null,
+            ],
+          ),
+        ),
+        actions: showNotif
+            ? [
+                IconButton(
+                  onPressed: onNotifPressed ?? () {},
+                  icon: const Icon(
+                    Icons.notifications_sharp,
+                  ),
+                ),
+              ]
+            : null,
+      ),
     );
   }
 }

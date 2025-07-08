@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppThemes {
+class AppTheme {
   static final ThemeData softWhiteMinimalist = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,

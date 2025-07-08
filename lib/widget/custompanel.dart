@@ -24,14 +24,10 @@ class CustomPanel extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            offset: const Offset(4, 4),
-            blurRadius: 15,
-            spreadRadius: 1,
-          ),
-        ],
+        border: Border.all(
+          color: Colors.grey.shade300,
+          width: 1
+        )
       ),
       child: child,
     );
