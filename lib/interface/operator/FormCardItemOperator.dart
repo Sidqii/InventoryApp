@@ -4,7 +4,7 @@ import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/interface/operator/FormCardBodyOperator.dart';
 import 'package:pusdatin_end/interface/operator/FormCardBttnOperator.dart';
 
-import 'package:pusdatin_end/dataset/model/app_riawayat.dart';
+import 'package:pusdatin_end/model/app_riawayat.dart';
 import 'package:pusdatin_end/interface/operator/FormCardHeaderOperator.dart';
 
 class FormCardItemOperator extends StatelessWidget {

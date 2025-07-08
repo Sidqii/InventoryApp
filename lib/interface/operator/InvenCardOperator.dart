@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/common/invenheader.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/interface/operator/InvenHeaderOperator.dart';
 
 class InvenCardOperator extends StatelessWidget {
   final AppBarangModel model;
@@ -17,7 +17,9 @@ class InvenCardOperator extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(
+          color: Colors.grey.shade200,
+        ),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
@@ -29,7 +31,7 @@ class InvenCardOperator extends StatelessWidget {
               color: const Color(0xffF4F7F7),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: InvenHeader(
+            child: InvenHeaderOperator(
               inven: model,
             ),
           ),

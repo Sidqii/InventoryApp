@@ -6,12 +6,20 @@ final _currencyFormat = NumberFormat.currency(
   decimalDigits: 2,
 );
 
-String formatValue(dynamic value, {bool isCurrency = false}) {
+String formatCurrency(dynamic value, {bool isCurrency = false}) {
   if (isCurrency) {
     double numValue = double.tryParse(value.toString()) ?? 0;
     return _currencyFormat.format(numValue);
   }
   return value.toString();
+}
+
+String toTitleCase(String txt) {
+  return txt.replaceAll('_', ' ').split(' ').map((text) {
+    return text.isEmpty
+        ? ''
+        : text[0].toUpperCase() + text.substring(1).toLowerCase();
+  }).join();
 }
 
 String getRole(int idRole) {

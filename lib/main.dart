@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/config/FontTheme.dart';
 import 'package:pusdatin_end/config/InitBinding.dart';
 import 'package:pusdatin_end/config/AppTheme.dart';
-import 'package:pusdatin_end/config/ScrollBar.dart';
 import 'package:pusdatin_end/interface/common/HomeSignIn.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      scrollBehavior: NoScrollbarBehavior(),
+      // scrollBehavior: NoScrollbarBehavior(),
       scaffoldMessengerKey: scaffoldMessangerKey,
       initialBinding: InitBinding(),
       theme: ThemeData.from(

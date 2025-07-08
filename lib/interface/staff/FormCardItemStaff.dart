@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
-import 'package:pusdatin_end/interface/staff/FormCardBodyStaff.dart';
 import 'package:pusdatin_end/interface/staff/FormCardHeaderStaff.dart';
-import 'package:pusdatin_end/interface/staff/FormCardBttnStaff.dart';
-import 'package:pusdatin_end/dataset/model/app_riawayat.dart';
+import 'package:pusdatin_end/model/app_riawayat.dart';
 
 class FormCardItemStaff extends StatelessWidget {
   final RiwayatModel item;
-  final String roleuser;
+  // final String roleuser;
 
   const FormCardItemStaff({
     required this.item,
-    required this.roleuser,
+    // required this.roleuser,
     super.key,
   });
 
@@ -23,7 +21,7 @@ class FormCardItemStaff extends StatelessWidget {
 
     return Obx(() {
       final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
-      final pengajuan = int.tryParse(item.id.toString()) ?? 0;
+      // final pengajuan = int.tryParse(item.id.toString()) ?? 0;
 
       return Container(
         margin: const EdgeInsets.only(bottom: 12),
@@ -46,19 +44,20 @@ class FormCardItemStaff extends StatelessWidget {
                 item: item,
                 isExpanded: isExpanded,
                 onBtnExpand: () {
-                  ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                  // ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                  ctrlpersetujuan.expandedId.value = idItem;
                 },
               ),
             ),
-            if (isExpanded) ...[
-              const SizedBox(height: 12),
-              FormCardBodyStaff(item: item),
-              const SizedBox(height: 10),
-              if (int.tryParse(roleuser) == 1 && item.idStat == 1)
-                FormCardBtnStaff(
-                  idPengajuan: pengajuan,
-                ),
-            ]
+            // if (isExpanded) ...[
+            //   const SizedBox(height: 12),
+            //   FormCardBodyStaff(item: item),
+            //   const SizedBox(height: 10),
+            //   if (int.tryParse(roleuser) == 1 && item.idStat == 1)
+            //     FormCardBtnStaff(
+            //       idPengajuan: pengajuan,
+            //     ),
+            // ]
           ],
         ),
       );

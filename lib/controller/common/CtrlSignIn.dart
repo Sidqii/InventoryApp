@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/controller/common/CtrlNavigasi.dart';
-import 'package:pusdatin_end/dataset/model/app_pengguna.dart';
+import 'package:pusdatin_end/model/app_pengguna.dart';
 import 'package:pusdatin_end/interface/common/NavPage.dart';
 import 'package:pusdatin_end/services/common/ServicesSignIn.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';

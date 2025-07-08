@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/app_riawayat.dart';
+import 'package:pusdatin_end/model/app_riawayat.dart';
 
 class FormCardBodyStaff extends StatelessWidget {
   final RiwayatModel item;

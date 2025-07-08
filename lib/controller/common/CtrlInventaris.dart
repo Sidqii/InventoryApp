@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/services/common/ServicesInven.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 

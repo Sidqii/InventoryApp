@@ -11,17 +11,28 @@ class EmptyPageStaff extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 150,
-      padding: const EdgeInsets.all(20),
+      height: 143,
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: const Color(0xffF4F7F7),
+        color: Colors.white,
+        border: Border.all(color: Colors.grey.shade200),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(txt),
+          Container(
+            width: double.infinity,
+            height: 120,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: const Color(0xffF4F7F7),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Center(
+              child: Text(txt),
+            ),
+          ),
         ],
       ),
     );

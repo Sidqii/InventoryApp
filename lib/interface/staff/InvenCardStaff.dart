@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/common/invenheader.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/interface/staff/InvenHeaderStaff.dart';
 
 class InvenCardStaff extends StatelessWidget {
   final AppBarangModel model;
@@ -29,7 +29,7 @@ class InvenCardStaff extends StatelessWidget {
               color: const Color(0xffF4F7F7),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: InvenHeader(
+            child: InvenHeaderStaff(
               inven: model,
             ),
           ),

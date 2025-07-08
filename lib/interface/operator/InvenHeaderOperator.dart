@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/utils/Formatter.dart';
 
 class InvenHeaderOperator extends StatelessWidget {
   final AppBarangModel inven;
@@ -22,15 +23,18 @@ class InvenHeaderOperator extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    inven.barang,
+                    '${inven.barang} | ${inven.total} unit',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    inven.jenis.jenis,
-                    style: const TextStyle(),
-                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.edit,
+                      size: 20,
+                    ),
+                  )
                 ],
               ),
               Row(
@@ -53,15 +57,46 @@ class InvenHeaderOperator extends StatelessWidget {
               ),
               const Divider(color: Colors.grey),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Jumlah tersedia: ',
-                    style: const TextStyle(fontSize: 12),
+                    inven.vendor,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      border: Border.all(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      '${inven.garansi.toString()} bulan',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Unit: ',
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
                   ),
                   Text(
-                    inven.total.toString(),
+                    inven.jenis.jenis,
                     style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.bold),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -70,24 +105,73 @@ class InvenHeaderOperator extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Spesifikasi: ',
+                    'Spesifikasi Unit: ',
                     style: const TextStyle(fontSize: 12),
                   ),
                   ...inven.spesifikasi.entries.map((entry) {
-                    final key = entry.key
-                        .replaceAll('_', ' ')
-                        .split(' ')
-                        .map((word) =>
-                            word[0].toUpperCase() +
-                            word.substring(1).toLowerCase())
-                        .join(' ');
-                    return Text(
-                      '  • $key: ${entry.value}',
-                      style: const TextStyle(
-                          fontSize: 11, fontWeight: FontWeight.bold),
+                    final key = toTitleCase(entry.key);
+                    return Column(
+                      children: [
+                        const SizedBox(height: 2),
+                        Text(
+                          '  • $key: ${entry.value}',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     );
                   }),
                 ],
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  Text(
+                    '*',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Catatan perawatan: ',
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    inven.note,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Container(
+                padding: const EdgeInsets.all(8),
+                width: double.infinity,
+                height: 80,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade300),
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Deskripsi Unit:',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      inven.deskripsi,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 5),
               Row(
@@ -97,7 +181,7 @@ class InvenHeaderOperator extends StatelessWidget {
                     '${inven.sumber} ',
                     style: TextStyle(
                       fontSize: 10,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(

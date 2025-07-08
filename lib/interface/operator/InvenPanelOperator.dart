@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:pusdatin_end/controller/common/CtrlInventaris.dart';
-import 'package:pusdatin_end/interface/staff/InvenCardStaff.dart';
+import 'package:pusdatin_end/interface/operator/InvenCardOperator.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
@@ -99,7 +99,7 @@ class InvenPanelOperator extends StatelessWidget {
                 },
                 itemBuilder: (context, index) {
                   final item = ctrl.filterItem[index];
-                  return InvenCardStaff(
+                  return InvenCardOperator(
                     model: item,
                   );
                 },

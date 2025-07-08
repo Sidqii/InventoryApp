@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/staff/CtrlPengajuan.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
-import 'package:pusdatin_end/dataset/model/app_jenis.dart';
-import 'package:pusdatin_end/dataset/model/app_kategori.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_jenis.dart';
+import 'package:pusdatin_end/model/app_kategori.dart';
 
 class PanelDropdown extends StatelessWidget {
   const PanelDropdown({super.key});

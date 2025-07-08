@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/dataset/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/utils/Formatter.dart';
 
 class InvenHeaderStaff extends StatelessWidget {
   final AppBarangModel inven;
@@ -70,21 +71,17 @@ class InvenHeaderStaff extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Spesifikasi: ',
+                    'Spesifikasi Unit: ',
                     style: const TextStyle(fontSize: 12),
                   ),
                   ...inven.spesifikasi.entries.map((entry) {
-                    final key = entry.key
-                        .replaceAll('_', ' ')
-                        .split(' ')
-                        .map((word) =>
-                            word[0].toUpperCase() +
-                            word.substring(1).toLowerCase())
-                        .join(' ');
+                    final key = toTitleCase(entry.key);
                     return Text(
                       '  • $key: ${entry.value}',
                       style: const TextStyle(
-                          fontSize: 11, fontWeight: FontWeight.bold),
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
                     );
                   }),
                 ],

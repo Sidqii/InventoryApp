@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/utils/EmptyPageStaff.dart';
 import 'package:pusdatin_end/interface/staff/FormCardItemStaff.dart';
@@ -15,22 +14,21 @@ class FormCardPanelStaff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userctrl = Get.find<CtrlUser>().user.value!;
+    // final userctrl = Get.find<CtrlUser>().user.value!;
     final setujuctrl = Get.find<CtrlPersetujuan>();
 
-    final int roleuser = userctrl.role ?? 0;
-    final int iduser = userctrl.id;
+    // final int roleuser = userctrl.role ?? 0;
+    // final int iduser = userctrl.id;
 
     List<dynamic> dataFiltered = [];
 
     for (var item in setujuctrl.riwayat) {
-
       bool roleid = true;
       bool filterid = true;
 
-      if (roleuser == 2) {
-        roleid = int.tryParse(item.isUser.toString()) == iduser;
-      }
+      // if (roleuser == 2) {
+      //   roleid = int.tryParse(item.isUser.toString()) == iduser;
+      // }
 
       if (selectedFilter != 0) {
         filterid = int.tryParse(item.idStat.toString()) == selectedFilter;
@@ -40,6 +38,7 @@ class FormCardPanelStaff extends StatelessWidget {
         dataFiltered.add(item);
       }
     }
+
     if (dataFiltered.isEmpty) {
       String ket = 'Belum ada pengajuan';
 
@@ -52,6 +51,7 @@ class FormCardPanelStaff extends StatelessWidget {
       }
       return EmptyPageStaff(txt: ket);
     }
+
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -63,7 +63,7 @@ class FormCardPanelStaff extends StatelessWidget {
         final item = dataFiltered[index];
         return FormCardItemStaff(
           item: item,
-          roleuser: roleuser.toString(),
+          // roleuser: roleuser.toString(),
         );
       },
     );
