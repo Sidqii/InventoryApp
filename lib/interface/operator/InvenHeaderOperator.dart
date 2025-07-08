@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pusdatin_end/interface/operator/InvenEditPanel.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 
@@ -29,7 +30,20 @@ class InvenHeaderOperator extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: MediaQuery.of(context).size.height * 0.8,
+                              child: InvenEditPanel(data: inven,),
+                            ),
+                          );
+                        },
+                      );
+                    },
                     icon: Icon(
                       Icons.edit,
                       size: 20,

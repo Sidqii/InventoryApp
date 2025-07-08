@@ -56,7 +56,7 @@ class InvenHeaderStaff extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Jumlah tersedia: ',
+                    'Jumlah Unit Aktif: ',
                     style: const TextStyle(fontSize: 12),
                   ),
                   Text(
@@ -76,12 +76,17 @@ class InvenHeaderStaff extends StatelessWidget {
                   ),
                   ...inven.spesifikasi.entries.map((entry) {
                     final key = toTitleCase(entry.key);
-                    return Text(
-                      '  • $key: ${entry.value}',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    return Column(
+                      children: [
+                        const SizedBox(height: 2),
+                        Text(
+                          '  • $key: ${entry.value}',
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     );
                   }),
                 ],
