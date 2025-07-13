@@ -22,6 +22,7 @@ class EditMerkBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.merk,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Merk Barang',
               hintStyle: TextStyle(color: Colors.grey),

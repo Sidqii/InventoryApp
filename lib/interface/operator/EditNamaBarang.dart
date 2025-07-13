@@ -22,6 +22,7 @@ class EditNamaBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.barang,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Nama Barang',
               hintStyle: TextStyle(color: Colors.grey),

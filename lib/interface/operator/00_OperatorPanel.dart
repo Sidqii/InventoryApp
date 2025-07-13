@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
-import 'package:pusdatin_end/interface/operator/03_FormCardPanelOperator.dart';
+import 'package:pusdatin_end/interface/operator/01_FormCardPanelOperator.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
 class OperatorPanel extends StatelessWidget {

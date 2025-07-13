@@ -22,6 +22,7 @@ class EditVendorBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.vendor,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Vendor',
               hintStyle: TextStyle(color: Colors.grey),

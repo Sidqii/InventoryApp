@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/04_EditPanel.dart';
+import 'package:pusdatin_end/interface/operator/01_EditPanel.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 
@@ -205,7 +205,7 @@ class InvenHeaderOperator extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    inven.pengadaan,
+                    Formatter.dateID(inven.pengadaan),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

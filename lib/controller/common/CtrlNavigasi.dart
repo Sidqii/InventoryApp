@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/interface/common/HomePage.dart';
 import 'package:pusdatin_end/interface/staff/01_HomeStaff.dart';
 import 'package:pusdatin_end/interface/common/HomeInventaris.dart';
-import 'package:pusdatin_end/interface/operator/01_HomeOperator.dart';
+import 'package:pusdatin_end/interface/operator/00_HomeOperator.dart';
 
 class CtrlNavigasi extends GetxController {
   final currentIndex = 0.obs;

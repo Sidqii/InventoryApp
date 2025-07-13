@@ -43,12 +43,11 @@ class PanelTanggal extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(
-                width: 180,
+                width: 120,
                 child: Text(
-                  'Tanggal Pengembalian',
+                  'Tanggal\nPengembalian',
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

@@ -22,6 +22,7 @@ class EditDeskripsiBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.deskripsi,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Deskripsi',
               hintStyle: TextStyle(color: Colors.grey),

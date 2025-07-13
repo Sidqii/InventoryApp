@@ -22,6 +22,7 @@ class EditGaransiBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.garansi,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Garansi',
               suffixText: 'Bulan',

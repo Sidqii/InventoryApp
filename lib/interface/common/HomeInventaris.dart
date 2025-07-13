@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/interface/operator/03_InvenPanelOperator.dart';
+import 'package:pusdatin_end/interface/operator/InvenPanelOperator.dart';
 import 'package:pusdatin_end/interface/staff/03_InvenPanelStaff.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 

@@ -22,6 +22,7 @@ class EditCatatanBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.note,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Catatan',
               hintStyle: TextStyle(color: Colors.grey),

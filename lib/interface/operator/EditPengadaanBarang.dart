@@ -23,6 +23,7 @@ class EditPengadaanBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.sumber,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Sumber Pengadaan',
               hintStyle: TextStyle(color: Colors.grey),

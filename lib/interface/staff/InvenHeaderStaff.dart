@@ -40,7 +40,7 @@ class InvenHeaderStaff extends StatelessWidget {
                   Text(
                     inven.merk,
                     style: const TextStyle(
-                      fontSize: 9,
+                      fontSize: 11,
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -48,7 +48,10 @@ class InvenHeaderStaff extends StatelessWidget {
                   ),
                   Text(
                     inven.kode,
-                    style: const TextStyle(fontSize: 9, letterSpacing: 1),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ],
               ),
@@ -74,19 +77,18 @@ class InvenHeaderStaff extends StatelessWidget {
                     'Spesifikasi Unit: ',
                     style: const TextStyle(fontSize: 12),
                   ),
+                  const SizedBox(height: 4),
                   ...inven.spesifikasi.entries.map((entry) {
                     final key = Formatter.toTitleCase(entry.key);
-                    return Column(
-                      children: [
-                        const SizedBox(height: 2),
-                        Text(
-                          '  • $key: ${entry.value}',
-                          style: const TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        '  • $key: ${entry.value}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
+                      ),
                     );
                   }),
                 ],
@@ -98,14 +100,14 @@ class InvenHeaderStaff extends StatelessWidget {
                   Text(
                     '${inven.sumber} ',
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    inven.pengadaan,
+                    Formatter.dateID(inven.pengadaan),
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

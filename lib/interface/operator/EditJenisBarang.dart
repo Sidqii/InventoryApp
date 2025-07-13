@@ -21,6 +21,7 @@ class EditJenisBarang extends StatelessWidget {
             cursorColor: Colors.black,
             controller: ctrl.jenis,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
               focusedBorder: UnderlineInputBorder(),
               hintText: 'Jenis Barang',
               hintStyle: TextStyle(color: Colors.grey),
