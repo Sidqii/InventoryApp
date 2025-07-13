@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/interface/staff/FormCardPanelStaff.dart';
+import 'package:pusdatin_end/interface/staff/03_FormCardPanelStaff.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/custompanel.dart';
