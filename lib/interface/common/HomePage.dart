@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
             );
           }
         },
-        title: getRole(ctrl.role ?? 0),
+        title: Formatter.getRole(ctrl.role ?? 0),
         boldTitle: ctrl.nama ?? '',
         onNotifPressed: () {},
       ),

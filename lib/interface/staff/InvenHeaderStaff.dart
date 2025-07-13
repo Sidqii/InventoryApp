@@ -75,7 +75,7 @@ class InvenHeaderStaff extends StatelessWidget {
                     style: const TextStyle(fontSize: 12),
                   ),
                   ...inven.spesifikasi.entries.map((entry) {
-                    final key = toTitleCase(entry.key);
+                    final key = Formatter.toTitleCase(entry.key);
                     return Column(
                       children: [
                         const SizedBox(height: 2),

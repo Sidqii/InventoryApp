@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/InvenEditPanel.dart';
+import 'package:pusdatin_end/interface/operator/EditPanel.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 
@@ -35,10 +35,14 @@ class InvenHeaderOperator extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6)),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               height: MediaQuery.of(context).size.height * 0.8,
-                              child: InvenEditPanel(data: inven,),
+                              child: EditPanel(
+                                data: inven,
+                              ),
                             ),
                           );
                         },
@@ -48,7 +52,7 @@ class InvenHeaderOperator extends StatelessWidget {
                       Icons.edit,
                       size: 20,
                     ),
-                  )
+                  ),
                 ],
               ),
               Row(
@@ -57,7 +61,7 @@ class InvenHeaderOperator extends StatelessWidget {
                   Text(
                     inven.merk,
                     style: const TextStyle(
-                      fontSize: 9,
+                      fontSize: 11,
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -65,7 +69,10 @@ class InvenHeaderOperator extends StatelessWidget {
                   ),
                   Text(
                     inven.kode,
-                    style: const TextStyle(fontSize: 9, letterSpacing: 1),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ],
               ),
@@ -122,38 +129,38 @@ class InvenHeaderOperator extends StatelessWidget {
                     'Spesifikasi Unit: ',
                     style: const TextStyle(fontSize: 12),
                   ),
+                  const SizedBox(height: 4),
                   ...inven.spesifikasi.entries.map((entry) {
-                    final key = toTitleCase(entry.key);
-                    return Column(
-                      children: [
-                        const SizedBox(height: 2),
-                        Text(
-                          '  • $key: ${entry.value}',
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    final key = Formatter.toTitleCase(entry.key);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        '  • $key: ${entry.value}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
+                      ),
                     );
                   }),
                 ],
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 3),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '*',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
                   Text(
                     'Catatan perawatan: ',
                     style: const TextStyle(fontSize: 12),
                   ),
-                  Text(
-                    inven.note,
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.bold),
+                  Flexible(
+                    child: Text(
+                      inven.note,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -194,14 +201,13 @@ class InvenHeaderOperator extends StatelessWidget {
                   Text(
                     '${inven.sumber} ',
                     style: TextStyle(
-                      fontSize: 10,
-                      // fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                   Text(
                     inven.pengadaan,
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

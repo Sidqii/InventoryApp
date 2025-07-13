@@ -22,6 +22,8 @@ class CtrlPengajuan extends GetxController {
   final instansictrl = TextEditingController();
   final halcontrol = TextEditingController();
 
+  final pengembalian = DateTime.now().obs;
+
   final jumlahfocus = FocusNode();
   final tglfocus = FocusNode();
   final instansifocus = FocusNode();

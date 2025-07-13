@@ -4,8 +4,11 @@ import 'package:pusdatin_end/config/FontTheme.dart';
 import 'package:pusdatin_end/config/InitBinding.dart';
 import 'package:pusdatin_end/config/AppTheme.dart';
 import 'package:pusdatin_end/interface/common/HomeSignIn.dart';
+import 'package:intl/date_symbol_data_local.dart'; // ⬅️ ini tambahan
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // ⬅️ ini penting
+  await initializeDateFormatting('id_ID', null); // ⬅️ fix formatter
   runApp(MyApp());
 }
 
@@ -15,7 +18,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // scrollBehavior: NoScrollbarBehavior(),
       scaffoldMessengerKey: scaffoldMessangerKey,
       initialBinding: InitBinding(),
       theme: ThemeData.from(

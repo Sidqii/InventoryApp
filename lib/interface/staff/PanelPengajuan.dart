@@ -45,19 +45,21 @@ class PanelPengajuan extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          const Row(
+          Row(
             children: [
               Expanded(child: PanelDropdown()),
               SizedBox(width: 20),
-              Expanded(child: PanelJumlah()),
+              Expanded(
+                child: PanelTanggal(
+                  onSubmit: () {
+                    ctrl.ajukan();
+                  },
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 10),
-          PanelTanggal(
-            onSubmit: () {
-              ctrl.ajukan();
-            },
-          ),
+          const SizedBox(height: 12),
+          const PanelJumlah()
         ],
       ),
     );

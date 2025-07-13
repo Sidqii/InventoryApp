@@ -37,7 +37,6 @@ class CustomTxtField extends StatelessWidget {
           color: Colors.grey,
         ),
         filled: true,
-        fillColor: Colors.transparent,
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.black,
