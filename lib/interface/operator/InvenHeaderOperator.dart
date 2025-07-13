@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/01_EditPanel.dart';
+import 'package:pusdatin_end/interface/operator/EditPanel.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 
@@ -36,7 +36,8 @@ class InvenHeaderOperator extends StatelessWidget {
                         builder: (context) {
                           return Dialog(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6)),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               height: MediaQuery.of(context).size.height * 0.8,

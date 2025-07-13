@@ -40,6 +40,56 @@ class CtrlEditInven extends GetxController {
     });
   }
 
+  bool validate() {
+    if (barang.text.trim().isEmpty) {
+      Get.snackbar('Validasi Gagal', 'Nama barang tidak boleh kosong');
+      return false;
+    }
+
+    if (jenis.text.trim().isEmpty) {
+      Get.snackbar('Validasi Gagal', 'Jenis barang tidak boleh kosong');
+      return false;
+    }
+
+    if (garansi.text.trim().isEmpty) {
+      Get.snackbar('Validasi Gagal', 'Masa garansi tidak boleh kosong');
+      return false;
+    }
+
+    if (int.tryParse(garansi.text.trim()) == null) {
+      Get.snackbar('Validasi Gagal', 'Garansi harus berupa angka');
+      return false;
+    }
+
+    return true;
+  }
+
+  bool checkChanges() {
+    if (barang.text != data.barang) return true;
+    if (jenis.text != data.jenis.jenis) return true;
+    if (deskripsi.text != data.deskripsi) return true;
+    if (note.text != data.note) return true;
+    if (merk.text != data.merk) return true;
+    if (vendor.text != data.vendor) return true;
+    if (sumber.text != data.sumber) return true;
+
+    String tglUI = pengadaan.value.toIso8601String().substring(0, 10);
+    if (tglUI != data.pengadaan) return true;
+
+    if (garansi.text != data.garansi.toString()) return true;
+
+    final newSpecs = <String, String>{};
+    spesifikasi.forEach((key, controller) {
+      newSpecs[key] = controller.text.trim();
+    });
+
+    final oldSpecs = data.spesifikasi.map(
+      (k, v) => MapEntry(k, v.toString().trim()),
+    );
+
+    return !mapEquals(newSpecs, oldSpecs);
+  }
+
   @override
   void onClose() {
     note.dispose();
@@ -85,7 +135,10 @@ class CtrlEditInven extends GetxController {
           {'op': 'replace', 'path': '/sumber_pengadaan', 'value': sumber.text});
     }
 
-    if (pengadaan.value.toIso8601String() != data.pengadaan) {
+    String tglUI = pengadaan.value.toIso8601String().substring(0, 10);
+    String tglDB = data.pengadaan;
+
+    if (tglUI != tglDB) {
       op.add({
         'op': 'replace',
         'path': '/tanggal_pengadaan',
@@ -106,15 +159,23 @@ class CtrlEditInven extends GetxController {
       newSpecs[key] = controller.text.trim();
     });
 
-    final oldSpecs =
-        data.spesifikasi.map((k, v) => MapEntry(k, v.toString().trim()));
+    final oldSpecs = data.spesifikasi.map((k, v) {
+      return MapEntry(k, v.toString().trim());
+    });
 
-    if (!mapEquals(newSpecs, oldSpecs)) {
-      op.add({'op': 'replace', 'path': '/spesifikasi', 'value': newSpecs});
-    }
+    newSpecs.forEach((key, value) {
+      if (oldSpecs[key] != value) {
+        op.add({
+          'op': 'replace',
+          'path': '/spesifikasi_teknis/${Uri.encodeComponent(key)}',
+          'value': value
+        });
+      }
+    });
 
     if (op.isEmpty) {
       Get.back();
+      Get.snackbar('Gagal', 'Tidak ada perubahan');
       return;
     }
 
@@ -128,6 +189,8 @@ class CtrlEditInven extends GetxController {
       Get.back();
       Get.snackbar('Sukses', 'Data berhasil diperbarui');
     } else {
+      print(jsonEncode(op));
+
       Get.back();
       Get.snackbar('Gagal', 'Data gagal diperbarui');
     }

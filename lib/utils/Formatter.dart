@@ -40,7 +40,6 @@ class Formatter {
       final dt = DateTime.parse(isoDate);
       return DateFormat('dd MMMM yyyy', 'id_ID').format(dt);
     } catch (e) {
-      print('Formatter Error: $e');
       return '-';
     }
   }

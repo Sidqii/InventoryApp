@@ -101,7 +101,63 @@ class EditPanel extends StatelessWidget {
                 SizedBox(
                   width: 130,
                   child: CustomButton(
-                    onpress: () {},
+                    onpress: () {
+                      if (!ctrl.validate()) {
+                        return;
+                      }
+                      if (!ctrl.checkChanges()) {
+                        Get.snackbar('Gagal', 'Tidak ada perubahan');
+                        return;
+                      }
+                      showDialog(
+                        context: Get.context!,
+                        builder: (context) {
+                          return Dialog(
+                            backgroundColor: Colors.transparent,
+                            child: IntrinsicWidth(
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Color(0xffFBFBFB),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Yakin ingin menyimpan perubahan?',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        SizedBox(
+                                          width: 100,
+                                          height: 30,
+                                          child: CustomButton(
+                                            onpress: () async {
+                                              Get.back();
+                                              await ctrl.patch();
+                                            },
+                                            txt: 'Ya',
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                     txt: 'Simpan',
                   ),
                 ),

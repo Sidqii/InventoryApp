@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/00_OperatorPanel.dart';
+import 'package:pusdatin_end/interface/operator/OperatorPanel.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class HomeOperator extends StatelessWidget {

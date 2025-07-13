@@ -20,11 +20,11 @@ class CustomButton extends StatelessWidget {
       child: FilledButton(
         onPressed: isloading ? () {} : onpress,
         style: FilledButton.styleFrom(
-          elevation: 4,
+          // elevation: 4,
           backgroundColor: Colors.grey[900],
           padding: const EdgeInsets.symmetric(horizontal: 20),
           maximumSize: const Size(double.infinity, 55),
-          shadowColor: Colors.black.withValues(alpha: 1),
+          // shadowColor: Colors.black.withValues(alpha: 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
