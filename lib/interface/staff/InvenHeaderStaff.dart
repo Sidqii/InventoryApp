@@ -108,7 +108,7 @@ class InvenHeaderStaff extends StatelessWidget {
                     Formatter.dateID(inven.pengadaan),
                     style: TextStyle(
                       fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

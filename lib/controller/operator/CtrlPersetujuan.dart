@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/model/app_riawayat.dart';
+import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/services/operator/ServicesPersetujuan.dart';
 import 'package:pusdatin_end/services/operator/ServicesRiwayat.dart';
 

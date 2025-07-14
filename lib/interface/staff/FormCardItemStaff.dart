@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/interface/staff/FormCardHeaderStaff.dart';
-import 'package:pusdatin_end/model/app_riawayat.dart';
+import 'package:pusdatin_end/model/app_riwayat.dart';
 
 class FormCardItemStaff extends StatelessWidget {
   final RiwayatModel item;

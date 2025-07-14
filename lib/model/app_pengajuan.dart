@@ -1,40 +1,37 @@
-class PengajuanModel {
+class AppPengajuanModel {
   final int id;
-  final int idPengguna;
-  final int idStatus;
-  final String label;
-  final String username;
-  final String instansi;
+  final int unit;
+  final int pengguna;
+  final int status;
+  final String? instansi;
   final String hal;
-  final String namaBarang;
   final int jumlah;
-  final String tglKembali;
+  final String pinjam;
+  final String? kembali;
 
-  PengajuanModel({
+  AppPengajuanModel({
     required this.id,
-    required this.idPengguna,
-    required this.idStatus,
-    required this.label,
-    required this.username,
-    required this.instansi,
+    required this.unit,
+    required this.pengguna,
+    required this.status,
+    this.instansi,
     required this.hal,
-    required this.namaBarang,
     required this.jumlah,
-    required this.tglKembali,
+    required this.pinjam,
+    this.kembali,
   });
 
-  factory PengajuanModel.fromJson(Map<String, dynamic> json) {
-    return PengajuanModel(
+  factory AppPengajuanModel.fromJson(Map<String, dynamic> json) {
+    return AppPengajuanModel(
       id: int.tryParse(json['id'].toString()) ?? 0,
-      idPengguna: int.tryParse(json['id_pengguna'].toString()) ?? 0,
-      idStatus: int.tryParse(json['id_status'].toString()) ?? 0,
-      label: json['label'] ?? '',
-      username: json['username'] ?? '',
+      unit: int.tryParse(json['id_unit_barang'].toString()) ?? 0,
+      pengguna: int.tryParse(json['id_pengguna'].toString()) ?? 0,
+      status: int.tryParse(json['id_status'].toString()) ?? 0,
       instansi: json['instansi'] ?? '',
       hal: json['hal'] ?? '',
-      namaBarang: json['nama_barang'] ?? '',
       jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,
-      tglKembali: json['tgl_kembali'] ?? '',
+      pinjam: json['tanggal_pinjam'] ?? '',
+      kembali: json['tanggal_kembali'] ?? '',
     );
   }
 }

@@ -119,7 +119,8 @@ class CtrlEditInven extends GetxController {
 
     if (note.text != data.note) {
       op.add(
-          {'op': 'replace', 'path': '/catatan_perawatan', 'value': note.text});
+        {'op': 'replace', 'path': '/catatan_perawatan', 'value': note.text},
+      );
     }
 
     if (merk.text != data.merk) {
@@ -132,7 +133,8 @@ class CtrlEditInven extends GetxController {
 
     if (sumber.text != data.sumber) {
       op.add(
-          {'op': 'replace', 'path': '/sumber_pengadaan', 'value': sumber.text});
+        {'op': 'replace', 'path': '/sumber_pengadaan', 'value': sumber.text},
+      );
     }
 
     String tglUI = pengadaan.value.toIso8601String().substring(0, 10);
