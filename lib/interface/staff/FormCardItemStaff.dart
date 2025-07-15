@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/interface/staff/FormCardHeaderStaff.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 
@@ -16,11 +15,11 @@ class FormCardItemStaff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
-    final idItem = item.id.toString();
+    // final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
+    // final idItem = item.id.toString();
 
     return Obx(() {
-      final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
+      // final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
       // final pengajuan = int.tryParse(item.id.toString()) ?? 0;
 
       return Container(
@@ -42,11 +41,11 @@ class FormCardItemStaff extends StatelessWidget {
               ),
               child: FormCardHeaderStaff(
                 item: item,
-                isExpanded: isExpanded,
-                onBtnExpand: () {
-                  // ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
-                  ctrlpersetujuan.expandedId.value = idItem;
-                },
+                // isExpanded: isExpanded,
+                // onBtnExpand: () {
+                //   // ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                //   ctrlpersetujuan.expandedId.value = idItem;
+                // },
               ),
             ),
             // if (isExpanded) ...[

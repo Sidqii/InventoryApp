@@ -11,13 +11,13 @@ class PanelInstansi extends StatelessWidget {
     final ctrl = Get.find<CtrlPengajuan>();
 
     return CustomTxtField(
-      controller: ctrl.instansictrl,
+      controller: ctrl.ctrlinstansi,
       label: 'Instansi',
       validator: null,
       keyboardtype: TextInputType.text,
-      focusnode: ctrl.instansifocus,
+      focusnode: ctrl.fcsinstansi,
       onfieldsubmitted: (_) {
-        FocusScope.of(context).requestFocus(ctrl.halfocus);
+        FocusScope.of(context).requestFocus(ctrl.fcshal);
       },
     );
   }

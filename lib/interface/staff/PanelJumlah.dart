@@ -15,7 +15,7 @@ class PanelJumlah extends StatelessWidget {
       final selectedItem = ctrl.selectedItem.value;
 
       return CustomTxtField(
-        controller: ctrl.jumlahctrl,
+        controller: ctrl.ctrljumlah,
         label: selectedItem != null && selectedItem > 0
             ? 'Jumlah maks $stokItem'
             : 'Jumlah',
@@ -30,10 +30,8 @@ class PanelJumlah extends StatelessWidget {
           return null;
         },
         keyboardtype: const TextInputType.numberWithOptions(decimal: false),
-        focusnode: ctrl.jumlahfocus,
-        onfieldsubmitted: (_) {
-          FocusScope.of(context).requestFocus(ctrl.tglfocus);
-        },
+        focusnode: ctrl.fcsjumlah,
+        onfieldsubmitted: (_) {},
       );
     });
   }

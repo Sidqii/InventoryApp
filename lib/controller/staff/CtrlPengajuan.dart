@@ -17,17 +17,14 @@ class CtrlPengajuan extends GetxController {
   var selectedName = RxnString();
   var stokItem = 0.obs;
 
-  final jumlahctrl = TextEditingController();
-  final tglcontrol = TextEditingController();
-  final instansictrl = TextEditingController();
-  final halcontrol = TextEditingController();
+  final ctrljumlah = TextEditingController();
+  final ctrlinstansi = TextEditingController();
+  final ctrlhal = TextEditingController();
+  final ctrlkembali = DateTime.now().obs;
 
-  final pengembalian = DateTime.now().obs;
-
-  final jumlahfocus = FocusNode();
-  final tglfocus = FocusNode();
-  final instansifocus = FocusNode();
-  final halfocus = FocusNode();
+  final fcsjumlah = FocusNode();
+  final fcsinstansi = FocusNode();
+  final fcshal = FocusNode();
 
   Key dropdownkey = UniqueKey();
 
@@ -37,26 +34,14 @@ class CtrlPengajuan extends GetxController {
   }
 
   void resetForm() {
-    jumlahctrl.clear();
-    tglcontrol.clear();
-    instansictrl.clear();
-    halcontrol.clear();
-
+    ctrljumlah.clear();
+    ctrlinstansi.clear();
+    ctrlhal.clear();
+    ctrlkembali.value = DateTime.now();
     selectedItem.value = null;
     selectedName.value = null;
     stokItem.value = 0;
     dropdownkey = UniqueKey();
-  }
-
-  List<AppBarangModel> parsedList(dynamic dblist) {
-    List<AppBarangModel> parsedList = [];
-    if (dblist is List) {
-      for (var item in dblist) {
-        AppBarangModel models = AppBarangModel.fromJson(item);
-        parsedList.add(models);
-      }
-    }
-    return parsedList;
   }
 
   @override
@@ -67,21 +52,18 @@ class CtrlPengajuan extends GetxController {
 
   @override
   void onClose() {
-    jumlahctrl.dispose();
-    tglcontrol.dispose();
-    halcontrol.dispose();
-    instansictrl.dispose();
-
-    instansifocus.dispose();
-    jumlahfocus.dispose();
-    tglfocus.dispose();
-    halfocus.dispose();
+    ctrljumlah.dispose();
+    ctrlhal.dispose();
+    ctrlinstansi.dispose();
+    fcsinstansi.dispose();
+    fcsjumlah.dispose();
+    fcshal.dispose();
     super.onClose();
   }
 
   Future<void> loaditem({bool isloaded = false}) async {
     final data = await dropitem.getItems();
-    daftaritems.assignAll(parsedList(data));
+    daftaritems.assignAll(data);
   }
 
   Future<void> ajukan() async {
@@ -90,13 +72,15 @@ class CtrlPengajuan extends GetxController {
       isLoading.value = true;
 
       final success = await kirimPengajuan(
-        user.id,
         selectedItem.value ?? 0,
-        int.tryParse(jumlahctrl.text) ?? 0,
-        tglcontrol.text,
-        instansictrl.text,
-        halcontrol.text,
+        user.id,
+        ctrlinstansi.text,
+        ctrlhal.text,
+        int.tryParse(ctrljumlah.text) ?? 0,
+        ctrlkembali.toString(),
       );
+
+      print(success);
 
       if (success) {
         resetForm();
@@ -112,21 +96,21 @@ class CtrlPengajuan extends GetxController {
   }
 
   Future<bool> kirimPengajuan(
-    int idPengguna,
-    int idBarang,
-    int jumlah,
-    String tglKembali,
+    int unit,
+    int pengguna,
     String instansi,
     String hal,
+    int jumlah,
+    String kembali,
   ) async {
     try {
       int statusCode = await services.postPengajuan(
-        idPengguna,
-        idBarang,
-        jumlah,
-        tglKembali,
+        unit,
+        pengguna,
         instansi,
         hal,
+        jumlah,
+        kembali,
       );
 
       if (statusCode == 200) {

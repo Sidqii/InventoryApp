@@ -11,11 +11,11 @@ class PanelKeperluan extends StatelessWidget {
     final ctrl = Get.find<CtrlPengajuan>();
 
     return CustomTxtField(
-      controller: ctrl.halcontrol,
+      controller: ctrl.ctrlhal,
       label: 'Hal',
       validator: null,
       keyboardtype: TextInputType.text,
-      focusnode: ctrl.halfocus,
+      focusnode: ctrl.fcshal,
       onfieldsubmitted: (_) {
       },
     );

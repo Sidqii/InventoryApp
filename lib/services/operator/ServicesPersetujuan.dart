@@ -2,24 +2,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ServicesPersetujuan {
-  final String url = 'http://localhost/AssetsHubBE/src/endpoint/persetujuan.php';
+  final String url = 'http://127.0.0.1:8000/api';
 
   Future<int> patchPersetujuan(
     int idPengajuan,
     int idStatus,
   ) async {
-    final response = await http.patch(Uri.parse(url),
-        body: jsonEncode({
-          'id_pengajuan': idPengajuan,
-          'patch':[
-            {
-              'op':'replace',
-              'path':'/id_status',
-              'value': idStatus,
-            }
-          ]
-        }),
-        headers: {'Content-type': 'application/json'});
+    final response = await http.patch(
+      Uri.parse(url),
+      headers: {'Content-type': 'application/json'},
+      body: jsonEncode({
+        'id_pengajuan': idPengajuan,
+        'patch': [
+          {
+            'op': 'replace',
+            'path': '/id_status',
+            'value': idStatus,
+          }
+        ]
+      }),
+    );
     return response.statusCode;
   }
 
@@ -28,7 +30,7 @@ class ServicesPersetujuan {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        return data.cast<Map<String,dynamic>>();
+        return data.cast<Map<String, dynamic>>();
       } else {
         return [];
       }

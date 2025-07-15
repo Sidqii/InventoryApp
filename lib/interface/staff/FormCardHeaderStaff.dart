@@ -3,13 +3,13 @@ import 'package:pusdatin_end/model/app_riwayat.dart';
 
 class FormCardHeaderStaff extends StatelessWidget {
   final AppRiwayatModel item;
-  final bool isExpanded;
-  final VoidCallback onBtnExpand;
+  // final bool isExpanded;
+  // final VoidCallback onBtnExpand;
 
   const FormCardHeaderStaff({
     required this.item,
-    required this.isExpanded,
-    required this.onBtnExpand,
+    // required this.isExpanded,
+    // required this.onBtnExpand,
     super.key,
   });
 
@@ -128,12 +128,12 @@ class FormCardHeaderStaff extends StatelessWidget {
             ],
           ),
         ),
-        IconButton(
-          icon: Icon(
-            isExpanded ? Icons.expand_less : Icons.expand_more,
-          ),
-          onPressed: onBtnExpand,
-        ),
+        // IconButton(
+        //   icon: Icon(
+        //     isExpanded ? Icons.expand_less : Icons.expand_more,
+        //   ),
+        //   onPressed: onBtnExpand,
+        // ),
       ],
     );
   }

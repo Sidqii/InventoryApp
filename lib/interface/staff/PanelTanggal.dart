@@ -20,7 +20,7 @@ class PanelTanggal extends StatelessWidget {
           onTap: () async {
             DateTime? pick = await showDatePicker(
               context: context,
-              initialDate: ctrl.pengembalian.value,
+              initialDate: ctrl.ctrlkembali.value,
               firstDate: DateTime(2000),
               lastDate: DateTime(2100),
               builder: (context, child) {
@@ -37,7 +37,7 @@ class PanelTanggal extends StatelessWidget {
               },
             );
             if (pick != null) {
-              ctrl.pengembalian.value = pick;
+              ctrl.ctrlkembali.value = pick;
             }
           },
           child: Row(
@@ -69,7 +69,7 @@ class PanelTanggal extends StatelessWidget {
                   ),
                   child: Text(
                     Formatter.dateID(
-                      ctrl.pengembalian.value.toIso8601String(),
+                      ctrl.ctrlkembali.value.toIso8601String(),
                     ),
                     style: const TextStyle(fontSize: 14, color: Colors.white),
                   ),
