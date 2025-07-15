@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/config/InitBinding.dart';
 import 'package:pusdatin_end/controller/common/CtrlSignIn.dart';
-import 'package:pusdatin_end/model/app_pengguna.dart';
+import 'package:pusdatin_end/model/app_user.dart';
 import 'package:pusdatin_end/interface/common/HomeSignIn.dart';
 
 class CtrlUser extends GetxController {
-  var user = Rxn<PenggunaModel>();
+  var user = Rxn<AppUserModel>();
 
-  void setUser(PenggunaModel userData) {
+  void setUser(AppUserModel userData) {
     user.value = userData;
   }
 

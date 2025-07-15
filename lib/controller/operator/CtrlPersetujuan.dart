@@ -37,16 +37,16 @@ class CtrlPersetujuan extends GetxController {
     isLoading.value = false;
   }
 
-  final riwayat = <RiwayatModel>[].obs;
+  final riwayat = <AppRiwayatModel>[].obs;
 
   final isLoading = false.obs;
   final expandedId = ''.obs;
 
-  List<RiwayatModel> parseList(dynamic dbList) {
-    List<RiwayatModel> parsedList = [];
+  List<AppRiwayatModel> parseList(dynamic dbList) {
+    List<AppRiwayatModel> parsedList = [];
     if (dbList is List) {
       for (var item in dbList) {
-        RiwayatModel models = RiwayatModel.fromJson(item);
+        AppRiwayatModel models = AppRiwayatModel.fromJson(item);
         parsedList.add(models);
       }
     }

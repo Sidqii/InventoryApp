@@ -55,7 +55,7 @@ class PanelTanggal extends StatelessWidget {
                 ':',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 8),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(

@@ -1,4 +1,4 @@
-class RiwayatModel {
+class AppRiwayatModel {
   final int id;
   final int isUser;
   final int idStat;
@@ -10,7 +10,7 @@ class RiwayatModel {
   final String tanggal;
   final String hasil;
 
-  RiwayatModel({
+  AppRiwayatModel({
     required this.id,
     required this.isUser,
     required this.idStat,
@@ -23,8 +23,8 @@ class RiwayatModel {
     required this.hasil,
   });
 
-  factory RiwayatModel.fromJson(Map<String, dynamic> json) {
-    return RiwayatModel(
+  factory AppRiwayatModel.fromJson(Map<String, dynamic> json) {
+    return AppRiwayatModel(
       isUser: int.tryParse(json['id_pengguna'].toString()) ?? 0,
       idStat: int.tryParse(json['id_status'].toString()) ?? 0,
       jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,

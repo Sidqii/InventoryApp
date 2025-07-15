@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pusdatin_end/model/app_user.dart';
 
 class ServicesSignin {
   final String url = 'http://127.0.0.1:8000/api';
@@ -7,7 +8,7 @@ class ServicesSignin {
   Future<Map<String, dynamic>> loginUser(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('${url}/login'),
+        Uri.parse('$url/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,
@@ -27,19 +28,21 @@ class ServicesSignin {
     }
   }
 
-  Future<Map<String, dynamic>> getUser(int id) async {
+  Future<AppUserModel?> getUser(int id) async {
     try {
       final response = await http.get(
-        Uri.parse('${url}/login/${id}'),
+        Uri.parse('$url/login/$id'),
         headers: {'Content-Type': 'application/json'},
       );
-      final result = jsonDecode(response.body);
-      return result;
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return AppUserModel.fromJson(data['data']);
+      } else {
+        return null;
+      }
     } catch (e) {
-      return {
-        'status': 'Error',
-        'message': 'Gagal mengambil data',
-      };
+      return null;
     }
   }
 }

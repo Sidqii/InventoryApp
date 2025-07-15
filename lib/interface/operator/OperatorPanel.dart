@@ -55,9 +55,12 @@ class OperatorPanel extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return SingleChildScrollView(
-                  child: FormCardPanelOperator(
-                    selectedFilter: selectedFilter.value,
+                return ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    child: FormCardPanelOperator(
+                      selectedFilter: selectedFilter.value,
+                    ),
                   ),
                 );
               }

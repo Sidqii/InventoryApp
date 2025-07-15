@@ -1,10 +1,10 @@
-class PenggunaModel {
+class AppUserModel {
   final int id;
   final String email;
   final int? role;
   final String? nama;
 
-  PenggunaModel({
+  AppUserModel({
     required this.id,
     required this.email,
     this.role,
@@ -20,8 +20,8 @@ class PenggunaModel {
     };
   }
 
-  factory PenggunaModel.fromJson(Map<String, dynamic> json) {
-    return PenggunaModel(
+  factory AppUserModel.fromJson(Map<String, dynamic> json) {
+    return AppUserModel(
       id: json['id'],
       email: json['email'],
       role: json['role_id'],

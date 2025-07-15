@@ -40,21 +40,18 @@ class CtrlInventaris extends GetxController {
 
   Future<void> refreshed() async {
     isLoading.value = true;
-    await Future.delayed(Duration(seconds: 1));
-    await fetchData(isrefreshed: true);
-    await Future.delayed(Duration(seconds: 2));
-    isLoading.value = false;
-  }
 
-  List<AppBarangModel> parseList(dynamic dbList) {
-    List<AppBarangModel> parsedList = [];
-    if (dbList is List) {
-      for (var item in dbList) {
-        AppBarangModel models = AppBarangModel.fromJson(item);
-        parsedList.add(models);
-      }
-    }
-    return parsedList;
+    await Future.delayed(
+      Duration(seconds: 1),
+    );
+
+    await fetchData(isrefreshed: true);
+
+    await Future.delayed(
+      Duration(seconds: 2),
+    );
+
+    isLoading.value = false;
   }
 
   Future<void> fetchData({bool isrefreshed = false}) async {
@@ -63,21 +60,19 @@ class CtrlInventaris extends GetxController {
     try {
       isLoading.value = true;
 
-      var data = await services.getItems();
+      List<AppBarangModel> parsed = await services.getItems();
 
-      if (data.isNotEmpty) {
-        List<AppBarangModel> parsed = parseList(data);
+      final user = Get.find<CtrlUser>().user.value!;
+      final role = user.role ?? 0;
 
-        final i = Get.find<CtrlUser>().user.value!;
-        final int role = i.role ?? 0;
-
-        if (role == 2) {
-          parsed = parsed.where((item) => item.total > 0).toList();
-        }
-
-        items.assignAll(parsed);
-        filterItem.assignAll(parsed);
+      if (role == 2) {
+        parsed = parsed.where((i) {
+          return i.total > 0;
+        }).toList();
       }
+
+      items.assignAll(parsed);
+      filterItem.assignAll(parsed);
     } catch (e) {
       CustomDialog.show(
         isSuccess: false,

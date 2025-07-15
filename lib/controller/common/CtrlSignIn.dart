@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/controller/common/CtrlNavigasi.dart';
-import 'package:pusdatin_end/model/app_pengguna.dart';
 import 'package:pusdatin_end/interface/common/NavPage.dart';
 import 'package:pusdatin_end/services/common/ServicesSignIn.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
@@ -49,10 +48,9 @@ class CtrlSignin extends GetxController {
 
       if (statusCode == 200) {
         final userId = response['user_id'];
-        final userResponse = await services.getUser(userId);
+        final user = await services.getUser(userId);
 
-        if (userResponse['status'] == 200) {
-          final user = PenggunaModel.fromJson(userResponse['data']);
+        if (user != null) {
           final ctrlNav = Get.find<CtrlNavigasi>();
 
           Get.find<CtrlUser>().setUser(user);

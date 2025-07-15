@@ -8,7 +8,7 @@ import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/interface/operator/FormCardHeaderOperator.dart';
 
 class FormCardItemOperator extends StatelessWidget {
-  final RiwayatModel item;
+  final AppRiwayatModel item;
   final String roleuser;
 
   const FormCardItemOperator({

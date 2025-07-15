@@ -106,7 +106,7 @@ class EditPanel extends StatelessWidget {
                         return;
                       }
                       if (!ctrl.checkChanges()) {
-                        Get.snackbar('Gagal', 'Tidak ada perubahan');
+                        Get.back();
                         return;
                       }
                       showDialog(
@@ -116,10 +116,15 @@ class EditPanel extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             child: IntrinsicWidth(
                               child: Container(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.only(
+                                  top: 18,
+                                  left: 18,
+                                  right: 18,
+                                  bottom: 10,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Color(0xffFBFBFB),
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -130,7 +135,7 @@ class EditPanel extends StatelessWidget {
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 14,
+                                        fontSize: 16,
                                       ),
                                     ),
                                     const SizedBox(height: 10),
