@@ -3,13 +3,9 @@ import 'package:pusdatin_end/model/app_riwayat.dart';
 
 class FormCardHeaderStaff extends StatelessWidget {
   final AppRiwayatModel item;
-  // final bool isExpanded;
-  // final VoidCallback onBtnExpand;
 
   const FormCardHeaderStaff({
     required this.item,
-    // required this.isExpanded,
-    // required this.onBtnExpand,
     super.key,
   });
 
@@ -39,7 +35,9 @@ class FormCardHeaderStaff extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    item.nmBarang,
+                    item.detail.map((e) {
+                      return e.unitmodel.barang.toString();
+                    }).join(', '),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -49,7 +47,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color: getStatClr(item.idStat),
+                      color: getStatClr(item.status),
                       shape: BoxShape.circle,
                     ),
                   )
@@ -81,7 +79,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.username,
+                    item.user.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -98,7 +96,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.instansi,
+                    item.instansi ?? '',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -117,7 +115,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.tanggal,
+                    item.kembali ?? '',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -128,12 +126,6 @@ class FormCardHeaderStaff extends StatelessWidget {
             ],
           ),
         ),
-        // IconButton(
-        //   icon: Icon(
-        //     isExpanded ? Icons.expand_less : Icons.expand_more,
-        //   ),
-        //   onPressed: onBtnExpand,
-        // ),
       ],
     );
   }

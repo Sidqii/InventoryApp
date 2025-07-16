@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/interface/operator/FormCardItemOperator.dart';
 import 'package:pusdatin_end/utils/EmptyPageOperator.dart';
 
@@ -16,7 +16,7 @@ class FormCardPanelOperator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userctrl = Get.find<CtrlUser>().user.value!;
-    final setujuctrl = Get.find<CtrlPersetujuan>();
+    final setujuctrl = Get.find<CtrlRiwayat>();
 
     final int roleuser = userctrl.role ?? 0;
     final int iduser = userctrl.id;
@@ -29,11 +29,11 @@ class FormCardPanelOperator extends StatelessWidget {
       bool filterid = true;
 
       if (roleuser == 2) {
-        roleid = int.tryParse(item.isUser.toString()) == iduser;
+        roleid = int.tryParse(item.user.toString()) == iduser;
       }
 
       if (selectedFilter != 0) {
-        filterid = int.tryParse(item.idStat.toString()) == selectedFilter;
+        filterid = int.tryParse(item.status.toString()) == selectedFilter;
       }
 
       if (roleid && filterid) {

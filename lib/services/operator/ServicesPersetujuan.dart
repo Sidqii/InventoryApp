@@ -9,7 +9,7 @@ class ServicesPersetujuan {
     int idStatus,
   ) async {
     final response = await http.patch(
-      Uri.parse(url),
+      Uri.parse('$url/persetujuan'),
       headers: {'Content-type': 'application/json'},
       body: jsonEncode({
         'id_pengajuan': idPengajuan,

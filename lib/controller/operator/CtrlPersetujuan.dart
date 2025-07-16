@@ -2,27 +2,32 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/services/operator/ServicesPersetujuan.dart';
-import 'package:pusdatin_end/services/operator/ServicesRiwayat.dart';
+import 'package:pusdatin_end/services/common/ServicesRiwayat.dart';
 
 class CtrlPersetujuan extends GetxController {
+  final isLoading = false.obs;
+
   final servpersetujuan = ServicesPersetujuan();
   final servriwayat = ServicesRiwayat();
 
+  final riwayat = <AppRiwayatModel>[].obs;
   final ctrluser = Get.find<CtrlUser>().user.value!;
 
-  bool _hasinit = false;
+  final expandedId = ''.obs;
+
+  // bool _hasinit = false;
 
   @override
   void onInit() {
     super.onInit();
-    Future.microtask(() async {
-      final roleuser = ctrluser.role ?? 0;
-      final iduser = ctrluser.id;
-      if (!_hasinit) {
-        getPengajuanByRole(iduser, roleuser);
-        _hasinit = true;
-      }
-    });
+    // Future.microtask(() async {
+    //   final roleuser = ctrluser.role ?? 0;
+    //   final iduser = ctrluser.id;
+    //   if (!_hasinit) {
+    //     getPengajuanByRole(iduser, roleuser);
+    //     _hasinit = true;
+    //   }
+    // });
   }
 
   Future<void> refresehed() async {
@@ -36,11 +41,6 @@ class CtrlPersetujuan extends GetxController {
 
     isLoading.value = false;
   }
-
-  final riwayat = <AppRiwayatModel>[].obs;
-
-  final isLoading = false.obs;
-  final expandedId = ''.obs;
 
   List<AppRiwayatModel> parseList(dynamic dbList) {
     List<AppRiwayatModel> parsedList = [];
@@ -101,13 +101,13 @@ class CtrlPersetujuan extends GetxController {
     isLoading.value = true;
     try {
       if (role == 2) {
-        final data = await servriwayat.getIdRiwayat(userid);
-        // print('Data yang didapat: $data');
+        final data = await servriwayat.GetID(userid);
+        print('Data yang didapat: $data');
         riwayat.assignAll(parseList(data));
       } else {
-        final data = await servriwayat.getAllRiwayat();
-        // print('Data yang didapat: $data');
-        riwayat.assignAll(parseList(data));
+        final data = await servriwayat.GetAll();
+        print('Data yang didapat: $data');
+        riwayat.assignAll(data);
       }
     } catch (e) {
       riwayat.clear();

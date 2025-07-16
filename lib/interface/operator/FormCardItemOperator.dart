@@ -55,7 +55,7 @@ class FormCardItemOperator extends StatelessWidget {
               const SizedBox(height: 12),
               FormCardBodyOperator(item: item),
               const SizedBox(height: 10),
-              if (int.tryParse(roleuser) == 1 && item.idStat == 1)
+              if (int.tryParse(roleuser) == 1 && item.pengajuan.id == 1)
                 FormCardBttnOperator(
                   idPengajuan: pengajuan,
                 ),

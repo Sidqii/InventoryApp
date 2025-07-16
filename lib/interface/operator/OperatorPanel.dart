@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/interface/operator/FormCardPanelOperator.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
@@ -9,7 +9,7 @@ class OperatorPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.find<CtrlPersetujuan>();
+    final ctrl = Get.find<CtrlRiwayat>();
 
     final RxInt selectedFilter = 1.obs;
     final Map<int, String> filterOptions = {
@@ -38,7 +38,7 @@ class OperatorPanel extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    ctrl.refresehed();
+                    // ctrl.refresehed();
                   },
                   icon: Icon(
                     Icons.refresh,
@@ -50,7 +50,7 @@ class OperatorPanel extends StatelessWidget {
           const SizedBox(height: 15),
           Expanded(
             child: Obx(() {
-              if (ctrl.isLoading.value == true) {
+              if (ctrl.isloading.value == true) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );

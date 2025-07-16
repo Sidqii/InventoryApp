@@ -1,40 +1,45 @@
+import 'package:pusdatin_end/model/app_status_pengajuan.dart';
+import 'package:pusdatin_end/model/app_unit_detail.dart';
+
 class AppRiwayatModel {
   final int id;
-  final int isUser;
-  final int idStat;
+  final int user;
+  final int status;
+  final String? instansi;
+  final String? hal;
   final int jumlah;
-  final String hal;
-  final String username;
-  final String nmBarang;
-  final String instansi;
-  final String tanggal;
-  final String hasil;
+  final String? pinjam;
+  final String? kembali;
+  final AppStatusPengajuanModel pengajuan;
+  final List<AppUnitDetailModel> detail;
 
   AppRiwayatModel({
     required this.id,
-    required this.isUser,
-    required this.idStat,
+    required this.user,
+    required this.status,
+    this.instansi,
+    this.hal,
     required this.jumlah,
-    required this.hal,
-    required this.username,
-    required this.nmBarang,
-    required this.instansi,
-    required this.tanggal,
-    required this.hasil,
+    this.pinjam,
+    this.kembali,
+    required this.pengajuan,
+    required this.detail,
   });
 
   factory AppRiwayatModel.fromJson(Map<String, dynamic> json) {
     return AppRiwayatModel(
-      isUser: int.tryParse(json['id_pengguna'].toString()) ?? 0,
-      idStat: int.tryParse(json['id_status'].toString()) ?? 0,
-      jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,
       id: int.tryParse(json['id'].toString()) ?? 0,
-      nmBarang: json['nama_barang'] ?? '',
-      tanggal: json['tgl_kembali'] ?? '',
-      username: json['username'] ?? '',
+      user: int.tryParse(json['id_pengguna'].toString()) ?? 0,
+      status: int.tryParse(json['id_status'].toString()) ?? 0,
       instansi: json['instansi'] ?? '',
-      hasil: json['hasil'] ?? '',
       hal: json['hal'] ?? '',
+      jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,
+      pinjam: json['tanggal_pinjam'] ?? '',
+      kembali: json['tanggal_kembali'] ?? '',
+      pengajuan: AppStatusPengajuanModel.fromJson(json['status_pengajuan']),
+      detail: (json['unit_detail'] as List).map((e) {
+        return AppUnitDetailModel.fromJson(e);
+      }).toList(),
     );
   }
 }

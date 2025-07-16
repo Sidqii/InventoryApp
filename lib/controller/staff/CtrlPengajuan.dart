@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/model/app_pengajuan.dart';
 import 'package:pusdatin_end/services/common/ServicesInven.dart';
 import 'package:pusdatin_end/services/staff/ServicesPengajuan.dart';
 
@@ -13,6 +14,7 @@ class CtrlPengajuan extends GetxController {
 
   var isLoading = false.obs;
   var daftaritems = <AppBarangModel>[].obs;
+  var listajukan = <AppPengajuanModel>[].obs;
   var selectedItem = RxnInt();
   var selectedName = RxnString();
   var stokItem = 0.obs;
@@ -46,14 +48,14 @@ class CtrlPengajuan extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     loaditem();
+    super.onInit();
   }
 
   @override
   void onClose() {
-    ctrljumlah.dispose();
     ctrlhal.dispose();
+    ctrljumlah.dispose();
     ctrlinstansi.dispose();
     fcsinstansi.dispose();
     fcsjumlah.dispose();
@@ -80,8 +82,6 @@ class CtrlPengajuan extends GetxController {
         ctrlkembali.toString(),
       );
 
-      print(success);
-
       if (success) {
         resetForm();
         loaditem();
@@ -96,7 +96,7 @@ class CtrlPengajuan extends GetxController {
   }
 
   Future<bool> kirimPengajuan(
-    int unit,
+    int barang,
     int pengguna,
     String instansi,
     String hal,
@@ -105,7 +105,7 @@ class CtrlPengajuan extends GetxController {
   ) async {
     try {
       int statusCode = await services.postPengajuan(
-        unit,
+        barang,
         pengguna,
         instansi,
         hal,

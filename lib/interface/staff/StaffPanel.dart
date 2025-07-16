@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/interface/staff/FormCardPanelStaff.dart';
-import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/custompanel.dart';
 
@@ -10,8 +10,7 @@ class StaffPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.find<CtrlPersetujuan>();
-
+    final ctrl = Get.find<CtrlRiwayat>();
     final RxInt selectedFilter = 1.obs;
     final Map<int, String> filterOptions = {
       0: '|||',
@@ -39,7 +38,7 @@ class StaffPanel extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () async {
-                      await ctrl.refresehed();
+                      await ctrl.refresh();
                     },
                     icon: Icon(Icons.refresh),
                   ),
@@ -57,7 +56,7 @@ class StaffPanel extends StatelessWidget {
               }),
               const SizedBox(height: 15),
               Obx(() {
-                if (ctrl.isLoading.value == true) {
+                if (ctrl.isloading.value == true) {
                   return Container(
                     height: 143,
                     margin: const EdgeInsets.only(bottom: 12),
@@ -78,7 +77,9 @@ class StaffPanel extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
-                            child: CircularProgressIndicator(color: Colors.white,),
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

@@ -31,7 +31,7 @@ class FormCardBodyOperator extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                item.hal,
+                item.hal ?? '',
                 style: const TextStyle(
                   fontSize: 12,
                 ),

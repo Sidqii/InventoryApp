@@ -15,8 +15,8 @@ class FormCardHeaderOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getStatClr(int idstat) {
-      switch (idstat) {
+    Color getStatClr(int id) {
+      switch (id) {
         case 1:
           return Colors.yellow.shade400;
         case 2:
@@ -39,7 +39,9 @@ class FormCardHeaderOperator extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    item.nmBarang,
+                    item.detail.map((e) {
+                      return e.unitmodel.barang.toString();
+                    }).join(', '),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -49,7 +51,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color: getStatClr(item.idStat),
+                      color: getStatClr(item.status),
                       shape: BoxShape.circle,
                     ),
                   )
@@ -81,7 +83,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.username,
+                    item.user.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -98,7 +100,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.instansi,
+                    item.instansi ?? '',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -117,7 +119,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.tanggal,
+                    item.kembali ?? '',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

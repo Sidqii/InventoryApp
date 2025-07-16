@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlInventaris.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/controller/common/CtrlSignIn.dart';
 import 'package:pusdatin_end/controller/common/CtrlSignUp.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
@@ -13,6 +14,7 @@ class InitBinding extends Bindings {
   void dependencies() {
     Get.put(CtrlUser());
     Get.lazyPut(()=> CtrlEditInven());
+    Get.lazyPut(()=> CtrlRiwayat());
     Get.lazyPut(() => CtrlSignin());
     Get.lazyPut(() => CtrlNavigasi());
     Get.lazyPut(() => CtrlSignup());
