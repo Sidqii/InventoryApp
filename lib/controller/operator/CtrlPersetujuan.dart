@@ -17,9 +17,9 @@ class CtrlPersetujuan extends GetxController {
 
   // bool _hasinit = false;
 
-  @override
-  void onInit() {
-    super.onInit();
+  // @override
+  // void onInit() {
+    // super.onInit();
     // Future.microtask(() async {
     //   final roleuser = ctrluser.role ?? 0;
     //   final iduser = ctrluser.id;
@@ -28,7 +28,7 @@ class CtrlPersetujuan extends GetxController {
     //     _hasinit = true;
     //   }
     // });
-  }
+  // }
 
   Future<void> refresehed() async {
     isLoading.value = true;

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/interface/operator/FormCardBodyOperator.dart';
-import 'package:pusdatin_end/interface/operator/FormCardBttnOperator.dart';
-
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/interface/operator/FormCardHeaderOperator.dart';
 
@@ -24,7 +22,6 @@ class FormCardItemOperator extends StatelessWidget {
 
     return Obx(() {
       final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
-      final pengajuan = int.tryParse(item.id.toString()) ?? 0;
 
       return Container(
         margin: const EdgeInsets.only(bottom: 12),
@@ -54,11 +51,6 @@ class FormCardItemOperator extends StatelessWidget {
             if (isExpanded) ...[
               const SizedBox(height: 12),
               FormCardBodyOperator(item: item),
-              const SizedBox(height: 10),
-              if (int.tryParse(roleuser) == 1 && item.pengajuan.id == 1)
-                FormCardBttnOperator(
-                  idPengajuan: pengajuan,
-                ),
             ]
           ],
         ),

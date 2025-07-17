@@ -15,116 +15,139 @@ class FormCardHeaderOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getStatClr(int id) {
-      switch (id) {
-        case 1:
-          return Colors.yellow.shade400;
-        case 2:
-          return Colors.green.shade400;
-        case 3:
-          return Colors.red.shade400;
-          break;
-        default:
-          return Colors.grey.shade400;
-      }
-    }
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    item.detail.map((e) {
-                      return e.unitmodel.barang.toString();
-                    }).join(', '),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          '${item.jumlah}',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text(' Unit '),
+                        Text(
+                          '${item.detail.first.unitmodel.produk?.barang ?? '-'}',
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      color: getStatClr(item.status),
-                      shape: BoxShape.circle,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 5),
+                    ],
                   )
                 ],
               ),
-              const SizedBox(height: 2),
+              const Divider(thickness: 1),
               Row(
                 children: [
-                  const Text(
-                    'Jumlah: ',
-                    style: TextStyle(
-                      fontSize: 12,
+                  const SizedBox(
+                    width: 75,
+                    child: Text(
+                      'Peminjam: ',
+                      style: TextStyle(fontSize: 13),
                     ),
                   ),
                   Text(
-                    item.jumlah.toString(),
+                    item.pemohon.nama ?? '',
                     style: const TextStyle(
-                      fontSize: 12,
                       fontWeight: FontWeight.bold,
+                      fontSize: 13,
                     ),
                   ),
-                  const Text(
-                    ' | ',
-                  ),
-                  const Text(
-                    'Diajukan oleh: ',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                  Text(
-                    item.user.toString(),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text(
-                    'Instansi: ',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
+                  const Text(' | '),
                   Text(
                     item.instansi ?? '',
                     style: const TextStyle(
-                      fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff295BA7),
+                      fontSize: 13,
+                      color: Color.fromARGB(255, 5, 73, 189),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 4),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Akan dikembalikan pada: ',
-                    style: TextStyle(
-                      fontSize: 12,
+                  const SizedBox(
+                    width: 75,
+                    child: Text(
+                      'Keperluan: ',
+                      style: TextStyle(fontSize: 13),
                     ),
                   ),
-                  Text(
-                    item.kembali ?? '',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Text(
+                      item.hal ?? '',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
                     ),
-                  )
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      width: 60,
+                      height: 25,
+                      decoration: BoxDecoration(
+                        color: Colors.black87,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Setuju',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                  const SizedBox(width: 5),
+                  GestureDetector(
+                    child: Container(
+                      width: 50,
+                      height: 25,
+                      decoration: BoxDecoration(
+                        color: Colors.black87,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Tolak',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
                 ],
               )
             ],

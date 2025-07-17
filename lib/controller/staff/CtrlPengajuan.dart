@@ -1,14 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/model/app_pengajuan.dart';
 import 'package:pusdatin_end/services/common/ServicesInven.dart';
 import 'package:pusdatin_end/services/staff/ServicesPengajuan.dart';
 
 class CtrlPengajuan extends GetxController {
-  final dropitem = ServicesInven();
+  final ctrl = Get.find<CtrlRiwayat>();
+  final barang = ServicesInven();
   final services = ServicesPengajuan();
   final formkey = GlobalKey<FormState>();
 
@@ -64,7 +65,7 @@ class CtrlPengajuan extends GetxController {
   }
 
   Future<void> loaditem({bool isloaded = false}) async {
-    final data = await dropitem.getItems();
+    final data = await barang.getItems();
     daftaritems.assignAll(data);
   }
 
@@ -85,10 +86,7 @@ class CtrlPengajuan extends GetxController {
       if (success) {
         resetForm();
         loaditem();
-
-        final user = Get.find<CtrlUser>().user.value!;
-        final ctrl = Get.find<CtrlPersetujuan>();
-        ctrl.getPengajuanByRole(user.id, user.role ?? 0);
+        ctrl.FetchAll();
       }
 
       isLoading.value = false;

@@ -1,5 +1,6 @@
 import 'package:pusdatin_end/model/app_status_pengajuan.dart';
 import 'package:pusdatin_end/model/app_unit_detail.dart';
+import 'package:pusdatin_end/model/app_user.dart';
 
 class AppRiwayatModel {
   final int id;
@@ -12,6 +13,7 @@ class AppRiwayatModel {
   final String? kembali;
   final AppStatusPengajuanModel pengajuan;
   final List<AppUnitDetailModel> detail;
+  final AppUserModel pemohon;
 
   AppRiwayatModel({
     required this.id,
@@ -24,6 +26,7 @@ class AppRiwayatModel {
     this.kembali,
     required this.pengajuan,
     required this.detail,
+    required this.pemohon,
   });
 
   factory AppRiwayatModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +43,7 @@ class AppRiwayatModel {
       detail: (json['unit_detail'] as List).map((e) {
         return AppUnitDetailModel.fromJson(e);
       }).toList(),
+      pemohon: AppUserModel.fromJson(json['user']),
     );
   }
 }

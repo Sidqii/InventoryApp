@@ -35,9 +35,10 @@ class FormCardHeaderStaff extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    item.detail.map((e) {
-                      return e.unitmodel.barang.toString();
-                    }).join(', '),
+                    // item.detail.map((e) {
+                    //   return e.unitmodel.produk?.barang ?? '';
+                    // }).join(', '),
+                    item.detail.first.unitmodel.produk?.barang ?? '',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

@@ -34,6 +34,30 @@ class Formatter {
     }
   }
 
+  static String GetStatus(int id) {
+    switch (id) {
+      case 1:
+        return 'Tersedia';
+      case 2:
+        return 'Dipinjam';
+      case 3:
+        return 'Rusak';
+      default:
+        return 'Tidak Diketahui';
+    }
+  }
+
+  static String GetLokasi(int id) {
+    switch (id) {
+      case 1:
+        return 'Gudang A';
+      case 2:
+        return 'Gudang B';
+      default:
+        return 'Lokasi Tidak Dikenal';
+    }
+  }
+
   static String dateID(String isoDate) {
     try {
       if (isoDate.isEmpty) return '-';
