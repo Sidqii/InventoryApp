@@ -19,7 +19,12 @@ class CtrlRiwayat extends GetxController {
     await Future.delayed(Duration(seconds: 3));
     final user = Get.find<CtrlUser>().user.value!;
 
-    await FetchID(user.id);
+    if (user.role == 1) {
+      await FetchAll();
+    } else {
+      await FetchID(user.id);
+    }
+
     await Future.delayed(Duration(seconds: 3));
 
     isloading.value = false;

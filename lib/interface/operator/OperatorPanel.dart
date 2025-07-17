@@ -21,7 +21,12 @@ class OperatorPanel extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 5),
+      padding: const EdgeInsets.only(
+        top: 10,
+        right: 20,
+        left: 20,
+        bottom: 5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +43,7 @@ class OperatorPanel extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    // ctrl.refresehed();
+                    ctrl.refresh();
                   },
                   icon: Icon(
                     Icons.refresh,
@@ -56,7 +61,9 @@ class OperatorPanel extends StatelessWidget {
                 );
               } else {
                 return ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    scrollbars: false,
+                  ),
                   child: SingleChildScrollView(
                     child: FormCardPanelOperator(
                       selectedFilter: selectedFilter.value,

@@ -1,3 +1,5 @@
+import 'package:pusdatin_end/model/app_barang.dart';
+
 class AppUnitModel {
   final int id;
   final int barang;
@@ -10,6 +12,7 @@ class AppUnitModel {
   final String? terima;
   final String? keterangan;
   final String? foto;
+  final AppBarangModel? produk;
 
   AppUnitModel({
     required this.id,
@@ -23,6 +26,7 @@ class AppUnitModel {
     this.terima,
     this.keterangan,
     this.foto,
+    this.produk,
   });
 
   factory AppUnitModel.fromJson(Map<String, dynamic> json) {
@@ -38,6 +42,9 @@ class AppUnitModel {
       terima: json['tgl_terima'] ?? '',
       keterangan: json['ket_unit'] ?? '',
       foto: json['foto'] ?? '',
+      produk: json['barang'] != null
+          ? AppBarangModel.fromJson(json['barang'])
+          : null,
     );
   }
 }

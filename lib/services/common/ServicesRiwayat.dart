@@ -13,6 +13,8 @@ class ServicesRiwayat {
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
 
+        print(const JsonEncoder.withIndent('  ').convert(data));
+
         return data.map((e) {
           return AppRiwayatModel.fromJson(e);
         }).toList();
@@ -29,6 +31,8 @@ class ServicesRiwayat {
       final response = await http.get(Uri.parse('$url/pengajuan/$id'));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
+
+        print(const JsonEncoder.withIndent('  ').convert(data));
 
         return data.map((e) {
           return AppRiwayatModel.fromJson(e);
