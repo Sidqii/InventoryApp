@@ -1,118 +1,47 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/services/operator/ServicesPersetujuan.dart';
-import 'package:pusdatin_end/services/common/ServicesRiwayat.dart';
 
 class CtrlPersetujuan extends GetxController {
-  final isLoading = false.obs;
-
-  final servpersetujuan = ServicesPersetujuan();
-  final servriwayat = ServicesRiwayat();
-
-  final riwayat = <AppRiwayatModel>[].obs;
-  final ctrluser = Get.find<CtrlUser>().user.value!;
-
+  final isloading = false.obs;
   final expandedId = ''.obs;
+  final services = ServicesPersetujuan();
 
-  // bool _hasinit = false;
-
-  // @override
-  // void onInit() {
-    // super.onInit();
-    // Future.microtask(() async {
-    //   final roleuser = ctrluser.role ?? 0;
-    //   final iduser = ctrluser.id;
-    //   if (!_hasinit) {
-    //     getPengajuanByRole(iduser, roleuser);
-    //     _hasinit = true;
-    //   }
-    // });
-  // }
-
-  Future<void> refresehed() async {
-    isLoading.value = true;
-
-    await Future.delayed(Duration(seconds: 3));
-    final user = Get.find<CtrlUser>().user.value!;
-
-    await getPengajuanByRole(user.id, user.role ?? 0);
-    await Future.delayed(Duration(seconds: 2));
-
-    isLoading.value = false;
-  }
-
-  List<AppRiwayatModel> parseList(dynamic dbList) {
-    List<AppRiwayatModel> parsedList = [];
-    if (dbList is List) {
-      for (var item in dbList) {
-        AppRiwayatModel models = AppRiwayatModel.fromJson(item);
-        parsedList.add(models);
-      }
-    }
-    return parsedList;
-  }
-
-  Future<bool> editPengajuan(int idPengajuan, int idStatus) async {
+  Future<void> approval(
+    int pengajuan,
+    int status,
+    int user,
+    String? note,
+  ) async {
     try {
-      isLoading.value = true;
-      int statusCode = await servpersetujuan.patchPersetujuan(
-        idPengajuan,
-        idStatus,
+      isloading.value = true;
+
+      final approve = services.approve(
+        pengajuan,
+        status,
+        user,
+        note,
       );
-      if (statusCode == 200) {
+
+      if (approve == 200) {
         Get.snackbar(
           'Sukses',
-          'Selesai ditanggapi',
+          'Berhasil ubah persetujuan',
         );
-        expandedId.value = '';
-        refresehed();
-        await Future.delayed(
-          Duration(
-            seconds: 2,
-          ),
-        );
-        return true;
-      } else if (statusCode == 400) {
-        Get.snackbar(
-          'Gagal',
-          'Gagal merubah status',
-        );
-        return false;
       } else {
         Get.snackbar(
           'Gagal',
-          'Terjadi kesalahan',
+          'Gagal ubah persetujuan',
         );
-        return false;
       }
+
+      isloading.value = false;
     } catch (e) {
       Get.snackbar(
         'Error',
-        'Tidak terkoneksi ke server',
+        'Terjadi kesalahan',
       );
-      return false;
     } finally {
-      isLoading.value = false;
-    }
-  }
-
-  Future<void> getPengajuanByRole(int userid, int role) async {
-    isLoading.value = true;
-    try {
-      if (role == 2) {
-        final data = await servriwayat.GetID(userid);
-        print('Data yang didapat: $data');
-        riwayat.assignAll(parseList(data));
-      } else {
-        final data = await servriwayat.GetAll();
-        print('Data yang didapat: $data');
-        riwayat.assignAll(data);
-      }
-    } catch (e) {
-      riwayat.clear();
-    } finally {
-      isLoading.value = false;
+      isloading.value = false;
     }
   }
 }

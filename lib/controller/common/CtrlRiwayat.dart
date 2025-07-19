@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/services/common/ServicesRiwayat.dart';
 
@@ -8,8 +7,18 @@ class CtrlRiwayat extends GetxController {
   final services = ServicesRiwayat();
   final riwayat = <AppRiwayatModel>[].obs;
 
+  bool fetch = false;
+
   void onInit() {
-    FetchAll();
+    Future.microtask(() async {
+      if (!fetch) {
+        // FetchAllRequest();
+        // FetchAllApprove();
+        FetchRiwayat();
+        print('data: ${FetchRiwayat()}');
+        fetch = true;
+      }
+    });
     super.onInit();
   }
 
@@ -17,26 +26,22 @@ class CtrlRiwayat extends GetxController {
     isloading.value = true;
 
     await Future.delayed(Duration(seconds: 3));
-    final user = Get.find<CtrlUser>().user.value!;
 
-    if (user.role == 1) {
-      await FetchAll();
-    } else {
-      await FetchID(user.id);
-    }
+    await FetchRiwayat();
 
     await Future.delayed(Duration(seconds: 3));
 
     isloading.value = false;
   }
 
-  Future<void> FetchAll() async {
+  Future<void> FetchRiwayat() async {
     isloading.value = true;
 
     try {
-      final data = await services.GetAll();
+      final reqq = await services.GetAllRequest();
+      final appr = await services.GetAllApprove();
 
-      riwayat.assignAll(data);
+      riwayat.assignAll([...reqq, ...appr]);
     } catch (e) {
       riwayat.clear();
       return;
@@ -45,18 +50,33 @@ class CtrlRiwayat extends GetxController {
     }
   }
 
-  Future<void> FetchID(int id) async {
-    isloading.value = true;
+  // Future<void> FetchAllRequest() async {
+  //   isloading.value = true;
 
-    try {
-      final data = await services.GetID(id);
+  //   try {
+  //     final data = await services.GetAllRequest();
 
-      riwayat.assignAll(data);
-    } catch (e) {
-      riwayat.clear();
-      return;
-    } finally {
-      isloading.value = false;
-    }
-  }
+  //     riwayat.assignAll(data);
+  //   } catch (e) {
+  //     riwayat.clear();
+  //     return;
+  //   } finally {
+  //     isloading.value = false;
+  //   }
+  // }
+
+  // Future<void> FetchAllApprove() async {
+  //   isloading.value = true;
+
+  //   try {
+  //     final data = await services.GetAllApprove();
+
+  //     riwayat.assignAll(data);
+  //   } catch (e) {
+  //     riwayat.clear();
+  //     return;
+  //   } finally {
+  //     isloading.value = false;
+  //   }
+  // }
 }

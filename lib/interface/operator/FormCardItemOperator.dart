@@ -41,9 +41,10 @@ class FormCardItemOperator extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: FormCardHeaderOperator(
+                id: item.id,
                 item: item,
-                isExpanded: isExpanded,
-                onBtnExpand: () {
+                expand: isExpanded,
+                btn: () {
                   ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
                 },
               ),

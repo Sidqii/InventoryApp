@@ -34,7 +34,7 @@ class FormCardBodyOperator extends StatelessWidget {
               const SizedBox(height: 8),
               Table(
                 columnWidths: const {
-                  0: FlexColumnWidth(2),
+                  0: FixedColumnWidth(45),
                   1: FlexColumnWidth(2),
                   2: FlexColumnWidth(2),
                   3: FlexColumnWidth(2),
@@ -47,11 +47,13 @@ class FormCardBodyOperator extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8),
-                        child: Text(
-                          'Kode unit barang',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                        child: Center(
+                          child: Text(
+                            'No.',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ),
@@ -97,17 +99,20 @@ class FormCardBodyOperator extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  ...item.detail.map((unit) {
+                  ...item.detail.asMap().entries.map((entry) {
+                    final index = entry.key +1;
+                    final unit = entry.value;
                     final u = unit.unitmodel;
 
                     return TableRow(
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(6),
-                          child: Text(
-                            u.produk?.kode ?? '-',
-                            style: TextStyle(fontSize: 12),
+                          child: Center(
+                            child: Text(
+                              index.toString(),
+                              style: TextStyle(fontSize: 12),
+                            ),
                           ),
                         ),
                         Padding(

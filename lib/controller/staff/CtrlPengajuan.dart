@@ -86,7 +86,9 @@ class CtrlPengajuan extends GetxController {
       if (success) {
         resetForm();
         loaditem();
-        ctrl.FetchAll();
+        // ctrl.FetchAllRequest();
+        // ctrl.FetchAllApprove();
+        ctrl.FetchRiwayat();
       }
 
       isLoading.value = false;
