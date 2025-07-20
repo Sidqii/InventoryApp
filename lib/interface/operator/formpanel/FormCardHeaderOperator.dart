@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/interface/operator/FormCardBttnOperator.dart';
+import 'package:pusdatin_end/interface/operator/formpanel/FormCardBttnOperator.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 

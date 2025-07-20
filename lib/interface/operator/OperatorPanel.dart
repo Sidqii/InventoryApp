@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
-import 'package:pusdatin_end/interface/operator/FormCardPanelOperator.dart';
+import 'package:pusdatin_end/interface/operator/formpanel/FormCardPanelOperator.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 
 //C:\Users\Sidqi\AppData\Local\Pub\Cache\bin

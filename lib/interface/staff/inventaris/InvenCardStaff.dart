@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/staff/FormCardBodyStaff.dart';
-import 'package:pusdatin_end/interface/staff/FormCardHeaderStaff.dart';
-import 'package:pusdatin_end/model/app_riwayat.dart';
+import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/interface/staff/inventaris/InvenHeaderStaff.dart';
 
-class FormCardItemStaff extends StatelessWidget {
-  final AppRiwayatModel item;
+class InvenCardStaff extends StatelessWidget {
+  final AppBarangModel model;
 
-  const FormCardItemStaff({
-    required this.item,
+  const InvenCardStaff({
+    required this.model,
     super.key,
   });
 
@@ -30,12 +29,10 @@ class FormCardItemStaff extends StatelessWidget {
               color: const Color(0xffF4F7F7),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: FormCardHeaderStaff(
-              item: item,
+            child: InvenHeaderStaff(
+              inven: model,
             ),
           ),
-          const SizedBox(height: 12),
-          FormCardBodyStaff(item: item),
         ],
       ),
     );

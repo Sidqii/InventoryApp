@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlEditInven.dart';
-import 'package:pusdatin_end/interface/operator/EditCatatanBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditDeskripsiBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditGaransiBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditJenisBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditMerkBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditNamaBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditPengadaanBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditSpesifikasiBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditTanggalBarang.dart';
-import 'package:pusdatin_end/interface/operator/EditVendorBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditCatatanBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditDeskripsiBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditGaransiBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditJenisBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditMerkBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditNamaBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditPengadaanBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditSpesifikasiBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditTanggalBarang.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditVendorBarang.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';
 

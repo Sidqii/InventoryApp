@@ -1,21 +1,22 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/model/app_persetujuan.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/services/common/ServicesRiwayat.dart';
 
 class CtrlRiwayat extends GetxController {
   final isloading = false.obs;
+
   final services = ServicesRiwayat();
+
   final riwayat = <AppRiwayatModel>[].obs;
+  final approve = <AppPersetujuanModel>[].obs;
 
   bool fetch = false;
 
   void onInit() {
     Future.microtask(() async {
       if (!fetch) {
-        // FetchAllRequest();
-        // FetchAllApprove();
-        FetchRiwayat();
-        print('data: ${FetchRiwayat()}');
+        await FetchRiwayat();
         fetch = true;
       }
     });
@@ -41,7 +42,11 @@ class CtrlRiwayat extends GetxController {
       final reqq = await services.GetAllRequest();
       final appr = await services.GetAllApprove();
 
-      riwayat.assignAll([...reqq, ...appr]);
+      print('DATA reqq: ${reqq}');
+      print('DATA appr: ${appr}');
+
+      riwayat.assignAll(reqq);
+      approve.assignAll(appr);
     } catch (e) {
       riwayat.clear();
       return;

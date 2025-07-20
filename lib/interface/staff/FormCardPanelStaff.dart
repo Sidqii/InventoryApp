@@ -2,48 +2,79 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
+import 'package:pusdatin_end/interface/staff/fromapprve/CardApprvPanel.dart';
+import 'package:pusdatin_end/model/app_persetujuan.dart';
+import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/utils/EmptyPageStaff.dart';
-import 'package:pusdatin_end/interface/staff/FormCardItemStaff.dart';
+import 'package:pusdatin_end/interface/staff/formriwayat/CardRiwayatPanel.dart';
 
 class FormCardPanelStaff extends StatelessWidget {
-  final int selectedFilter;
+  final int slcfltr;
 
   const FormCardPanelStaff({
-    required this.selectedFilter,
+    required this.slcfltr,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final userctrl = Get.find<CtrlUser>().user.value!;
-    final setujuctrl = Get.find<CtrlRiwayat>();
-    final int iduser = userctrl.id;
+    final ctrl = Get.find<CtrlRiwayat>();
+    final user = Get.find<CtrlUser>().user.value!;
 
-    List<dynamic> dataFiltered = [];
+    final int id = user.id;
 
-    for (var item in setujuctrl.riwayat) {
-      bool roleid = true;
-      bool filterid = true;
+    List<dynamic> mixxdata = [
+      ...ctrl.riwayat,
+      ...ctrl.approve,
+    ];
 
-      roleid = int.tryParse(item.user.toString()) == iduser;
+    List<dynamic> filtdata = [];
 
-      if (selectedFilter != 0) {
-        filterid = int.tryParse(item.status.toString()) == selectedFilter;
+    for (var item in mixxdata) {
+      bool roleid = false;
+      bool status = false;
+
+      //pengajuan model
+      if (item is AppRiwayatModel) {
+        roleid = item.user == id;
+
+        if (slcfltr == 0) {
+          status = true;
+        } else {
+          status = item.status == slcfltr;
+        }
       }
 
-      if (roleid && filterid) {
-        dataFiltered.add(item);
+      //persetujuan model
+      if (item is AppPersetujuanModel) {
+        print('modelpeminjam id: ${item.modelpeminjam?.id}');
+        print('modeluser id (operator): ${item.modeluser?.id}');
+        print('user login id: $id');
+        print('statusbaru: ${item.statusbaru}');
+
+        roleid = item.modelpeminjam?.id == id;
+
+        if (slcfltr == 0) {
+          status = true;
+        } else {
+          status = item.statusbaru == slcfltr;
+        }
+      }
+
+      //data didalam filtdata
+      if (roleid && status) {
+        filtdata.add(item);
       }
     }
 
-    if (dataFiltered.isEmpty) {
+    if (filtdata.isEmpty) {
       String ket = 'Belum ada pengajuan';
 
-      if (selectedFilter == 1) {
+      if (slcfltr == 1) {
         ket = 'Belum ada pengajuan barang';
-      } else if (selectedFilter == 2) {
+      } else if (slcfltr == 2) {
         ket = 'Belum ada pengajuan disetujui';
-      } else if (selectedFilter == 3) {
+      } else if (slcfltr == 3) {
         ket = 'Belum ada pengajuan ditolak';
       }
       return EmptyPageStaff(txt: ket);
@@ -52,15 +83,24 @@ class FormCardPanelStaff extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: dataFiltered.length,
+      itemCount: filtdata.length,
       separatorBuilder: (context, index) {
         return const SizedBox();
       },
-      itemBuilder: (AboutDialog, index) {
-        final item = dataFiltered[index];
-        return FormCardItemStaff(
-          item: item,
-        );
+      itemBuilder: (context, index) {
+        final item = filtdata[index];
+
+        if (item is AppRiwayatModel) {
+          return FormCardRiwayatStaff(
+            item: item,
+          );
+        } else if (item is AppPersetujuanModel) {
+          return FormCardApprvStaff(
+            apprv: item,
+          );
+        } else {
+          return const SizedBox();
+        }
       },
     );
   }

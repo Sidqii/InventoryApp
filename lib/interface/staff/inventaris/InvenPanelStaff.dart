@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:pusdatin_end/controller/common/CtrlInventaris.dart';
-import 'package:pusdatin_end/interface/operator/InvenCardOperator.dart';
+import 'package:pusdatin_end/interface/staff/inventaris/InvenCardStaff.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
 
-class InvenPanelOperator extends StatelessWidget {
-  const InvenPanelOperator({super.key});
+class InvenPanelStaff extends StatelessWidget {
+  const InvenPanelStaff({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class InvenPanelOperator extends StatelessWidget {
                 },
                 itemBuilder: (context, index) {
                   final item = ctrl.filterItem[index];
-                  return InvenCardOperator(
+                  return InvenCardStaff(
                     model: item,
                   );
                 },

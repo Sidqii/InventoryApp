@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
-import 'package:pusdatin_end/interface/operator/FormCardBodyOperator.dart';
+import 'package:pusdatin_end/interface/operator/formpanel/FormCardBodyOperator.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
-import 'package:pusdatin_end/interface/operator/FormCardHeaderOperator.dart';
+import 'package:pusdatin_end/interface/operator/formpanel/FormCardHeaderOperator.dart';
 
 class FormCardItemOperator extends StatelessWidget {
   final AppRiwayatModel item;
-  final String roleuser;
 
   const FormCardItemOperator({
     required this.item,
-    required this.roleuser,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ctrlpersetujuan = Get.find<CtrlPersetujuan>();
+    final ctrl = Get.find<CtrlPersetujuan>();
     final idItem = item.id.toString();
 
     return Obx(() {
-      final isExpanded = ctrlpersetujuan.expandedId.value == idItem;
+      final isExpanded = ctrl.expandedId.value == idItem;
 
       return Container(
         margin: const EdgeInsets.only(bottom: 12),
@@ -45,7 +43,7 @@ class FormCardItemOperator extends StatelessWidget {
                 item: item,
                 expand: isExpanded,
                 btn: () {
-                  ctrlpersetujuan.expandedId.value = isExpanded ? '' : idItem;
+                  ctrl.expandedId.value = isExpanded ? '' : idItem;
                 },
               ),
             ),

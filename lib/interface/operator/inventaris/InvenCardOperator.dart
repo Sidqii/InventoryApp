@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
-import 'package:pusdatin_end/interface/operator/InvenHeaderOperator.dart';
+import 'package:pusdatin_end/interface/operator/inventaris/InvenHeaderOperator.dart';
 
 class InvenCardOperator extends StatelessWidget {
   final AppBarangModel model;

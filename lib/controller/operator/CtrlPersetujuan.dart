@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/services/operator/ServicesPersetujuan.dart';
 
 class CtrlPersetujuan extends GetxController {
   final isloading = false.obs;
   final expandedId = ''.obs;
+  final ctrl = Get.find<CtrlRiwayat>();
   final services = ServicesPersetujuan();
 
   Future<void> approval(
@@ -15,7 +17,7 @@ class CtrlPersetujuan extends GetxController {
     try {
       isloading.value = true;
 
-      final approve = services.approve(
+      final approve = await services.approve(
         pengajuan,
         status,
         user,
@@ -23,6 +25,9 @@ class CtrlPersetujuan extends GetxController {
       );
 
       if (approve == 200) {
+
+        ctrl.refresh();
+
         Get.snackbar(
           'Sukses',
           'Berhasil ubah persetujuan',
@@ -33,8 +38,6 @@ class CtrlPersetujuan extends GetxController {
           'Gagal ubah persetujuan',
         );
       }
-
-      isloading.value = false;
     } catch (e) {
       Get.snackbar(
         'Error',

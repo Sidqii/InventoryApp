@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomPanel extends StatelessWidget {
+class BackgroundPanel extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
-  const CustomPanel({
+  const BackgroundPanel({
     required this.child,
     this.padding,
     super.key,

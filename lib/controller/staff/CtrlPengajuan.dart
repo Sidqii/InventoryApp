@@ -3,22 +3,20 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
-import 'package:pusdatin_end/model/app_pengajuan.dart';
 import 'package:pusdatin_end/services/common/ServicesInven.dart';
 import 'package:pusdatin_end/services/staff/ServicesPengajuan.dart';
 
 class CtrlPengajuan extends GetxController {
   final ctrl = Get.find<CtrlRiwayat>();
-  final barang = ServicesInven();
-  final services = ServicesPengajuan();
+  final item = ServicesInven();
+  final apprv = ServicesPengajuan();
   final formkey = GlobalKey<FormState>();
 
   var isLoading = false.obs;
-  var daftaritems = <AppBarangModel>[].obs;
-  var listajukan = <AppPengajuanModel>[].obs;
-  var selectedItem = RxnInt();
-  var selectedName = RxnString();
-  var stokItem = 0.obs;
+  var itemlist = <AppBarangModel>[].obs;
+  var slcitem = RxnInt();
+  var slcuser = RxnString();
+  var stkitem = 0.obs;
 
   final ctrljumlah = TextEditingController();
   final ctrlinstansi = TextEditingController();
@@ -41,9 +39,9 @@ class CtrlPengajuan extends GetxController {
     ctrlinstansi.clear();
     ctrlhal.clear();
     ctrlkembali.value = DateTime.now();
-    selectedItem.value = null;
-    selectedName.value = null;
-    stokItem.value = 0;
+    slcitem.value = null;
+    slcuser.value = null;
+    stkitem.value = 0;
     dropdownkey = UniqueKey();
   }
 
@@ -65,8 +63,8 @@ class CtrlPengajuan extends GetxController {
   }
 
   Future<void> loaditem({bool isloaded = false}) async {
-    final data = await barang.getItems();
-    daftaritems.assignAll(data);
+    final data = await item.getItems();
+    itemlist.assignAll(data);
   }
 
   Future<void> ajukan() async {
@@ -75,7 +73,7 @@ class CtrlPengajuan extends GetxController {
       isLoading.value = true;
 
       final success = await kirimPengajuan(
-        selectedItem.value ?? 0,
+        slcitem.value ?? 0,
         user.id,
         ctrlinstansi.text,
         ctrlhal.text,
@@ -86,8 +84,6 @@ class CtrlPengajuan extends GetxController {
       if (success) {
         resetForm();
         loaditem();
-        // ctrl.FetchAllRequest();
-        // ctrl.FetchAllApprove();
         ctrl.FetchRiwayat();
       }
 
@@ -104,7 +100,7 @@ class CtrlPengajuan extends GetxController {
     String kembali,
   ) async {
     try {
-      int statusCode = await services.postPengajuan(
+      int statusCode = await apprv.postPengajuan(
         barang,
         pengguna,
         instansi,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/staff/CtrlPengajuan.dart';
-import 'package:pusdatin_end/interface/staff/PanelPengajuan.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelPengajuan.dart';
 import 'package:pusdatin_end/interface/staff/StaffPanel.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/custombutton.dart';

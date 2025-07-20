@@ -13,8 +13,8 @@ class PanelDropdown extends StatelessWidget {
     final ctrl = Get.find<CtrlPengajuan>();
 
     return Obx(() {
-      final barang = ctrl.daftaritems;
-      final selecteditem = ctrl.selectedName.value;
+      final barang = ctrl.itemlist;
+      final selecteditem = ctrl.slcuser.value;
 
       return DropdownMenu(
         key: ValueKey(selecteditem),
@@ -53,9 +53,9 @@ class PanelDropdown extends StatelessWidget {
               ),
             ),
           );
-          ctrl.selectedName.value = val;
-          ctrl.selectedItem.value = selected.id;
-          ctrl.stokItem.value = selected.total;
+          ctrl.slcuser.value = val;
+          ctrl.slcitem.value = selected.id;
+          ctrl.stkitem.value = selected.total;
         },
         dropdownMenuEntries: barang
             .where((item) => item.total > 0)

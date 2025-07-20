@@ -36,8 +36,14 @@ class PanelTanggal extends StatelessWidget {
                 );
               },
             );
-            if (pick != null) {
+            if (pick != null && !pick.isBefore(DateTime.now())) {
               ctrl.ctrlkembali.value = pick;
+            } else {
+              Get.snackbar(
+                'Gagal',
+                'Tanggal pengembalian tidak valid',
+                duration: Duration(seconds: 3),
+              );
             }
           },
           child: Row(

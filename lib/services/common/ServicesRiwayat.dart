@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pusdatin_end/model/app_persetujuan.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 
 class ServicesRiwayat {
@@ -22,15 +23,15 @@ class ServicesRiwayat {
     }
   }
 
-  Future<List<AppRiwayatModel>> GetAllApprove() async {
+  Future<List<AppPersetujuanModel>> GetAllApprove() async {
     try {
       final response = await http.get(Uri.parse('$url/persetujuan'));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        // print(const JsonEncoder.withIndent('  ').convert(data));
+        print(const JsonEncoder.withIndent('  ').convert(data));
 
         return data.map((e) {
-          return AppRiwayatModel.fromJson(e);
+          return AppPersetujuanModel.fromJson(e);
         }).toList();
       } else {
         return [];

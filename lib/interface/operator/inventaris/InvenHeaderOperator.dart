@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/EditPanel.dart';
+import 'package:pusdatin_end/interface/operator/editdata/EditPanel.dart';
 import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
 

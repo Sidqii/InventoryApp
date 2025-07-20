@@ -11,7 +11,13 @@ class FormCardHeaderStaff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getStatClr(int idstat) {
+    final barang = item.detail.first.unitmodel.produk?.barang ?? '';
+    final jumlah = item.jumlah.toString();
+    final tggl = item.kembali ?? '';
+    final user = item.user.toString();
+    final insi = item.instansi ?? '';
+
+    Color statclr(int idstat) {
       switch (idstat) {
         case 1:
           return Colors.yellow.shade400;
@@ -35,10 +41,7 @@ class FormCardHeaderStaff extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    // item.detail.map((e) {
-                    //   return e.unitmodel.produk?.barang ?? '';
-                    // }).join(', '),
-                    item.detail.first.unitmodel.produk?.barang ?? '',
+                    barang,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -48,7 +51,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color: getStatClr(item.status),
+                      color: statclr(item.status),
                       shape: BoxShape.circle,
                     ),
                   )
@@ -64,7 +67,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.jumlah.toString(),
+                    jumlah,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -80,7 +83,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.user.toString(),
+                    user,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -97,7 +100,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.instansi ?? '',
+                    insi,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -116,7 +119,7 @@ class FormCardHeaderStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.kembali ?? '',
+                    tggl,
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

@@ -11,20 +11,20 @@ class PanelJumlah extends StatelessWidget {
     final ctrl = Get.find<CtrlPengajuan>();
 
     return Obx(() {
-      final stokItem = ctrl.stokItem.value;
-      final selectedItem = ctrl.selectedItem.value;
+      final stok = ctrl.stkitem.value;
+      final slct = ctrl.slcitem.value;
 
       return CustomTxtField(
         controller: ctrl.ctrljumlah,
-        label: selectedItem != null && selectedItem > 0
-            ? 'Jumlah maks $stokItem'
+        label: slct != null && slct > 0
+            ? 'Jumlah maks $stok'
             : 'Jumlah',
         validator: (val) {
           final jumlah = int.tryParse(val ?? '');
           if (jumlah == null) {
             return null;
           }
-          if (jumlah > stokItem) {
+          if (jumlah > stok) {
             return 'Stok kurang';
           }
           return null;

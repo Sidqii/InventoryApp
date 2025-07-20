@@ -1,5 +1,5 @@
-import 'package:pusdatin_end/model/app_jenis.dart';
-import 'package:pusdatin_end/model/app_kategori.dart';
+import 'app_jenis.dart';
+import 'app_kategori.dart';
 
 class AppBarangModel {
   final int id;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/staff/CtrlPengajuan.dart';
-import 'package:pusdatin_end/interface/staff/PanelDropdown.dart';
-import 'package:pusdatin_end/interface/staff/PanelInstansi.dart';
-import 'package:pusdatin_end/interface/staff/PanelJumlah.dart';
-import 'package:pusdatin_end/interface/staff/PanelKeperluan.dart';
-import 'package:pusdatin_end/interface/staff/PanelPeminjam.dart';
-import 'package:pusdatin_end/interface/staff/paneltanggal.dart';
-import 'package:pusdatin_end/widget/custompanel.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelDropdown.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelInstansi.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelJumlah.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelKeperluan.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelPeminjam.dart';
+import 'package:pusdatin_end/interface/staff/panel/PanelTanggal.dart';
+import 'package:pusdatin_end/widget/panelBackground.dart';
 
 class PanelPengajuan extends StatelessWidget {
   const PanelPengajuan({super.key});
@@ -16,7 +16,7 @@ class PanelPengajuan extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = Get.find<CtrlPengajuan>();
 
-    return CustomPanel(
+    return BackgroundPanel(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

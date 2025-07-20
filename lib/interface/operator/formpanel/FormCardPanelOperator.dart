@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
-import 'package:pusdatin_end/controller/common/CtrlUser.dart';
-import 'package:pusdatin_end/interface/operator/FormCardItemOperator.dart';
+import 'package:pusdatin_end/interface/operator/formpanel/FormCardItemOperator.dart';
 import 'package:pusdatin_end/utils/EmptyPageOperator.dart';
 
 class FormCardPanelOperator extends StatelessWidget {
@@ -15,22 +14,15 @@ class FormCardPanelOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userctrl = Get.find<CtrlUser>().user.value!;
-    final setujuctrl = Get.find<CtrlRiwayat>();
 
-    final int roleuser = userctrl.role ?? 0;
-    final int iduser = userctrl.id;
+    final history = Get.find<CtrlRiwayat>();
 
     List<dynamic> dataFiltered = [];
 
-    for (var item in setujuctrl.riwayat) {
+    for (var item in history.riwayat) {
 
       bool roleid = true;
       bool filterid = true;
-
-      if (roleuser == 2) {
-        roleid = int.tryParse(item.user.toString()) == iduser;
-      }
 
       if (selectedFilter != 0) {
         filterid = int.tryParse(item.status.toString()) == selectedFilter;
@@ -63,7 +55,6 @@ class FormCardPanelOperator extends StatelessWidget {
         final item = dataFiltered[index];
         return FormCardItemOperator(
           item: item,
-          roleuser: roleuser.toString(),
         );
       },
     );

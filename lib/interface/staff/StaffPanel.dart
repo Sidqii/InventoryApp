@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/interface/staff/FormCardPanelStaff.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
-import 'package:pusdatin_end/widget/custompanel.dart';
+import 'package:pusdatin_end/widget/panelBackground.dart';
 
 class StaffPanel extends StatelessWidget {
   const StaffPanel({super.key});
@@ -22,7 +22,7 @@ class StaffPanel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomPanel(
+        BackgroundPanel(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -87,7 +87,7 @@ class StaffPanel extends StatelessWidget {
                   );
                 } else {
                   return FormCardPanelStaff(
-                    selectedFilter: selectedFilter.value,
+                    slcfltr: selectedFilter.value,
                   );
                 }
               }),

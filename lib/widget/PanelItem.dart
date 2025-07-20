@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/model/app_barang.dart';
-import 'package:pusdatin_end/interface/staff/InvenHeaderStaff.dart';
 
-class InvenCardStaff extends StatelessWidget {
-  final AppBarangModel model;
+class ItemPanel extends StatelessWidget {
+  final Widget header;
+  final Widget body;
 
-  const InvenCardStaff({
-    required this.model,
+  const ItemPanel({
+    required this.header,
+    required this.body,
     super.key,
   });
 
@@ -29,10 +29,10 @@ class InvenCardStaff extends StatelessWidget {
               color: const Color(0xffF4F7F7),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: InvenHeaderStaff(
-              inven: model,
-            ),
+            child: header,
           ),
+          const SizedBox(height: 12),
+          body,
         ],
       ),
     );

@@ -1,6 +1,6 @@
-import 'package:pusdatin_end/model/app_status_pengajuan.dart';
-import 'package:pusdatin_end/model/app_unit_detail.dart';
-import 'package:pusdatin_end/model/app_user.dart';
+import 'app_status_pengajuan.dart';
+import 'app_unit_detail.dart';
+import 'app_user.dart';
 
 class AppRiwayatModel {
   final int id;

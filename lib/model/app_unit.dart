@@ -1,4 +1,4 @@
-import 'package:pusdatin_end/model/app_barang.dart';
+import 'app_barang.dart';
 
 class AppUnitModel {
   final int id;
