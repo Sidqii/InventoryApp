@@ -6,7 +6,8 @@ class ServicesPersetujuan {
 
   Future<int> approve(
     int pengajuan,
-    int status,
+    int sttsreqq,
+    int sttsunit,
     int user,
     String? note,
   ) async {
@@ -17,7 +18,8 @@ class ServicesPersetujuan {
         'Accept': 'application/json',
       },
       body: jsonEncode({
-        'id_status': status,
+        'id_status_pengajuan': sttsreqq,
+        'id_status_unit': sttsunit,
         'id_user': user,
         'catatan': note ?? '',
       }),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
-import 'package:pusdatin_end/interface/staff/FormCardPanelStaff.dart';
+import 'package:pusdatin_end/interface/staff/formriwayat/FormCardPanelStaff.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/panelBackground.dart';
 
@@ -86,7 +86,7 @@ class StaffPanel extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return FormCardPanelStaff(
+                  return FormcardPanelStaff(
                     slcfltr: selectedFilter.value,
                   );
                 }

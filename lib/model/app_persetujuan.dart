@@ -1,5 +1,4 @@
-import 'package:pusdatin_end/model/app_pengajuan.dart';
-
+import 'app_pengajuan.dart';
 import 'app_jenis_perubahan.dart';
 import 'app_user.dart';
 import 'app_unit.dart';
@@ -61,8 +60,8 @@ class AppPersetujuanModel {
       catatan: json['catatan'] ?? '',
       lampiran: json['lampiran'] ?? '',
       idpengajuan: int.tryParse(json['id_pengajuan'].toString()) ?? 0,
-      modelunit:
-          json['unit'] != null ? AppUnitModel.fromJson(json['unit']) : null,
+      modelunit: 
+      json['unit'] != null ? AppUnitModel.fromJson(json['unit']) : null,
       modeljenis: json['jenis'] != null
           ? AppJenisPerubahanModel.fromJson(json['jenis'])
           : null,

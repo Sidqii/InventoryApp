@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/staff/formriwayat/CardRiwayatBody.dart';
-import 'package:pusdatin_end/interface/staff/formriwayat/CardRiwayatHeader.dart';
+import 'package:pusdatin_end/interface/staff/formriwayat/FormCardRiwayatBody.dart';
+import 'package:pusdatin_end/interface/staff/formriwayat/FormCardRiwayatHeader.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
 import 'package:pusdatin_end/widget/PanelItem.dart';
 

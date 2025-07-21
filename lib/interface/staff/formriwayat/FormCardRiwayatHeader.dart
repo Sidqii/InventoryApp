@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
+import 'package:pusdatin_end/utils/Formatter.dart';
 
 class FormCardHeaderStaff extends StatelessWidget {
   final AppRiwayatModel item;
@@ -13,8 +14,8 @@ class FormCardHeaderStaff extends StatelessWidget {
   Widget build(BuildContext context) {
     final barang = item.detail.first.unitmodel.produk?.barang ?? '';
     final jumlah = item.jumlah.toString();
-    final tggl = item.kembali ?? '';
-    final user = item.user.toString();
+    final tggl = Formatter.dateID(item.kembali ?? '');
+    final user = item.pemohon.nama??'';
     final insi = item.instansi ?? '';
 
     Color statclr(int idstat) {

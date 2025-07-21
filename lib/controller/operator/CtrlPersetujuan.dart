@@ -10,7 +10,8 @@ class CtrlPersetujuan extends GetxController {
 
   Future<void> approval(
     int pengajuan,
-    int status,
+    int sttsreqq,
+    int sttsunit,
     int user,
     String? note,
   ) async {
@@ -19,7 +20,8 @@ class CtrlPersetujuan extends GetxController {
 
       final approve = await services.approve(
         pengajuan,
-        status,
+        sttsreqq,
+        sttsunit,
         user,
         note,
       );
