@@ -28,7 +28,6 @@ class ServicesRiwayat {
       final response = await http.get(Uri.parse('$url/persetujuan'));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        print(const JsonEncoder.withIndent('  ').convert(data));
 
         return data.map((e) {
           return AppPersetujuanModel.fromJson(e);

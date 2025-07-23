@@ -42,9 +42,6 @@ class CtrlRiwayat extends GetxController {
       final reqq = await services.GetAllRequest();
       final appr = await services.GetAllApprove();
 
-      print('DATA reqq: ${reqq}');
-      print('DATA appr: ${appr}');
-
       riwayat.assignAll(reqq);
       approve.assignAll(appr);
     } catch (e) {

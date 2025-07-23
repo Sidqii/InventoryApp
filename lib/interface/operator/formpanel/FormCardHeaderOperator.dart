@@ -122,6 +122,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
+              if(item.status == 1)
               FormCardBtnOperator(pengajuan: item.id, user: ctrl.id)
             ],
           ),

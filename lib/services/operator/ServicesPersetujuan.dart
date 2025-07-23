@@ -24,8 +24,6 @@ class ServicesPersetujuan {
         'catatan': note ?? '',
       }),
     );
-    // print('Body: ${response.body}');
-    print('Status: ${response.statusCode}');
     return response.statusCode;
   }
 }

@@ -191,8 +191,6 @@ class CtrlEditInven extends GetxController {
       Get.back();
       Get.snackbar('Sukses', 'Data berhasil diperbarui');
     } else {
-      print(jsonEncode(op));
-
       Get.back();
       Get.snackbar('Gagal', 'Data gagal diperbarui');
     }

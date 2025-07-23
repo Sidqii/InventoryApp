@@ -68,10 +68,11 @@ class PanelDropdown extends StatelessWidget {
           filled: true,
           border: UnderlineInputBorder(),
           focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2,
+            ),
+          ),
         ),
       );
     });
