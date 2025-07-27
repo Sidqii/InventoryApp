@@ -21,6 +21,8 @@ class FormCardHeaderOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ctrl = Get.find<CtrlUser>().user.value!;
+
     //value
     final barang = item.detail.first.unitmodel.produk?.barang ?? '-';
     final kode = item.detail.first.unitmodel.produk?.kode ?? '-';
@@ -31,12 +33,8 @@ class FormCardHeaderOperator extends StatelessWidget {
     final deskripsi = item.detail.first.unitmodel.produk?.deskripsi ?? '';
 
     //TextStyle
-    final ctrl = Get.find<CtrlUser>().user.value!;
-
     final subtitle = const TextStyle(fontSize: 13);
-
     final subvalue = const TextStyle(fontSize: 13, fontWeight: FontWeight.bold);
-
     final _instansi = const TextStyle(
       fontSize: 13,
       fontWeight: FontWeight.bold,

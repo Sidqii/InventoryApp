@@ -51,34 +51,4 @@ class CtrlRiwayat extends GetxController {
       isloading.value = false;
     }
   }
-
-  // Future<void> FetchAllRequest() async {
-  //   isloading.value = true;
-
-  //   try {
-  //     final data = await services.GetAllRequest();
-
-  //     riwayat.assignAll(data);
-  //   } catch (e) {
-  //     riwayat.clear();
-  //     return;
-  //   } finally {
-  //     isloading.value = false;
-  //   }
-  // }
-
-  // Future<void> FetchAllApprove() async {
-  //   isloading.value = true;
-
-  //   try {
-  //     final data = await services.GetAllApprove();
-
-  //     riwayat.assignAll(data);
-  //   } catch (e) {
-  //     riwayat.clear();
-  //     return;
-  //   } finally {
-  //     isloading.value = false;
-  //   }
-  // }
 }
