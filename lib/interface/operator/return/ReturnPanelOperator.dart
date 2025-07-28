@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
-import 'package:pusdatin_end/controller/operator/CtrlSubmit.dart';
+import 'package:pusdatin_end/interface/operator/return/ReturnBodyOperator.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 
 class ReturnPanelOperator extends StatelessWidget {
@@ -9,12 +9,7 @@ class ReturnPanelOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.put(CtrlSubmit());
-    final rwyt = Get.find<CtrlRiwayat>();
-
-    final fltr = rwyt.riwayat.where((item) {
-      return item.status == 2;
-    }).toList();
+    final ctrl = Get.find<CtrlRiwayat>();
 
     return Scaffold(
       appBar: CustomAppbar(
@@ -27,23 +22,26 @@ class ReturnPanelOperator extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        if (rwyt.riwayat.isEmpty) {
+
+        if (ctrl.riwayat.isEmpty) {
           return Center(
             child: Text('Datanya kosong'),
           );
         }
-        return ListView.builder(
+
+        final fltr = ctrl.riwayat.where((item) {
+          return item.status == 2;
+        }).toList();
+
+        return ListView.separated(
           itemCount: fltr.length,
+          separatorBuilder: (context, index) {
+            return const SizedBox();
+          },
           itemBuilder: (context, index) {
             final item = fltr[index];
 
-            return Card(
-              child: ListTile(
-                title: Text('${item.pemohon.nama} - ${item.instansi}'),
-                subtitle: Text(item.hal ?? ' - '),
-                trailing: Text(item.pinjam ?? ' - '),
-              ),
-            );
+            return ReturnBodyOperator(model: item);
           },
         );
       }),

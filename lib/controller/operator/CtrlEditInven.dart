@@ -182,7 +182,7 @@ class CtrlEditInven extends GetxController {
     }
 
     final res = await http.patch(
-      Uri.parse('http://127.0.0.1:8000/api/barang/${data.id}/6902'),
+      Uri.parse('http://127.0.0.1:8000/api/barang/${data.id}/patch'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(op),
     );

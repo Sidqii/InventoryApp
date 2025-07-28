@@ -44,7 +44,7 @@ class FormCardBtnOperator extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 5),
+        const SizedBox(width: 8),
         GestureDetector(
           onTap: () {
             ctrl.approval(pengajuan, 3, 1, user, note);

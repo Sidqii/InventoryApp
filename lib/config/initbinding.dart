@@ -7,14 +7,16 @@ import 'package:pusdatin_end/controller/common/CtrlUser.dart';
 import 'package:pusdatin_end/controller/common/CtrlNavigasi.dart';
 import 'package:pusdatin_end/controller/operator/CtrlEditInven.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
+import 'package:pusdatin_end/controller/operator/CtrlSubmit.dart';
 import 'package:pusdatin_end/controller/staff/CtrlPengajuan.dart';
 
 class InitBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(CtrlUser());
-    Get.lazyPut(()=> CtrlEditInven());
-    Get.lazyPut(()=> CtrlRiwayat());
+    Get.lazyPut(() => CtrlSubmit());
+    Get.lazyPut(() => CtrlEditInven());
+    Get.lazyPut(() => CtrlRiwayat());
     Get.lazyPut(() => CtrlSignin());
     Get.lazyPut(() => CtrlNavigasi());
     Get.lazyPut(() => CtrlSignup());

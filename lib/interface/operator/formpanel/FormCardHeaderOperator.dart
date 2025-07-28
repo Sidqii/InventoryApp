@@ -24,13 +24,13 @@ class FormCardHeaderOperator extends StatelessWidget {
     final ctrl = Get.find<CtrlUser>().user.value!;
 
     //value
+    final hal = item.hal ?? '';
     final barang = item.detail.first.unitmodel.produk?.barang ?? '-';
     final kode = item.detail.first.unitmodel.produk?.kode ?? '-';
     final nama = item.pemohon.nama ?? '';
     final instansi = item.instansi ?? '';
     final jumlah = item.jumlah.toString();
     final pengembalian = Formatter.dateID(item.kembali ?? '');
-    final deskripsi = item.detail.first.unitmodel.produk?.deskripsi ?? '';
 
     //TextStyle
     final subtitle = const TextStyle(fontSize: 13);
@@ -112,16 +112,16 @@ class FormCardHeaderOperator extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 150,
-                    child: Text('Deskripsi barang', style: subtitle),
+                    child: Text('Keperluan', style: subtitle),
                   ),
                   const Text(':'),
                   const SizedBox(width: 5),
-                  Text(deskripsi, style: subvalue)
+                  Text(hal, style: subvalue)
                 ],
               ),
               const SizedBox(height: 10),
-              if(item.status == 1)
-              FormCardBtnOperator(pengajuan: item.id, user: ctrl.id)
+              if (item.status == 1)
+                FormCardBtnOperator(pengajuan: item.id, user: ctrl.id)
             ],
           ),
         ),
