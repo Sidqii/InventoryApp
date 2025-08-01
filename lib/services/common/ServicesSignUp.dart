@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pusdatin_end/services/AppConfig.dart';
 
 class ServicesSignup {
-  final String url = 'http://127.0.0.1:8000/api';
+  final String url = AppConfig.url;
 
   Future<Map<String, dynamic>> register(String email, String password) async {
     try {

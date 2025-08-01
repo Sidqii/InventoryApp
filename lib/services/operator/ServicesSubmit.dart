@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pusdatin_end/services/AppConfig.dart';
 
 class ServicesSubmit {
-  final String url = 'http://127.0.0.1:8000/api';
+  final String url = AppConfig.url;
 
   Future<int> revoke(
     int perubahan,

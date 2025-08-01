@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pusdatin_end/model/app_barang.dart';
+import 'package:pusdatin_end/services/AppConfig.dart';
 
 class ServicesInven {
-  final String url = 'http://127.0.0.1:8000/api';
+  final String url = AppConfig.url;
 
   Future<List<AppBarangModel>> getItems() async {
     try {

@@ -119,8 +119,7 @@ class CtrlEditInven extends GetxController {
 
     if (note.text != data.note) {
       op.add(
-        {'op': 'replace', 'path': '/catatan_perawatan', 'value': note.text},
-      );
+          {'op': 'replace', 'path': '/catatan_perawatan', 'value': note.text});
     }
 
     if (merk.text != data.merk) {
