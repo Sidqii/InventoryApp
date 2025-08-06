@@ -90,19 +90,6 @@ class ReturnDataOperator extends StatelessWidget {
 
         const SizedBox(height: 12),
         ReturnButtonOperator()
-        // SizedBox(
-        //   width: double.infinity,
-        //   child: ElevatedButton(
-        //     onPressed: () {},
-        //     style: ElevatedButton.styleFrom(
-        //       backgroundColor: Colors.black87,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(8),
-        //       ),
-        //     ),
-        //     child: const Text('Process Return'),
-        //   ),
-        // ),
       ],
     );
   }

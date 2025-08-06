@@ -8,6 +8,7 @@ import 'package:pusdatin_end/controller/common/CtrlNavigasi.dart';
 import 'package:pusdatin_end/controller/operator/CtrlEditInven.dart';
 import 'package:pusdatin_end/controller/operator/CtrlPersetujuan.dart';
 import 'package:pusdatin_end/controller/operator/CtrlSubmit.dart';
+import 'package:pusdatin_end/controller/staff/CtrlInvenStaff.dart';
 import 'package:pusdatin_end/controller/staff/CtrlPengajuan.dart';
 
 class InitBinding extends Bindings {
@@ -22,6 +23,7 @@ class InitBinding extends Bindings {
     Get.lazyPut(() => CtrlSignup());
     Get.lazyPut(() => CtrlPengajuan());
     Get.lazyPut(() => CtrlInventaris());
+    Get.lazyPut(() => CtrlInvenStaff());
     Get.lazyPut(() => CtrlPersetujuan());
   }
 }

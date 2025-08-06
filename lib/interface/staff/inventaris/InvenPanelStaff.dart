@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:pusdatin_end/controller/common/CtrlInventaris.dart';
+import 'package:pusdatin_end/controller/staff/CtrlInvenStaff.dart';
 import 'package:pusdatin_end/interface/staff/inventaris/InvenCardStaff.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
 import 'package:pusdatin_end/widget/customtxtfield.dart';
@@ -11,7 +11,7 @@ class InvenPanelStaff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.find<CtrlInventaris>();
+    final ctrl = Get.find<CtrlInvenStaff>();
     final Map<int, String> all = {0: '|||'};
     final Map<int, String> opsifilter = {
       1: 'Drone',

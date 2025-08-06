@@ -63,7 +63,7 @@ class InvenHeaderStaff extends StatelessWidget {
                     style: const TextStyle(fontSize: 12),
                   ),
                   Text(
-                    inven.total.toString(),
+                    inven.stkready.toString(),
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.bold),
                   ),

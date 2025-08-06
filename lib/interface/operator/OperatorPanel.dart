@@ -65,6 +65,7 @@ class OperatorPanel extends StatelessWidget {
                     scrollbars: false,
                   ),
                   child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
                     child: FormCardPanelOperator(
                       selectedFilter: selectedFilter.value,
                     ),

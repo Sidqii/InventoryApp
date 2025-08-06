@@ -73,16 +73,10 @@ class CtrlSignin extends GetxController {
             duration: Duration(milliseconds: 800),
           );
         }
-      } else if (statusCode == 401) {
-        Get.snackbar(
-          'Gagal',
-          'Password salah',
-          duration: Duration(seconds: 2),
-        );
       } else if (statusCode == 404) {
         Get.snackbar(
           'Gagal',
-          'Email belum terdaftar',
+          'Email atau Password salah',
           duration: Duration(seconds: 2),
         );
       } else {

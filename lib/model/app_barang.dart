@@ -13,6 +13,7 @@ class AppBarangModel {
   final String sumber;
   final String vendor;
   final int total;
+  final int stkready;
   final String note;
   final String createdAt;
   final String updatedAt;
@@ -31,6 +32,7 @@ class AppBarangModel {
     required this.sumber,
     required this.vendor,
     required this.total,
+    required this.stkready,
     required this.note,
     required this.createdAt,
     required this.updatedAt,
@@ -51,6 +53,7 @@ class AppBarangModel {
       sumber: json['sumber_pengadaan'] ?? '',
       vendor: json['vendor'] ?? '',
       total: int.tryParse(json['jumlah_total_unit'].toString()) ?? 0,
+      stkready: int.tryParse(json['stok_tersedia'].toString()) ?? 0,
       note: json['catatan_perawatan'] ?? '',
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',

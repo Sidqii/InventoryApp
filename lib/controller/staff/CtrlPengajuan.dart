@@ -63,8 +63,10 @@ class CtrlPengajuan extends GetxController {
   }
 
   Future<void> loaditem({bool isloaded = false}) async {
-    final data = await item.getItems();
+    final data = await item.GetUnit();
     itemlist.assignAll(data);
+
+    print(itemlist);
   }
 
   Future<void> ajukan() async {

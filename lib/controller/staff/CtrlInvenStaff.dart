@@ -5,7 +5,7 @@ import 'package:pusdatin_end/model/app_barang.dart';
 import 'package:pusdatin_end/services/common/ServicesInven.dart';
 import 'package:pusdatin_end/widget/customdialog.dart';
 
-class CtrlInventaris extends GetxController {
+class CtrlInvenStaff extends GetxController {
   final services = ServicesInven();
 
   final filterctrl = TextEditingController();
@@ -59,16 +59,7 @@ class CtrlInventaris extends GetxController {
     try {
       isLoading.value = true;
 
-      List<AppBarangModel> parsed = await services.GetItems();
-
-      // final user = Get.find<CtrlUser>().user.value!;
-      // final role = user.role ?? 0;
-
-      // if (role == 2) {
-      //   parsed = parsed.where((i) {
-      //     return i.total > 0;
-      //   }).toList();
-      // }
+      List<AppBarangModel> parsed = await services.GetUnit();
 
       items.assignAll(parsed);
       filterItem.assignAll(parsed);

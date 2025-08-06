@@ -40,6 +40,7 @@ class PanelDropdown extends StatelessWidget {
               sumber: '',
               vendor: '',
               total: 0,
+              stkready: 0,
               note: '',
               createdAt: '',
               updatedAt: '',
@@ -55,10 +56,10 @@ class PanelDropdown extends StatelessWidget {
           );
           ctrl.slcuser.value = val;
           ctrl.slcitem.value = selected.id;
-          ctrl.stkitem.value = selected.total;
+          ctrl.stkitem.value = selected.stkready;
         },
         dropdownMenuEntries: barang
-            .where((item) => item.total > 0)
+            .where((item) => item.stkready > 0)
             .map((item) => DropdownMenuEntry(
                   value: item.barang,
                   label: item.barang,
