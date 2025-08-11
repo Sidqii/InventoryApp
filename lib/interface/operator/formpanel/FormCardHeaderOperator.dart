@@ -25,6 +25,7 @@ class FormCardHeaderOperator extends StatelessWidget {
 
     //value
     final hal = item.hal ?? '';
+    final status = item.status;
     final barang = item.detail.first.unitmodel.produk?.barang ?? '-';
     final kode = item.detail.first.unitmodel.produk?.kode ?? '-';
     final nama = item.pemohon.nama ?? '';
@@ -41,6 +42,28 @@ class FormCardHeaderOperator extends StatelessWidget {
       color: Color.fromARGB(255, 9, 81, 206),
     );
 
+    String statget(int id) {
+      switch (id) {
+        case 1:
+          return 'Proses';
+          break;
+        case 2:
+          return 'Dipinjam';
+          break;
+        case 3:
+          return 'Ditolak';
+          break;
+        case 4:
+          return 'Dipinjam';
+          break;
+        case 5:
+          return 'Dikembalikan';
+          break;
+        default:
+          return '';
+      }
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -49,11 +72,31 @@ class FormCardHeaderOperator extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                barang,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    barang,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Text(
+                          statget(status),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Text(
                 kode,
@@ -92,7 +135,7 @@ class FormCardHeaderOperator extends StatelessWidget {
                   ),
                   const Text(':'),
                   const SizedBox(width: 5),
-                  Text('$jumlah unit', style: subvalue),
+                  Text('$jumlah Unit', style: subvalue),
                 ],
               ),
               const SizedBox(height: 5),
