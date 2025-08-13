@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pusdatin_end/controller/common/CtrlRiwayat.dart';
 import 'package:pusdatin_end/interface/operator/return/ReturnCardOperator.dart';
 import 'package:pusdatin_end/widget/customappbar.dart';
 import 'package:pusdatin_end/widget/customfilterchips.dart';
@@ -9,6 +10,8 @@ class ReturnPanelOperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ctrl = Get.find<CtrlRiwayat>();
+
     final RxInt slcfltr = 1.obs;
     final Map<int, String> fltropt = {
       0: '|||',
@@ -42,7 +45,9 @@ class ReturnPanelOperator extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ctrl.refresh();
+                    },
                     icon: Icon(Icons.refresh),
                   ),
                 ],

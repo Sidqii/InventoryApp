@@ -19,13 +19,19 @@ class ReturnCardOperator extends StatelessWidget {
 
       if (ctrl.riwayat.isEmpty) {
         return Center(
-          child: Text('Datanya Kosong'),
+          child: Text('Tidak ada data diproses'),
         );
       }
 
       final fltr = ctrl.riwayat.where((item) {
         return item.status == 2;
       }).toList();
+
+      if (fltr.isEmpty) {
+        return Center(
+          child: Text('Tidak ada data dalam filter'),
+        );
+      }
 
       return ListView.separated(
         itemCount: fltr.length,

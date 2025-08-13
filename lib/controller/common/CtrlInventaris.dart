@@ -61,15 +61,6 @@ class CtrlInventaris extends GetxController {
 
       List<AppBarangModel> parsed = await services.GetItems();
 
-      // final user = Get.find<CtrlUser>().user.value!;
-      // final role = user.role ?? 0;
-
-      // if (role == 2) {
-      //   parsed = parsed.where((i) {
-      //     return i.total > 0;
-      //   }).toList();
-      // }
-
       items.assignAll(parsed);
       filterItem.assignAll(parsed);
     } catch (e) {

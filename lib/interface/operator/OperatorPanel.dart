@@ -17,6 +17,7 @@ class OperatorPanel extends StatelessWidget {
       1: 'Menunggu',
       2: 'Disetujui',
       3: 'Ditolak',
+      5: 'Selesai',
     };
 
     return Container(

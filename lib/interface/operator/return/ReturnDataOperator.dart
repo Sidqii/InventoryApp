@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pusdatin_end/interface/operator/return/ReturnButtonOperator.dart';
+import 'package:pusdatin_end/interface/operator/return/ReturnDialogOperator.dart';
 import 'package:pusdatin_end/model/app_riwayat.dart';
+import 'package:pusdatin_end/model/app_unit_detail.dart';
 import 'package:pusdatin_end/utils/Formatter.dart';
+import 'package:pusdatin_end/widget/custombutton.dart';
 
 class ReturnDataOperator extends StatelessWidget {
   final AppRiwayatModel model;
@@ -89,7 +91,26 @@ class ReturnDataOperator extends StatelessWidget {
         ),
 
         const SizedBox(height: 12),
-        ReturnButtonOperator()
+        CustomButton(
+            onpress: () {
+              final List<AppUnitDetailModel> item = model.detail;
+
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: ReturnDialogOperator(
+                      items: item,
+                      idJenisPerubahan: 2,
+                      idStatusUnit: 1,
+                      idUser: model.user,
+                    ),
+                  );
+                },
+              );
+            },
+            txt: 'Proses'),
       ],
     );
   }

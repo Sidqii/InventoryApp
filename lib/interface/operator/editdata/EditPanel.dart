@@ -24,6 +24,7 @@ class EditPanel extends StatelessWidget {
   }) {
     ctrl.init(data);
   }
+  
 
   @override
   Widget build(BuildContext context) {
