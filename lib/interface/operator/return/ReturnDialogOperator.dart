@@ -115,7 +115,6 @@ class ReturnDialogOperator extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          // Info terpilih + Proses
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -135,7 +134,6 @@ class ReturnDialogOperator extends StatelessWidget {
                       onPressed: ctrl.isloading.value
                           ? null
                           : () async {
-                              // proses semua yg dipilih
                               await ctrl.updateAllUnit(
                                 idJenisPerubahan,
                                 idStatusUnit,
@@ -143,7 +141,6 @@ class ReturnDialogOperator extends StatelessWidget {
                                 note,
                               );
 
-                              // callback ke parent kalau perlu data terpilih
                               if (onSubmit != null) {
                                 final List<AppUnitDetailModel> selected =
                                     <AppUnitDetailModel>[];
@@ -156,16 +153,13 @@ class ReturnDialogOperator extends StatelessWidget {
                                 onSubmit!(selected);
                               }
 
-                              // opsional: bersihin state controller khusus dialog
-                              // ctrl.reset();
-
-                              // tutup dialog
                               if (context.mounted) {
                                 Navigator.of(context).pop();
                               }
                             },
                       child: Text(
-                        ctrl.isloading.value ? 'Memproses...' : 'Proses',
+                        ctrl.isloading.value ? 'Memproses' : 'Proses',
+                        style: const TextStyle(color: Colors.black),
                       ),
                     );
                   },

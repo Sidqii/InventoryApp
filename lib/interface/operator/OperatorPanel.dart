@@ -15,7 +15,7 @@ class OperatorPanel extends StatelessWidget {
     final Map<int, String> filterOptions = {
       0: '|||',
       1: 'Menunggu',
-      2: 'Disetujui',
+      2: 'Dipinjam',
       3: 'Ditolak',
       5: 'Selesai',
     };
