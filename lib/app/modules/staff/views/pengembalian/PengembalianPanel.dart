@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:inven/app/global/widgets/CustomAppBar.dart';
+import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
+import 'package:inven/app/modules/staff/views/pengembalian/PengembalianBody.dart';
+
+class PengembalianPanel extends GetView<StaffController> {
+  const PengembalianPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CustomAppbar(title: 'Pengembalian', boldTitle: 'Barang'),
+
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Obx(() {
+              return ListView.separated(
+                padding: EdgeInsets.all(0),
+                itemBuilder: (context, index) {
+                  final item = controller.pinjamlist[index];
+            
+                  return PengembalianBody(model: item);
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox();
+                },
+                itemCount: controller.pinjamlist.length,
+              );
+            }),
+          ),
+        ),
+      ],
+    );
+  }
+}
