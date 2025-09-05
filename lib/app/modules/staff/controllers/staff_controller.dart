@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
 import 'package:inven/app/data/models/AppBarang.dart';
-import 'package:inven/app/data/models/AppPengembalian.dart';
+import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/data/models/AppUnitBarang.dart';
 import 'package:inven/app/data/services/services_get.dart';
 import 'package:inven/app/data/services/services_post.dart';
+
 import 'package:inven/app/global/controllers/global_user_controller.dart';
 
 class StaffController extends GetxController {
@@ -13,19 +15,22 @@ class StaffController extends GetxController {
   final services = ServicesPost();
   final servitem = ServicesGet();
 
+  //data model
   final itemList = <AppBarang>[].obs;
   final unitList = <AppUnitBarang>[].obs;
-  final pinjamlist = <AppPengembalian>[].obs;
-
-  var slctItemId = RxnInt(); //dropdown id barang
-  var slctNmItem = RxnString(); //dropdown nama barang
-  var stokItem = 0.obs;
-
-  var slctUnitId = <int>[].obs; //dropdown id unit
-  var isCheckAll = false.obs;
+  final riwayatList = <AppPengajuan>[].obs;
+  final pinjamlist = <AppPengajuan>[].obs;
 
   var isLoading = false.obs;
 
+  var isIndex = 0.obs; //index navigasi
+
+  //dropdown obsverserable
+  var slctItemId = RxnInt(); //dropdown id barang
+  var slctUnitId = <int>[].obs; //dropdown id unit
+  var isCheckAll = false.obs;
+
+  //key dropdown
   Key dropitem = UniqueKey();
   Key dropunit = UniqueKey();
 
@@ -55,6 +60,12 @@ class StaffController extends GetxController {
     super.onClose();
   }
 
+  //fungsi navigasi
+  void onChangePage(int index) {
+    isIndex.value = index;
+  }
+
+  //ceklist all unit
   void chekAll(bool val) {
     final list = unitFilt.isEmpty ? unitList : unitFilt;
 
@@ -72,6 +83,40 @@ class StaffController extends GetxController {
     slctUnitId.refresh();
   }
 
+  //fetch ulang form
+  Future<void> refresh() async {
+    isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 1));
+
+    await fetchData();
+
+    await Future.delayed(Duration(seconds: 1));
+
+    isLoading.value = false;
+  }
+
+  //membersihkan form
+  void resetForm() {
+    ctrlPemohon.text = userData?.nama ?? '';
+    ctrlPemohon.text = userData?.inst ?? '';
+    ctrlHal.clear();
+
+    ctrlPinjam.value = DateTime.now();
+    ctrlKembali.value = DateTime.now();
+
+    slctItemId.value = null;
+    slctUnitId.clear();
+    isCheckAll.value = false;
+
+    dropitem = UniqueKey();
+    dropunit = UniqueKey();
+
+    slctUnitId.refresh();
+    update();
+  }
+
+  //periksa ceklist unit
   void updateCheck() {
     final list = unitFilt.isEmpty ? unitList : unitFilt;
 
@@ -84,18 +129,29 @@ class StaffController extends GetxController {
     try {
       isLoading.value = true;
 
-      //get peminjaman barang
-      final pinjam = await servitem.getPengembalian();
+      //get riwayat
+      final pinjam = await servitem.getPinjam(userData!.id);
+
+      //get riwayat
+      final riwayat = await servitem.getRiwayat(userData!.id);
 
       //get data barang
       final barang = await servitem.getBarang();
 
       //get unit barang
-      final unit = await servitem.getUnit();
+      final unit = await servitem.getUnitStaff();
 
-      pinjamlist.assignAll(pinjam);
+      //data barang
       itemList.assignAll(barang);
+
+      //data unit barang
       unitList.assignAll(unit);
+
+      //data peminjaman
+      pinjamlist.assignAll(pinjam);
+
+      //data riwayat staff
+      riwayatList.assignAll(riwayat);
     } catch (e) {
       Get.snackbar('Error', 'Error fetch data: $e');
     } finally {
@@ -103,7 +159,7 @@ class StaffController extends GetxController {
     }
   }
 
-  //data filter unit barang
+  //data filter unit dropdown
   List<AppUnitBarang> get unitFilt {
     if (slctItemId.value == null) return [];
 
@@ -112,6 +168,7 @@ class StaffController extends GetxController {
     }).toList();
   }
 
+  //melakukan pengajuan
   Future<void> pengajuan() async {
     final user = Get.find<GlobalUserController>().user.value;
 

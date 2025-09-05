@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:inven/app/global/widgets/CustomBG.dart';
+import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/AjukanBarang.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/AjukanInstansi.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/AjukanKembali.dart';
@@ -8,7 +10,7 @@ import 'package:inven/app/modules/staff/views/pengajuan/AjukanPemohon.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/AjukanPinjam.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/AjukanUnit.dart';
 
-class StaffAjukanPanel extends StatelessWidget {
+class StaffAjukanPanel extends GetView<StaffController> {
   const StaffAjukanPanel({super.key});
 
   @override
@@ -19,7 +21,19 @@ class StaffAjukanPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Informasi Peminjam', style: impl),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Informasi Peminjam', style: impl),
+              IconButton(
+                onPressed: () {
+                  controller.refresh();
+                  controller.resetForm();
+                },
+                icon: Icon(Icons.refresh),
+              ),
+            ],
+          ),
 
           const SizedBox(height: 8),
 

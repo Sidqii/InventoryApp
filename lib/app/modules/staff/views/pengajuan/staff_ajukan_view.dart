@@ -25,7 +25,7 @@ class StaffAjukanView extends GetView<StaffController> {
           return Padding(
             padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
             child: CustomBtnForm(
-              Label: 'kirim',
+              label: 'kirim',
               isLoading: controller.isLoading.value,
               OnPress: () {
                 print('klick');

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
-import 'package:inven/app/global/widgets/CustomBtnForm.dart';
-import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class PengembalianData extends GetView<StaffController> {
+class RiwayatData extends StatelessWidget {
   final AppPengajuan model;
 
-  const PengembalianData({required this.model, super.key});
+  const RiwayatData({required this.model, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +58,6 @@ class PengembalianData extends GetView<StaffController> {
             subtitle: Text('No. Seri: ${u.noSeri} • ${u.kondisi?.kondisi}'),
           );
         }).toList(),
-
-        const SizedBox(height: 10),
-
-        CustomBtnForm(
-          label: 'kembalikan',
-          isLoading: controller.isLoading.value,
-          OnPress: () {},
-        ),
       ],
     );
   }

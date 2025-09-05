@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
-import 'package:inven/app/modules/staff/views/pengembalian/PengembalianData.dart';
+import 'package:inven/app/modules/staff/views/riwayat/RiwayatData.dart';
 
-class PengembalianBody extends StatelessWidget {
+class RiwayatBody extends StatelessWidget {
   final AppPengajuan model;
 
-  const PengembalianBody({required this.model, super.key});
+  const RiwayatBody({required this.model, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -25,7 +26,7 @@ class PengembalianBody extends StatelessWidget {
               color: const Color(0xffF4F7F7),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: PengembalianData(model: model),
+            child: RiwayatData(model: model),
           ),
         ],
       ),

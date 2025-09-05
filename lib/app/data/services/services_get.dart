@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:inven/app/data/models/AppBarang.dart';
-import 'package:inven/app/data/models/AppJenis.dart';
-import 'package:inven/app/data/models/AppKategori.dart';
-import 'package:inven/app/data/models/AppPengembalian.dart';
-import 'package:inven/app/data/models/AppUnitBarang.dart';
-import 'package:inven/app/data/services/base_url.dart';
+import '../models/AppBarang.dart';
+import '../models/AppJenis.dart';
+import '../models/AppKategori.dart';
+import '../models/AppPengajuan.dart';
+import '../models/AppUnitBarang.dart';
+import '../services/base_url.dart';
 
 class ServicesGet {
   final String url = BaseUrl.url;
@@ -78,7 +78,7 @@ class ServicesGet {
     }
   }
 
-  //data unit barang
+  //data unit barang => operator
   Future<List<AppUnitBarang>> getUnit() async {
     try {
       final response = await http.get(
@@ -100,11 +100,11 @@ class ServicesGet {
     }
   }
 
-  //data pengembalian (data yang dipinjam)
-  Future<List<AppPengembalian>> getPengembalian() async {
+  //data unit barang => staff only
+  Future<List<AppUnitBarang>> getUnitStaff() async {
     try {
       final response = await http.get(
-        Uri.parse('$url/pengembalian'),
+        Uri.parse('$url/staff/unit'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -112,7 +112,50 @@ class ServicesGet {
         final List<dynamic> data = jsonDecode(response.body);
 
         return data.map((e) {
-          return AppPengembalian.fromJson(e);
+          return AppUnitBarang.fromJson(e);
+        }).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw Exception('Unit error $e');
+    }
+  }
+
+  //data pengembalian (data yang dipinjam)
+  Future<List<AppPengajuan>> getPinjam(int id) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$url/pengajuan/$id'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        return data.map((e) {
+          return AppPengajuan.fromJson(e);
+        }).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw Exception('Pengembalian error $e');
+    }
+  }
+
+  Future<List<AppPengajuan>> getRiwayat(int id) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$url/riwayat/$id'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        return data.map((e) {
+          return AppPengajuan.fromJson(e);
         }).toList();
       } else {
         return [];

@@ -40,7 +40,7 @@ class AjukanUnit extends GetView<StaffController> {
             return ListView.builder(
               padding: const EdgeInsets.all(0),
               // shrinkWrap: true,
-              key: ValueKey(controller.isCheckAll.value),
+              key: controller.dropunit,
               itemCount: unit.length,
               itemBuilder: (context, index) {
                 final u = unit[index];

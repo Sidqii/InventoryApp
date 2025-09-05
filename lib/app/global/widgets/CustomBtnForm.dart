@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomBtnForm extends StatelessWidget {
   final VoidCallback OnPress;
-  final String Label;
+  final String? label;
   final bool isLoading;
   final double? width;
+  final Icon? icon;
 
   const CustomBtnForm({
-    required this.Label,
+    this.label,
     required this.isLoading,
     required this.OnPress,
     this.width,
+    this.icon,
     super.key,
   });
 
@@ -36,14 +38,33 @@ class CustomBtnForm extends StatelessWidget {
                   color: Colors.white,
                 ),
               )
-            : Text(
-                Label,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+            : _buildChild(),
       ),
     );
+  }
+
+  Widget _buildChild() {
+    if (icon != null && label != null) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon!,
+          Text(
+            label!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      );
+    } else if (icon != null) {
+      return icon!;
+    } else {
+      return Text(
+        label!,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white),
+      );
+    }
   }
 }

@@ -39,7 +39,7 @@ class LoginCtrl extends GetView<LoginController> {
           const SizedBox(height: 20),
           Obx(() {
             return CustomBtnForm(
-              Label: 'masuk',
+              label: 'masuk',
               isLoading: controller.isLoading.value,
               OnPress: controller.isLoading.value
                   ? () {}

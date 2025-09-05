@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/staff_ajukan_view.dart';
 import 'package:inven/app/modules/staff/views/pengembalian/staff_pengembalian_view.dart';
+import 'package:inven/app/modules/staff/views/riwayat/staff_riwayat_view.dart';
 
-import '../controllers/staff_nav_controller.dart';
+import '../controllers/staff_controller.dart';
 
-class StaffView extends GetView<StaffNavController> {
+class StaffView extends GetView<StaffController> {
   const StaffView({super.key});
   @override
   Widget build(BuildContext context) {
@@ -17,10 +18,9 @@ class StaffView extends GetView<StaffNavController> {
           children: [
             StaffAjukanView(),
 
-            // const Center(child: Text('pengembalian')), //masih dummy
-            StaffPengembalianView(),
+            StaffRiwayatView(), //masih dummy
 
-            const Center(child: Text('riwayat')), //masih dummy
+            StaffPengembalianView(),
 
             const Center(child: Text('profil')), //masih dummy
           ],
@@ -39,13 +39,13 @@ class StaffView extends GetView<StaffNavController> {
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.view_list),
-              label: 'Pengembalian barang',
+              icon: Icon(Icons.history),
+              label: 'Riwayat',
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              label: 'Riwayat',
+              icon: Icon(Icons.view_list),
+              label: 'Pengembalian barang',
             ),
 
             BottomNavigationBarItem(

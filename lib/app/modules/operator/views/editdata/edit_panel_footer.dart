@@ -17,7 +17,7 @@ class EditPanelFooter extends GetView<OperatorEditController> {
         SizedBox(
           width: 130,
           child: CustomBtnForm(
-            Label: 'simpan',
+            label: 'simpan',
             isLoading: controller.isLoading.value,
             OnPress: () {
               if (!controller.isLoading.value) {

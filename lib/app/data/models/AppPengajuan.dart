@@ -1,54 +1,56 @@
-import 'AppRiwayat.dart';
-import 'AppStatus.dart';
-import 'AppUnitBarang.dart';
-import 'AppUser.dart';
+import 'package:inven/app/data/models/AppRiwayat.dart';
+import 'package:inven/app/data/models/AppStatus.dart';
+import 'package:inven/app/data/models/AppUnitBarang.dart';
+import 'package:inven/app/data/models/AppUser.dart';
 
 class AppPengajuan {
   final int id;
-  final int pengguna;
-  final String? instansi;
-  final String? hal;
-  final String pinjam;
-  final String kembali;
+  final int penggunaId;
+  final int statusId;
+  final String instansi;
+  final String hal;
+  final String pinjamTgl;
+  final String kembaliTgl;
   final int jumlah;
 
-  //relasi
-  final List<AppUnitBarang>? unitBarang;
-  final List<AppRiwayat>? riwayat;
-  final AppUser? user;
+  final AppUser? pengguna;
+  final List<AppUnitBarang>? unit;
   final AppStatus? status;
+  final List<AppRiwayat>? riwayat;
 
   AppPengajuan({
     required this.id,
-    required this.pengguna,
-    required this.pinjam,
-    required this.kembali,
+    required this.penggunaId,
+    required this.statusId,
+    required this.instansi,
+    required this.hal,
+    required this.pinjamTgl,
+    required this.kembaliTgl,
     required this.jumlah,
-    this.hal,
-    this.instansi,
-    this.user,
+    this.pengguna,
+    this.unit,
     this.status,
     this.riwayat,
-    this.unitBarang,
   });
 
   factory AppPengajuan.fromJson(Map<String, dynamic> json) {
     return AppPengajuan(
       id: int.tryParse(json['id'].toString()) ?? 0,
-      pengguna: int.tryParse(json['id_pengguna'].toString()) ?? 0,
-      status: json['status'] != null
-          ? AppStatus.fromJson(json['status'])
-          : null,
+      penggunaId: int.tryParse(json['id_pengguna'].toString()) ?? 0,
+      statusId: int.tryParse(json['id_status'].toString()) ?? 0,
       instansi: json['instansi'] ?? '',
-      pinjam: json['tgl_pinjam'] ?? '',
-      kembali: json['tgl_kembali'] ?? '',
+      hal: json['hal'] ?? '',
+      pinjamTgl: json['tgl_pinjam'] ?? '',
+      kembaliTgl: json['tgl_kembali'] ?? '',
       jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,
-      hal: json['hal'],
-      user: json['user'] != null ? AppUser.fromJson(json['user']) : null,
-      unitBarang: json['unit_barang'] != null
+      pengguna: json['user'] != null ? AppUser.fromJson(json['user']) : null,
+      unit: json['unit_barang'] != null
           ? (json['unit_barang'] as List).map((e) {
               return AppUnitBarang.fromJson(e);
             }).toList()
+          : null,
+      status: json['status'] != null
+          ? AppStatus.fromJson(json['status'])
           : null,
       riwayat: json['riwayat'] != null
           ? (json['riwayat'] as List).map((e) {

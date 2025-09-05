@@ -15,7 +15,9 @@ class GlobalInvenController extends GetxController {
 
   //nilai kategori yang akan dipilih user (default saat ini 0)
   var selectOpsi = 0.obs;
+
   Rx<Map<int, String>> opsiFilter = Rx({});
+
   //indikator loading (true == load dan false == idle)
   var isLoading = false.obs;
 
@@ -70,6 +72,7 @@ class GlobalInvenController extends GetxController {
       List<AppBarang> item = await services.getBarang();
 
       barang.assignAll(item);
+
       filterBarang.assignAll(item);
 
       opsiFilter.value = {

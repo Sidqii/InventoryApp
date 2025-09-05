@@ -5,12 +5,13 @@ import 'AppUnitBarang.dart';
 
 class AppRiwayat {
   final int id;
-  final int idUnit;
-  final int idPengajuan;
-  final int statAwal;
-  final int statBaru;
-  final int lokasiUnit;
+  final int unit;
+  final int pengajuanId;
+  final String? kodePinjam;
   final String? oleh;
+  final int statAwalId;
+  final int statBaruId;
+  final int lokasiId;
 
   //relasi
   final AppUnitBarang? unitBarang;
@@ -21,11 +22,12 @@ class AppRiwayat {
 
   AppRiwayat({
     required this.id,
-    required this.idUnit,
-    required this.idPengajuan,
-    required this.statAwal,
-    required this.statBaru,
-    required this.lokasiUnit,
+    required this.unit,
+    required this.pengajuanId,
+    required this.statAwalId,
+    required this.statBaruId,
+    required this.lokasiId,
+    this.kodePinjam,
     this.oleh,
     this.unitBarang,
     this.statusAwal,
@@ -37,12 +39,19 @@ class AppRiwayat {
   factory AppRiwayat.fromJson(Map<String, dynamic> json) {
     return AppRiwayat(
       id: int.tryParse(json['id'].toString()) ?? 0,
-      idUnit: int.tryParse(json['id_unit_barang'].toString()) ?? 0,
-      idPengajuan: int.tryParse(json['id_pengajuan'].toString()) ?? 0,
-      statAwal: int.tryParse(json['status_awal'].toString()) ?? 0,
-      statBaru: int.tryParse(json['status_baru'].toString()) ?? 0,
-      lokasiUnit: int.tryParse(json['lokasi_unit'].toString()) ?? 0,
+      unit: int.tryParse(json['id_unit_barang'].toString()) ?? 0,
+      pengajuanId: int.tryParse(json['id_pengajuan'].toString()) ?? 0,
+      statAwalId: int.tryParse(json['status_awal'].toString()) ?? 0,
+      statBaruId: int.tryParse(json['status_baru'].toString()) ?? 0,
+      lokasiId: int.tryParse(json['lokasi_unit'].toString()) ?? 0,
+      kodePinjam: json['kode_pinjam'],
       oleh: json['oleh'],
+      unitBarang: json['unit_barang'] != null
+          ? AppUnitBarang.fromJson(json['unit_barang'])
+          : null,
+      pengajuan: json['pengajuan'] != null
+          ? AppPengajuan.fromJson(json['pengajuan'])
+          : null,
     );
   }
 }

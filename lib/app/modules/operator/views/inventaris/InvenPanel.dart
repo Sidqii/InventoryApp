@@ -65,16 +65,18 @@ class InvenPanel extends GetView<GlobalInvenController> {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               }
+
               return ListView.separated(
                 padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: controller.filterBarang.length,
                 separatorBuilder: (context, index) {
-                  return const SizedBox(height: 0);
+                  return const SizedBox();
                 },
                 itemBuilder: (context, index) {
                   final item = controller.filterBarang[index];
+
                   return InvenBody(model: item);
                 },
               );
