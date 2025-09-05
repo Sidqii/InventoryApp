@@ -25,6 +25,17 @@ class StaffController extends GetxController {
 
   var isIndex = 0.obs; //index navigasi
 
+  //filter komponen
+  var riwayatFltr = <AppPengajuan>[].obs;
+  final Map<int, String> opsFltr = {
+    0: '|||',
+    7: 'Pending',
+    3: 'Disetujui',
+    4: 'Ditolak',
+    8: 'Selesai',
+  };
+  var slctOps = 0.obs;
+
   //dropdown obsverserable
   var slctItemId = RxnInt(); //dropdown id barang
   var slctUnitId = <int>[].obs; //dropdown id unit
@@ -125,6 +136,22 @@ class StaffController extends GetxController {
     slctUnitId.refresh();
   }
 
+  //fungsi filter
+  void filterChips() {
+    int select = slctOps.value;
+
+    List<AppPengajuan> data = riwayatList;
+
+    if (select != 0) {
+      data = data.where((r) {
+        return r.status?.id == select;
+      }).toList();
+    }
+
+    riwayatFltr.assignAll(data);
+  }
+
+  //fetch data
   Future<void> fetchData() async {
     try {
       isLoading.value = true;
@@ -152,6 +179,8 @@ class StaffController extends GetxController {
 
       //data riwayat staff
       riwayatList.assignAll(riwayat);
+
+      riwayatFltr.assignAll(riwayat);
     } catch (e) {
       Get.snackbar('Error', 'Error fetch data: $e');
     } finally {

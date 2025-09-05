@@ -10,12 +10,8 @@ class InvenPanel extends GetView<GlobalInvenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,9 +26,9 @@ class InvenPanel extends GetView<GlobalInvenController> {
               controller.filterData(val!);
             },
           ),
-
+      
           const SizedBox(height: 15),
-
+      
           Obx(() {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,7 +43,7 @@ class InvenPanel extends GetView<GlobalInvenController> {
                     },
                   ),
                 ),
-
+      
                 IconButton(
                   onPressed: () {
                     controller.refresh();
@@ -57,15 +53,15 @@ class InvenPanel extends GetView<GlobalInvenController> {
               ],
             );
           }),
-
+      
           const SizedBox(height: 15),
-
+      
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               }
-
+      
               return ListView.separated(
                 padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
@@ -76,7 +72,7 @@ class InvenPanel extends GetView<GlobalInvenController> {
                 },
                 itemBuilder: (context, index) {
                   final item = controller.filterBarang[index];
-
+      
                   return InvenBody(model: item);
                 },
               );
