@@ -4,14 +4,20 @@ import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppBarang.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/data/models/AppUnitBarang.dart';
+import 'package:inven/app/data/models/AppUser.dart';
 import 'package:inven/app/data/services/services_get.dart';
 import 'package:inven/app/data/services/services_post.dart';
 
 import 'package:inven/app/global/controllers/global_user_controller.dart';
+import 'package:inven/app/modules/login/controllers/login_controller.dart';
+import 'package:inven/app/modules/login/views/login_view.dart';
 
 class StaffController extends GetxController {
-  //services dan controller
-  final userData = Get.find<GlobalUserController>().user.value;
+  //controller
+  final userCtrl = Get.find<GlobalUserController>();
+  AppUser? get userData => userCtrl.user.value;
+
+  //services
   final services = ServicesPost();
   final servitem = ServicesGet();
 
@@ -22,6 +28,9 @@ class StaffController extends GetxController {
   final pinjamlist = <AppPengajuan>[].obs;
 
   var isLoading = false.obs;
+
+  final expandR = ''.obs;
+  final expandP = ''.obs;
 
   var isIndex = 0.obs; //index navigasi
 
@@ -69,6 +78,16 @@ class StaffController extends GetxController {
     ctrlPemohon.dispose();
     ctrlHal.dispose();
     super.onClose();
+  }
+
+  void doLogout() {
+    Get.offAll(
+      () => LoginView(),
+      binding: BindingsBuilder(() {
+        Get.put(GlobalUserController());
+        Get.put(LoginController());
+      }),
+    );
   }
 
   //fungsi navigasi

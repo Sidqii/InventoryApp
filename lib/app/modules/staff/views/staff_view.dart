@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/staff_ajukan_view.dart';
 import 'package:inven/app/modules/staff/views/pengembalian/staff_pengembalian_view.dart';
+import 'package:inven/app/modules/staff/views/profile/staff_profile_view.dart';
 import 'package:inven/app/modules/staff/views/riwayat/staff_riwayat_view.dart';
 
 import '../controllers/staff_controller.dart';
@@ -22,7 +23,9 @@ class StaffView extends GetView<StaffController> {
 
             StaffPengembalianView(),
 
-            const Center(child: Text('profil')), //masih dummy
+            StaffProfileView(),
+
+            // const Center(child: Text('profil')), //masih dummy
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

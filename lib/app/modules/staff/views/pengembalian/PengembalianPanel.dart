@@ -28,14 +28,14 @@ class PengembalianPanel extends GetView<StaffController> {
               }
 
               return ListView.separated(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {
                   final item = controller.pinjamlist[index];
 
                   return PengembalianBody(model: item);
                 },
                 separatorBuilder: (context, index) {
-                  return const SizedBox();
+                  return const SizedBox(height: 0);
                 },
                 itemCount: controller.pinjamlist.length,
               );

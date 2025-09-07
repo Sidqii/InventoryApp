@@ -19,13 +19,15 @@ class RiwayatPanel extends GetView<StaffController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(() {
-                return CustomFilterChips(
-                  opsi: controller.opsFltr,
-                  select: controller.slctOps.value,
-                  isSelect: (val) {
-                    controller.slctOps.value = val;
-                    controller.filterChips();
-                  },
+                return Expanded(
+                  child: CustomFilterChips(
+                    opsi: controller.opsFltr,
+                    select: controller.slctOps.value,
+                    isSelect: (val) {
+                      controller.slctOps.value = val;
+                      controller.filterChips();
+                    },
+                  ),
                 );
               }),
 
@@ -52,13 +54,14 @@ class RiwayatPanel extends GetView<StaffController> {
               }
 
               return ListView.separated(
+                padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {
                   final item = controller.riwayatFltr[index];
 
                   return RiwayatBody(model: item);
                 },
                 separatorBuilder: (context, index) {
-                  return const SizedBox();
+                  return const SizedBox(height: 0);
                 },
                 itemCount: controller.riwayatFltr.length,
               );
