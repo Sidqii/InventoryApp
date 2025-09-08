@@ -13,7 +13,11 @@ class PengembalianPanel extends GetView<StaffController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppbar(title: 'Pengembalian', boldTitle: 'Barang'),
+        CustomAppbar(
+          title: 'Pengembalian',
+          boldTitle: 'Barang',
+          showNotif: false,
+        ),
 
         Expanded(
           child: Padding(

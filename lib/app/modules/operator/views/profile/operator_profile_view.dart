@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomAppBar.dart';
-import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
+import 'package:inven/app/modules/operator/controllers/operator_controller.dart';
 
-class StaffProfileView extends GetView<StaffController> {
-  const StaffProfileView({super.key});
+class OperatorProfileView extends GetView<OperatorController> {
+  const OperatorProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +51,8 @@ class StaffProfileView extends GetView<StaffController> {
               );
             }
           },
-          title: Formatter.getRole(controller.userData?.idPeran ?? 0),
-          boldTitle: controller.userData?.nama ?? '',
+          title: 'Profile',
+          boldTitle: '${controller.userData?.nama}',
         ),
         Expanded(child: Center(child: Text('profile'))),
       ],

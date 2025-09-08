@@ -7,7 +7,7 @@ class AjukanKeperluan extends GetView<StaffController> {
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: Colors.black,
-      controller: controller.ctrlHal,
+      controller: controller.ctrlKeperluan,
       decoration: const InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),

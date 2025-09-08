@@ -110,28 +110,6 @@ class RiwayatData extends StatelessWidget {
 
         const SizedBox(height: 15),
 
-        //jumlah unit dipinjam
-        // TextField(
-        //   controller: TextEditingController(text: model.jumlah.toString()),
-        //   readOnly: true,
-        //   enabled: false,
-        //   style: title,
-        //   decoration: InputDecoration(
-        //     label: Text('Jumlah unit'),
-        //     labelStyle: TextStyle(
-        //       color: Colors.black,
-        //       fontWeight: FontWeight.w600,
-        //     ),
-        //     isDense: true,
-        //     disabledBorder: OutlineInputBorder(),
-        //     contentPadding: const EdgeInsets.symmetric(
-        //       vertical: 15,
-        //       horizontal: 10,
-        //     ),
-        //   ),
-        // ),
-
-        // const SizedBox(height: 15),
         Row(
           children: [
             //keperluan peminjaman

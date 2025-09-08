@@ -10,6 +10,7 @@ class EditMerkBarang extends GetView<OperatorEditController> {
       style: const TextStyle(fontSize: 12),
       controller: controller.ctrlMerk,
       decoration: const InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         labelText: 'Merk barang',
         labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         focusedBorder: UnderlineInputBorder(

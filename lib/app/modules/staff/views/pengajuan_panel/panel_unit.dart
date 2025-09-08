@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
+
+class PanelUnit extends GetView<StaffController> {
+  const PanelUnit({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: TextEditingController(
+        text: controller.slctUnitId.length.toString(),
+      ),
+      readOnly: true,
+      enabled: false,
+      maxLines: null,
+      style: TextStyle(color: Colors.grey.shade900, fontSize: 12),
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.shopping_cart, color: Colors.grey.shade900),
+        label: Text('Jumlah unit barang'),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade900,
+          fontWeight: FontWeight.w600,
+        ),
+        isDense: true,
+        disabledBorder: OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: 10,
+        ),
+      ),
+    );
+  }
+}

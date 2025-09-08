@@ -10,6 +10,7 @@ class EditSumVendor extends GetView<OperatorEditController> {
       controller: controller.ctrlSumVendor,
       style: const TextStyle(fontSize: 12),
       decoration: const InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         labelText: 'Sumber Vendor',
         labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         focusedBorder: UnderlineInputBorder(

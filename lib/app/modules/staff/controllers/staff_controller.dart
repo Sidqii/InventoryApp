@@ -7,6 +7,7 @@ import 'package:inven/app/data/models/AppUnitBarang.dart';
 import 'package:inven/app/data/models/AppUser.dart';
 import 'package:inven/app/data/services/services_get.dart';
 import 'package:inven/app/data/services/services_post.dart';
+import 'package:inven/app/global/controllers/global_inven_controller.dart';
 
 import 'package:inven/app/global/controllers/global_user_controller.dart';
 import 'package:inven/app/modules/login/controllers/login_controller.dart';
@@ -28,10 +29,12 @@ class StaffController extends GetxController {
   final pinjamlist = <AppPengajuan>[].obs;
 
   var isLoading = false.obs;
+  var isBtnLoad = false.obs;
 
   final expandR = ''.obs;
   final expandP = ''.obs;
 
+  var isItem = 0.obs;
   var isIndex = 0.obs; //index navigasi
 
   //filter komponen
@@ -56,9 +59,9 @@ class StaffController extends GetxController {
 
   final ctrlPemohon = TextEditingController();
   final ctrlInstansi = TextEditingController();
-  final ctrlHal = TextEditingController();
-  final ctrlKembali = DateTime.now().obs;
-  final ctrlPinjam = DateTime.now().obs;
+  final ctrlKeperluan = TextEditingController();
+  final ctrlKembali = Rxn<DateTime>();
+  final ctrlPinjam = Rxn<DateTime>();
 
   @override
   void onInit() {
@@ -76,15 +79,24 @@ class StaffController extends GetxController {
   void onClose() {
     ctrlInstansi.dispose();
     ctrlPemohon.dispose();
-    ctrlHal.dispose();
+    ctrlKeperluan.dispose();
     super.onClose();
   }
 
+  String? get selectedItem {
+    final barang = itemList.firstWhereOrNull((i) {
+      return i.id == slctItemId.value;
+    });
+    return barang?.nmBarang;
+  }
+
+  //logout app
   void doLogout() {
     Get.offAll(
       () => LoginView(),
       binding: BindingsBuilder(() {
         Get.put(GlobalUserController());
+        Get.put(GlobalInvenController());
         Get.put(LoginController());
       }),
     );
@@ -129,11 +141,11 @@ class StaffController extends GetxController {
   //membersihkan form
   void resetForm() {
     ctrlPemohon.text = userData?.nama ?? '';
-    ctrlPemohon.text = userData?.inst ?? '';
-    ctrlHal.clear();
+    ctrlInstansi.text = userData?.inst ?? '';
+    ctrlKeperluan.clear();
 
-    ctrlPinjam.value = DateTime.now();
-    ctrlKembali.value = DateTime.now();
+    ctrlPinjam.value = null;
+    ctrlKembali.value = null;
 
     slctItemId.value = null;
     slctUnitId.clear();
@@ -226,13 +238,17 @@ class StaffController extends GetxController {
       final response = await services.postPengajuan(
         user!.id,
         ctrlInstansi.text,
-        ctrlHal.text,
+        ctrlKeperluan.text,
         ctrlPinjam.toString(),
         ctrlKembali.toString(),
         slctUnitId.toList(),
       );
 
       if (response != null) {
+        refresh();
+
+        resetForm();
+
         Get.snackbar('Sukses', 'Pengajuan peminjaman berhasil');
       } else {
         Get.snackbar('Gagal', 'Gagal mengajukan peminjaman');

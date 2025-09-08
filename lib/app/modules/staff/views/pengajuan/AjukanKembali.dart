@@ -8,8 +8,8 @@ class AjukanKembali extends GetView<StaffController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return CustomDatePicker(
-        label: 'Tanggal pengembalian:',
-        slctDate: controller.ctrlKembali.value,
+        label: 'Pengembalian:',
+        selectDate: controller.ctrlKembali.value,
         onDatePick: (val) {
           controller.ctrlKembali.value = val;
         },

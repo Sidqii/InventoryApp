@@ -4,12 +4,12 @@ import 'package:inven/app/global/utils/Formatter.dart';
 
 class CustomDatePicker extends StatelessWidget {
   final String label;
-  final DateTime slctDate;
+  final DateTime? selectDate;
   final Function(DateTime) onDatePick;
 
   const CustomDatePicker({
     required this.label,
-    required this.slctDate,
+    required this.selectDate,
     required this.onDatePick,
     super.key,
   });
@@ -17,14 +17,15 @@ class CustomDatePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = const TextStyle(fontSize: 13);
-    // final bold = const TextStyle(fontWeight: FontWeight.bold);
-    final impl = const TextStyle(fontSize: 14, color: Colors.white);
+    final impl = const TextStyle(fontSize: 13, color: Colors.white);
 
     return GestureDetector(
       onTap: () async {
+        DateTime initial = selectDate ?? DateTime.now();
+
         DateTime? pick = await showDatePicker(
           context: context,
-          initialDate: slctDate,
+          initialDate: initial,
           firstDate: DateTime(2000),
           lastDate: DateTime(2100),
           builder: (context, child) {
@@ -41,12 +42,15 @@ class CustomDatePicker extends StatelessWidget {
           },
         );
 
-        if (pick == null) {
-          return;
-        }
+        if (pick == null) return;
 
-        if (pick.isBefore(DateTime.now())) {
+        DateTime today = DateTime.now();
+        DateTime nowDate = DateTime(today.year, today.month, today.day);
+        DateTime pickDate = DateTime(pick.year, pick.month, pick.day);
+
+        if (pickDate.isBefore(nowDate)) {
           Get.snackbar('Gagal', 'Tanggal pengembalian tidak valid');
+          return;
         }
 
         onDatePick(pick);
@@ -68,7 +72,9 @@ class CustomDatePicker extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
-              Formatter.dateID(slctDate.toIso8601String()),
+              selectDate != null
+                  ? Formatter.dateID(selectDate!.toIso8601String())
+                  : 'Pilih tanggal',
               style: impl,
             ),
           ),

@@ -28,34 +28,41 @@ class StaffView extends GetView<StaffController> {
             // const Center(child: Text('profil')), //masih dummy
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.black,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: controller.isIndex.value,
-          onTap: controller.onChangePage,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_box),
-              label: 'Peminjaman barang',
-            ),
+        bottomNavigationBar: Theme(
+          data: Theme.of(context).copyWith(
+            splashFactory: NoSplash.splashFactory,
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.black,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            currentIndex: controller.isIndex.value,
+            onTap: controller.onChangePage,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_box),
+                label: 'Peminjaman barang',
+              ),
 
-            BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              label: 'Riwayat',
-            ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.history),
+                label: 'Riwayat',
+              ),
 
-            BottomNavigationBarItem(
-              icon: Icon(Icons.view_list),
-              label: 'Pengembalian barang',
-            ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.view_list),
+                label: 'Pengembalian barang',
+              ),
 
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profil pengguna',
-            ),
-          ],
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profil pengguna',
+              ),
+            ],
+          ),
         ),
       );
     });

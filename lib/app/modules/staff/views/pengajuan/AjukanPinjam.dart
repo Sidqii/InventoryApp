@@ -9,8 +9,8 @@ class AjukanPinjam extends GetView<StaffController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return CustomDatePicker(
-        label: 'Tanggal peminjaman:',
-        slctDate: controller.ctrlPinjam.value,
+        label: 'Peminjaman:',
+        selectDate: controller.ctrlPinjam.value,
         onDatePick: (val) {
           controller.ctrlPinjam.value = val;
         },

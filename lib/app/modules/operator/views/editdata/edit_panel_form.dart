@@ -15,7 +15,6 @@ class EditPanelForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final txtStyle = const TextStyle(
       fontSize: 14,
-      decoration: TextDecoration.underline,
       fontWeight: FontWeight.bold,
     );
 
@@ -24,44 +23,56 @@ class EditPanelForm extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Informasi barang     ', style: txtStyle),
+            Text('Informasi barang:', style: txtStyle),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
+
             Row(
               children: [
                 Expanded(child: EditNamaBarang()),
+
                 const SizedBox(width: 20),
+
                 Expanded(child: EditJenisBarang()),
               ],
             ),
 
             const SizedBox(height: 10),
+
             EditSumVendor(),
 
-            const SizedBox(height: 20),
-            Text('Detail barang     ', style: txtStyle),
+            const SizedBox(height: 30),
 
-            const SizedBox(height: 10),
+            Text('Detail barang:', style: txtStyle),
+
+            const SizedBox(height: 15),
+
             Row(
               children: [
                 Expanded(child: EditMerkBarang()),
+
                 const SizedBox(width: 20),
+
                 Expanded(child: EditKategoriBarang()),
               ],
             ),
 
             const SizedBox(height: 10),
+
             EditDeskBarang(),
 
-            const SizedBox(height: 20),
-            Text('Catatan barang     ', style: txtStyle),
+            const SizedBox(height: 30),
 
-            const SizedBox(height: 15),
+            Text('Catatan barang:', style: txtStyle),
+
+            const SizedBox(height: 20),
+
             EditSpekBarang(),
 
             const SizedBox(height: 20),
+
             EditNoteBarang(),
           ],
         ),

@@ -38,10 +38,10 @@ class RiwayatTable extends StatelessWidget {
               1: FlexColumnWidth(2),
               2: FlexColumnWidth(2),
             },
-            border: TableBorder.all(color: Colors.grey.shade300),
+            border: TableBorder.all(color: Colors.grey.shade500),
             children: [
               TableRow(
-                decoration: BoxDecoration(color: Colors.grey.shade500),
+                decoration: BoxDecoration(color: Colors.grey.shade900),
                 children: [
                   Padding(
                     padding: padColumnT,

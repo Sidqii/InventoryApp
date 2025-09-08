@@ -16,12 +16,11 @@ class EditKategoriBarang extends GetView<OperatorEditController> {
             labelText: 'Kategori barang',
             labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.grey.shade900,
             ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            border: UnderlineInputBorder(),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade900),
             ),
           ),
         ),

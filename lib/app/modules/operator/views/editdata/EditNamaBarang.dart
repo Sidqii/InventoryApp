@@ -10,6 +10,7 @@ class EditNamaBarang extends GetView<OperatorEditController> {
       controller: controller.ctrlBarang,
       style: const TextStyle(fontSize: 12),
       decoration: const InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         labelText: 'Nama Barang',
         labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         focusedBorder: UnderlineInputBorder(

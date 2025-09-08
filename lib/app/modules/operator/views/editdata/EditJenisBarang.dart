@@ -13,17 +13,15 @@ class EditJenisBarang extends GetView<OperatorEditController> {
       return DropdownSearch<AppJenis>(
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
+            isDense: true,
             labelText: 'Jenis barang',
             labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.grey.shade900,
             ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            border: UnderlineInputBorder(),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.black,
-              ), // underline hitam saat fokus
+            border: OutlineInputBorder(),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade900),
             ),
           ),
         ),
@@ -35,6 +33,7 @@ class EditJenisBarang extends GetView<OperatorEditController> {
         popupProps: PopupProps.menu(
           itemBuilder: (context, item, isSlct) {
             return ListTile(
+              // contentPadding: EdgeInsets.all(0),
               visualDensity: VisualDensity.compact,
               dense: true,
               title: Text(item.jenis, style: TextStyle(fontSize: 12)),
@@ -42,10 +41,7 @@ class EditJenisBarang extends GetView<OperatorEditController> {
           },
         ),
         dropdownBuilder: (context, slctItem) {
-          return Text(
-            slctItem?.jenis ?? '...',
-            style: TextStyle(fontSize: 12),
-          );
+          return Text(slctItem?.jenis ?? '...', style: TextStyle(fontSize: 12));
         },
         onChanged: (val) {
           if (val != null) controller.ctrlJenis.value = val.id;

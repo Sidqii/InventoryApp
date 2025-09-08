@@ -5,7 +5,7 @@ import 'package:inven/app/global/controllers/global_user_controller.dart';
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<GlobalInvenController>(() => GlobalInvenController());
-    Get.lazyPut<GlobalUserController>(() => GlobalUserController());
+    Get.put<GlobalInvenController>(GlobalInvenController(), permanent: true);
+    Get.put<GlobalUserController>(GlobalUserController(), permanent: true);
   }
 }

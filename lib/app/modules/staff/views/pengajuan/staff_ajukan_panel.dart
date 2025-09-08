@@ -17,70 +17,75 @@ class StaffAjukanPanel extends GetView<StaffController> {
   Widget build(BuildContext context) {
     final impl = const TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
 
-    return CustomBackground(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.75,
+        child: CustomBackground(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Informasi Peminjam', style: impl),
-              IconButton(
-                onPressed: () {
-                  controller.refresh();
-                  controller.resetForm();
-                },
-                icon: Icon(Icons.refresh),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Informasi Peminjam', style: impl),
+                  IconButton(
+                    onPressed: () {
+                      controller.refresh();
+                      controller.resetForm();
+                    },
+                    icon: Icon(Icons.refresh),
+                  ),
+                ],
               ),
+        
+              const SizedBox(height: 8),
+        
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: AjukanPemohon()),
+        
+                  const SizedBox(width: 20),
+        
+                  Expanded(child: AjukanInstansi()),
+                ],
+              ),
+        
+              const SizedBox(height: 10),
+        
+              AjukanKeperluan(),
+        
+              const SizedBox(height: 20),
+        
+              Text('Detail peminjaman', style: impl),
+        
+              const SizedBox(height: 8),
+        
+              AjukanBarang(),
+        
+              const SizedBox(height: 10),
+        
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: AjukanPinjam()),
+        
+                  const SizedBox(width: 20),
+        
+                  Expanded(child: AjukanKembali()),
+                ],
+              ),
+        
+              const SizedBox(height: 20),
+        
+              Text('Unit barang', style: impl),
+        
+              const SizedBox(height: 5),
+        
+              Expanded(child: AjukanUnit()),
             ],
           ),
-
-          const SizedBox(height: 8),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(child: AjukanPemohon()),
-
-              const SizedBox(width: 20),
-
-              Expanded(child: AjukanInstansi()),
-            ],
-          ),
-
-          const SizedBox(height: 10),
-
-          AjukanKeperluan(),
-
-          const SizedBox(height: 20),
-
-          Text('Detail peminjaman', style: impl),
-
-          const SizedBox(height: 8),
-
-          AjukanBarang(),
-
-          const SizedBox(height: 10),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(child: AjukanPinjam()),
-
-              const SizedBox(width: 20),
-
-              Expanded(child: AjukanKembali()),
-            ],
-          ),
-
-          const SizedBox(height: 20),
-
-          Text('Unit barang', style: impl),
-
-          const SizedBox(height: 5),
-
-          Expanded(child: AjukanUnit()),
-        ],
+        ),
       ),
     );
   }

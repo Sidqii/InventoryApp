@@ -27,11 +27,11 @@ class Formatter {
         .join(' ');
   }
 
-  static String getRole(int idRole) {
-    switch (idRole) {
-      case 1:
+  static String getRole(int id) {
+    switch (id) {
+      case 4:
         return 'Operator';
-      case 2:
+      case 5:
         return 'Staff';
       default:
         return 'Halo';

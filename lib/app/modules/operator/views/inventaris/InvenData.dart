@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppBarang.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
+import 'package:inven/app/global/widgets/CustomShowDialog.dart';
 import 'package:inven/app/modules/operator/views/editdata/operator_edit_view.dart';
 
 class InvenData extends StatelessWidget {
@@ -30,24 +32,15 @@ class InvenData extends StatelessWidget {
           children: [
             //nama barang
             Text(barang, style: const TextStyle(fontWeight: FontWeight.bold)),
+
             //tombol untuk memunculkan edit data barang
             IconButton(
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                      insetPadding: EdgeInsets.all(5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.95,
-                        height: MediaQuery.of(context).size.height * 0.7,
-                        child: OperatorEditView(model: model),
-                      ),
-                    );
-                  },
+                Get.dialog(
+                  CustomShowDialog(
+                    heightFactor: 0.70,
+                    child: OperatorEditView(model: model),
+                  ),
                 );
               },
               icon: Icon(Icons.edit, size: 20),
@@ -68,6 +61,7 @@ class InvenData extends StatelessWidget {
                 fontStyle: FontStyle.italic,
               ),
             ),
+
             //kode barang
             Text(kode, style: const TextStyle(fontSize: 11, letterSpacing: 1)),
           ],
@@ -83,6 +77,8 @@ class InvenData extends StatelessWidget {
               vendor,
               style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
             ),
+
+            //badge garansi barang
             Container(
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
@@ -90,7 +86,6 @@ class InvenData extends StatelessWidget {
                 border: Border.all(color: Colors.transparent),
                 borderRadius: BorderRadius.circular(5),
               ),
-              //garansi barang
               child: Text(
                 '${garansi.toString()} bulan',
                 style: const TextStyle(
@@ -102,10 +97,10 @@ class InvenData extends StatelessWidget {
           ],
         ),
 
+        //jenis barang
         Row(
           children: [
             Text('Jenis: ', style: const TextStyle(fontSize: 12)),
-            //jenis barang
             Text(
               jenis,
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
@@ -115,10 +110,10 @@ class InvenData extends StatelessWidget {
 
         const SizedBox(height: 3),
 
+        //catatan perawatan
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //catatan perawatan
             Text('Catatan: ', style: const TextStyle(fontSize: 12)),
             Flexible(
               child: Text(
@@ -134,6 +129,7 @@ class InvenData extends StatelessWidget {
 
         const SizedBox(height: 8),
 
+        //deskripsi  barang
         Container(
           padding: const EdgeInsets.all(8),
           width: double.infinity,
@@ -146,7 +142,6 @@ class InvenData extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //deskripsi  barang
               Text(
                 'Deskripsi Barang:',
                 style: const TextStyle(
@@ -167,6 +162,7 @@ class InvenData extends StatelessWidget {
           children: [
             //sumber barang
             Text('$sumber ', style: TextStyle(fontSize: 12)),
+
             //tanggal pengadaan
             Text(
               Formatter.dateID(pengadaan),

@@ -11,7 +11,11 @@ class RiwayatPanel extends GetView<StaffController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomAppbar(title: 'Riwayat', boldTitle: 'Peminjaman'),
+        CustomAppbar(
+          title: 'Riwayat',
+          boldTitle: 'Peminjaman',
+          showNotif: false,
+        ),
 
         Padding(
           padding: const EdgeInsets.all(10),

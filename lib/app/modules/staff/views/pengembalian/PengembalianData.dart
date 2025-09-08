@@ -162,11 +162,12 @@ class PengembalianData extends GetView<StaffController> {
           ],
         ),
 
-        const SizedBox(height: 20),
+        const SizedBox(height: 15),
 
+        //button pengembalian
         CustomBtnForm(
           label: 'kembalikan',
-          isLoading: controller.isLoading.value,
+          isLoading: controller.isBtnLoad.value,
           OnPress: () {},
         ),
       ],
