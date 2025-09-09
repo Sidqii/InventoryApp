@@ -28,7 +28,7 @@ class PanelTanggal extends GetView<StaffController> {
                   ),
                 ),
 
-                const SizedBox(width: 3),
+                const SizedBox(width: 5),
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class PanelTanggal extends GetView<StaffController> {
                       ),
                     ),
                     Text(
-                      Formatter.dateID(controller.ctrlPinjam.toString()),
+                      Formatter.dateID(controller.tglPinjam.toString()),
                       style: TextStyle(
                         color: Colors.grey.shade50,
                         fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class PanelTanggal extends GetView<StaffController> {
                   ),
                 ),
 
-                const SizedBox(width: 3),
+                const SizedBox(width: 5),
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +88,7 @@ class PanelTanggal extends GetView<StaffController> {
                       ),
                     ),
                     Text(
-                      Formatter.dateID(controller.ctrlKembali.toString()),
+                      Formatter.dateID(controller.tglKembali.toString()),
                       style: TextStyle(
                         color: Colors.grey.shade50,
                         fontWeight: FontWeight.bold,

@@ -14,7 +14,7 @@ import 'package:inven/app/modules/login/controllers/login_controller.dart';
 import 'package:inven/app/modules/login/views/login_view.dart';
 
 class StaffController extends GetxController {
-  //controller
+  //controller data pengguna
   final userCtrl = Get.find<GlobalUserController>();
   AppUser? get userData => userCtrl.user.value;
 
@@ -22,33 +22,36 @@ class StaffController extends GetxController {
   final services = ServicesPost();
   final servitem = ServicesGet();
 
-  //data model
+  //data model yang difetch
   final itemList = <AppBarang>[].obs;
   final unitList = <AppUnitBarang>[].obs;
   final riwayatList = <AppPengajuan>[].obs;
   final pinjamlist = <AppPengajuan>[].obs;
 
+  //nilai loading
   var isLoading = false.obs;
   var isBtnLoad = false.obs;
+  var errorList = <String>[].obs;
 
+  //pemantauan expand
   final expandR = ''.obs;
   final expandP = ''.obs;
 
-  var isItem = 0.obs;
   var isIndex = 0.obs; //index navigasi
 
-  //filter komponen
-  var riwayatFltr = <AppPengajuan>[].obs;
+  //komponen untuk filteChips
   final Map<int, String> opsFltr = {
+    //data filter
     0: '|||',
     7: 'Pending',
     3: 'Disetujui',
     4: 'Ditolak',
     8: 'Selesai',
   };
-  var slctOps = 0.obs;
+  var riwayatFltr = <AppPengajuan>[].obs; //data yang dimunculkan
+  var slctOps = 0.obs; //opsi yang dipilih
 
-  //dropdown obsverserable
+  //pemantauan untuk dropdown
   var slctItemId = RxnInt(); //dropdown id barang
   var slctUnitId = <int>[].obs; //dropdown id unit
   var isCheckAll = false.obs;
@@ -57,12 +60,14 @@ class StaffController extends GetxController {
   Key dropitem = UniqueKey();
   Key dropunit = UniqueKey();
 
+  //controller tiap input
   final ctrlPemohon = TextEditingController();
   final ctrlInstansi = TextEditingController();
   final ctrlKeperluan = TextEditingController();
-  final ctrlKembali = Rxn<DateTime>();
-  final ctrlPinjam = Rxn<DateTime>();
+  final tglPinjam = Rxn<DateTime>();
+  final tglKembali = Rxn<DateTime>();
 
+  //init awal app dimulai
   @override
   void onInit() {
     super.onInit();
@@ -75,6 +80,7 @@ class StaffController extends GetxController {
     }
   }
 
+  //fungsi ketika app ditutup
   @override
   void onClose() {
     ctrlInstansi.dispose();
@@ -83,6 +89,7 @@ class StaffController extends GetxController {
     super.onClose();
   }
 
+  //convert item dipilih dari dropdown (id) -> (nama barang)
   String? get selectedItem {
     final barang = itemList.firstWhereOrNull((i) {
       return i.id == slctItemId.value;
@@ -102,12 +109,7 @@ class StaffController extends GetxController {
     );
   }
 
-  //fungsi navigasi
-  void onChangePage(int index) {
-    isIndex.value = index;
-  }
-
-  //ceklist all unit
+  //fungsi ceklist semua unit (checkBox)
   void chekAll(bool val) {
     final list = unitFilt.isEmpty ? unitList : unitFilt;
 
@@ -125,7 +127,16 @@ class StaffController extends GetxController {
     slctUnitId.refresh();
   }
 
-  //fetch ulang form
+  //periksa ceklist unit
+  void updateCheck() {
+    final list = unitFilt.isEmpty ? unitList : unitFilt;
+
+    isCheckAll.value = slctUnitId.length == list.length;
+
+    slctUnitId.refresh();
+  }
+
+  //fetch ulang form (refresh)
   Future<void> refresh() async {
     isLoading.value = true;
 
@@ -138,14 +149,14 @@ class StaffController extends GetxController {
     isLoading.value = false;
   }
 
-  //membersihkan form
+  //membersihkan form (reset)
   void resetForm() {
     ctrlPemohon.text = userData?.nama ?? '';
     ctrlInstansi.text = userData?.inst ?? '';
     ctrlKeperluan.clear();
 
-    ctrlPinjam.value = null;
-    ctrlKembali.value = null;
+    tglPinjam.value = null;
+    tglKembali.value = null;
 
     slctItemId.value = null;
     slctUnitId.clear();
@@ -158,13 +169,13 @@ class StaffController extends GetxController {
     update();
   }
 
-  //periksa ceklist unit
-  void updateCheck() {
-    final list = unitFilt.isEmpty ? unitList : unitFilt;
+  //data filter unit dropdown
+  List<AppUnitBarang> get unitFilt {
+    if (slctItemId.value == null) return [];
 
-    isCheckAll.value = slctUnitId.length == list.length;
-
-    slctUnitId.refresh();
+    return unitList.where((u) {
+      return u.barang!.id == slctItemId.value;
+    }).toList();
   }
 
   //fungsi filter
@@ -187,10 +198,10 @@ class StaffController extends GetxController {
     try {
       isLoading.value = true;
 
-      //get riwayat
+      //get hanya riwayat peminjaman
       final pinjam = await servitem.getPinjam(userData!.id);
 
-      //get riwayat
+      //get semua riwayat
       final riwayat = await servitem.getRiwayat(userData!.id);
 
       //get data barang
@@ -211,21 +222,13 @@ class StaffController extends GetxController {
       //data riwayat staff
       riwayatList.assignAll(riwayat);
 
+      //data riwayat difilter
       riwayatFltr.assignAll(riwayat);
     } catch (e) {
       Get.snackbar('Error', 'Error fetch data: $e');
     } finally {
       isLoading.value = false;
     }
-  }
-
-  //data filter unit dropdown
-  List<AppUnitBarang> get unitFilt {
-    if (slctItemId.value == null) return [];
-
-    return unitList.where((u) {
-      return u.barang!.id == slctItemId.value;
-    }).toList();
   }
 
   //melakukan pengajuan
@@ -239,15 +242,15 @@ class StaffController extends GetxController {
         user!.id,
         ctrlInstansi.text,
         ctrlKeperluan.text,
-        ctrlPinjam.toString(),
-        ctrlKembali.toString(),
+        tglPinjam.toString(),
+        tglKembali.toString(),
         slctUnitId.toList(),
       );
 
       if (response != null) {
-        refresh();
-
         resetForm();
+
+        refresh();
 
         Get.snackbar('Sukses', 'Pengajuan peminjaman berhasil');
       } else {
@@ -258,5 +261,70 @@ class StaffController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  //fungsi navigasi page
+  void onChangePage(int index) {
+    isIndex.value = index;
+  }
+
+  //fungsi validasi form
+  bool validateForm() {
+    List<String> error = [];
+
+    //validasi tanggal peminjaman
+    if (tglPinjam.value == null) {
+      error.add('Tanggal pinjam kosong');
+    } else {
+      DateTime today = DateTime.now();
+
+      DateTime nowDate = DateTime(today.year, today.month, today.day);
+
+      DateTime pinjam = DateTime(
+        tglPinjam.value!.year,
+        tglPinjam.value!.month,
+        tglPinjam.value!.day,
+      );
+
+      if (pinjam.isBefore(nowDate)) {
+        error.add('Tanggal pinjam tidak valid');
+      }
+    }
+
+    //validasi tanggal peminjaman
+    if (tglKembali.value == null) {
+      error.add('Tanggal kembali kosong');
+    } else if (tglPinjam.value != null) {
+      DateTime kembali = DateTime(
+        tglKembali.value!.year,
+        tglKembali.value!.month,
+        tglKembali.value!.day,
+      );
+
+      DateTime pinjam = DateTime(
+        tglPinjam.value!.year,
+        tglPinjam.value!.month,
+        tglPinjam.value!.day,
+      );
+
+      if (kembali.isBefore(pinjam)) {
+        error.add('Tanggal kembali tidak valid');
+      }
+    }
+
+    //validasi barang
+    if (slctItemId.value == null) {
+      error.add('Data barang kosong');
+    }
+
+    //valdasi unit barang
+    if (slctUnitId.isEmpty) {
+      error.add('Unit barang kosong');
+    }
+
+    //inout semua error kedalam list
+    errorList.assignAll(error);
+
+    return error.isEmpty;
   }
 }

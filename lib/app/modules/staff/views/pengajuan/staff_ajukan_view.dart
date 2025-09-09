@@ -7,7 +7,8 @@ import 'package:inven/app/global/widgets/CustomShowDialog.dart';
 
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 import 'package:inven/app/modules/staff/views/pengajuan/staff_ajukan_panel.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/confirm_panel.dart';
+import 'package:inven/app/modules/staff/views/pengajuan_confirm/confirm_panel.dart';
+import 'package:inven/app/modules/staff/views/pengajuan_confirm/valid_panel.dart';
 
 class StaffAjukanView extends GetView<StaffController> {
   @override
@@ -34,9 +35,17 @@ class StaffAjukanView extends GetView<StaffController> {
               label: 'kirim',
               isLoading: controller.isBtnLoad.value,
               OnPress: () {
-                Get.dialog(
-                  CustomShowDialog(child: ConfirmPanel())
-                );
+                if (controller.validateForm()) {
+                  print('valid? ${controller.validateForm()}');
+
+                  Get.dialog(CustomShowDialog(child: ConfirmPanel()));
+                } else {
+                  Get.dialog(CustomShowDialog(
+                    widthFactor: 0.10,
+                    heightFactor: 0.25,
+                    child: ValidPanel()
+                  ));
+                }
               },
             ),
           );

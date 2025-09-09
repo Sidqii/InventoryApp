@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 
 class CustomDatePicker extends StatelessWidget {
@@ -44,14 +43,14 @@ class CustomDatePicker extends StatelessWidget {
 
         if (pick == null) return;
 
-        DateTime today = DateTime.now();
-        DateTime nowDate = DateTime(today.year, today.month, today.day);
-        DateTime pickDate = DateTime(pick.year, pick.month, pick.day);
+        // DateTime today = DateTime.now();
+        // DateTime nowDate = DateTime(today.year, today.month, today.day);
+        // DateTime pickDate = DateTime(pick.year, pick.month, pick.day);
 
-        if (pickDate.isBefore(nowDate)) {
-          Get.snackbar('Gagal', 'Tanggal pengembalian tidak valid');
-          return;
-        }
+        // if (pickDate.isBefore(nowDate)) {
+        //   Get.snackbar('Gagal', 'Tanggal pengembalian tidak valid');
+        //   return;
+        // }
 
         onDatePick(pick);
       },

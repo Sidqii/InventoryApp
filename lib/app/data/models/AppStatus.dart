@@ -4,6 +4,10 @@ class AppStatus {
 
   AppStatus({required this.id, required this.status});
 
+  // Map<String, dynamic> toJson() {
+  //   return {};
+  // } TODO
+
   factory AppStatus.fromJson(Map<String, dynamic> json) {
     return AppStatus(
       id: int.tryParse(json['id'].toString()) ?? 0,

@@ -33,6 +33,10 @@ class AppPengajuan {
     this.riwayat,
   });
 
+  // Map<String, dynamic> toJson() {
+  //   return {};
+  // } TODO
+
   factory AppPengajuan.fromJson(Map<String, dynamic> json) {
     return AppPengajuan(
       id: int.tryParse(json['id'].toString()) ?? 0,

@@ -9,9 +9,9 @@ class AjukanKembali extends GetView<StaffController> {
     return Obx(() {
       return CustomDatePicker(
         label: 'Pengembalian:',
-        selectDate: controller.ctrlKembali.value,
+        selectDate: controller.tglKembali.value,
         onDatePick: (val) {
-          controller.ctrlKembali.value = val;
+          controller.tglKembali.value = val;
         },
       );
     });

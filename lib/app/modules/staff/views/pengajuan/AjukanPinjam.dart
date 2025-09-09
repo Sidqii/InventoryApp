@@ -10,9 +10,9 @@ class AjukanPinjam extends GetView<StaffController> {
     return Obx(() {
       return CustomDatePicker(
         label: 'Peminjaman:',
-        selectDate: controller.ctrlPinjam.value,
+        selectDate: controller.tglPinjam.value,
         onDatePick: (val) {
-          controller.ctrlPinjam.value = val;
+          controller.tglPinjam.value = val;
         },
       );
     });

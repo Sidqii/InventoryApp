@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_barang.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_instansi.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_keperluan.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_pemohon.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_tanggal.dart';
-import 'package:inven/app/modules/staff/views/pengajuan_panel/panel_unit.dart';
+import 'panel_barang.dart';
+import 'panel_instansi.dart';
+import 'panel_keperluan.dart';
+import 'panel_pemohon.dart';
+import 'panel_tanggal.dart';
+import 'panel_unit.dart';
 
 class ConfirmPanel extends GetView<StaffController> {
   @override
@@ -31,6 +31,7 @@ class ConfirmPanel extends GetView<StaffController> {
                   'Semua benar?',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+
                 IconButton(
                   visualDensity: VisualDensity.compact,
                   onPressed: () => Get.back(),

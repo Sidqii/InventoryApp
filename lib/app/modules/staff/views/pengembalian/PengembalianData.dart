@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
+import 'package:inven/app/global/widgets/CustomShowDialog.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
+import 'package:inven/app/modules/staff/views/pengembalian/confirm_panel.dart';
 
 class PengembalianData extends GetView<StaffController> {
   final int idItem;
@@ -168,7 +170,21 @@ class PengembalianData extends GetView<StaffController> {
         CustomBtnForm(
           label: 'kembalikan',
           isLoading: controller.isBtnLoad.value,
-          OnPress: () {},
+          OnPress: () {
+            final barang = model.unit?.first.barang;
+            if (barang != null) {
+              Get.dialog(
+                CustomShowDialog(
+                  widthFactor: 0.60,
+                  heightFactor: 0.14,
+                  rounded: 25,
+                  child: ConfirmPanel(model: model),
+                ),
+              );
+            } else {
+              return;
+            }
+          },
         ),
       ],
     );

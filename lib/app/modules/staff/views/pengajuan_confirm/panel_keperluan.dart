@@ -7,8 +7,12 @@ class PanelKeperluan extends GetView<StaffController> {
 
   @override
   Widget build(BuildContext context) {
+    final text = controller.ctrlKeperluan.text.isEmpty
+        ? '...'
+        : controller.ctrlKeperluan.text;
+
     return TextField(
-      controller: TextEditingController(text: controller.ctrlKeperluan.text),
+      controller: TextEditingController(text: text),
       readOnly: true,
       enabled: false,
       maxLines: null,
