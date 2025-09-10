@@ -6,8 +6,8 @@ class AppBarang {
   final int id;
   final String nmBarang;
   final String kdBarang;
-  final int idKategori;
-  final int idJenis;
+  final int kategoriId;
+  final int jenisId;
   final String merk;
   final String? spkBarang;
   final String? deskripsi;
@@ -26,8 +26,8 @@ class AppBarang {
     required this.id,
     required this.nmBarang,
     required this.kdBarang,
-    required this.idKategori,
-    required this.idJenis,
+    required this.kategoriId,
+    required this.jenisId,
     required this.merk,
     this.spkBarang,
     this.deskripsi,
@@ -43,14 +43,14 @@ class AppBarang {
 
   Map<String, dynamic> toJson() {
     return {
-      "nama_barang": nmBarang,
-      "id_kategori": idKategori,
-      "id_jenis": idJenis,
-      "merk": merk,
-      "spek_barang": spkBarang,
-      "deskripsi": deskripsi,
-      "vendor": vendor,
-      "note_perawatan": note,
+      'nama_barang': nmBarang,
+      'id_kategori': kategoriId,
+      'id_jenis': jenisId,
+      'merk': merk,
+      'spek_barang': spkBarang,
+      'deskripsi': deskripsi,
+      'vendor': vendor,
+      'note_perawatan': note,
     };
   }
 
@@ -59,8 +59,8 @@ class AppBarang {
       id: int.tryParse(json['id'].toString()) ?? 0,
       nmBarang: json['nama_barang'] ?? '',
       kdBarang: json['kode_barang'] ?? '',
-      idKategori: int.tryParse(json['id_kategori'].toString()) ?? 0,
-      idJenis: int.tryParse(json['id_jenis'].toString()) ?? 0,
+      kategoriId: int.tryParse(json['id_kategori'].toString()) ?? 0,
+      jenisId: int.tryParse(json['id_jenis'].toString()) ?? 0,
       merk: json['merk'] ?? '',
       spkBarang: json['spek_barang'],
       deskripsi: json['deskripsi'],

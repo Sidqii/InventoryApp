@@ -43,10 +43,10 @@ class StaffController extends GetxController {
   final Map<int, String> opsFltr = {
     //data filter
     0: '|||',
-    7: 'Pending',
-    3: 'Disetujui',
-    4: 'Ditolak',
-    8: 'Selesai',
+    9: 'Pending',
+    4: 'Disetujui',
+    1: 'Ditolak',
+    2: 'Selesai',
   };
   var riwayatFltr = <AppPengajuan>[].obs; //data yang dimunculkan
   var slctOps = 0.obs; //opsi yang dipilih
@@ -184,13 +184,15 @@ class StaffController extends GetxController {
 
     List<AppPengajuan> data = riwayatList;
 
-    if (select != 0) {
-      data = data.where((r) {
-        return r.status?.id == select;
-      }).toList();
+    if (select == 0) {
+      riwayatFltr.assignAll(data);
+    } else if (select == 9) {
+      riwayatFltr.assignAll(
+        data.where((r) => r.status?.id == 3 || r.status?.id == 5).toList(),
+      );
+    } else {
+      riwayatFltr.assignAll(data.where((r) => r.status?.id == select).toList());
     }
-
-    riwayatFltr.assignAll(data);
   }
 
   //fetch data
@@ -258,6 +260,28 @@ class StaffController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('Error', 'Terjadi kesalahan pengajuan');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> pengembalian(int id, List<int> uId, int sId) async {
+    try {
+      isLoading.value = true;
+
+      final response = await services.postPengembalian(id, uId, sId);
+
+      if (response != null) {
+        resetForm();
+
+        refresh();
+
+        Get.snackbar('Berhasil', 'Mengajukan pengembalian');
+      } else {
+        Get.snackbar('Gagal', 'Gagal melakukan pengembalian');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Terjadi kesalahan pengembalian');
     } finally {
       isLoading.value = false;
     }

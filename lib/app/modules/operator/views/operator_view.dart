@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:inven/app/modules/operator/views/inventaris/operator_inven_view.dart';
+import 'package:inven/app/modules/operator/views/persetujuan/PersetujuanPanel.dart';
 import 'package:inven/app/modules/operator/views/profile/operator_profile_view.dart';
+import 'package:inven/app/modules/operator/views/pengembalian/PengembalianPanel.dart';
 import '../controllers/operator_nav_controller.dart';
 
 class OperatorView extends GetView<OperatorNavController> {
@@ -16,11 +18,11 @@ class OperatorView extends GetView<OperatorNavController> {
           children: [
             const OperatorInvenView(),
 
-            const Center(child: Text('page 2')),
+            PersetujuanPanel(),
 
-            const Center(child: Text('page 3')),
+            PengembalianPanel(),
 
-            OperatorProfileView(),
+            const OperatorProfileView(),
           ],
         ),
         bottomNavigationBar: Theme(
@@ -40,7 +42,10 @@ class OperatorView extends GetView<OperatorNavController> {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.inventory), label: ''),
 
-              BottomNavigationBarItem(icon: Icon(Icons.folder), label: ''),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: '',
+              ),
 
               BottomNavigationBarItem(icon: Icon(Icons.all_inbox), label: ''),
 

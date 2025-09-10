@@ -64,7 +64,7 @@ class LoginController extends GetxController {
 
         await Future.delayed(Duration(seconds: 2));
 
-        switch (data.idPeran) {
+        switch (data.peranId) {
           case 1:
             Get.offAllNamed(Routes.ADMIN);
             break;

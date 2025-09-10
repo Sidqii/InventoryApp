@@ -25,9 +25,9 @@ class EditPanelFooter extends GetView<OperatorEditController> {
                   context: context,
                   builder: (ctx) {
                     return AlertDialog(
-                      title: const Text('Konfirmasi?'),
+                      title: const Text('Konfirmasi'),
                       content: const Text(
-                        'Yakin ingin simpan perubahan data barang?',
+                        'Yakin ingin simpan perubahan data?',
                       ),
                       actions: [
                         TextButton(

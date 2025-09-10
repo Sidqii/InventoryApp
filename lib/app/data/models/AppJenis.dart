@@ -4,6 +4,10 @@ class AppJenis {
 
   AppJenis({required this.id, required this.jenis});
 
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'jenis': jenis};
+  }
+
   factory AppJenis.fromJson(Map<String, dynamic> json) {
     return AppJenis(
       id: int.tryParse(json['id'].toString()) ?? 0,

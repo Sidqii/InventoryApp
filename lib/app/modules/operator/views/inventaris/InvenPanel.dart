@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/global/controllers/global_inven_controller.dart';
+import 'package:inven/app/global/widgets/CustomAppBar.dart';
 import 'package:inven/app/global/widgets/CustomFilterChips.dart';
 import 'package:inven/app/global/widgets/CustomTxtForm.dart';
 import 'package:inven/app/modules/operator/views/inventaris/InvenBody.dart';
@@ -10,12 +11,18 @@ class InvenPanel extends GetView<GlobalInvenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomTxtForm(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomAppbar(
+          title: 'Inventaris',
+          boldTitle: 'Barang',
+          showNotif: false,
+        ),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: CustomTxtForm(
             Label: 'Cari barang',
             Controller: controller.ctrlFilter,
             Focus: controller.fcsFilter,
@@ -26,11 +33,14 @@ class InvenPanel extends GetView<GlobalInvenController> {
               controller.filterData(val!);
             },
           ),
-      
-          const SizedBox(height: 15),
-      
-          Obx(() {
-            return Row(
+        ),
+
+        const SizedBox(height: 15),
+
+        Obx(() {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
@@ -43,7 +53,7 @@ class InvenPanel extends GetView<GlobalInvenController> {
                     },
                   ),
                 ),
-      
+
                 IconButton(
                   onPressed: () {
                     controller.refresh();
@@ -51,17 +61,20 @@ class InvenPanel extends GetView<GlobalInvenController> {
                   icon: Icon(Icons.refresh),
                 ),
               ],
-            );
-          }),
-      
-          const SizedBox(height: 15),
-      
-          Expanded(
+            ),
+          );
+        }),
+
+        const SizedBox(height: 15),
+
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Obx(() {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               }
-      
+
               return ListView.separated(
                 padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
@@ -72,14 +85,14 @@ class InvenPanel extends GetView<GlobalInvenController> {
                 },
                 itemBuilder: (context, index) {
                   final item = controller.filterBarang[index];
-      
+
                   return InvenBody(model: item);
                 },
               );
             }),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

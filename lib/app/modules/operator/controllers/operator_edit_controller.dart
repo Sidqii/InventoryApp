@@ -45,13 +45,13 @@ class OperatorEditController extends GetxController {
 
   void initData(AppBarang model) {
     ctrlMerk.text = model.merk;
-    ctrlJenis.value = model.idJenis;
+    ctrlJenis.value = model.jenisId;
     ctrlDesk.text = model.deskripsi!;
     ctrlSpek.text = model.spkBarang!;
     ctrlSumVendor.text = model.vendor;
     ctrlBarang.text = model.nmBarang;
     ctrlNote.text = model.note!;
-    ctrlKategori.value = model.idKategori;
+    ctrlKategori.value = model.kategoriId;
   }
 
   Future<void> fetchOpsi() async {
@@ -74,8 +74,8 @@ class OperatorEditController extends GetxController {
         id: id,
         nmBarang: ctrlBarang.text,
         kdBarang: "",
-        idKategori: ctrlKategori.value,
-        idJenis: ctrlJenis.value,
+        kategoriId: ctrlKategori.value,
+        jenisId: ctrlJenis.value,
         merk: ctrlMerk.text,
         spkBarang: ctrlSpek.text,
         deskripsi: ctrlDesk.text,

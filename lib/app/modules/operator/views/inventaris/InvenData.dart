@@ -31,10 +31,11 @@ class InvenData extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             //nama barang
-            Text(barang, style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(barang, style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
 
             //tombol untuk memunculkan edit data barang
             IconButton(
+              visualDensity: VisualDensity.comfortable,
               onPressed: () {
                 Get.dialog(
                   CustomShowDialog(
@@ -55,7 +56,7 @@ class InvenData extends StatelessWidget {
             Text(
               merk,
               style: const TextStyle(
-                fontSize: 11,
+                fontSize: 12,
                 letterSpacing: 1,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
@@ -63,7 +64,7 @@ class InvenData extends StatelessWidget {
             ),
 
             //kode barang
-            Text(kode, style: const TextStyle(fontSize: 11, letterSpacing: 1)),
+            Text(kode, style: const TextStyle(fontSize: 12, letterSpacing: 1)),
           ],
         ),
 

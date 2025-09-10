@@ -140,7 +140,7 @@ class ServicesGet {
         return [];
       }
     } catch (e) {
-      throw Exception('Pengembalian error $e');
+      throw Exception('Pengembalian All error $e');
     }
   }
 
@@ -161,7 +161,7 @@ class ServicesGet {
         return [];
       }
     } catch (e) {
-      throw Exception('Pengembalian error $e');
+      throw Exception('Pengembalian Id error $e');
     }
   }
 }

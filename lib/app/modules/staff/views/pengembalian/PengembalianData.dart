@@ -29,7 +29,7 @@ class PengembalianData extends GetView<StaffController> {
     final kode_barang = model.unit?.first.barang?.kdBarang ?? '-';
     final instansi = model.pengguna?.inst ?? '';
     final peminjam = model.pengguna?.nama ?? '';
-    final status = model.status!.status;
+    final status = model.status!.pStatus;
     final jumlah = model.jumlah.toString();
     final hal = model.hal;
     final tanggal = Formatter.dateID(model.kembaliTgl);
@@ -175,7 +175,7 @@ class PengembalianData extends GetView<StaffController> {
             if (barang != null) {
               Get.dialog(
                 CustomShowDialog(
-                  widthFactor: 0.60,
+                  widthFactor: 0.90,
                   heightFactor: 0.14,
                   rounded: 25,
                   child: ConfirmPanel(model: model),

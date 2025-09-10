@@ -10,6 +10,9 @@ class ConfirmPanel extends GetView<StaffController> {
 
   @override
   Widget build(BuildContext context) {
+    final unitId = model.unit?.map((u) => u.id).toList() ?? [];
+    final statId = model.status?.id ?? 0;
+
     final nama_barang = model.unit?.first.barang?.nmBarang ?? '-';
     final tgl_kembali = model.kembaliTgl;
 
@@ -73,6 +76,7 @@ class ConfirmPanel extends GetView<StaffController> {
                   ),
                   onPressed: () {
                     Get.back();
+                    controller.pengembalian(model.id, unitId, statId);
                   },
                   child: const Text(
                     'Ya',

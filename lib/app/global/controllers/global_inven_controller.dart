@@ -122,7 +122,7 @@ class GlobalInvenController extends GetxController {
     if (select != 0) {
       ///hanya mengembalikan data barang dengan 1 kondisi (by id_kategori)
       item = item.where((barang) {
-        return barang.idKategori == select;
+        return barang.kategoriId == select;
       }).toList();
     }
 

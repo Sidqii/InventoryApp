@@ -14,7 +14,7 @@ class EditPanelForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final txtStyle = const TextStyle(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
     );
 

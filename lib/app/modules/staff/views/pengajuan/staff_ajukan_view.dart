@@ -23,7 +23,7 @@ class StaffAjukanView extends GetView<StaffController> {
 
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: StaffAjukanPanel(),
           ),
         ),

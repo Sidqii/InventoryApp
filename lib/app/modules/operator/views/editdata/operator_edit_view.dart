@@ -25,7 +25,7 @@ class OperatorEditView extends GetView<OperatorEditController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EditPanelHeader(),
+          EditPanelHeader(model: model),
 
           const SizedBox(height: 10),
 

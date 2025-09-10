@@ -1,6 +1,6 @@
 import 'AppLokasi.dart';
 import 'AppPengajuan.dart';
-import 'AppStatus.dart';
+import 'AppStatusPengajuan.dart';
 import 'AppUnitBarang.dart';
 
 class AppRiwayat {
@@ -15,8 +15,8 @@ class AppRiwayat {
 
   //relasi
   final AppUnitBarang? unitBarang;
-  final AppStatus? statusAwal;
-  final AppStatus? statusBaru;
+  final AppStatusPengajuan? statusAwal;
+  final AppStatusPengajuan? statusBaru;
   final AppLokasi? lokasi;
   final AppPengajuan? pengajuan;
 
@@ -36,9 +36,18 @@ class AppRiwayat {
     this.pengajuan,
   });
 
-  // Map<String, dynamic> toJson() {
-  //   return {};
-  // } TODO
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'id_unit_barang': unit,
+      'id_pengajuan': pengajuanId,
+      'status_awal': statAwalId,
+      'status_baru': statBaruId,
+      'lokasi_unit': lokasiId,
+      'kode_pinjam': kodePinjam,
+      'oleh': oleh,
+    };
+  }
 
   factory AppRiwayat.fromJson(Map<String, dynamic> json) {
     return AppRiwayat(

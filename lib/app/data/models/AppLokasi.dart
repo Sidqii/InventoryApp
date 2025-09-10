@@ -11,6 +11,15 @@ class AppLokasi {
     this.keterangan,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'nama_lokasi': nmLokasi,
+      'kode_lokasi': kdLokasi,
+      'keterangan': keterangan,
+    };
+  }
+
   factory AppLokasi.fromJson(Map<String, dynamic> json) {
     return AppLokasi(
       id: int.tryParse(json['id'].toString()) ?? 0,

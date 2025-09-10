@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inven/app/global/widgets/CustomAppBar.dart';
 import 'package:inven/app/modules/operator/views/inventaris/InvenPanel.dart';
 
 class OperatorInvenView extends StatelessWidget {
@@ -7,17 +6,6 @@ class OperatorInvenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomAppbar(title: 'Inventaris', boldTitle: 'Barang'),
-
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(0.5),
-            child: InvenPanel(),
-          ),
-        ),
-      ],
-    );
+    return InvenPanel();
   }
 }

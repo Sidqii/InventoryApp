@@ -1,5 +1,5 @@
 import 'package:inven/app/data/models/AppRiwayat.dart';
-import 'package:inven/app/data/models/AppStatus.dart';
+import 'package:inven/app/data/models/AppStatusPengajuan.dart';
 import 'package:inven/app/data/models/AppUnitBarang.dart';
 import 'package:inven/app/data/models/AppUser.dart';
 
@@ -15,7 +15,7 @@ class AppPengajuan {
 
   final AppUser? pengguna;
   final List<AppUnitBarang>? unit;
-  final AppStatus? status;
+  final AppStatusPengajuan? status;
   final List<AppRiwayat>? riwayat;
 
   AppPengajuan({
@@ -33,9 +33,22 @@ class AppPengajuan {
     this.riwayat,
   });
 
-  // Map<String, dynamic> toJson() {
-  //   return {};
-  // } TODO
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'id_pengguna': penggunaId,
+      'id_status': statusId,
+      'instansi': instansi,
+      'hal': hal,
+      'tgl_pinjam': pinjamTgl,
+      'tgl_kembali': kembaliTgl,
+      'jumlah': jumlah,
+      'user': pengguna?.toJson(),
+      'unit': unit?.map((u)=>u.toJson()).toList(),
+      'status':status?.toJson(),
+      'riwayat':riwayat?.map((r)=>toJson()).toList(),
+    };
+  }
 
   factory AppPengajuan.fromJson(Map<String, dynamic> json) {
     return AppPengajuan(
@@ -54,7 +67,7 @@ class AppPengajuan {
             }).toList()
           : null,
       status: json['status'] != null
-          ? AppStatus.fromJson(json['status'])
+          ? AppStatusPengajuan.fromJson(json['status'])
           : null,
       riwayat: json['riwayat'] != null
           ? (json['riwayat'] as List).map((e) {

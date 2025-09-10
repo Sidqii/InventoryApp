@@ -3,7 +3,7 @@ import 'AppRole.dart';
 
 class AppUser {
   final int id;
-  final int idPeran;
+  final int peranId;
   final String inst;
   final String nama;
   final String email;
@@ -15,7 +15,7 @@ class AppUser {
 
   AppUser({
     required this.id,
-    required this.idPeran,
+    required this.peranId,
     required this.inst,
     required this.nama,
     required this.email,
@@ -24,14 +24,23 @@ class AppUser {
     this.pengajuan,
   });
 
-  // Map<String, dynamic> toJson() {
-  //   return {};
-  // } TODO
+  Map<String, dynamic> toJson() {
+    return {
+      'id':id,
+      'id_peran':peranId,
+      'nama':nama,
+      'instansi':inst,
+      'email':email,
+      'password':pass,
+      'role':role?.toJson(),
+      'pengajuan':pengajuan?.toJson(),
+    };
+  }
 
   factory AppUser.fromJson(Map<String, dynamic> json) {
     return AppUser(
       id: int.tryParse(json['id'].toString()) ?? 0,
-      idPeran: int.tryParse(json['id_peran'].toString()) ?? 0,
+      peranId: int.tryParse(json['id_peran'].toString()) ?? 0,
       nama: json['nama'] ?? '',
       inst: json['instansi'] ?? '',
       email: json['email'] ?? '',

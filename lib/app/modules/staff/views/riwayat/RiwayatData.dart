@@ -24,7 +24,7 @@ class RiwayatData extends StatelessWidget {
     final kode_barang = model.unit?.first.barang?.kdBarang ?? '-';
     final instansi = model.pengguna?.inst ?? '';
     final peminjam = model.pengguna?.nama ?? '';
-    final status = model.status!.status;
+    final status = model.status!.pStatus;
     final jumlah = model.jumlah.toString();
     final tanggal = Formatter.dateID(model.kembaliTgl);
 

@@ -4,6 +4,10 @@ class AppRole {
 
   AppRole({required this.id, required this.peran});
 
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'peran': peran};
+  }
+
   factory AppRole.fromJson(Map<String, dynamic> json) {
     return AppRole(
       id: int.tryParse(json['id'].toString()) ?? 0,

@@ -52,7 +52,7 @@ class StaffProfileView extends GetView<StaffController> {
               );
             }
           },
-          title: Formatter.getRole(controller.userData?.idPeran ?? 0),
+          title: Formatter.getRole(controller.userData?.peranId ?? 0),
           boldTitle: controller.userData?.nama ?? '',
         ),
         Expanded(child: Center(child: Text('profile'))),

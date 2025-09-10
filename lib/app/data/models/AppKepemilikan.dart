@@ -4,6 +4,10 @@ class AppKepemilikan {
 
   AppKepemilikan({required this.id, required this.kepemilikan});
 
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'jenis_kepemilikan': kepemilikan};
+  }
+
   factory AppKepemilikan.fromJson(Map<String, dynamic> json) {
     return AppKepemilikan(
       id: int.tryParse(json['id'].toString()) ?? 0,

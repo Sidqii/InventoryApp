@@ -4,6 +4,10 @@ class AppPermission {
 
   AppPermission({required this.id, required this.akses});
 
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'hak_akses': akses};
+  }
+
   factory AppPermission.fromJson(Map<String, dynamic> json) {
     return AppPermission(
       id: int.tryParse(json['id'].toString()) ?? 0,

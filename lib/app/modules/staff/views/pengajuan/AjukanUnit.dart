@@ -34,9 +34,11 @@ class AjukanUnit extends GetView<StaffController> {
             if (unit.isEmpty) {
               return Padding(
                 padding: EdgeInsets.all(12),
-                child: Text(
-                  'Tidak ada unit tersedia',
-                  style: TextStyle(color: Colors.grey.shade900),
+                child: Center(
+                  child: Text(
+                    'Tidak ada unit tersedia',
+                    style: TextStyle(color: Colors.grey.shade900),
+                  ),
                 ),
               );
             }
