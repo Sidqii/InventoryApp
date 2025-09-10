@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inven/app/modules/operator/views/inventaris/operator_inven_view.dart';
 import 'package:inven/app/modules/operator/views/persetujuan/PersetujuanPanel.dart';
 import 'package:inven/app/modules/operator/views/profile/operator_profile_view.dart';
-import 'package:inven/app/modules/operator/views/pengembalian/PengembalianPanel.dart';
+import 'package:inven/app/modules/operator/views/pemrosesan/PemrosesanPanel.dart';
 import '../controllers/operator_nav_controller.dart';
 
 class OperatorView extends GetView<OperatorNavController> {
@@ -20,7 +20,7 @@ class OperatorView extends GetView<OperatorNavController> {
 
             PersetujuanPanel(),
 
-            PengembalianPanel(),
+            PemrosesanPanel(),
 
             const OperatorProfileView(),
           ],
