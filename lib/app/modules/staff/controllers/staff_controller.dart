@@ -7,6 +7,7 @@ import 'package:inven/app/data/models/AppUnitBarang.dart';
 import 'package:inven/app/data/models/AppUser.dart';
 import 'package:inven/app/data/services/services_get.dart';
 import 'package:inven/app/data/services/services_post.dart';
+import 'package:inven/app/data/services/services_update.dart';
 import 'package:inven/app/global/controllers/global_inven_controller.dart';
 
 import 'package:inven/app/global/controllers/global_user_controller.dart';
@@ -19,8 +20,9 @@ class StaffController extends GetxController {
   AppUser? get userData => userCtrl.user.value;
 
   //services
-  final services = ServicesPost();
-  final servitem = ServicesGet();
+  final servPut = ServicesUpdate();
+  final servPst = ServicesPost();
+  final servGet = ServicesGet();
 
   //data model yang difetch
   final itemList = <AppBarang>[].obs;
@@ -201,16 +203,16 @@ class StaffController extends GetxController {
       isLoading.value = true;
 
       //get hanya riwayat peminjaman
-      final pinjam = await servitem.getPinjam(userData!.id);
+      final pinjam = await servGet.getPinjam(userData!.id);
 
       //get semua riwayat
-      final riwayat = await servitem.getRiwayat(userData!.id);
+      final riwayat = await servGet.getRiwayat(userData!.id);
 
       //get data barang
-      final barang = await servitem.getBarang();
+      final barang = await servGet.getBarang();
 
       //get unit barang
-      final unit = await servitem.getUnitStaff();
+      final unit = await servGet.getUnitStaff();
 
       //data barang
       itemList.assignAll(barang);
@@ -240,7 +242,7 @@ class StaffController extends GetxController {
     try {
       isLoading.value = true;
 
-      final response = await services.postPengajuan(
+      final response = await servPst.postPengajuan(
         user!.id,
         ctrlInstansi.text,
         ctrlKeperluan.text,
@@ -269,7 +271,7 @@ class StaffController extends GetxController {
     try {
       isLoading.value = true;
 
-      final response = await services.postPengembalian(id, uId, sId);
+      final response = await servPut.updtReturn(id, uId, sId);
 
       if (response != null) {
         resetForm();
