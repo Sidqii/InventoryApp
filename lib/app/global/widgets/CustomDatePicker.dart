@@ -43,15 +43,6 @@ class CustomDatePicker extends StatelessWidget {
 
         if (pick == null) return;
 
-        // DateTime today = DateTime.now();
-        // DateTime nowDate = DateTime(today.year, today.month, today.day);
-        // DateTime pickDate = DateTime(pick.year, pick.month, pick.day);
-
-        // if (pickDate.isBefore(nowDate)) {
-        //   Get.snackbar('Gagal', 'Tanggal pengembalian tidak valid');
-        //   return;
-        // }
-
         onDatePick(pick);
       },
 
@@ -73,7 +64,7 @@ class CustomDatePicker extends StatelessWidget {
             child: Text(
               selectDate != null
                   ? Formatter.dateID(selectDate!.toIso8601String())
-                  : 'Pilih tanggal',
+                  : 'Pilih tanggal ...',
               style: impl,
             ),
           ),

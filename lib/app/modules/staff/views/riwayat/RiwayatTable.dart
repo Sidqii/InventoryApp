@@ -34,7 +34,7 @@ class RiwayatTable extends StatelessWidget {
       
           Table(
             columnWidths: const {
-              0: FixedColumnWidth(45),
+              0: FixedColumnWidth(30),
               1: FlexColumnWidth(2),
               2: FlexColumnWidth(2),
             },

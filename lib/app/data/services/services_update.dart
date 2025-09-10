@@ -10,7 +10,7 @@ class ServicesUpdate {
   Future<bool> updtItem(int id, AppBarang data) async {
     try {
       final response = await http.put(
-        Uri.parse('$url/update/$id'),
+        Uri.parse('$url/barang/$id'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(data.toJson()),
       );
