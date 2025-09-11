@@ -14,7 +14,7 @@ class InvenBody extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: Colors.grey.shade300),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(

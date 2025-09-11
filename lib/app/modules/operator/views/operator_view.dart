@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:inven/app/modules/operator/views/inventaris/operator_inven_view.dart';
-import 'package:inven/app/modules/operator/views/persetujuan/PersetujuanPanel.dart';
+import 'package:inven/app/modules/operator/views/persetujuan/persetujuan_view.dart';
 import 'package:inven/app/modules/operator/views/profile/operator_profile_view.dart';
 import 'package:inven/app/modules/operator/views/pemrosesan/PemrosesanPanel.dart';
 import '../controllers/operator_nav_controller.dart';
@@ -18,7 +18,7 @@ class OperatorView extends GetView<OperatorNavController> {
           children: [
             const OperatorInvenView(),
 
-            PersetujuanPanel(),
+            const PersetujuanView(),
 
             PemrosesanPanel(),
 

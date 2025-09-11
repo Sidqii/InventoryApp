@@ -3,18 +3,16 @@ import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
-import 'package:inven/app/global/widgets/CustomShowDialog.dart';
-import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
-import 'package:inven/app/modules/staff/views/pengembalian/confirm_panel.dart';
+import 'package:inven/app/modules/operator/controllers/operator_controller.dart';
 
-class PengembalianData extends GetView<StaffController> {
-  final int idItem;
+class PersetujuanData extends GetView<OperatorController> {
+  final int itemId;
   final bool expand;
   final VoidCallback bttn;
   final AppPengajuan model;
 
-  const PengembalianData({
-    required this.idItem,
+  const PersetujuanData({
+    required this.itemId,
     required this.expand,
     required this.model,
     required this.bttn,
@@ -23,19 +21,23 @@ class PengembalianData extends GetView<StaffController> {
 
   @override
   Widget build(BuildContext context) {
-    //value
+    //informasi pemohon
+    final peminjam = model.pengguna?.nama ?? '-';
+    final instansi = model.pengguna?.inst ?? '-';
+    final keperluan = model.hal ?? '-';
+
+    //detail barang
     final nama_barang = model.unit?.first.barang?.nmBarang ?? '-';
     final merk_barang = model.unit?.first.barang?.merk ?? '-';
     final kode_barang = model.unit?.first.barang?.kdBarang ?? '-';
-    final instansi = model.pengguna?.inst ?? '';
-    final peminjam = model.pengguna?.nama ?? '';
-    final status = model.status!.pStatus;
-    final jumlah = model.jumlah.toString();
-    final hal = model.hal;
-    final tanggal = Formatter.dateID(model.kembaliTgl);
+    final jumlah_unit = model.jumlah.toString();
 
-    //text style
-    final title = const TextStyle(fontSize: 13, color: Colors.black);
+    //tanggal peminjaman
+    final tgl_pinjam = Formatter.dateID(model.pinjamTgl);
+    final tgl_kembali = Formatter.dateID(model.kembaliTgl);
+
+    //text style ya ges ya
+    final txtIcon = TextStyle(fontSize: 13, color: Colors.grey.shade900);
 
     return Column(
       children: [
@@ -48,19 +50,16 @@ class PengembalianData extends GetView<StaffController> {
                 //nama barang
                 Text(
                   nama_barang,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
 
-                //merk barang
-                Text('Merk: ${merk_barang}'),
+                Text(
+                  merk_barang,
+                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                ),
               ],
             ),
 
-            //badge kode barang
             Container(
               margin: const EdgeInsets.all(0),
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -73,14 +72,14 @@ class PengembalianData extends GetView<StaffController> {
           ],
         ),
 
-        const SizedBox(height: 10),
+        const Divider(),
 
         //nama peminjam barang
         Row(
           children: [
             const SizedBox(width: 5),
             Icon(Icons.person, size: 15),
-            Text(' $peminjam • $instansi', style: title),
+            Text(' $peminjam • $instansi', style: txtIcon),
           ],
         ),
 
@@ -90,8 +89,8 @@ class PengembalianData extends GetView<StaffController> {
         Row(
           children: [
             const SizedBox(width: 5),
-            Icon(Icons.shopping_cart, size: 15),
-            Text(' $status', style: title),
+            Icon(Icons.insert_invitation_sharp, size: 15),
+            Text(' $tgl_pinjam', style: txtIcon),
           ],
         ),
 
@@ -101,8 +100,8 @@ class PengembalianData extends GetView<StaffController> {
         Row(
           children: [
             const SizedBox(width: 5),
-            Icon(Icons.watch_later, size: 15),
-            Text(' $tanggal', style: title),
+            Icon(Icons.watch_later_sharp, size: 15),
+            Text(' $tgl_kembali', style: txtIcon),
           ],
         ),
 
@@ -113,18 +112,17 @@ class PengembalianData extends GetView<StaffController> {
           children: [
             const SizedBox(width: 5),
             Icon(Icons.archive, size: 15),
-            Text(' $jumlah unit', style: title),
+            Text(' $jumlah_unit unit diajukan', style: txtIcon),
           ],
         ),
 
-        const SizedBox(height: 15),
+        const SizedBox(height: 10),
 
         Row(
           children: [
-            //keperluan peminjaman
             Expanded(
               child: TextField(
-                controller: TextEditingController(text: hal),
+                controller: TextEditingController(text: keperluan),
                 readOnly: true,
                 enabled: false,
                 maxLines: null,
@@ -147,7 +145,6 @@ class PengembalianData extends GetView<StaffController> {
 
             const SizedBox(width: 5),
 
-            //button expand
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade900,
@@ -164,27 +161,12 @@ class PengembalianData extends GetView<StaffController> {
           ],
         ),
 
-        const SizedBox(height: 15),
+        const SizedBox(height: 10),
 
-        //button pengembalian
         CustomBtnForm(
-          label: 'kembalikan',
+          label: 'proses',
           isLoading: controller.isBtnLoad.value,
-          OnPress: () {
-            final barang = model.unit?.first.barang;
-            if (barang != null) {
-              Get.dialog(
-                CustomShowDialog(
-                  widthFactor: 0.90,
-                  heightFactor: 0.14,
-                  rounded: 25,
-                  child: ConfirmPanel(model: model),
-                ),
-              );
-            } else {
-              return;
-            }
-          },
+          OnPress: () {},
         ),
       ],
     );

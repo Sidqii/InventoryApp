@@ -22,7 +22,7 @@ class PanelTanggal extends GetView<StaffController> {
                 Padding(
                   padding: const EdgeInsets.all(3),
                   child: Icon(
-                    Icons.insert_invitation,
+                    Icons.insert_invitation_sharp,
                     color: Colors.grey.shade50,
                     size: 15,
                   ),

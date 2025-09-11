@@ -164,4 +164,25 @@ class ServicesGet {
       throw Exception('Pengembalian Id error $e');
     }
   }
+
+  Future<List<AppPengajuan>> indexApp() async {
+    try {
+      final response = await http.get(
+        Uri.parse('$url/app/riwayat/'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        return data.map((e) {
+          return AppPengajuan.fromJson(e);
+        }).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw Exception('services peminjaman error $e');
+    }
+  }
 }

@@ -8,7 +8,7 @@ class AppPengajuan {
   final int penggunaId;
   final int statusId;
   final String instansi;
-  final String hal;
+  final String? hal;
   final String pinjamTgl;
   final String kembaliTgl;
   final int jumlah;
@@ -23,7 +23,7 @@ class AppPengajuan {
     required this.penggunaId,
     required this.statusId,
     required this.instansi,
-    required this.hal,
+    this.hal,
     required this.pinjamTgl,
     required this.kembaliTgl,
     required this.jumlah,
@@ -56,7 +56,7 @@ class AppPengajuan {
       penggunaId: int.tryParse(json['id_pengguna'].toString()) ?? 0,
       statusId: int.tryParse(json['id_status'].toString()) ?? 0,
       instansi: json['instansi'] ?? '',
-      hal: json['hal'] ?? '',
+      hal: json['hal'],
       pinjamTgl: json['tgl_pinjam'] ?? '',
       kembaliTgl: json['tgl_kembali'] ?? '',
       jumlah: int.tryParse(json['jumlah'].toString()) ?? 0,

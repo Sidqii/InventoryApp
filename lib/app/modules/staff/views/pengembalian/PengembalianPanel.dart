@@ -39,7 +39,7 @@ class PengembalianPanel extends GetView<StaffController> {
                   return PengembalianBody(model: item);
                 },
                 separatorBuilder: (context, index) {
-                  return const SizedBox(height: 0);
+                  return const SizedBox(height: 10);
                 },
                 itemCount: controller.pinjamlist.length,
               );

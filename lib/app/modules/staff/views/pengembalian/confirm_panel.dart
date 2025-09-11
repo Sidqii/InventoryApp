@@ -23,6 +23,24 @@ class ConfirmPanel extends GetView<StaffController> {
     final sisaJam = sisa.inHours % 24;
     final sisaMenit = sisa.inMinutes % 60;
 
+    final jatuh_tempo = Text(
+      'Sudah jatuh tempo',
+      style: TextStyle(color: Colors.red),
+    );
+
+    final count_down = Text(
+      '$sisaHari : $sisaJam : $sisaMenit',
+      style: TextStyle(fontWeight: FontWeight.bold),
+    );
+
+    final textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+
+    final titleStyle = TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      color: Colors.blue.shade600,
+    );
+
     return Container(
       margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -34,9 +52,12 @@ class ConfirmPanel extends GetView<StaffController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            'Kembalikan $nama_barang?',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              Text('Kembalikan ', style: textStyle),
+              Text('$nama_barang', style: titleStyle),
+              Text('?', style: textStyle),
+            ],
           ),
 
           const SizedBox(height: 10),
@@ -47,11 +68,7 @@ class ConfirmPanel extends GetView<StaffController> {
 
               const SizedBox(width: 5),
 
-              Text(
-                sisa.isNegative
-                    ? 'Sudah jatuh tempo'
-                    : '$sisaHari hari : $sisaJam jam : $sisaMenit menit',
-              ),
+              sisa.isNegative ? jatuh_tempo : count_down,
             ],
           ),
 

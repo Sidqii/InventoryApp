@@ -64,7 +64,7 @@ class CustomDatePicker extends StatelessWidget {
             child: Text(
               selectDate != null
                   ? Formatter.dateID(selectDate!.toIso8601String())
-                  : 'Pilih tanggal ...',
+                  : 'Pilih tanggal',
               style: impl,
             ),
           ),
