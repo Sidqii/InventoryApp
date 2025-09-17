@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class ValidPanel extends GetView<StaffController> {
+class ValidateDialog extends GetView<StaffController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

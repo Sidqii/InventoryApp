@@ -87,7 +87,9 @@ class ProsesPanel extends GetView<OperatorController> {
                                 Text(' ${unit.kdUnit}', style: tStyle),
                               ],
                             ),
+
                             const SizedBox(height: 5),
+
                             Row(
                               children: [
                                 Icon(

@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class PanelUnit extends GetView<StaffController> {
-  const PanelUnit({super.key});
+class DialogPemohon extends GetView<StaffController> {
+  const DialogPemohon({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: TextEditingController(
-        text: controller.slctUnitId.length.toString(),
-      ),
+      controller: TextEditingController(text: controller.ctrlPemohon.text),
       readOnly: true,
       enabled: false,
       maxLines: null,
       style: TextStyle(color: Colors.grey.shade900, fontSize: 12),
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.shopping_cart, color: Colors.grey.shade900),
-        label: Text('Jumlah unit barang'),
+        prefixIcon: Icon(Icons.person, color: Colors.grey.shade900),
+        label: Text('Pemohon'),
         labelStyle: TextStyle(
           color: Colors.grey.shade900,
           fontWeight: FontWeight.w600,

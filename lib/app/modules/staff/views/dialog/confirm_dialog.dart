@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
-import 'panel_barang.dart';
-import 'panel_instansi.dart';
-import 'panel_keperluan.dart';
-import 'panel_pemohon.dart';
-import 'panel_tanggal.dart';
-import 'panel_unit.dart';
+import 'dialog_barang.dart';
+import 'dialog_instansi.dart';
+import 'dialog_keperluan.dart';
+import 'dialog_pemohon.dart';
+import 'dialog_tanggal.dart';
+import 'dialog_unit.dart';
 
-class ConfirmPanel extends GetView<StaffController> {
+class ConfirmDialog extends GetView<StaffController> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -49,17 +49,17 @@ class ConfirmPanel extends GetView<StaffController> {
 
             Row(
               children: [
-                Expanded(child: PanelPemohon()),
+                Expanded(child: DialogPemohon()),
 
                 const SizedBox(width: 10),
 
-                Expanded(child: PanelInstansi()),
+                Expanded(child: DialogInstansi()),
               ],
             ),
 
             const SizedBox(height: 10),
 
-            PanelKeperluan(),
+            DialogKeperluan(),
 
             const SizedBox(height: 15),
 
@@ -70,15 +70,15 @@ class ConfirmPanel extends GetView<StaffController> {
 
             const SizedBox(height: 10),
 
-            PanelBarang(),
+            DialogBarang(),
 
             const SizedBox(height: 10),
 
-            PanelUnit(),
+            DialogUnit(),
 
             const SizedBox(height: 10),
 
-            PanelTanggal(),
+            DialogTanggal(),
 
             const SizedBox(height: 10),
 

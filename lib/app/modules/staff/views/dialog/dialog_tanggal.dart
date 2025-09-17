@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class PanelTanggal extends GetView<StaffController> {
-  const PanelTanggal({super.key});
+class DialogTanggal extends GetView<StaffController> {
+  const DialogTanggal({super.key});
 
   @override
   Widget build(BuildContext context) {

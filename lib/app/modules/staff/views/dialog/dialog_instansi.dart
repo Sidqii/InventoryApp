@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class PanelKeperluan extends GetView<StaffController> {
-  const PanelKeperluan({super.key});
+class DialogInstansi extends GetView<StaffController> {
+  const DialogInstansi({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final text = controller.ctrlKeperluan.text.isEmpty
-        ? '...'
-        : controller.ctrlKeperluan.text;
-
     return TextField(
-      controller: TextEditingController(text: text),
+      controller: TextEditingController(text: controller.ctrlInstansi.text),
       readOnly: true,
       enabled: false,
       maxLines: null,
       style: TextStyle(color: Colors.grey.shade900, fontSize: 12),
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.notes, color: Colors.grey.shade900),
-        label: Text('Keperluan'),
+        prefixIcon: Icon(Icons.home, color: Colors.grey.shade900),
+        label: Text('Instansi'),
         labelStyle: TextStyle(
           color: Colors.grey.shade900,
           fontWeight: FontWeight.w600,

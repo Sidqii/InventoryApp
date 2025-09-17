@@ -5,7 +5,7 @@ import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
 import 'package:inven/app/global/widgets/CustomShowDialog.dart';
 import 'package:inven/app/modules/operator/controllers/operator_controller.dart';
-import 'package:inven/app/modules/operator/views/pemrosesan_panel/proses_pinjam.dart';
+import 'package:inven/app/modules/operator/views/dialog/proses_pinjam.dart';
 
 class PersetujuanData extends GetView<OperatorController> {
   final int itemId;

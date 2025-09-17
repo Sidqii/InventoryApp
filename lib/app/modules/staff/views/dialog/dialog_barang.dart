@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class PanelBarang extends GetView<StaffController> {
-  const PanelBarang({super.key});
+class DialogBarang extends GetView<StaffController> {
+  const DialogBarang({super.key});
 
   @override
   Widget build(BuildContext context) {
