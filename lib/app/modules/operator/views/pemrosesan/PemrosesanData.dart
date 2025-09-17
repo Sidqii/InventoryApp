@@ -162,7 +162,7 @@ class PemrosesanData extends GetView<OperatorController> {
 
         CustomBtnForm(
           label: 'proses',
-          isLoading: controller.isBtnLoad.value,
+          isLoading: controller.bttnLoad.value,
           OnPress: () {
             Get.dialog(
               CustomShowDialog(

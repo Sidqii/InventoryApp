@@ -138,9 +138,11 @@ class ProsesPanel extends GetView<OperatorController> {
               padding: const EdgeInsets.only(left: 10, bottom: 10, right: 10),
               child: CustomBtnForm(
                 label: 'selesai',
-                isLoading: controller.isBtnLoad.value,
+                isLoading: controller.bttnLoad.value,
                 OnPress: () {
-                  //TODO
+                  controller.pengembalian(model.id);
+                  controller.refresh();
+                  Get.back();
                 },
               ),
             );

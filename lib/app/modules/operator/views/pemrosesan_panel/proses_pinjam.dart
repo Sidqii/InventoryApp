@@ -23,7 +23,7 @@ class ProsesPinjam extends GetView<OperatorController> {
 
     return Container(
       margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(horizontal:10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: Colors.blueGrey.shade50,
         borderRadius: BorderRadius.circular(30),
@@ -36,7 +36,7 @@ class ProsesPinjam extends GetView<OperatorController> {
 
           Row(
             children: [
-              Text('  Setujui permohonan ', style: textStyle),
+              Text('  Setujui pengajuan ', style: textStyle),
               Text('$pemohon', style: titleStyle),
               Text('?', style: textStyle),
             ],
@@ -72,25 +72,22 @@ class ProsesPinjam extends GetView<OperatorController> {
               TextButton(
                 onPressed: () {
                   Get.back();
+                  controller.updtData(model.id, 1);
+                  controller.refresh();
                 },
-                child: const Text(
-                  'Ga',
-                  style: TextStyle(color: Colors.black),
-                ),
+                child: const Text('Ga', style: TextStyle(color: Colors.black)),
               ),
-          
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade900,
                 ),
                 onPressed: () {
                   Get.back();
-                  // controller.pengembalian(model.id, unitId, statId);
+                  controller.updtData(model.id, 4);
+                  controller.refresh();
                 },
-                child: const Text(
-                  'Ya',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: const Text('Ya', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

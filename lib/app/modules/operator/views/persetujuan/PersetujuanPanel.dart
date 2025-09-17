@@ -21,6 +21,10 @@ class PersetujuanPanel extends GetView<OperatorController> {
                 return Center(child: CircularProgressIndicator());
               }
 
+              if (controller.pengajuan.isEmpty) {
+                return Center(child: Text('belum ada pengajuan barang'));
+              }
+
               return ListView.separated(
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {

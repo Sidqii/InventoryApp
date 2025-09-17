@@ -25,11 +25,7 @@ class ServicesUpdate {
     }
   }
 
-  Future<AppPengajuan?> updtReturn(
-    int id,
-    List<int> uId,
-    int statId,
-  ) async {
+  Future<AppPengajuan?> prosesBack(int id, List<int> uId, int statId) async {
     try {
       final response = await http.put(
         Uri.parse('$url/pengajuan/$id'),
@@ -50,6 +46,51 @@ class ServicesUpdate {
       }
     } catch (e) {
       throw Exception('Pengembalian error $e');
+    }
+  }
+
+  Future<AppPengajuan?> prosesAppr(int id, int statusId, String note) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$url/persetujuan/$id'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'status_id': statusId, 'catatan': note}),
+      );
+
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        final data = result['data'];
+
+        return AppPengajuan.fromJson(data);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw Exception('Proses error $e');
+    }
+  }
+
+  Future<AppPengajuan?> prosesRett(
+    int id,
+    List<Map<String, dynamic>> unit,
+  ) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$url/pengembalian/$id'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'unit': unit}),
+      );
+
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        final data = result['data'];
+
+        return AppPengajuan.fromJson(data);
+      } else {
+        throw Exception('pengembalian gagal: ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('pengembalian error: $e');
     }
   }
 }

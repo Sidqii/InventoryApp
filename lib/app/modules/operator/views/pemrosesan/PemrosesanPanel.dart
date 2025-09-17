@@ -25,6 +25,10 @@ class PemrosesanPanel extends GetView<OperatorController> {
                 return Center(child: CircularProgressIndicator());
               }
 
+              if (controller.kembalian.isEmpty) {
+                return Center(child: Text('belum ada peminjaman dikembalikan'));
+              }
+
               return ListView.separated(
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {

@@ -271,7 +271,7 @@ class StaffController extends GetxController {
     try {
       isLoading.value = true;
 
-      final response = await servPut.updtReturn(id, uId, sId);
+      final response = await servPut.prosesBack(id, uId, sId);
 
       if (response != null) {
         resetForm();
