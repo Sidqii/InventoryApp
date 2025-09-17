@@ -23,26 +23,26 @@ class ReturnPanel extends GetView<StaffController> {
     final sisaJam = sisa.inHours % 24;
     final sisaMenit = sisa.inMinutes % 60;
 
-    final jatuh_tempo = Text(
-      'Sudah jatuh tempo',
-      style: TextStyle(color: Colors.red),
+    final count_down = Text(
+      '$sisaHari hari : $sisaJam jam : $sisaMenit menit',
+      style: TextStyle(fontWeight: FontWeight.bold),
     );
 
-    final count_down = Text(
-      '$sisaHari : $sisaJam : $sisaMenit',
-      style: TextStyle(fontWeight: FontWeight.bold),
+    final jatuh_tempo = Text(
+      'Sudah jatuh tempo',
+      style: TextStyle(color: Colors.red.shade400),
     );
 
     final textStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
     final titleStyle = TextStyle(
-      fontSize: 18,
+      fontSize: 13,
       fontWeight: FontWeight.bold,
       color: Colors.blue.shade600,
     );
 
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.blueGrey.shade50,
@@ -53,14 +53,26 @@ class ReturnPanel extends GetView<StaffController> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Kembalikan ', style: textStyle),
-              Text('$nama_barang', style: titleStyle),
-              Text('?', style: textStyle),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Kembalikan:', style: textStyle),
+
+                  Text('$nama_barang', style: titleStyle),
+                ],
+              ),
+
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                onPressed: () => Get.back(),
+                icon: Icon(Icons.close, color: Colors.red.shade400),
+              ),
             ],
           ),
 
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
 
           Row(
             children: [

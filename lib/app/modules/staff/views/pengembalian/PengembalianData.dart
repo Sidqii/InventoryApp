@@ -175,9 +175,9 @@ class PengembalianData extends GetView<StaffController> {
             if (barang != null) {
               Get.dialog(
                 CustomShowDialog(
-                  widthFactor: 0.90,
-                  heightFactor: 0.14,
-                  rounded: 25,
+                  widthFactor: 0.50,
+                  heightFactor: 0.20,
+                  rounded: 30,
                   child: ReturnPanel(model: model),
                 ),
               );
