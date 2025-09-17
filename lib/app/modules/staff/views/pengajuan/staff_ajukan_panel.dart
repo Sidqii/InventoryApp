@@ -37,51 +37,51 @@ class StaffAjukanPanel extends GetView<StaffController> {
                   ),
                 ],
               ),
-        
+
               const SizedBox(height: 8),
-        
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(child: AjukanPemohon()),
-        
+
                   const SizedBox(width: 20),
-        
+
                   Expanded(child: AjukanInstansi()),
                 ],
               ),
-        
+
               const SizedBox(height: 10),
-        
+
               AjukanKeperluan(),
-        
+
               const SizedBox(height: 20),
-        
+
               Text('Detail peminjaman', style: impl),
-        
+
               const SizedBox(height: 8),
-        
+
               AjukanBarang(),
-        
+
               const SizedBox(height: 10),
-        
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(child: AjukanPinjam()),
-        
+
                   const SizedBox(width: 20),
-        
+
                   Expanded(child: AjukanKembali()),
                 ],
               ),
-        
+
               const SizedBox(height: 20),
-        
+
               Text('Unit barang', style: impl),
-        
+
               const SizedBox(height: 5),
-        
+
               Expanded(child: AjukanUnit()),
             ],
           ),

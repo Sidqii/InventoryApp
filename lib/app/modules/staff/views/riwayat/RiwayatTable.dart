@@ -10,13 +10,11 @@ class RiwayatTable extends StatelessWidget {
   Widget build(BuildContext context) {
     //style
     final title = const TextStyle(fontSize: 13);
-    final titleColumn = const TextStyle(
-      color: Colors.white,
-      fontSize: 12,
-    );
+    final titleColumn = const TextStyle(color: Colors.white, fontSize: 12);
     final subTcolumn = const TextStyle(fontSize: 12);
     final padColumnT = const EdgeInsets.all(8);
     final padColumnS = const EdgeInsets.all(6);
+    final nama_barang = model.unit?.first.barang?.nmBarang ?? '-';
 
     return Container(
       width: double.infinity,
@@ -28,13 +26,25 @@ class RiwayatTable extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Detail unit peminjaman', style: title),
-      
+          Row(
+            children: [
+              Text('Detail unit ', style: title),
+              Text(
+                nama_barang,
+                style: TextStyle(
+                  color: Colors.blue.shade500,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+
           const SizedBox(height: 5),
-      
+
           Table(
             columnWidths: const {
-              0: FixedColumnWidth(30),
+              0: FixedColumnWidth(35),
               1: FlexColumnWidth(2),
               2: FlexColumnWidth(2),
             },
@@ -61,11 +71,11 @@ class RiwayatTable extends StatelessWidget {
                   ),
                 ],
               ),
-      
+
               ...model.unit!.asMap().entries.map((e) {
                 final nomor = e.key + 1;
                 final unit = e.value;
-      
+
                 return TableRow(
                   children: [
                     Padding(

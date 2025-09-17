@@ -185,4 +185,25 @@ class ServicesGet {
       throw Exception('services peminjaman error $e');
     }
   }
+
+  Future<List<AppPengajuan>> returnApp() async {
+    try {
+      final response = await http.get(
+        Uri.parse('$url/rtt/riwayat/'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        return data.map((e) {
+          return AppPengajuan.fromJson(e);
+        }).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw Exception('services peminjaman error $e');
+    }
+  }
 }

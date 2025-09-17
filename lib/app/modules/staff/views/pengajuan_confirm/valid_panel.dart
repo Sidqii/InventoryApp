@@ -7,7 +7,7 @@ class ValidPanel extends GetView<StaffController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Container(
-        margin: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.red.shade50,
@@ -18,7 +18,7 @@ class ValidPanel extends GetView<StaffController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Peringatan:',
+              'Terjadi kesalahan:',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.red.shade900,

@@ -4,17 +4,17 @@ import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
 import 'package:inven/app/global/widgets/CustomShowDialog.dart';
-import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
-import 'package:inven/app/modules/staff/views/pengembalian/return_panel.dart';
+import 'package:inven/app/modules/operator/controllers/operator_controller.dart';
+import 'package:inven/app/modules/operator/views/pemrosesan_panel/proses_panel.dart';
 
-class PengembalianData extends GetView<StaffController> {
-  final int idItem;
+class PemrosesanData extends GetView<OperatorController> {
+  final int itemId;
   final bool expand;
   final VoidCallback bttn;
   final AppPengajuan model;
 
-  const PengembalianData({
-    required this.idItem,
+  const PemrosesanData({
+    required this.itemId,
     required this.expand,
     required this.model,
     required this.bttn,
@@ -23,19 +23,27 @@ class PengembalianData extends GetView<StaffController> {
 
   @override
   Widget build(BuildContext context) {
-    //value
-    final nama_barang = model.unit?.first.barang?.nmBarang ?? '-';
-    final merk_barang = model.unit?.first.barang?.merk ?? '-';
-    final kode_barang = model.unit?.first.barang?.kdBarang ?? '-';
-    final instansi = model.pengguna?.inst ?? '';
-    final peminjam = model.pengguna?.nama ?? '';
-    final status = model.status!.pStatus;
-    final jumlah = model.jumlah.toString();
-    final hal = model.hal;
-    final tanggal = Formatter.dateID(model.kembaliTgl);
+    //informasi pemohon
+    final peminjam = model.pengguna?.nama ?? '-';
+    final instansi = model.pengguna?.inst ?? '-';
+    final keperluan = model.hal ?? '-';
 
-    //text style
-    final title = const TextStyle(fontSize: 13, color: Colors.black);
+    //detail barang
+    final nama_barang = model.unit?.first.barang?.nmBarang ?? '-';
+    final kode_barang = model.unit?.first.barang?.kdBarang ?? '-';
+    final merk_barang = model.unit?.first.barang?.merk ?? '-';
+    final jumlah_unit = model.jumlah.toString();
+
+    //tanggal peminjaman
+    final tgl_kembali = Formatter.dateID(model.kembaliTgl);
+
+    //text style ya ges ya
+    final txtIcon = TextStyle(fontSize: 13, color: Colors.grey.shade900);
+    final txtTgl = TextStyle(
+      fontSize: 13,
+      color: Colors.grey.shade900,
+      fontWeight: FontWeight.bold,
+    );
 
     return Column(
       children: [
@@ -48,19 +56,16 @@ class PengembalianData extends GetView<StaffController> {
                 //nama barang
                 Text(
                   nama_barang,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
 
-                //merk barang
-                Text('Merk: ${merk_barang}'),
+                Text(
+                  merk_barang,
+                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                ),
               ],
             ),
 
-            //badge kode barang
             Container(
               margin: const EdgeInsets.all(0),
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -73,47 +78,38 @@ class PengembalianData extends GetView<StaffController> {
           ],
         ),
 
-        const SizedBox(height: 10),
+        const Divider(),
 
-        //nama peminjam barang
+        const SizedBox(height: 5),
+
         Row(
           children: [
-            const SizedBox(width: 5),
+            const SizedBox(width: 10),
             Icon(Icons.person, size: 15),
-            Text(' $peminjam • $instansi', style: title),
+            Text(' $peminjam • $instansi', style: txtIcon),
           ],
         ),
 
-        const SizedBox(height: 5),
-
-        //status peminjaman
-        Row(
-          children: [
-            const SizedBox(width: 5),
-            Icon(Icons.shopping_cart, size: 15),
-            Text(' $status', style: title),
-          ],
-        ),
-
-        const SizedBox(height: 5),
-
-        //tanggal pengembalian
-        Row(
-          children: [
-            const SizedBox(width: 5),
-            Icon(Icons.watch_later, size: 15),
-            Text(' $tanggal', style: title),
-          ],
-        ),
-
-        const SizedBox(height: 5),
+        const SizedBox(height: 7),
 
         //jumlah unit dipinjam
         Row(
           children: [
-            const SizedBox(width: 5),
+            const SizedBox(width: 10),
             Icon(Icons.archive, size: 15),
-            Text(' $jumlah unit', style: title),
+            Text(' $jumlah_unit unit dikembalikan', style: txtIcon),
+          ],
+        ),
+
+        const SizedBox(height: 7),
+
+        //tanggal pengembalian
+        Row(
+          children: [
+            const SizedBox(width: 10),
+            Icon(Icons.watch_later_sharp, size: 15),
+            Text(' Jatuh tempo ', style: txtIcon),
+            Text('$tgl_kembali', style: txtTgl),
           ],
         ),
 
@@ -121,10 +117,9 @@ class PengembalianData extends GetView<StaffController> {
 
         Row(
           children: [
-            //keperluan peminjaman
             Expanded(
               child: TextField(
-                controller: TextEditingController(text: hal),
+                controller: TextEditingController(text: keperluan),
                 readOnly: true,
                 enabled: false,
                 maxLines: null,
@@ -147,7 +142,6 @@ class PengembalianData extends GetView<StaffController> {
 
             const SizedBox(width: 5),
 
-            //button expand
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade900,
@@ -164,26 +158,19 @@ class PengembalianData extends GetView<StaffController> {
           ],
         ),
 
-        const SizedBox(height: 15),
+        const SizedBox(height: 10),
 
-        //button pengembalian
         CustomBtnForm(
-          label: 'kembalikan',
+          label: 'proses',
           isLoading: controller.isBtnLoad.value,
           OnPress: () {
-            final barang = model.unit?.first.barang;
-            if (barang != null) {
-              Get.dialog(
-                CustomShowDialog(
-                  widthFactor: 0.90,
-                  heightFactor: 0.14,
-                  rounded: 25,
-                  child: ReturnPanel(model: model),
-                ),
-              );
-            } else {
-              return;
-            }
+            Get.dialog(
+              CustomShowDialog(
+                widthFactor: 0.5,
+                heightFactor: 0.5,
+                child: ProsesPanel(model: model),
+              ),
+            );
           },
         ),
       ],

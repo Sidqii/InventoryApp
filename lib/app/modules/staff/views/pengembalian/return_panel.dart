@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/modules/staff/controllers/staff_controller.dart';
 
-class ConfirmPanel extends GetView<StaffController> {
+class ReturnPanel extends GetView<StaffController> {
   final AppPengajuan model;
 
-  const ConfirmPanel({required this.model, super.key});
+  const ReturnPanel({required this.model, super.key});
 
   @override
   Widget build(BuildContext context) {

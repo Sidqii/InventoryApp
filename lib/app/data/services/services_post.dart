@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:inven/app/data/models/AppPengajuan.dart';
-
 import 'base_url.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/data/models/AppUser.dart';
 
 class ServicesPost {
@@ -27,6 +27,27 @@ class ServicesPost {
       }
     } catch (e) {
       throw Exception('Login error $e');
+    }
+  }
+
+  Future<AppPengajuan?> proses(int id, int statusId, String note) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$url/persetujuan/$id'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'status_id': statusId, 'catatan': note}),
+      );
+
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        final data = result['data'];
+
+        return AppPengajuan.fromJson(data);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw Exception('Proses error $e');
     }
   }
 

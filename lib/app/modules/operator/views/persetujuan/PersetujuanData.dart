@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:inven/app/data/models/AppPengajuan.dart';
 import 'package:inven/app/global/utils/Formatter.dart';
 import 'package:inven/app/global/widgets/CustomBtnForm.dart';
+import 'package:inven/app/global/widgets/CustomShowDialog.dart';
 import 'package:inven/app/modules/operator/controllers/operator_controller.dart';
+import 'package:inven/app/modules/operator/views/pemrosesan_panel/proses_pinjam.dart';
 
 class PersetujuanData extends GetView<OperatorController> {
   final int itemId;
@@ -38,6 +40,11 @@ class PersetujuanData extends GetView<OperatorController> {
 
     //text style ya ges ya
     final txtIcon = TextStyle(fontSize: 13, color: Colors.grey.shade900);
+    final txtTgl = TextStyle(
+      fontSize: 13,
+      color: Colors.grey.shade900,
+      fontWeight: FontWeight.bold,
+    );
 
     return Column(
       children: [
@@ -74,49 +81,52 @@ class PersetujuanData extends GetView<OperatorController> {
 
         const Divider(),
 
-        //nama peminjam barang
+        const SizedBox(height: 5),
+
         Row(
           children: [
-            const SizedBox(width: 5),
+            const SizedBox(width: 10),
             Icon(Icons.person, size: 15),
             Text(' $peminjam • $instansi', style: txtIcon),
           ],
         ),
 
-        const SizedBox(height: 5),
-
-        //status peminjaman
-        Row(
-          children: [
-            const SizedBox(width: 5),
-            Icon(Icons.insert_invitation_sharp, size: 15),
-            Text(' $tgl_pinjam', style: txtIcon),
-          ],
-        ),
-
-        const SizedBox(height: 5),
-
-        //tanggal pengembalian
-        Row(
-          children: [
-            const SizedBox(width: 5),
-            Icon(Icons.watch_later_sharp, size: 15),
-            Text(' $tgl_kembali', style: txtIcon),
-          ],
-        ),
-
-        const SizedBox(height: 5),
+        const SizedBox(height: 7),
 
         //jumlah unit dipinjam
         Row(
           children: [
-            const SizedBox(width: 5),
+            const SizedBox(width: 10),
             Icon(Icons.archive, size: 15),
             Text(' $jumlah_unit unit diajukan', style: txtIcon),
           ],
         ),
 
-        const SizedBox(height: 10),
+        const SizedBox(height: 7),
+
+        //status peminjaman
+        Row(
+          children: [
+            const SizedBox(width: 10),
+            Icon(Icons.insert_invitation_sharp, size: 15),
+            Text(' Peminjaman ', style: txtIcon),
+            Text('$tgl_pinjam', style: txtTgl),
+          ],
+        ),
+
+        const SizedBox(height: 7),
+
+        //tanggal pengembalian
+        Row(
+          children: [
+            const SizedBox(width: 10),
+            Icon(Icons.watch_later_sharp, size: 15),
+            Text(' Pemulangan ', style: txtIcon),
+            Text('$tgl_kembali', style: txtTgl),
+          ],
+        ),
+
+        const SizedBox(height: 15),
 
         Row(
           children: [
@@ -166,7 +176,16 @@ class PersetujuanData extends GetView<OperatorController> {
         CustomBtnForm(
           label: 'proses',
           isLoading: controller.isBtnLoad.value,
-          OnPress: () {},
+          OnPress: () {
+            Get.dialog(
+              CustomShowDialog(
+                rounded: 36,
+                widthFactor: 0.10,
+                heightFactor: 0.23,
+                child: ProsesPinjam(model: model),
+              ),
+            );
+          },
         ),
       ],
     );

@@ -53,9 +53,9 @@ class StaffController extends GetxController {
   var riwayatFltr = <AppPengajuan>[].obs; //data yang dimunculkan
   var slctOps = 0.obs; //opsi yang dipilih
 
-  //pemantauan untuk dropdown
-  var slctItemId = RxnInt(); //dropdown id barang
-  var slctUnitId = <int>[].obs; //dropdown id unit
+  //pemantauan untuk checkbox
+  var slctItemId = RxnInt(); //checkbox id barang
+  var slctUnitId = <int>[].obs; //checkbox id unit
   var isCheckAll = false.obs;
 
   //key dropdown
@@ -171,7 +171,7 @@ class StaffController extends GetxController {
     update();
   }
 
-  //data filter unit dropdown
+  //data filter unit checkbox
   List<AppUnitBarang> get unitFilt {
     if (slctItemId.value == null) return [];
 
@@ -180,7 +180,7 @@ class StaffController extends GetxController {
     }).toList();
   }
 
-  //fungsi filter
+  //fungsi filterchips
   void filterChips() {
     int select = slctOps.value;
 
@@ -300,7 +300,7 @@ class StaffController extends GetxController {
 
     //validasi tanggal peminjaman
     if (tglPinjam.value == null) {
-      error.add('Tanggal pinjam kosong');
+      error.add('Tanggal pinjam kosong!');
     } else {
       DateTime today = DateTime.now();
 
@@ -319,7 +319,7 @@ class StaffController extends GetxController {
 
     //validasi tanggal peminjaman
     if (tglKembali.value == null) {
-      error.add('Tanggal kembali kosong');
+      error.add('Tanggal kembali kosong!');
     } else if (tglPinjam.value != null) {
       DateTime kembali = DateTime(
         tglKembali.value!.year,
@@ -340,12 +340,12 @@ class StaffController extends GetxController {
 
     //validasi barang
     if (slctItemId.value == null) {
-      error.add('Data barang kosong');
+      error.add('Data barang kosong!');
     }
 
     //valdasi unit barang
     if (slctUnitId.isEmpty) {
-      error.add('Unit barang kosong');
+      error.add('Unit barang kosong!');
     }
 
     //inout semua error kedalam list

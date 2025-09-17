@@ -36,15 +36,17 @@ class StaffAjukanView extends GetView<StaffController> {
               isLoading: controller.isBtnLoad.value,
               OnPress: () {
                 if (controller.validateForm()) {
-                  print('valid? ${controller.validateForm()}');
-
-                  Get.dialog(CustomShowDialog(child: ConfirmPanel()));
+                  Get.dialog(
+                    CustomShowDialog(heightFactor: 0.56, child: ConfirmPanel()),
+                  );
                 } else {
-                  Get.dialog(CustomShowDialog(
-                    widthFactor: 0.10,
-                    heightFactor: 0.25,
-                    child: ValidPanel()
-                  ));
+                  Get.dialog(
+                    CustomShowDialog(
+                      widthFactor: 0.25,
+                      heightFactor: 0.25,
+                      child: ValidPanel(),
+                    ),
+                  );
                 }
               },
             ),
