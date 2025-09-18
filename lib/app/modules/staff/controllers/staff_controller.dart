@@ -192,6 +192,10 @@ class StaffController extends GetxController {
       riwayatFltr.assignAll(
         data.where((r) => r.status?.id == 3 || r.status?.id == 5).toList(),
       );
+    } else if (select == 2) {
+      riwayatFltr.assignAll(
+        data.where((r) => r.status?.id == 6 || r.status?.id == 2).toList(),
+      );
     } else {
       riwayatFltr.assignAll(data.where((r) => r.status?.id == select).toList());
     }

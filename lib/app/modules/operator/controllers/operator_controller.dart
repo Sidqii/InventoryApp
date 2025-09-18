@@ -15,7 +15,9 @@ class OperatorController extends GetxController {
 
   AppUser? get userData => userCtrl.user.value;
 
-  final isExpand = ''.obs; //pemantauan expand
+  final expandP = ''.obs; //expand proses
+  final expandR = ''.obs; //expand riwayat
+  final expandB = ''.obs; //expand pengembalian (back)
 
   var bttnLoad = false.obs; //loading indikator
   var isLoading = false.obs; //loading value
@@ -25,11 +27,46 @@ class OperatorController extends GetxController {
 
   final pengajuan = <AppPengajuan>[].obs;
   final kembalian = <AppPengajuan>[].obs;
+  final riwayatAll = <AppPengajuan>[].obs;
+  var riwayatFilter = <AppPengajuan>[].obs;
+
+  final Map<int, String> opsiFilter = {
+    0: '|||',
+    8: 'Proses',
+    1: 'Ditolak',
+    4: 'Dipinjam',
+    2: 'Selesai',
+  };
+  var selectOpsi = 0.obs;
 
   @override
   void onInit() {
     fetchData();
     super.onInit();
+  }
+
+  void filterChips() {
+    int select = selectOpsi.value;
+
+    if (select == 0) {
+      riwayatFilter.assignAll(riwayatAll);
+    } else if (select == 8) {
+      riwayatFilter.assignAll(
+        riwayatAll
+            .where((r) => r.status?.id == 3 || r.status?.id == 5)
+            .toList(),
+      );
+    } else if (select == 2) {
+      riwayatFilter.assignAll(
+        riwayatAll
+            .where((r) => r.status?.id == 2 || r.status?.id == 6)
+            .toList(),
+      );
+    } else {
+      riwayatFilter.assignAll(
+        riwayatAll.where((r) => r.status?.id == select).toList(),
+      );
+    }
   }
 
   void doLogout() {
@@ -125,9 +162,13 @@ class OperatorController extends GetxController {
 
       final dataPengajuan = await services.indexApp();
       final pengembalian = await services.returnApp();
+      final riwayatData = await services.indexAll();
 
       pengajuan.assignAll(dataPengajuan);
       kembalian.assignAll(pengembalian);
+      riwayatAll.assignAll(riwayatData);
+      print('cek status: ${riwayatAll.map((e) => e.status?.id)}');
+      riwayatFilter.assignAll(riwayatData);
     } catch (e) {
       Get.snackbar('Error', 'Error fetch data controller');
     } finally {

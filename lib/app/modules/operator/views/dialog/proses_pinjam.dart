@@ -42,24 +42,25 @@ class ProsesPinjam extends GetView<OperatorController> {
             ],
           ),
 
-          const SizedBox(height: 25),
+          const SizedBox(height: 15),
 
           Expanded(
-            child: TextField(
-              controller: TextEditingController(text: keperluan),
-              readOnly: true,
-              enabled: false,
-              maxLines: null,
-              style: TextStyle(color: Colors.grey.shade900, fontSize: 12),
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.notes, color: Colors.grey.shade900),
-                isDense: true,
-                disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueGrey.shade50),
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 15,
-                  horizontal: 10,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: TextField(
+                controller: TextEditingController(text: keperluan),
+                readOnly: true,
+                expands: true,
+                maxLines: null,
+                style: TextStyle(color: Colors.grey.shade900, fontSize: 12),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.notes, color: Colors.grey.shade900),
+                  isDense: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade900),
+                  ),
+                  contentPadding: const EdgeInsets.all(0),
                 ),
               ),
             ),

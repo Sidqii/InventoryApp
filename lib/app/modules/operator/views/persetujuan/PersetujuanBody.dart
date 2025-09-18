@@ -15,7 +15,7 @@ class PersetujuanBody extends GetView<OperatorController> {
     final id = model.id.toString();
 
     return Obx(() {
-      final isExpanded = controller.isExpand.value == id;
+      final isExpanded = controller.expandP.value == id;
 
       return Container(
         margin: const EdgeInsets.only(bottom: 10),
@@ -38,7 +38,7 @@ class PersetujuanBody extends GetView<OperatorController> {
                 expand: isExpanded,
                 model: model,
                 bttn: () {
-                  controller.isExpand.value = isExpanded ? '' : id;
+                  controller.expandP.value = isExpanded ? '' : id;
                 },
               ),
             ),
