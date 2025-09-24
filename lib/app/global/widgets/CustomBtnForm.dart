@@ -9,7 +9,7 @@ class CustomBtnForm extends StatelessWidget {
 
   const CustomBtnForm({
     this.label,
-    required this.isLoading,
+    this.isLoading = false,
     required this.OnPress,
     this.width,
     this.icon,

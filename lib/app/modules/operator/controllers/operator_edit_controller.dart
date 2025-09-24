@@ -9,7 +9,6 @@ import 'package:inven/app/global/controllers/global_inven_controller.dart';
 
 class OperatorEditController extends GetxController {
   final servUpdt = ServicesUpdate();
-  final servInvn = ServicesGet();
 
   final controller = Get.find<GlobalInvenController>();
 
@@ -56,8 +55,8 @@ class OperatorEditController extends GetxController {
 
   Future<void> fetchOpsi() async {
     try {
-      final jenis = await servInvn.getjenis();
-      final kategori = await servInvn.getKategori();
+      final jenis = await ServicesGet().dataJenis();
+      final kategori = await ServicesGet().dataKategori();
 
       listJenis.assignAll(jenis);
       listKategori.assignAll(kategori);

@@ -11,7 +11,7 @@ class ServicesGet {
   final String url = BaseUrl.url;
 
   //data barang
-  Future<List<AppBarang>> getBarang() async {
+  Future<List<AppBarang>> dataBarang() async {
     try {
       final response = await http.get(
         Uri.parse('$url/barang'),
@@ -35,7 +35,7 @@ class ServicesGet {
   }
 
   //data jenis barang
-  Future<List<AppJenis>> getjenis() async {
+  Future<List<AppJenis>> dataJenis() async {
     try {
       final response = await http.get(
         Uri.parse('$url/jenis'),
@@ -57,7 +57,7 @@ class ServicesGet {
   }
 
   //data kategori barang
-  Future<List<AppKategori>> getKategori() async {
+  Future<List<AppKategori>> dataKategori() async {
     try {
       final response = await http.get(
         Uri.parse('$url/kategori'),
@@ -79,7 +79,7 @@ class ServicesGet {
   }
 
   //data unit barang => operator
-  Future<List<AppUnitBarang>> getUnit() async {
+  Future<List<AppUnitBarang>> dataUnit() async {
     try {
       final response = await http.get(
         Uri.parse('$url/unit'),
@@ -101,7 +101,7 @@ class ServicesGet {
   }
 
   //data unit barang => staff only
-  Future<List<AppUnitBarang>> getUnitStaff() async {
+  Future<List<AppUnitBarang>> staffUnit() async {
     try {
       final response = await http.get(
         Uri.parse('$url/staff/unit'),
@@ -123,7 +123,7 @@ class ServicesGet {
   }
 
   //data pengembalian (data yang dipinjam)
-  Future<List<AppPengajuan>> getPinjam(int id) async {
+  Future<List<AppPengajuan>> dataPinjam(int id) async {
     try {
       final response = await http.get(
         Uri.parse('$url/pengajuan/$id'),
@@ -145,7 +145,7 @@ class ServicesGet {
   }
 
   //riwayat untuk staff role
-  Future<List<AppPengajuan>> getRiwayat(int id) async {
+  Future<List<AppPengajuan>> dataRiwayat(int id) async {
     try {
       final response = await http.get(
         Uri.parse('$url/riwayat/$id'),

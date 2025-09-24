@@ -8,7 +8,7 @@ import 'package:inven/app/routes/app_pages.dart';
 class LoginController extends GetxController {
   final services = ServicesPost();
   final servsget = ServicesGet();
-  final loginKey = GlobalKey<FormState>();
+  // final loginKey = GlobalKey<FormState>();
 
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
@@ -30,16 +30,16 @@ class LoginController extends GetxController {
     ctrlPass.clear();
   }
 
-  @override
-  onClose() {
-    ctrlEmail.dispose();
-    ctrlPass.dispose();
-    fcsEmail.dispose();
-    fcsPass.dispose();
-    super.onClose();
-  }
+  // @override
+  // onClose() {
+  //   ctrlEmail.dispose();
+  //   ctrlPass.dispose();
+  //   fcsEmail.dispose();
+  //   fcsPass.dispose();
+  //   super.onClose();
+  // }
 
-  Future<void> login() async {
+  Future<void> login(GlobalKey<FormState> loginKey) async {
     final user = Get.find<GlobalUserController>();
 
     if (isLoading.value) return;

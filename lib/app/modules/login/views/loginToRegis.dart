@@ -10,13 +10,13 @@ class LoginToRegis extends GetView<RegisterController> {
       spacing: 3,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        const Text('Belum punya akun?'),
+        const Text('Konfigurasi url?'),
         GestureDetector(
           onTap: () {
             Get.toNamed(Routes.REGISTER);
           },
           child: const Text(
-            'daftar',
+            'konfigurasi',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Color(0xff4E71FF),

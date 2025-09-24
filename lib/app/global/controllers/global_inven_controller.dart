@@ -5,8 +5,6 @@ import 'package:inven/app/data/models/AppBarang.dart';
 import 'package:inven/app/data/services/services_get.dart';
 
 class GlobalInvenController extends GetxController {
-  final services = ServicesGet();
-
   //controller untuk input teks dari TextField
   final ctrlFilter = TextEditingController();
 
@@ -69,7 +67,7 @@ class GlobalInvenController extends GetxController {
     try {
       isLoading.value = true;
 
-      List<AppBarang> item = await services.getBarang();
+      List<AppBarang> item = await ServicesGet().dataBarang();
 
       barang.assignAll(item);
 

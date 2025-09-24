@@ -22,7 +22,6 @@ class StaffController extends GetxController {
   //services
   final servPut = ServicesUpdate();
   final servPst = ServicesPost();
-  final servGet = ServicesGet();
 
   //data model yang difetch
   final itemList = <AppBarang>[].obs;
@@ -207,16 +206,16 @@ class StaffController extends GetxController {
       isLoading.value = true;
 
       //get hanya riwayat peminjaman
-      final pinjam = await servGet.getPinjam(userData!.id);
+      final pinjam = await ServicesGet().dataPinjam(userData!.id);
 
       //get semua riwayat
-      final riwayat = await servGet.getRiwayat(userData!.id);
+      final riwayat = await ServicesGet().dataRiwayat(userData!.id);
 
       //get data barang
-      final barang = await servGet.getBarang();
+      final barang = await ServicesGet().dataBarang();
 
       //get unit barang
-      final unit = await servGet.getUnitStaff();
+      final unit = await ServicesGet().staffUnit();
 
       //data barang
       itemList.assignAll(barang);

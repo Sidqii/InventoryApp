@@ -49,6 +49,7 @@ class ServicesUpdate {
     }
   }
 
+  //persetujuan pengajuan barang
   Future<AppPengajuan?> prosesAppr(int id, int statusId, String note) async {
     try {
       final response = await http.put(
@@ -70,8 +71,10 @@ class ServicesUpdate {
     }
   }
 
+  //proses pengembalian barang
   Future<AppPengajuan?> prosesRett(
     int id,
+    //unit dikirim menjadi list (sesuai BE)
     List<Map<String, dynamic>> unit,
   ) async {
     try {
